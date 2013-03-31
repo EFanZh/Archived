@@ -1,0 +1,77 @@
+{
+    "ext_name": {
+        "message": "字体设置"
+    },
+
+    "ext_description": {
+        "message": "自定义字体设置。"
+    },
+
+    "page_title": {
+        "message": "字体设置"
+    },
+
+    "page_font_family_settings": {
+        "message": "字体族设置"
+    },
+
+    "page_font_script": {
+        "message": "脚本"
+    },
+
+    "page_generic_font_family_standard": {
+        "message": "标准字体"
+    },
+
+    "page_generic_font_family_sansserif": {
+        "message": "无衬线字体"
+    },
+
+    "page_generic_font_family_serif": {
+        "message": "衬线字体"
+    },
+
+    "page_generic_font_family_fixed": {
+        "message": "固定宽度字体"
+    },
+
+    "page_generic_font_family_cursive": {
+        "message": "手写字体"
+    },
+
+    "page_generic_font_family_fantasy": {
+        "message": "梦幻字体"
+    },
+
+    "page_font_size_settings": {
+        "message": "字体尺寸设置"
+    },
+
+    "page_default_font_size": {
+        "message": "默认字体尺寸"
+    },
+
+    "page_default_fixed_font_size": {
+        "message": "默认固定宽度字体尺寸"
+    },
+
+    "page_minimum_font_size": {
+        "message": "最小字体尺寸"
+    },
+
+    "page_clear_font_settings": {
+        "message": "清除字体设置"
+    },
+
+    "page_clear_all_font_settings": {
+        "message": "清除所有字体设置"
+    },
+
+    "page_footer_text": {
+        "message": "EFanZh 制"
+    },
+
+    "page_clear": {
+        "message": "清除"
+    }
+}

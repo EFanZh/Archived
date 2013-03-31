@@ -1,0 +1,124 @@
+using System;
+using System.Diagnostics;
+using System.Windows.Forms;
+
+namespace AutoWakeUp
+{
+    public partial class MainForm : Form
+    {
+        private Control[] controls;
+
+        public MainForm()
+        {
+            InitializeComponent();
+
+            controls = new Control[] { dateTimePickerWakeUpTime, textBoxRunProgram, buttonSelectProgram, textBoxRunProgramParameter, dateTimePickerWaitUntilTime, comboBoxDoStuff, buttonGoToSleepAndWait };
+
+            if (ConfigManager.LoadConfig())
+            {
+                IgnoreExceptionDo(() => { dateTimePickerWakeUpTime.Value = ConfigManager.WakeUpTime; });
+                IgnoreExceptionDo(() => { textBoxRunProgram.Text = ConfigManager.RunProgram; });
+                IgnoreExceptionDo(() => { textBoxRunProgramParameter.Text = ConfigManager.RunProgramParameter; });
+                IgnoreExceptionDo(() => { dateTimePickerWaitUntilTime.Value = ConfigManager.WaitUntilTime; });
+                IgnoreExceptionDo(() => { comboBoxDoStuff.Text = ConfigManager.DoStuff; });
+            }
+        }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            ConfigManager.WakeUpTime = dateTimePickerWakeUpTime.Value;
+            ConfigManager.RunProgram = textBoxRunProgram.Text;
+            ConfigManager.RunProgramParameter = textBoxRunProgramParameter.Text;
+            ConfigManager.WaitUntilTime = dateTimePickerWaitUntilTime.Value;
+            ConfigManager.DoStuff = comboBoxDoStuff.Text;
+            ConfigManager.SaveConfig();
+        }
+
+        private void buttonSelectProgram_Click(object sender, EventArgs e)
+        {
+            buttonSelectProgram.Enabled = false;
+            if (openFileDialogMain.ShowDialog() == DialogResult.OK)
+            {
+                textBoxRunProgram.Text = openFileDialogMain.FileName;
+            }
+            buttonSelectProgram.Enabled = true;
+        }
+
+        private void buttonGoToSleepAndWait_Click(object sender, EventArgs e)
+        {
+            SetControlEnabled(false);
+
+            DateTime now = DateTime.Now;
+
+            DateTime wake_up_time = new DateTime(now.Year, now.Month, now.Day, dateTimePickerWakeUpTime.Value.Hour, dateTimePickerWakeUpTime.Value.Minute, dateTimePickerWakeUpTime.Value.Second, DateTimeKind.Local);
+            if (wake_up_time < now)
+            {
+                wake_up_time = wake_up_time.AddDays(1.0);
+            }
+
+            DateTime suspend_time = new DateTime(now.Year, now.Month, now.Day, dateTimePickerWaitUntilTime.Value.Hour, dateTimePickerWaitUntilTime.Value.Minute, dateTimePickerWaitUntilTime.Value.Second, DateTimeKind.Local);
+            if (suspend_time < now)
+            {
+                suspend_time = suspend_time.AddDays(1.0);
+            }
+
+            if (suspend_time < wake_up_time)
+            {
+                MessageBox.Show("Wait Until Time should be later than Wake Up Time.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                SetControlEnabled(true);
+                return;
+            }
+
+            Func<Action, Action> get_invoker = (action) =>
+            {
+                return () =>
+                {
+                    this.BeginInvoke(action);
+                };
+            };
+
+            SystemActions.WaitThenDoStuff(wake_up_time, get_invoker(new Action(WakeUpStuff)));
+            SystemActions.WaitThenDoStuff(suspend_time, get_invoker(new Action(SuspendStuff)));
+
+            SystemActions.SystemSleep();
+        }
+
+        private void WakeUpStuff()
+        {
+            IgnoreExceptionDo(() => { Process.Start(textBoxRunProgram.Text, textBoxRunProgramParameter.Text); });
+        }
+
+        private void SuspendStuff()
+        {
+            if (string.Equals(comboBoxDoStuff.Text, "Sleep"))
+            {
+                SystemActions.SystemSleep();
+            }
+            else if (string.Equals(comboBoxDoStuff.Text, "Shutdown"))
+            {
+                SystemActions.SystemShutdown();
+            }
+            SetControlEnabled(true);
+        }
+
+        private void SetControlEnabled(bool value)
+        {
+            foreach (var control in controls)
+            {
+                control.Enabled = value;
+            }
+        }
+
+        private static void IgnoreExceptionDo(Action action)
+        {
+            try
+            {
+                action();
+            }
+            catch (Exception)
+            {
+            }
+        }
+    }
+}

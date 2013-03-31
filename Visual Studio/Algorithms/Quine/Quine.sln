@@ -1,0 +1,26 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Quine", "Quine\Quine.vcxproj", "{48F7C6A5-E38B-44F5-A2A1-FB866C82160B}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GeneralQuine", "GeneralQuine\GeneralQuine.vcxproj", "{B5D83AA0-712A-4613-8DD7-603285D8074C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{48F7C6A5-E38B-44F5-A2A1-FB866C82160B}.Debug|Win32.ActiveCfg = Debug|Win32
+		{48F7C6A5-E38B-44F5-A2A1-FB866C82160B}.Debug|Win32.Build.0 = Debug|Win32
+		{48F7C6A5-E38B-44F5-A2A1-FB866C82160B}.Release|Win32.ActiveCfg = Release|Win32
+		{48F7C6A5-E38B-44F5-A2A1-FB866C82160B}.Release|Win32.Build.0 = Release|Win32
+		{B5D83AA0-712A-4613-8DD7-603285D8074C}.Debug|Win32.ActiveCfg = Debug|Win32
+		{B5D83AA0-712A-4613-8DD7-603285D8074C}.Debug|Win32.Build.0 = Debug|Win32
+		{B5D83AA0-712A-4613-8DD7-603285D8074C}.Release|Win32.ActiveCfg = Release|Win32
+		{B5D83AA0-712A-4613-8DD7-603285D8074C}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

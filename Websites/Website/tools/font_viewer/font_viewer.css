@@ -1,0 +1,301 @@
+﻿#font-list, #font-list-container, #footer, #header, #main, #options, #sidebar, .preview-item, input[type="text"]
+{
+    -moz-transition: 0.25s;
+    -webkit-transition: 0.25s;
+}
+
+#font-list
+{
+    background-color: rgba(255, 255, 255, 0.5);
+    border: none;
+    height: 100%;
+    width: 100%;
+}
+
+#font-list:hover
+{
+    background-color: #fff;
+}
+
+#font-list-container
+{
+    border: 1px solid #abc;
+    bottom: 10px;
+    left: 10px;
+    overflow: hidden;
+    position: absolute;
+    right: 10px;
+    top: 52px;
+}
+
+#font-list-container:hover
+{
+    border-color: #ff8000;
+}
+
+#font-size
+{
+    width: 64px;
+}
+
+#footer
+{
+    bottom: 0;
+    font-size: 8pt;
+    padding: 12px;
+    text-align: right;
+}
+
+#footer, #header
+{
+    background-color: rgba(255, 255, 255, 0.8);
+    position: fixed;
+    right: 0;
+}
+
+#footer, #header, #main, #sidebar
+{
+    box-shadow: 5px 5px 10px #333;
+}
+
+#footer:hover, #header:hover
+{
+    background-color: rgba(255, 255, 255, 0.96);
+}
+
+#header
+{
+    border-bottom: 1px solid #333;
+    height: 63px;
+    left: 0;
+    padding-left: 24px;
+}
+
+#header a
+{
+    color: inherit;
+}
+
+#header h1
+{
+    display: inline;
+    line-height: 63px;
+}
+
+#header-container
+{
+    height: 94px;
+}
+
+#main
+{
+    margin: 0 30px 30px 322px;
+}
+
+#main, #sidebar
+{
+    background-color: rgba(224, 240, 255, 0.8);
+    border: 1px solid #333;
+    padding: 10px;
+}
+
+#main:hover, #sidebar:hover
+{
+    background-color: rgba(224, 240, 255, 0.96);
+    border-color: #ff8000;
+    box-shadow: 0 0 16px #fff;
+}
+
+#options-header
+{
+    height: 24px;
+    margin-bottom: 10px;
+    padding-left: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #abc;
+}
+
+#options-header h3
+{
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    cursor: pointer;
+    line-height: 24px;
+}
+
+#option-items
+{
+    font-size: 9pt;
+}
+
+#options
+{
+    background-color: rgba(255, 255, 255, 0.5);
+    border: 1px solid #abc;
+    overflow: hidden;
+    padding: 10px;
+    width: 320px;
+}
+
+#options:hover
+{
+    background-color: rgba(255, 255, 128, 0.8);
+    border-color: #ff8000;
+}
+
+#preview-header
+{
+    height: 32px;
+    margin-bottom: 10px;
+}
+
+#preview-header h2
+{
+    line-height: 32px;
+}
+
+#sample-text
+{
+    width: 180px;
+}
+
+#sidebar
+{
+    bottom: 30px;
+    left: 30px;
+    position: fixed;
+    top: 94px;
+    width: 240px;
+}
+
+#sidebar-header
+{
+    height: 32px;
+}
+
+#sidebar-header h2
+{
+    line-height: 32px;
+}
+
+.clear
+{
+    clear: both;
+}
+
+.option-label
+{
+    clear: left;
+    text-align: right;
+    width: 96px;
+}
+
+.option-label, .option-value-group
+{
+    display: block;
+    float: left;
+    height: 20px;
+    line-height: 20px;
+    margin: 1px 5px;
+}
+
+.preview-item
+{
+    background-color: rgba(255, 255, 255, 0.5);
+    border: 1px solid #abc;
+    margin-top: 10px;
+    padding: 10px;
+    text-rendering: geometricprecision;
+}
+
+.preview-item h3
+{
+    border-bottom: 1px solid #abc;
+    margin-bottom: 10px;
+    padding: 0 10px 10px 10px;
+}
+
+.preview-item:hover
+{
+    background-color: #fff;
+    border: 1px solid #ff8000;
+}
+
+a
+{
+    color: #09f;
+    text-decoration: none;
+}
+
+a:hover
+{
+    border-bottom: 1px dashed #ff8000;
+}
+
+body
+{
+    background-color: #607080;
+    color: #333;
+    font-family: "Lucida Grande", "Lucida Sans Unicode", "Segoe UI", Verdana, sans-serif;
+    font-size: 12pt;
+    text-shadow: 1px 1px 1px #fff;
+}
+
+body, h1, h2, h3, h4, h5, h6, input, ol, textarea, ul
+{
+    margin: 0;
+    padding: 0;
+}
+
+h1
+{
+    font-size: 2em;
+}
+
+h2
+{
+    font-size: 1.5em;
+}
+
+h3
+{
+    font-size: 1.2em;
+}
+
+input
+{
+    font-family: inherit;
+    font-size: 9pt;
+}
+
+input[type="text"]
+{
+    background-color: rgba(255, 255, 255, 0.5);
+    border: 1px solid #abc;
+    height: 16px;
+}
+
+input[type="text"]:hover
+{
+    background-color: #fff;
+    border-color: #ff8000;
+}
+
+label
+{
+    -moz-user-select: none;
+    -webkit-user-select: none;
+}
+
+ol, ul
+{
+    list-style-type: none;
+}
+
+textarea
+{
+    font-family: Consolas, "Courier New", monospance;
+    font-size: 9pt;
+    overflow: auto;
+    resize: none;
+}

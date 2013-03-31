@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lambda Recursion", "Lambda Recursion\Lambda Recursion.csproj", "{CCD6C002-8E02-4479-AA34-9DB3DDFBF64E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CCD6C002-8E02-4479-AA34-9DB3DDFBF64E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CCD6C002-8E02-4479-AA34-9DB3DDFBF64E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CCD6C002-8E02-4479-AA34-9DB3DDFBF64E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CCD6C002-8E02-4479-AA34-9DB3DDFBF64E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

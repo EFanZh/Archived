@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{FA590106-2F06-49F7-B24E-421F7CA7CD41}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ImgProcCore</RootNamespace>
+    <AssemblyName>ImgProcCore</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ImageAddTextPlugin.cs" />
+    <Compile Include="ImageAddTextPluginContext.cs" />
+    <Compile Include="ImageAddTextPluginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ImageAddTextPluginForm.Designer.cs">
+      <DependentUpon>ImageAddTextPluginForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ImageCutPluginContext.cs" />
+    <Compile Include="ImageCutPluginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ImageCutPluginForm.Designer.cs">
+      <DependentUpon>ImageCutPluginForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ImageCutPlugin.cs" />
+    <Compile Include="ImageMosaicPlugin.cs" />
+    <Compile Include="ImageMosaicPluginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ImageMosaicPluginForm.Designer.cs">
+      <DependentUpon>ImageMosaicPluginForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ImageScalePluginContext.cs" />
+    <Compile Include="ImageScalePluginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ImageScalePluginForm.Designer.cs">
+      <DependentUpon>ImageScalePluginForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ImageScalePluginMethod.cs" />
+    <Compile Include="InputCore.cs" />
+    <Compile Include="OutputPNG.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ImageScalePlugin.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ImgProc.Shared\ImgProc.Shared.csproj">
+      <Project>{C2EBE348-0499-461C-BED5-3D72AAD14867}</Project>
+      <Name>ImgProc.Shared</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ImageAddTextPluginForm.resx">
+      <DependentUpon>ImageAddTextPluginForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImageCutPluginForm.resx">
+      <DependentUpon>ImageCutPluginForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImageMosaicPluginForm.resx">
+      <DependentUpon>ImageMosaicPluginForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImageScalePluginForm.resx">
+      <DependentUpon>ImageScalePluginForm.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

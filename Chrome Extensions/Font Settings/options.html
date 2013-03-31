@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title></title>
+        <link href="options.css" rel="stylesheet" />
+        <script src="options.js"></script>
+    </head>
+    <body>
+        <header id="header">
+            <h1 id="font-settings-title"></h1>
+        </header>
+        <section id="main">
+            <section id="font-family-settings">
+                <h2 id="font-family-settings-title"></h2>
+                <table id="font-family-settings-table">
+                    <tr>
+                        <td>
+                            <label for="font-script" id="font-script-title"></label>
+                        </td>
+                        <td colspan="3">
+                            <select id="font-script"></select>
+                        </td>
+                    </tr>
+                </table>
+            </section>
+            <section id="font-size-settings">
+                <h2 id="font-size-settings-title"></h2>
+                <table id="font-size-settings-table">
+                    <tr>
+                        <td>
+                            <label for="default-font-size" id="default-font-size-title"></label>
+                        </td>
+                        <td>
+                            <input id="default-font-size" min="0" type="number" />
+                            <span>px</span>
+                        </td>
+                        <td>
+                            <button id="clear-default-font-size"></button>
+                        </td>
+                        <td id="default-font-size-preview">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="default-fixed-font-size" id="default-fixed-font-size-title"></label>
+                        </td>
+                        <td>
+                            <input id="default-fixed-font-size" min="0" type="number" />
+                            <span>px</span>
+                        </td>
+                        <td>
+                            <button id="clear-default-fixed-font-size"></button>
+                        </td>
+                        <td id="default-fixed-font-size-preview">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="minimum-font-size" id="minimum-font-size-title"></label>
+                        </td>
+                        <td>
+                            <input id="minimum-font-size" min="0" type="number" />
+                            <span>px</span>
+                        </td>
+                        <td>
+                            <button id="clear-minimum-font-size"></button>
+                        </td>
+                        <td id="minimum-font-size-preview">
+                        </td>
+                    </tr>
+                </table>
+            </section>
+            <section id="clear-font-settings">
+                <h2 id="clear-font-settings-title"></h2>
+                <table>
+                    <tr>
+                        <td>
+                            <label for="clear-all-font-settings" id="clear-all-font-settings-title"></label>
+                        </td>
+                        <td>
+                            <button id="clear-all-font-settings"></button>
+                        </td>
+                    </tr>
+                </table>
+            </section>
+        </section>
+        <hr />
+        <footer id="footer"></footer>
+    </body>
+</html>

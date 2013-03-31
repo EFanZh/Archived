@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>DotA Heroes</title>
+        <link href="dota_heroes.css" rel="stylesheet" type="text/css" />
+        <script src="dota_heroes.js"></script>
+        <script src="translate.js"></script>
+    </head>
+    <body>
+        <header>
+            <h1>DotA Heroes</h1>
+            <div>Official Website: <a href="http://www.playdota.com/heroes">http://www.playdota.com/heroes</a></div>
+            <hr />
+        </header>
+        <section>
+            <div id="data-source-option">
+                <label for="data-source">Data Soure:</label>
+                <select id="data-source">
+                </select>
+                <span id="data-source-load-status"></span>
+            </div>
+            <div id="translate-option">
+                <input id="translate" type="checkbox" />
+                <label for="translate">Translate</label>
+            </div>
+            <div id="dota-heroes-data-content">
+                <table class="data-table" id="dota-heroes-raw-data-table">
+                    <thead></thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </section>
+        <footer id="footer">
+            <hr />
+            <p>By EFanZh</p>
+        </footer>
+    </body>
+</html>

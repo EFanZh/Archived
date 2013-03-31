@@ -1,0 +1,51 @@
+﻿#main
+{
+    font-size: 9pt;
+}
+
+#unicode-characters
+{
+    border-collapse: collapse;
+}
+
+#unicode-characters tr td:nth-child(even)
+{
+    border-top: 2pt solid #2a8bf5;
+    border-right: 2px solid #2a8bf5;
+    border-bottom: 2pt solid #2a8bf5;
+}
+
+#unicode-characters tr td:nth-child(even) > span
+{
+    display: inline-block;
+    border: 1px dashed #2a8bf5;
+    margin: 2pt;
+}
+
+#unicode-characters tr td:nth-child(odd)
+{
+    border-top: 2pt solid #2a8bf5;
+    border-bottom: 2pt solid #2a8bf5;
+    border-left: 2px solid #2a8bf5;
+    font-family: Consolas, "Microsoft YaHei", monospace;
+}
+
+.selected-character
+{
+    background-color: rgba(221, 177, 35, 0.81);
+}
+
+body
+{
+    font-family: "Segoe UI", "Microsoft YaHei", sans-serif;
+}
+
+button, input, select
+{
+    font: inherit;
+}
+
+div[role="toolbar"] > span[role="separator"]
+{
+    margin: auto 0.25em;
+}

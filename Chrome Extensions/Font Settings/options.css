@@ -1,0 +1,33 @@
+#font-family-settings-table, #font-size-settings-table
+{
+}
+
+#font-family-settings-table td:nth-child(1), #font-size-settings-table td:nth-child(1)
+{
+    text-align: right;
+}
+
+#font-family-settings-table td:nth-child(4), #font-size-settings-table td:nth-child(4)
+{
+    border: 1px solid #abc;
+    line-height: 24pt;
+    max-width: 600pt;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+body
+{
+    font: 9pt "Lucida Grande" , "Segoe UI" , sans-serif;
+}
+
+button, input, select
+{
+    font: inherit;
+}
+
+input
+{
+    height: 13.5pt;
+    min-height: 18px;
+}

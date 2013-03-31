@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>ID Card Number Generator</title>
+        <link href="id_card_number_generator.css" rel="stylesheet" />
+        <script src="id_card_number_generator.js" type="text/javascript"></script>
+    </head>
+    <body>
+        <header>
+            <h1>ID Card Number Generator</h1>
+        </header>
+        <section>
+            <div id="option-table-container">
+                <table id="option-table">
+                    <colgroup>
+                        <col id="col-1" />
+                    </colgroup>
+                    <tr>
+                        <td>
+                            <label for="administrative-division-1">行政区划 (代码):</label>
+                        </td>
+                        <td>
+                            <select id="administrative-division-1"></select>
+                            <select id="administrative-division-2"></select>
+                            <select id="administrative-division-3"></select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="birthday-y">出生日期:</label>
+                        </td>
+                        <td>
+                            <input id="birthday-y" type="text" />
+                            <label for="birthday-y">年</label>
+                            <select id="birthday-m"></select>
+                            <label for="birthday-m">月</label>
+                            <select id="birthday-d"></select>
+                            <label for="birthday-d">日</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="gender">性别:</label>
+                        </td>
+                        <td>
+                            <select id="gender">
+                                <option value="1">男</option>
+                                <option value="2">女</option>
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div>
+                <button id="regenerate">重新生成</button>
+            </div>
+            <div>
+                <pre id="id-card-number"><code></code></pre>
+            </div>
+        </section>
+    </body>
+</html>

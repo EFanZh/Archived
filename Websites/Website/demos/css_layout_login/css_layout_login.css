@@ -1,0 +1,19 @@
+#login-table
+{
+    margin: auto;
+}
+
+#login-table td:nth-child(1)
+{
+    text-align: right;
+}
+
+#login-table td:nth-child(2)
+{
+    text-align: left;
+}
+
+button, input
+{
+    font: inherit;
+}

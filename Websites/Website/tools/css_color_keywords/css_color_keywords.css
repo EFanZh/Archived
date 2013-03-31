@@ -1,0 +1,30 @@
+table
+{
+    border-collapse: collapse;
+    border-top: 2pt solid black;
+    border-bottom: 2pt solid black;
+}
+
+tbody tr
+{
+    -moz-transition: all 0.25s ease;
+    -o-transition: all 0.25s ease;
+    -webkit-transition: all 0.25s ease;
+    transition: all 0.25s ease;
+}
+
+tbody tr:hover
+{
+    background-color: #eafaa1;
+}
+
+td, th
+{
+    padding: 0 0.25em;
+    text-align: left;
+}
+
+thead
+{
+    border-bottom: 1pt solid black;
+}

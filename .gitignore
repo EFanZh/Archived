@@ -1,0 +1,14 @@
+*.aps
+*.bak
+*.dll
+*.exe
+*.lib
+*.lnk
+*.min.js
+*.obj
+*.suo
+*.user
+bin/
+obj/
+Debug/
+Release/

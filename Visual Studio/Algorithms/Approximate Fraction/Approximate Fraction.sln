@@ -1,0 +1,19 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Approximate Fraction", "Approximate Fraction\Approximate Fraction.csproj", "{78600FDA-D126-4471-8F84-E7C70ABB3F37}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{78600FDA-D126-4471-8F84-E7C70ABB3F37}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78600FDA-D126-4471-8F84-E7C70ABB3F37}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78600FDA-D126-4471-8F84-E7C70ABB3F37}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78600FDA-D126-4471-8F84-E7C70ABB3F37}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

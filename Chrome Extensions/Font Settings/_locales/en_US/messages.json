@@ -1,0 +1,77 @@
+{
+    "ext_name": {
+        "message": "Font Settings"
+    },
+
+    "ext_description": {
+        "message": "Custom font settings."
+    },
+
+    "page_title": {
+        "message": "Font Settings"
+    },
+
+    "page_font_family_settings": {
+        "message": "Font Family Settings"
+    },
+
+    "page_font_script": {
+        "message": "Script"
+    },
+
+    "page_generic_font_family_standard": {
+        "message": "Standard Font"
+    },
+
+    "page_generic_font_family_sansserif": {
+        "message": "Sans-Serif Font"
+    },
+
+    "page_generic_font_family_serif": {
+        "message": "Serif Font"
+    },
+
+    "page_generic_font_family_fixed": {
+        "message": "Fixed Font"
+    },
+
+    "page_generic_font_family_cursive": {
+        "message": "Cursive Font"
+    },
+
+    "page_generic_font_family_fantasy": {
+        "message": "Fantasy Font"
+    },
+
+    "page_font_size_settings": {
+        "message": "Font Size Settings"
+    },
+
+    "page_default_font_size": {
+        "message": "Default Font Size"
+    },
+
+    "page_default_fixed_font_size": {
+        "message": "Default Fixed Font Size"
+    },
+
+    "page_minimum_font_size": {
+        "message": "Minimum Font Size"
+    },
+
+    "page_clear_font_settings": {
+        "message": "Clear Font Settings"
+    },
+
+    "page_clear_all_font_settings": {
+        "message": "Clear All Font Settings"
+    },
+
+    "page_footer_text": {
+        "message": "By EFanZh"
+    },
+
+    "page_clear": {
+        "message": "Clear"
+    }
+}
