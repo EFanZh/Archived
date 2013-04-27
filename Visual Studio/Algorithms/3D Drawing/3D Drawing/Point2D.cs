@@ -1,4 +1,4 @@
-﻿namespace ThreeDDrawing
+namespace ThreeDDrawing
 {
     internal class Point2D
     {

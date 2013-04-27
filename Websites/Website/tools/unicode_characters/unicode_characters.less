@@ -1,0 +1,63 @@
+@table-border: 2pt solid #90adcc;
+@cell-padding: 2pt;
+
+#main
+{
+    font-size: 9pt;
+}
+
+#unicode-characters
+{
+    margin: auto;
+    border-collapse: collapse;
+    background-color: #f7fafb;
+    white-space: nowrap;
+}
+
+#unicode-characters tr td:nth-child(even)
+{
+    padding: @cell-padding @cell-padding @cell-padding 0;
+    border-top: @table-border;
+    border-right: @table-border;
+    border-bottom: @table-border;
+}
+
+#unicode-characters tr td:nth-child(even) > span
+{
+    display: inline-block;
+    border: 1px solid rgba(107, 134, 62, 0.62);
+    background-color: #fff;
+}
+
+#unicode-characters tr td:nth-child(odd)
+{
+    padding: @cell-padding;
+    border-top: @table-border;
+    border-bottom: @table-border;
+    border-left: @table-border;
+    font-size: 9pt;
+}
+
+body
+{
+    font-family: "Segoe UI", "Microsoft YaHei", sans-serif;
+}
+
+button, input, select
+{
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    height: 18pt;
+    font: inherit;
+}
+
+div[role="toolbar"]
+{
+    margin: 0.25em auto;
+}
+
+div[role="toolbar"] > span[role="separator"]
+{
+    margin: auto 0.25em;
+}

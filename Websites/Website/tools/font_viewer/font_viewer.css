@@ -1,301 +1,138 @@
-﻿#font-list, #font-list-container, #footer, #header, #main, #options, #sidebar, .preview-item, input[type="text"]
+#font-families
 {
-    -moz-transition: 0.25s;
-    -webkit-transition: 0.25s;
-}
-
-#font-list
-{
-    background-color: rgba(255, 255, 255, 0.5);
-    border: none;
-    height: 100%;
-    width: 100%;
-}
-
-#font-list:hover
-{
-    background-color: #fff;
-}
-
-#font-list-container
-{
-    border: 1px solid #abc;
-    bottom: 10px;
-    left: 10px;
-    overflow: hidden;
-    position: absolute;
-    right: 10px;
-    top: 52px;
-}
-
-#font-list-container:hover
-{
-    border-color: #ff8000;
-}
-
-#font-size
-{
-    width: 64px;
-}
-
-#footer
-{
-    bottom: 0;
-    font-size: 8pt;
-    padding: 12px;
-    text-align: right;
+    display: block;
+    overflow: auto;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 240px;
+    white-space: pre;
+    -ms-word-wrap: normal;
+    word-wrap: normal;
+    resize: none;
 }
 
 #footer, #header
 {
-    background-color: rgba(255, 255, 255, 0.8);
-    position: fixed;
-    right: 0;
+    background-color: rgba(93, 174, 255, 0.38);
 }
 
-#footer, #header, #main, #sidebar
+#footer, #header, #main, #preview-area-container, #sidebar
 {
-    box-shadow: 5px 5px 10px #333;
+    overflow: auto;
 }
 
-#footer:hover, #header:hover
+#footer, #header, #preview-header, #sidebar
 {
-    background-color: rgba(255, 255, 255, 0.96);
+    padding-right: 1em;
+    padding-left: 1em;
 }
 
-#header
+#preview, #text-container, #text-control-container
 {
-    border-bottom: 1px solid #333;
-    height: 63px;
-    left: 0;
-    padding-left: 24px;
-}
-
-#header a
-{
-    color: inherit;
-}
-
-#header h1
-{
-    display: inline;
-    line-height: 63px;
-}
-
-#header-container
-{
-    height: 94px;
-}
-
-#main
-{
-    margin: 0 30px 30px 322px;
-}
-
-#main, #sidebar
-{
-    background-color: rgba(224, 240, 255, 0.8);
-    border: 1px solid #333;
-    padding: 10px;
-}
-
-#main:hover, #sidebar:hover
-{
-    background-color: rgba(224, 240, 255, 0.96);
-    border-color: #ff8000;
-    box-shadow: 0 0 16px #fff;
-}
-
-#options-header
-{
-    height: 24px;
-    margin-bottom: 10px;
-    padding-left: 10px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid #abc;
-}
-
-#options-header h3
-{
-    -moz-user-select: none;
-    -webkit-user-select: none;
-    cursor: pointer;
-    line-height: 24px;
-}
-
-#option-items
-{
-    font-size: 9pt;
-}
-
-#options
-{
-    background-color: rgba(255, 255, 255, 0.5);
-    border: 1px solid #abc;
     overflow: hidden;
-    padding: 10px;
-    width: 320px;
 }
 
-#options:hover
+#preview-area
 {
-    background-color: rgba(255, 255, 128, 0.8);
-    border-color: #ff8000;
+    text-rendering: optimizeLegibility;
+}
+
+#preview-area-container
+{
+    -webkit-box-shadow: inset 0.1em 0.1em 0.6em #616161;
+    box-shadow: inset 0.1em 0.1em 0.6em #616161;
 }
 
 #preview-header
 {
-    height: 32px;
-    margin-bottom: 10px;
-}
-
-#preview-header h2
-{
-    line-height: 32px;
-}
-
-#sample-text
-{
-    width: 180px;
+    padding-top: 0.25em;
+    padding-bottom: 0.25em;
+    background-color: rgba(255, 164, 0, 0.38);
 }
 
 #sidebar
 {
-    bottom: 30px;
-    left: 30px;
-    position: fixed;
-    top: 94px;
-    width: 240px;
-}
-
-#sidebar-header
-{
-    height: 32px;
-}
-
-#sidebar-header h2
-{
-    line-height: 32px;
-}
-
-.clear
-{
-    clear: both;
-}
-
-.option-label
-{
-    clear: left;
-    text-align: right;
-    width: 96px;
-}
-
-.option-label, .option-value-group
-{
-    display: block;
     float: left;
-    height: 20px;
-    line-height: 20px;
-    margin: 1px 5px;
+    background-color: rgba(210, 228, 177, 0.38);
 }
 
-.preview-item
+#text
 {
-    background-color: rgba(255, 255, 255, 0.5);
-    border: 1px solid #abc;
-    margin-top: 10px;
-    padding: 10px;
-    text-rendering: geometricprecision;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 100%;
 }
 
-.preview-item h3
+#text-label
 {
-    border-bottom: 1px solid #abc;
-    margin-bottom: 10px;
-    padding: 0 10px 10px 10px;
+    float: left;
 }
 
-.preview-item:hover
+#text-size-container
 {
-    background-color: #fff;
-    border: 1px solid #ff8000;
+    float: right;
+    margin-left: 1em;
 }
 
-a
+.bold
 {
-    color: #09f;
-    text-decoration: none;
+    font-weight: bold;
 }
 
-a:hover
+.italic
 {
-    border-bottom: 1px dashed #ff8000;
+    font-style: italic;
+}
+
+.text-label-fix
+{
+    visibility: hidden;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 0;
 }
 
 body
 {
-    background-color: #607080;
-    color: #333;
-    font-family: "Lucida Grande", "Lucida Sans Unicode", "Segoe UI", Verdana, sans-serif;
-    font-size: 12pt;
-    text-shadow: 1px 1px 1px #fff;
-}
-
-body, h1, h2, h3, h4, h5, h6, input, ol, textarea, ul
-{
     margin: 0;
-    padding: 0;
+    font: 9pt "Lucida Grande", "Lucida Sans", "Segoe UI", Verdana, "Segoe Symbol", sans-serif;
 }
 
-h1
+h1, h2, h3, h4, h5, h6
 {
-    font-size: 2em;
-}
-
-h2
-{
-    font-size: 1.5em;
-}
-
-h3
-{
-    font-size: 1.2em;
+    font-family: "Trebuchet MS", "Segoe UI", Verdana, "Segoe Symbol", sans-serif;
 }
 
 input
 {
-    font-family: inherit;
-    font-size: 9pt;
+    font: inherit;
 }
 
-input[type="text"]
+input[type="text"], textarea
 {
-    background-color: rgba(255, 255, 255, 0.5);
-    border: 1px solid #abc;
-    height: 16px;
+    padding: 0.125em;
+    outline: none;
+    border: 1px solid #676b82;
+    background-color: #eaeaea;
+    -moz-transition-duration: 0.25s;
+    -o-transition-duration: 0.25s;
+    -webkit-transition-duration: 0.25s;
+    -moz-transition-timing-function: ease;
+    -o-transition-timing-function: ease;
+    -webkit-transition-timing-function: ease;
+    -moz-transition-property: background-color, border-color;
+    -o-transition-property: background-color, border-color;
+    -webkit-transition-property: background-color, border-color;
+    transition-duration: 0.25s;
+    transition-timing-function: ease;
+    transition-property: background-color, border-color;
 }
 
-input[type="text"]:hover
+input[type="text"]:focus, textarea:focus
 {
+    border-color: #ff6a00;
     background-color: #fff;
-    border-color: #ff8000;
-}
-
-label
-{
-    -moz-user-select: none;
-    -webkit-user-select: none;
-}
-
-ol, ul
-{
-    list-style-type: none;
-}
-
-textarea
-{
-    font-family: Consolas, "Courier New", monospance;
-    font-size: 9pt;
-    overflow: auto;
-    resize: none;
 }

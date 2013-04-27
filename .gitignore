@@ -4,8 +4,10 @@
 *.exe
 *.lib
 *.lnk
+*.min.css
 *.min.js
 *.obj
+*.pyc
 *.suo
 *.user
 bin/

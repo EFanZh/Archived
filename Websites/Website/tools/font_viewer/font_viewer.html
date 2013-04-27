@@ -1,66 +1,67 @@
-﻿<!doctype html>
+<!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8" />
         <title>Font Viewer</title>
-        <link href="font_viewer.css" rel="stylesheet" type="text/css" />
-        <script src="font_viewer.js" type="text/javascript"></script>
+        <link href="font_viewer.css" rel="stylesheet" />
+        <script src="font_viewer.js"></script>
     </head>
     <body>
-        <div id="header-container">
-            <header id="header">
-                <a href="">
-                    <h1>Font Viewer</h1>
-                </a>
-            </header>
-        </div>
-        <aside id="sidebar">
-            <header id="sidebar-header">
-                <h2>Font List</h2>
-            </header>
-            <div id="font-list-container">
-                <textarea cols="1" id="font-list" rows="1">sans-serif
-serif
-monospace</textarea>
-            </div>
-        </aside>
+        <header id="header">
+            <h1>Font Viewer</h1>
+        </header>
         <section id="main">
-            <header id="preview-header">
-                <h2>Preview</h2>
-            </header>
-            <section id="options">
-                <header id="options-header">
-                    <h3 id="toggle-options">[-] Options</h3>
-                </header>
-                <div id="option-items">
-                    <label class="option-label" for="">Font Style:</label>
-                    <span class="option-value-group">
-                        <input id="font-style-bold" type="checkbox" />
-                        <label for="font-style-bold">Bold</label>
-                    </span>
-                    <span class="option-value-group">
-                        <input id="font-style-italic" type="checkbox" />
-                        <label for="font-style-italic">Italic</label>
-                    </span>
-                    <span class="option-value-group">
-                        <input id="font-style-bold-italic" type="checkbox" />
-                        <label for="font-style-bold-italic">Bold-Italic</label>
-                    </span>
-                    <label class="option-label" for="sample-text">Sample Text:</label>
-                    <span class="option-value-group">
-                        <input id="sample-text" type="text" value="The quick brown fox jumps over the lazy dog." />
-                    </span>
-                    <label class="option-label" for="font-size">Font Size:</label>
-                    <span class="option-value-group">
-                        <input id="font-size" type="text" value="24px" />
-                    </span>
-                </div>
-            </section>
+            <aside id="sidebar">
+                <section>
+                    <header>
+                        <h2>Font Families</h2>
+                    </header>
+                    <div>
+                        <textarea id="font-families" placeholder="Font list."></textarea>
+                    </div>
+                </section>
+                <section>
+                    <header>
+                        <h2>Styles</h2>
+                    </header>
+                    <ul>
+                        <li>
+                            <input id="style-normal" type="checkbox" /><label for="style-normal">Normal</label>
+                        </li>
+                        <li>
+                            <input id="style-italic" type="checkbox" /><label for="style-italic">Italic</label>
+                        </li>
+                        <li>
+                            <input id="style-bold" type="checkbox" /><label for="style-bold">Bold</label>
+                        </li>
+                        <li>
+                            <input id="style-bold-italic" type="checkbox" /><label for="style-bold-italic">Bold Italic</label>
+                        </li>
+                    </ul>
+                </section>
+            </aside>
             <section id="preview">
+                <header id="preview-header">
+                    <div>
+                        <div id="text-size-container">
+                            <label for="text-size">Size:</label>
+                            <input id="text-size" placeholder="Text size." type="text" />
+                        </div>
+                        <div id="text-container">
+                            <label id="text-label" for="text">Sample Text:<input class="text-label-fix" type="text" /></label>
+                            <div id="text-control-container">
+                                <input id="text" placeholder="Sample text." type="text" />
+                            </div>
+                        </div>
+                    </div>
+                </header>
+                <section id="preview-area-container">
+                    <ul id="preview-area"></ul>
+                </section>
             </section>
         </section>
         <footer id="footer">
-            <span>Copyright © 2011 <a href="mailto:efanzh@gmail.com">EFanZh</a></span>
+            <p>By EFanZh</p>
         </footer>
     </body>
 </html>

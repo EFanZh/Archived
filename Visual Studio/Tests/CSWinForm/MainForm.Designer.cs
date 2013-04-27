@@ -32,16 +32,18 @@ namespace CSWinForm
             // 
             // MainForm
             // 
-            this.ClientSize = new System.Drawing.Size(284, 261);
+            this.ClientSize = new System.Drawing.Size(490, 261);
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.Name = "MainForm";
             this.Text = "CSWinForm";
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.MainForm_Paint);
             this.ResumeLayout(false);
 
         }
 
-        #endregion
+        #endregion Windows Form Designer generated code
+
     }
 }
 

@@ -12,15 +12,15 @@ namespace AutoWakeUp
         {
             InitializeComponent();
 
-            controls = new Control[] { dateTimePickerWakeUpTime, textBoxRunProgram, buttonSelectProgram, textBoxRunProgramParameter, dateTimePickerWaitUntilTime, comboBoxDoStuff, buttonGoToSleepAndWait };
+            controls = new Control[] { dateTimePickerWakeUpTime, textBoxRunProgram, buttonSelectProgram, textBoxParameter, dateTimePickerRestTime, comboBoxOperation, buttonGoToSleepAndWait };
 
             if (ConfigManager.LoadConfig())
             {
                 IgnoreExceptionDo(() => { dateTimePickerWakeUpTime.Value = ConfigManager.WakeUpTime; });
                 IgnoreExceptionDo(() => { textBoxRunProgram.Text = ConfigManager.RunProgram; });
-                IgnoreExceptionDo(() => { textBoxRunProgramParameter.Text = ConfigManager.RunProgramParameter; });
-                IgnoreExceptionDo(() => { dateTimePickerWaitUntilTime.Value = ConfigManager.WaitUntilTime; });
-                IgnoreExceptionDo(() => { comboBoxDoStuff.Text = ConfigManager.DoStuff; });
+                IgnoreExceptionDo(() => { textBoxParameter.Text = ConfigManager.RunProgramParameter; });
+                IgnoreExceptionDo(() => { dateTimePickerRestTime.Value = ConfigManager.WaitUntilTime; });
+                IgnoreExceptionDo(() => { comboBoxOperation.Text = ConfigManager.DoStuff; });
             }
         }
 
@@ -28,9 +28,9 @@ namespace AutoWakeUp
         {
             ConfigManager.WakeUpTime = dateTimePickerWakeUpTime.Value;
             ConfigManager.RunProgram = textBoxRunProgram.Text;
-            ConfigManager.RunProgramParameter = textBoxRunProgramParameter.Text;
-            ConfigManager.WaitUntilTime = dateTimePickerWaitUntilTime.Value;
-            ConfigManager.DoStuff = comboBoxDoStuff.Text;
+            ConfigManager.RunProgramParameter = textBoxParameter.Text;
+            ConfigManager.WaitUntilTime = dateTimePickerRestTime.Value;
+            ConfigManager.DoStuff = comboBoxOperation.Text;
             ConfigManager.SaveConfig();
         }
 
@@ -56,7 +56,7 @@ namespace AutoWakeUp
                 wake_up_time = wake_up_time.AddDays(1.0);
             }
 
-            DateTime suspend_time = new DateTime(now.Year, now.Month, now.Day, dateTimePickerWaitUntilTime.Value.Hour, dateTimePickerWaitUntilTime.Value.Minute, dateTimePickerWaitUntilTime.Value.Second, DateTimeKind.Local);
+            DateTime suspend_time = new DateTime(now.Year, now.Month, now.Day, dateTimePickerRestTime.Value.Hour, dateTimePickerRestTime.Value.Minute, dateTimePickerRestTime.Value.Second, DateTimeKind.Local);
             if (suspend_time < now)
             {
                 suspend_time = suspend_time.AddDays(1.0);
@@ -86,16 +86,16 @@ namespace AutoWakeUp
 
         private void WakeUpStuff()
         {
-            IgnoreExceptionDo(() => { Process.Start(textBoxRunProgram.Text, textBoxRunProgramParameter.Text); });
+            IgnoreExceptionDo(() => { Process.Start(textBoxRunProgram.Text, textBoxParameter.Text); });
         }
 
         private void SuspendStuff()
         {
-            if (string.Equals(comboBoxDoStuff.Text, "Sleep"))
+            if (string.Equals(comboBoxOperation.Text, "Sleep"))
             {
                 SystemActions.SystemSleep();
             }
-            else if (string.Equals(comboBoxDoStuff.Text, "Shutdown"))
+            else if (string.Equals(comboBoxOperation.Text, "Shutdown"))
             {
                 SystemActions.SystemShutdown();
             }

@@ -1,4 +1,4 @@
-﻿namespace AutoRunCommand
+namespace AutoRunCommand
 {
     partial class MainForm
     {

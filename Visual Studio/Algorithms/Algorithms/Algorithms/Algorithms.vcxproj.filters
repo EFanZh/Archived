@@ -24,12 +24,24 @@
     <ClCompile Include="gcd.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="exponentiation.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="prime.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="permutation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="gcd.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="exponentiation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="prime.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

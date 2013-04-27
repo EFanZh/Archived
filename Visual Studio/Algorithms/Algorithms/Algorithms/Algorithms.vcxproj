@@ -82,13 +82,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="exponentiation.c" />
     <ClCompile Include="gcd.c" />
     <ClCompile Include="main.c" />
     <ClCompile Include="permutation.c" />
+    <ClCompile Include="prime.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="exponentiation.h" />
     <ClInclude Include="gcd.h" />
     <ClInclude Include="permutation.h" />
+    <ClInclude Include="prime.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

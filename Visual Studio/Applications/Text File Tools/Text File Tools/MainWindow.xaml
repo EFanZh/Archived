@@ -1,0 +1,21 @@
+<Window x:Class="TextFileTools.MainWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Height="420" Width="560" WindowStartupLocation="CenterScreen" Title="Text File Tools">
+  <Grid>
+    <GroupBox Header="Files" Margin="10,10,10,144">
+      <Grid>
+        <Label Content="Source Folder:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" />
+        <TextBox Margin="10,41,38,0" VerticalAlignment="Top" Height="23" VerticalContentAlignment="Center" Padding="0,2" x:Name="textBoxSourceFolder" />
+        <Button x:Name="buttonSelectSourceFolder" Content="..." Margin="0,41,10,0" VerticalAlignment="Top" Height="23" HorizontalAlignment="Right" Width="23" Click="SelectFolderButton_Click" />
+        <Label Content="Filter:" HorizontalAlignment="Left" Margin="10,69,0,0" VerticalAlignment="Top" />
+        <TextBox x:Name="textBoxFilter" Margin="10,100,10,10" AcceptsReturn="True" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Padding="0,2" Text="*.asm&#xD;&#xA;*.c&#xD;&#xA;*.config&#xD;&#xA;*.cpp&#xD;&#xA;*.cs&#xD;&#xA;*.css&#xD;&#xA;*.h&#xD;&#xA;*.html&#xD;&#xA;*.js&#xD;&#xA;*.json&#xD;&#xA;*.manifest&#xD;&#xA;*.py&#xD;&#xA;*.rc&#xD;&#xA;*.resx&#xD;&#xA;*.rkt&#xD;&#xA;*.settings&#xD;&#xA;*.snippet&#xD;&#xA;*.ts&#xD;&#xA;*.xaml&#xD;&#xA;*.xml&#xA;" />
+      </Grid>
+    </GroupBox>
+    <GroupBox Header="Options" Margin="10,0,10,58" Height="81" VerticalAlignment="Bottom">
+      <Grid>
+        <CheckBox x:Name="checkBoxRemoveUTF8BOM" Content="Remove UTF-8 BOM" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="17" VerticalContentAlignment="Center" />
+        <CheckBox x:Name="checkBoxAddBlankLineAtFileBottom" Content="Add Empty Line At End Of File" HorizontalAlignment="Left" Margin="10,32,0,0" VerticalAlignment="Top" Height="17" VerticalContentAlignment="Center" />
+      </Grid>
+    </GroupBox>
+    <ProgressBar x:Name="progressBarMain" Margin="10,0,10,38" Height="15" VerticalAlignment="Bottom" />
+    <Button x:Name="buttonProcess" Content="Process" HorizontalAlignment="Center" Margin="0,0,0,10" Height="23" VerticalAlignment="Bottom" Width="76" Click="ProcessButton_Click" />
+  </Grid>
+</Window>

@@ -6,6 +6,7 @@
 #include <windowsx.h>
 #include <CommCtrl.h>
 #include <dwmapi.h>
+#include <usp10.h>
 #include "resource.h"
 
 #pragma comment(lib, "ComCtl32.Lib")

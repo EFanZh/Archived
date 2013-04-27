@@ -1,75 +1,93 @@
-#menu
+.menubar
 {
-    padding: 0 24pt;
-    background-color: #000;
-    list-style-type: none;
+    margin: 0;
+    padding: 0.25em;
+    background-color: #e6edf3;
+    white-space: nowrap;
+    cursor: default;
 }
 
-#menu::after
+.menubar::after
 {
     display: block;
     clear: both;
     content: "";
 }
 
-#menu > li
+.menubar li
 {
     position: relative;
-    float: left;
-    margin-right: 1px;
 }
 
-#menu > li > div:first-child
+.menubar li:hover > div
 {
-    padding: 0 12pt;
-    border-right: 1px solid #4c4c4c;
-    border-left: 1px solid #414141;
-    background-image: linear-gradient(#505050, #343434);
-    color: #ddd;
-    font-size: 9pt;
-    line-height: 40px;
-    cursor: pointer;
+    background-color: rgba(226, 255, 0, 0.38);
 }
 
-#menu > li > div:first-child:hover
+.menubar li:hover > menu
 {
-    background-image: linear-gradient(#6a6a6a, #414141);
+    opacity: 1.0;
+    pointer-events: initial;
 }
 
-#menu > li menu
+.menubar div, .menubar menu
+{
+    -moz-transition: all ease 0.25s;
+    -o-transition: all ease 0.25s;
+    -webkit-transition: all ease 0.25s;
+    transition: all ease 0.25s;
+}
+
+.menubar menu
 {
     position: absolute;
-    display: none;
-    margin-top: -1px;
-    padding: 4pt 0;
-    width: 240px;
-    border: 1px solid;
-    border-color: #2f4e6b #b0b0b0 #737373;
+    margin: 0;
+    padding: 0.5em;
     background-color: #fff;
-    list-style-type: none;
+    -webkit-box-shadow: 0.125em 0.125em 0.75em #6f6f6f;
+    box-shadow: 0.125em 0.125em 0.75em #6f6f6f;
+    opacity: 0;
+    pointer-events: none;
 }
 
-#menu > li:hover menu
+.menubar menu div
 {
-    display: block;
+    margin: 0 -0.25em;
+    padding: 0 0.5em;
 }
 
-#menu menu > li
+.menubar menu div:not(:only-child)::after
 {
-    color: #333;
-    font-size: 9pt;
+    float: right;
+    margin-left: 0.5em;
+    content: "▸";
 }
 
-#menu menu > li:hover
+.menubar menu menu
 {
-    background-color: #447099;
-    color: #fff;
+    top: 0;
+    left: 100%;
 }
 
-#menu menu > li a
+.menubar > li
 {
-    display: block;
-    padding: 3pt 9pt;
-    color: inherit;
-    text-decoration: inherit;
+    float: left;
+    margin: 0.25em;
+}
+
+.menubar > li > div
+{
+    padding: 0.25em;
+    background-color: #c7e9f3;
+}
+
+.menubar > li > menu
+{
+    top: 100%;
+    left: 0;
+}
+
+.menubar, .menubar menu
+{
+    list-style: none;
 }

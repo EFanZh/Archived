@@ -6,42 +6,17 @@ namespace RefSrcCleaner
 {
     internal class Program
     {
-        private static int Verify(byte[] data, int length)
-        {
-            for (int i = 0, j = length; i < length; i++, j++)
-            {
-                if (data[i] != data[j])
-                {
-                    return i;
-                }
-            }
-            return length;
-        }
-
         private static void CleanFile(string path)
         {
             var data = File.ReadAllBytes(path);
             int length = data.Length / 2;
-            int value = Verify(data, length);
-            if (value == length)
+            if (length * 2 == data.Length && data.Take(length).SequenceEqual(data.Skip(length)))
             {
-                FileStream fs = File.Open(path, FileMode.Create);
-                fs.Write(data, 0, length);
-                fs.Close();
+                File.WriteAllBytes(path, data.Take(length).ToArray());
             }
             else
             {
-                if (path.EndsWith(".pdb") && value > 24)
-                {
-                    FileStream fs = File.Open(path, FileMode.Create);
-                    fs.Write(data, 0, length);
-                    fs.Close();
-                    Console.WriteLine("PDB: {0}", path);
-                }
-                else
-                {
-                    Console.WriteLine("!!!: {0}", path);
-                }
+                Console.WriteLine("!!!: {0}", path);
             }
         }
 
@@ -59,7 +34,7 @@ namespace RefSrcCleaner
 
         private static void Main(string[] args)
         {
-            Clean(@"D:\EFanZh\Development\Source\RefSrc");
+            Clean(@"E:\Source");
             Console.WriteLine("End");
         }
     }

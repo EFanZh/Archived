@@ -11,9 +11,10 @@
     (if (= count 0)
         b
         (fib-iter (+ a b) a (- count 1))))
+
   (fib-iter 1 0 n))
 
-; This is EXTREMELY slow, uncomment this to experience.
+; This is EXTREMELY slow, uncomment this to experience. It'll need O(n!) time to compute
 ; (fibonacci-1 32)
 
 ; This is fast.

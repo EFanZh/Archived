@@ -9,8 +9,8 @@ namespace AutoWakeUp
         private const string wake_up_time_key = "Wake Up Time";
         private const string run_program_key = "Run Program";
         private const string run_program_parameter_key = "Run Program Parameter";
-        private const string wait_until_time_key = "Wait Until Time";
-        private const string do_stuff_key = "Do Stuff";
+        private const string rest_time_key = "Rest Time";
+        private const string rest_operation_key = "Rest Operation";
 
         public static DateTime WakeUpTime
         {
@@ -88,13 +88,13 @@ namespace AutoWakeUp
                             RunProgramParameter = value;
                             continue;
                         }
-                        value = get_line_value(wait_until_time_key);
+                        value = get_line_value(rest_time_key);
                         if (value != null)
                         {
                             WaitUntilTime = DateTime.Parse(value);
                             continue;
                         }
-                        value = get_line_value(do_stuff_key);
+                        value = get_line_value(rest_operation_key);
                         if (value != null)
                         {
                             DoStuff = value;
@@ -123,8 +123,8 @@ namespace AutoWakeUp
                     write_config(wake_up_time_key, string.Format("{0:00}:{1:00}:{2:00}", WakeUpTime.Hour, WakeUpTime.Minute, WakeUpTime.Second));
                     write_config(run_program_key, RunProgram);
                     write_config(run_program_parameter_key, RunProgramParameter);
-                    write_config(wait_until_time_key, string.Format("{0:00}:{1:00}:{2:00}", WaitUntilTime.Hour, WaitUntilTime.Minute, WaitUntilTime.Second));
-                    write_config(do_stuff_key, DoStuff);
+                    write_config(rest_time_key, string.Format("{0:00}:{1:00}:{2:00}", WaitUntilTime.Hour, WaitUntilTime.Minute, WaitUntilTime.Second));
+                    write_config(rest_operation_key, DoStuff);
                 }
             }
             catch (Exception)

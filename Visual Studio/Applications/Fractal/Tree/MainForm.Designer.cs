@@ -29,9 +29,10 @@ namespace Tree
         private void InitializeComponent()
         {
             this.SuspendLayout();
-            // 
+
+            //
             // MainForm
-            // 
+            //
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 261);
@@ -42,10 +43,9 @@ namespace Tree
             this.ClientSizeChanged += new System.EventHandler(this.MainForm_ClientSizeChanged);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.MainForm_Paint);
             this.ResumeLayout(false);
-
         }
 
-        #endregion
+        #endregion Windows Form Designer generated code
     }
 }
 

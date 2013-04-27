@@ -1,0 +1,21 @@
+.triangle::before {
+  display: inline-block;
+  margin: 0 0.5em;
+  border-top: 0.375em solid transparent;
+  border-bottom: 0.375em solid transparent;
+  border-left: 0.375em solid #000000;
+  content: "";
+  vertical-align: middle;
+  -moz-transition: all ease 0.25s;
+  -o-transition: all ease 0.25s;
+  -webkit-transition: all ease 0.25s;
+  transition: all ease 0.25s;
+}
+.triangle:hover::before {
+  -moz-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  -o-transform: rotate(90deg);
+  -webkit-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+

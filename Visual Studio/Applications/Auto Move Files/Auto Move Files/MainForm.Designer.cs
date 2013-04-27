@@ -1,4 +1,4 @@
-﻿namespace AutoMoveFiles
+namespace AutoMoveFiles
 {
     partial class MainForm
     {

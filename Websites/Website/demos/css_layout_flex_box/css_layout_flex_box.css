@@ -1,0 +1,32 @@
+#demo
+{
+    margin: auto;
+    padding: 36pt;
+    max-width: 960px;
+    -webkit-box-shadow: 3pt 3pt 18pt rgba(0, 0, 0, 0.382);
+    box-shadow: 3pt 3pt 18pt rgba(0, 0, 0, 0.382);
+}
+
+#demo footer, #demo header, #main > aside, #main > section
+{
+    margin: 4.5pt;
+    padding: 4.5pt;
+    border: 2pt solid #43a4cf;
+}
+
+#main
+{
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-box;
+    display: flexbox;
+    -ms-flex-flow: column;
+    flex-flow: column;
+}
+
+#main > section
+{
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+}

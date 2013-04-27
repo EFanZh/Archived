@@ -1,11 +1,17 @@
-table
+.color-table-container > table
 {
     border-collapse: collapse;
     border-top: 2pt solid black;
     border-bottom: 2pt solid black;
 }
 
-tbody tr
+.color-table-container > table > * > tr > td, .color-table-container > table > * > tr > th
+{
+    padding: 0 0.5em;
+    text-align: left;
+}
+
+.color-table-container > table > tbody > tr
 {
     -moz-transition: all 0.25s ease;
     -o-transition: all 0.25s ease;
@@ -13,18 +19,17 @@ tbody tr
     transition: all 0.25s ease;
 }
 
-tbody tr:hover
+.color-table-container > table > tbody > tr:nth-child(odd)
 {
-    background-color: #eafaa1;
+    background-color: rgba(206, 224, 233, 0.44);
 }
 
-td, th
+.color-table-container > table > tbody > tr:hover
 {
-    padding: 0 0.25em;
-    text-align: left;
+    background-color: rgba(209, 255, 0, 0.15);
 }
 
-thead
+.color-table-container > table > thead
 {
     border-bottom: 1pt solid black;
 }
