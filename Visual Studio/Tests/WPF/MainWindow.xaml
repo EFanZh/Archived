@@ -1,5 +1,4 @@
 <Window x:Class="WPF.MainWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Title="MainWindow">
-    <Grid>
-        <TextBox FontFamily="Calibri" FontSize="48" />
-    </Grid>
+  <Grid>
+  </Grid>
 </Window>

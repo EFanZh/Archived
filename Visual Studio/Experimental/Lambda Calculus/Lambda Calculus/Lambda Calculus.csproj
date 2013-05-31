@@ -35,11 +35,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FunctionApplicationExpression.cs" />
-    <Compile Include="IExpression.cs" />
-    <Compile Include="FunctionExpression.cs" />
+    <Compile Include="EvaluationOrder.cs" />
+    <Compile Include="ApplicationTerm.cs" />
+    <Compile Include="Term.cs" />
+    <Compile Include="AbstractionTerm.cs" />
     <Compile Include="Program.cs" />
-    <Compile Include="VariableExpression.cs" />
+    <Compile Include="Utilities.cs" />
+    <Compile Include="VariableTerm.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

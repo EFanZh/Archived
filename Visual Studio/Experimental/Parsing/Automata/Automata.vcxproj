@@ -11,7 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{2AD512E4-3F3B-4612-B7D4-3EE38CFBA5D6}</ProjectGuid>
+    <ProjectGuid>{97474FB2-087E-49D7-AD41-E53B26EBDBDD}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>Automata</RootNamespace>
   </PropertyGroup>
@@ -80,12 +80,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="FA.h" />
-    <ClInclude Include="DFA.h" />
-    <ClInclude Include="NFA.h" />
-    <ClInclude Include="stdafx.h" />
-  </ItemGroup>
-  <ItemGroup>
     <ClCompile Include="DFA.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="NFA.cpp" />
@@ -93,6 +87,11 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="DFA.h" />
+    <ClInclude Include="NFA.h" />
+    <ClInclude Include="stdafx.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

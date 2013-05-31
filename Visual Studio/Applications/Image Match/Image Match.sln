@@ -1,5 +1,5 @@
-
-Microsoft Visual Studio Solution File, Format Version 11.00
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Image Match", "Image Match\Image Match.csproj", "{D33AA9E6-B003-4C30-B4C5-89927994DC40}"
 EndProject

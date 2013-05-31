@@ -9,6 +9,7 @@
 *.obj
 *.pyc
 *.suo
+*.tmp
 *.user
 bin/
 obj/

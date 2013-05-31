@@ -74,6 +74,10 @@ namespace TextFileTools
 
         private static byte[] AddBlankLineAtFileBottom(byte[] file_data)
         {
+            if (file_data.Length == 0)
+            {
+                return null;
+            }
             if (file_data.Length >= utf_16_le_bom_size && file_data.Take(utf_16_le_bom_size).SequenceEqual(utf_16_le_bom))
             {
                 if (!file_data.Skip(file_data.Length - utf_16_le_blank_line_size).SequenceEqual(utf_16_le_blank_line))

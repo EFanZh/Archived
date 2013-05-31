@@ -1,3 +1,4 @@
+﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Disk Image Writer", "Disk Image Writer\Disk Image Writer.vcxproj", "{FF1E65D4-A0AE-41C1-B4EB-2B9C1E454DF4}"

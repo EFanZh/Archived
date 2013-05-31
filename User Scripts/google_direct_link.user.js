@@ -5,10 +5,18 @@
 // @include     http*://www.google.com/search*
 // @version     1.0
 // ==/UserScript==
-
-var links = document.getElementsByClassName("l");
-
-for (var i in links)
+(function ()
 {
-    links[i].onmousedown = null;
-}
+    "use strict";
+
+    var links = document.getElementsByClassName("r");
+
+    for (var i in links)
+    {
+        var a = links[i].firstElementChild;
+        if (a !== undefined)
+        {
+            a.onmousedown = null;
+        }
+    }
+})();
