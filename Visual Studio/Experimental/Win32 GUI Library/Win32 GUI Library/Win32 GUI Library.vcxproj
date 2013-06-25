@@ -94,13 +94,16 @@
   <ItemGroup>
     <ClInclude Include="BasicMessageLoop.h" />
     <ClInclude Include="Button.h" />
+    <ClInclude Include="UserDialogBox.h" />
     <ClInclude Include="StandardControl.h" />
     <ClInclude Include="UserProcWindow.h" />
     <ClInclude Include="MainWindow.h" />
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="ThunkWindow.h" />
+    <ClInclude Include="UserProcWindowTraits.h" />
     <ClInclude Include="UserWindow.h" />
     <ClInclude Include="Win32GUILibraryBase.h" />
-    <ClInclude Include="Window.h" />
+    <ClInclude Include="Win32GUILibraryUtilities.h" />
     <ClInclude Include="WindowClass.h" />
     <ClInclude Include="WindowHandle.h" />
   </ItemGroup>

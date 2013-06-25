@@ -8,10 +8,7 @@ namespace Win32GUILibrary
   class Button : public StandardControl<Button>
   {
   public:
-    static LPCTSTR GetControlClassName()
-    {
-      return WC_BUTTON;
-    }
+    DECLARE_STANDARD_CONTROL(BUTTON)
   };
 }
 

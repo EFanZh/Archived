@@ -1,11 +1,17 @@
 ﻿namespace ParserCombinatorLibrary
 {
-    internal class Result<T> : IResult
+    public class Result<T>
     {
         public Result(T value, int next)
         {
             Value = value;
             Next = next;
+        }
+
+        public int Next
+        {
+            get;
+            private set;
         }
 
         public T Value
@@ -14,14 +20,9 @@
             private set;
         }
 
-        #region IResult Members
-
-        public int Next
+        public override string ToString()
         {
-            get;
-            private set;
+            return Value.ToString();
         }
-
-        #endregion IResult Members
     }
 }

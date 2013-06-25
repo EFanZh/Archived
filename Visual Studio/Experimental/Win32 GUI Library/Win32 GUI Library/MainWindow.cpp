@@ -5,7 +5,8 @@ using namespace Win32GUILibrary;
 WindowClass MainWindow::GetWindowClass()
 {
   HICON icon = static_cast<HICON>(LoadImage(NULL, IDI_APPLICATION, IMAGE_ICON, 0, 0, LR_SHARED));
-  return std::move(WindowClass(0, 0, 0, icon, static_cast<HCURSOR>(LoadImage(NULL, IDI_APPLICATION, IMAGE_CURSOR, 0, 0, LR_SHARED)), reinterpret_cast<HBRUSH>(COLOR_WINDOW + 1), NULL, TEXT("MainWindow"), icon));
+
+  return WindowClass(0, 0, 0, icon, static_cast<HCURSOR>(LoadImage(NULL, IDI_APPLICATION, IMAGE_CURSOR, 0, 0, LR_SHARED)), reinterpret_cast<HBRUSH>(COLOR_WINDOW + 1), NULL, TEXT("MainWindow"), icon);
 }
 
 LRESULT MainWindow::WindowProc(UINT uMsg, WPARAM wParam, LPARAM lParam)
@@ -17,7 +18,8 @@ LRESULT MainWindow::WindowProc(UINT uMsg, WPARAM wParam, LPARAM lParam)
     return 0;
   case WM_DESTROY:
     ::PostQuitMessage(0);
+    return 0;
   default:
-    return UserWindow::DefaultProc(uMsg, wParam, lParam);
+    return UserWindow::DefaultWindowProc(uMsg, wParam, lParam);
   }
 }

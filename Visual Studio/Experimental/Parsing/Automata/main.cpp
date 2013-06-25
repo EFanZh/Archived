@@ -4,8 +4,6 @@ int main()
 {
   using namespace std;
 
-  string epsilon;
-
   int start_state = 1;
   set<int> final_states;
   set<tuple<int, string, int>> transitions;

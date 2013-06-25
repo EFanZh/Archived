@@ -41,12 +41,14 @@ namespace Win32GUILibrary
     WindowClass &operator =(WindowClass rhs)
     {
       std::swap(p_wcex, rhs.p_wcex);
+
       return *this;
     }
 
     ATOM Register(WNDPROC WndProc)
     {
       p_wcex->lpfnWndProc = WndProc;
+
       return ::RegisterClassEx(p_wcex);
     }
   };

@@ -1,18 +1,15 @@
 #ifndef STDAFX_H
 #define STDAFX_H
 
-#include <tchar.h>
-#include <Windows.h>
-#include <windowsx.h>
-#include <CommCtrl.h>
-#include <dwmapi.h>
-#include <usp10.h>
-#include "resource.h"
+#define STRICT
+#define WIN32_LEAN_AND_MEAN
 
-#pragma comment(lib, "ComCtl32.Lib")
-#pragma comment(lib, "Uxtheme.lib")
-#pragma comment(lib, "dwmapi.lib")
+#include <Windows.h>
 
 #pragma comment(linker, "\"/manifestdependency:type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' processorArchitecture='*' publicKeyToken='6595b64144ccf1df' language='*'\"")
+
+#define HINST_THISCOMPONENT reinterpret_cast<HINSTANCE>(&__ImageBase)
+
+EXTERN_C IMAGE_DOS_HEADER __ImageBase;
 
 #endif // STDAFX_H
