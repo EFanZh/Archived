@@ -11,8 +11,8 @@ ATOM RegisterMainWindowClass()
 
   wcex.lpfnWndProc = MainWindowProc;
   wcex.hInstance = HINST_THISCOMPONENT;
-  wcex.hIcon = reinterpret_cast<HICON>(LoadImage(NULL, IDI_APPLICATION, IMAGE_ICON, 0, 0, LR_SHARED));
-  wcex.hCursor = reinterpret_cast<HCURSOR>(LoadImage(NULL, IDC_ARROW, IMAGE_CURSOR, 0, 0, LR_SHARED));
+  wcex.hIcon = static_cast<HICON>(LoadImage(NULL, IDI_APPLICATION, IMAGE_ICON, 0, 0, LR_SHARED));
+  wcex.hCursor = static_cast<HCURSOR>(LoadImage(NULL, IDC_ARROW, IMAGE_CURSOR, 0, 0, LR_SHARED));
   wcex.lpszClassName = main_window_class_name;
   wcex.hIconSm = wcex.hIcon;
 
@@ -29,6 +29,7 @@ LRESULT CALLBACK MainWindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lPar
   switch (uMsg)
   {
     HANDLE_MSG(hWnd, WM_DESTROY, MainWindow_OnDestroy);
+
   default:
     return DefWindowProc(hWnd, uMsg, wParam, lParam);
   }

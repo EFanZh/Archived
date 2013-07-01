@@ -19,13 +19,33 @@ namespace Win32GUILibrary
       return tid_to_cwi_map;
     }
 
+    static CRITICAL_SECTION *GetCriticalSection()
+    {
+      static CRITICAL_SECTION critical_section;
+      bool need_to_initialize = true;
+
+      if (need_to_initialize)
+      {
+        InitializeCriticalSection(&critical_section);
+        need_to_initialize = false;
+      }
+
+      return &critical_section;
+    }
+
     static const CreateWindowInfo ExtractCreateWindowInfo()
     {
       DWORD tid = GetCurrentThreadId();
       CreateWindowInfoMap &cwi_map = GetCreateWindowInfoMap();
-      CreateWindowInfo result = cwi_map[tid];
+      CRITICAL_SECTION *p_critical_section = GetCriticalSection();
+      CreateWindowInfo result;
 
+      EnterCriticalSection(p_critical_section);
+
+      result = cwi_map[tid];
       cwi_map.erase(tid);
+
+      LeaveCriticalSection(p_critical_section);
 
       return std::move(result);
     }
@@ -35,24 +55,29 @@ namespace Win32GUILibrary
     {
       this->SetHWnd(hWnd);
       this->thunk.Init(reinterpret_cast<DWORD_PTR>(proc), this);
-      SetWindowLongPtr(hWnd, proc_type, reinterpret_cast<LONG_PTR>(thunk.GetCodeAddress()));
+      ::SetWindowLongPtr(hWnd, proc_type, reinterpret_cast<LONG_PTR>(thunk.GetCodeAddress()));
     }
 
     static void *InitThunkProc(HWND hWnd, int proc_type)
     {
-      using std::get;
+      ThunkWindow *p_window;
+      void *proc;
 
-      CreateWindowInfo info = ExtractCreateWindowInfo();
-      ThunkWindow *p_window = get<0>(info);
-
-      p_window->CreateFromHWndInternal(hWnd, get<1>(info), proc_type);
+      std::tie(p_window, proc) = ExtractCreateWindowInfo();
+      p_window->CreateFromHWndInternal(hWnd, proc, proc_type);
 
       return p_window->thunk.GetCodeAddress();
     }
 
     static void AddCreateWindowInfo(ThunkWindow *p_this, void *static_proc)
     {
+      CRITICAL_SECTION *p_critical_section = GetCriticalSection();
+
+      EnterCriticalSection(p_critical_section);
+
       GetCreateWindowInfoMap()[GetCurrentThreadId()] = std::make_tuple(p_this, static_proc);
+
+      LeaveCriticalSection(p_critical_section);
     }
   };
 }

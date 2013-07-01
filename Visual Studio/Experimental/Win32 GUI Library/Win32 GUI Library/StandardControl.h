@@ -17,5 +17,6 @@ namespace Win32GUILibrary
 }
 
 #define DECLARE_STANDARD_CONTROL(x) static LPCTSTR GetControlClassName() { return WC_##x; }
+#define DEFINE_STANDARD_CONTROL(name, class_name) class Button : public StandardControl<Button> { public: DECLARE_STANDARD_CONTROL(BUTTON) };
 
 #endif // STANDARDCONTROL_H

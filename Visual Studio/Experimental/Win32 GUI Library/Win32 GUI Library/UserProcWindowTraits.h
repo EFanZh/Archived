@@ -2,7 +2,7 @@
 #define USERPROCWINDOWTRAITS_H
 
 template<class TProcType, class TReturnType, int proc_type>
-class UserProcWindowTraits
+class UserProcWindowTrait
 {
 public:
   typedef TProcType ProcType;
@@ -11,11 +11,11 @@ public:
   enum { PROC_TYPE = proc_type };
 };
 
-class UserProcWindowTraitsUserWindow : public UserProcWindowTraits<WNDPROC, LRESULT, GWLP_WNDPROC>
+class UserProcWindowTraitUserWindow : public UserProcWindowTrait<WNDPROC, LRESULT, GWLP_WNDPROC>
 {
 };
 
-class UserProcWindowTraitsUserDialogBox : public UserProcWindowTraits<DLGPROC, INT_PTR, DWLP_DLGPROC>
+class UserProcWindowTraitUserDialogBox : public UserProcWindowTrait<DLGPROC, INT_PTR, DWLP_DLGPROC>
 {
 };
 

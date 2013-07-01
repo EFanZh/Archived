@@ -9,7 +9,7 @@
 namespace Win32GUILibrary
 {
   template<class T>
-  class UserWindow : public UserProcWindow<UserProcWindowTraitsUserWindow>
+  class UserWindow : public UserProcWindow<UserProcWindowTraitUserWindow>
   {
     static LRESULT CALLBACK StaticWindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
     {
@@ -23,7 +23,7 @@ namespace Win32GUILibrary
     }
 
   public:
-    HWND Create(DWORD dwExStyle, LPCTSTR lpWindowName, DWORD dwStyle, int x, int y, int nWidth, int nHeight, HWND hWndParent, HMENUOrUINT hMenuOrnId, LPVOID lpParam)
+    HWND Create(DWORD dwExStyle, LPCTSTR lpWindowName, DWORD dwStyle, int x, int y, int nWidth, int nHeight, HWND hWndParent, HMENUOrInt hMenuOrnId, LPVOID lpParam)
     {
       UserProcWindow::AddCreateWindowInfo(this, StaticWindowProc);
 

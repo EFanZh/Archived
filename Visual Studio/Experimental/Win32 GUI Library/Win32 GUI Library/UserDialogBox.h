@@ -7,7 +7,7 @@
 namespace Win32GUILibrary
 {
   template<class T>
-  class UserDialogBox : public UserProcWindow<UserProcWindowTraitsUserDialogBox>
+  class UserDialogBox : public UserProcWindow<UserProcWindowTraitUserDialogBox>
   {
     static INT_PTR CALLBACK StaticDialogProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
     {

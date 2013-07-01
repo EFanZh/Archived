@@ -3,6 +3,11 @@
 
 INT_PTR MainDialog::DialogProc(UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
+  WindowHandle edit(this->GetDialogItem(IDC_EDIT1));
+
+  LOGFONT lf;
+  GetObject(edit.GetFont(), sizeof(lf), &lf);
+
   switch (uMsg)
   {
   case WM_CLOSE:
@@ -15,6 +20,9 @@ INT_PTR MainDialog::DialogProc(UINT uMsg, WPARAM wParam, LPARAM lParam)
   case WM_COMMAND:
     OnCommand(LOWORD(wParam), reinterpret_cast<HWND>(lParam), HIWORD(wParam));
     break;
+
+  case WM_SETFONT:
+    return TRUE;
 
   default:
     return FALSE;

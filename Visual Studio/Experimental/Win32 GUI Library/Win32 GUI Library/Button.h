@@ -5,11 +5,7 @@
 
 namespace Win32GUILibrary
 {
-  class Button : public StandardControl<Button>
-  {
-  public:
-    DECLARE_STANDARD_CONTROL(BUTTON)
-  };
+  DEFINE_STANDARD_CONTROL(Button, BUTTON)
 }
 
 #endif // BUTTON_H
