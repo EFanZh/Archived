@@ -2,16 +2,16 @@
 #include "utilities.h"
 
 #define ID_TIMER 1
-#define TIME_SPAN USER_TIMER_MINIMUM
+#define TIME_SPAN 1
 
 static LPCTSTR main_window_class_name = TEXT("MainWindow");
-static const double grav_acc = 37064.503937007874015748031496063, ball_width = 64, ball_height = 64;
+static const double grav_acc = 100000, ball_width = 1, ball_height = 1;
 static const int time_span_millisecond = TIME_SPAN;
 static const double time_span_second = TIME_SPAN / 1000.0;
 static const COLORREF ball_color = RGB(0, 192, 255);
 
 static int client_width, client_height;
-static double ball_x = 0.0, ball_y = 50.0, ball_vx = 2317, ball_vy = 0.0;
+static double ball_x = 0.0, ball_y = 50.0, ball_vx = 10000, ball_vy = 0.0;
 
 LRESULT CALLBACK MainWindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 BOOL MainWindow_OnCreate(HWND hWnd, LPCREATESTRUCT lpCreateStruct);

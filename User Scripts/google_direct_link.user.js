@@ -5,6 +5,7 @@
 // @include     http*://www.google.com/search*
 // @version     1.0
 // ==/UserScript==
+
 (function ()
 {
     "use strict";
