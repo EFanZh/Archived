@@ -1,12 +1,12 @@
-#ifndef USERPROCWINDOW_H
-#define USERPROCWINDOW_H
+#ifndef THUNKWINDOWTEMPLATE_H
+#define THUNKWINDOWTEMPLATE_H
 
 #include "ThunkWindow.h"
 
 namespace Win32GUILibrary
 {
   template<class T>
-  class UserProcWindow : public ThunkWindow
+  class ThunkWindowTemplate : public ThunkWindow
   {
   protected:
     static typename T::ReturnType CALLBACK StartWindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
@@ -22,4 +22,4 @@ namespace Win32GUILibrary
   };
 }
 
-#endif // USERPROCWINDOW_H
+#endif // THUNKWINDOWTEMPLATE_H

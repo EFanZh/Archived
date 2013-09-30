@@ -20,4 +20,22 @@ public:
   }
 };
 
+template<class TProcType, class TReturnType, int proc_type>
+class ThunkWindowTemplateTrait
+{
+public:
+  typedef TProcType ProcType;
+  typedef TReturnType ReturnType;
+
+  enum { PROC_TYPE = proc_type };
+};
+
+class ThunkWindowTemplateTraitUserWindow : public ThunkWindowTemplateTrait<WNDPROC, LRESULT, GWLP_WNDPROC>
+{
+};
+
+class ThunkWindowTemplateTraitUserDialogBox : public ThunkWindowTemplateTrait<DLGPROC, INT_PTR, DWLP_DLGPROC>
+{
+};
+
 #endif // WIN32GUILIBRARYUTILITIES_H

@@ -1,15 +1,14 @@
 #ifndef USERWINDOW_H
 #define USERWINDOW_H
 
-#include "UserProcWindow.h"
-#include "UserProcWindowTraits.h"
+#include "ThunkWindowTemplate.h"
 #include "Win32GUILibraryUtilities.h"
 #include "WindowClass.h"
 
 namespace Win32GUILibrary
 {
   template<class T>
-  class UserWindow : public UserProcWindow<UserProcWindowTraitUserWindow>
+  class UserWindow : public ThunkWindowTemplate<ThunkWindowTemplateTraitUserWindow>
   {
     static LRESULT CALLBACK StaticWindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
     {
@@ -25,14 +24,14 @@ namespace Win32GUILibrary
   public:
     HWND Create(DWORD dwExStyle, LPCTSTR lpWindowName, DWORD dwStyle, int x, int y, int nWidth, int nHeight, HWND hWndParent, HMENUOrInt hMenuOrnId, LPVOID lpParam)
     {
-      UserProcWindow::AddCreateWindowInfo(this, StaticWindowProc);
+      ThunkWindow::AddCreateWindowInfo(this, StaticWindowProc);
 
       return ::CreateWindowEx(dwExStyle, reinterpret_cast<LPCTSTR>(InitWindowClass()), lpWindowName, dwStyle, x, y, nWidth, nHeight, hWndParent, hMenuOrnId, HINST_THISCOMPONENT, lpParam);
     }
 
     static ATOM InitWindowClass()
     {
-      static ATOM class_atom = T::GetWindowClass().Register(UserProcWindow::StartWindowProc);
+      static ATOM class_atom = T::GetWindowClass().Register(ThunkWindowTemplate::StartWindowProc);
 
       return class_atom;
     }

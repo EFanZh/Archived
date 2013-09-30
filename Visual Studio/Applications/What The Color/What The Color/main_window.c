@@ -29,6 +29,7 @@ ATOM RegisterMainWindowClass()
   wcex.hIcon = (HICON)LoadImage(NULL, IDI_APPLICATION, IMAGE_ICON, 0, 0, LR_SHARED);
   wcex.hCursor = (HCURSOR)LoadImage(NULL, IDC_ARROW, IMAGE_CURSOR, 0, 0, LR_SHARED);
   wcex.lpszClassName = main_window_class_name;
+  wcex.hIconSm = wcex.hIcon;
 
   return RegisterClassEx(&wcex);
 }

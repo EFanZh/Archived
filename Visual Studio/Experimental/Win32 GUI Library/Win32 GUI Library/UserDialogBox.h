@@ -1,13 +1,13 @@
 #ifndef USERDIALOGBOX_H
 #define USERDIALOGBOX_H
 
-#include "UserProcWindow.h"
-#include "UserProcWindowTraits.h"
+#include "ThunkWindowTemplate.h"
+#include "Win32GUILibraryUtilities.h"
 
 namespace Win32GUILibrary
 {
   template<class T>
-  class UserDialogBox : public UserProcWindow<UserProcWindowTraitUserDialogBox>
+  class UserDialogBox : public ThunkWindowTemplate<ThunkWindowTemplateTraitUserDialogBox>
   {
     static INT_PTR CALLBACK StaticDialogProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
     {
@@ -19,7 +19,7 @@ namespace Win32GUILibrary
     {
       UserProcWindow::AddCreateWindowInfo(this, StaticDialogProc);
 
-      return ::DialogBoxParam(HINST_THISCOMPONENT, MAKEINTRESOURCE(T::IDD), hWndParent, UserProcWindow::StartWindowProc, dwInitParam);
+      return ::DialogBoxParam(HINST_THISCOMPONENT, MAKEINTRESOURCE(T::IDD), hWndParent, ThunkWindowTemplate::StartWindowProc, dwInitParam);
     }
   };
 }

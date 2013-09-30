@@ -1,5 +1,5 @@
-#ifndef WINDOWHANDLE
-#define WINDOWHANDLE
+#ifndef WINDOWHANDLE_H
+#define WINDOWHANDLE_H
 
 namespace Win32GUILibrary
 {
@@ -60,4 +60,4 @@ namespace Win32GUILibrary
   };
 }
 
-#endif // WINDOWHANDLE
+#endif // WINDOWHANDLE_H
