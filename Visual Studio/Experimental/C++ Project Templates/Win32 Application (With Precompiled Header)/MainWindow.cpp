@@ -29,7 +29,6 @@ LRESULT CALLBACK MainWindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lPar
   switch (uMsg)
   {
     HANDLE_MSG(hWnd, WM_DESTROY, MainWindow_OnDestroy);
-
   default:
     return DefWindowProc(hWnd, uMsg, wParam, lParam);
   }

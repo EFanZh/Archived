@@ -85,44 +85,47 @@
     {
         var i, j;
 
-        var strs = ["<table id=\"unicode-characters\"><tbody>"]
+        var strs = ["<table id=\"unicode-characters\"><tbody><tr><td><a href=\"http://www.fileformat.info/info/unicode/char/"]
+        var rows = [];
         var base = page_character_count * page_number;
 
-        for (i = 0; i < lines ; i++)
+        for (i = 0; i < lines; i++)
         {
-            strs.push("<tr>")
-            for (j = 0; j < columns ; j++)
+            var cols = [];
+
+            for (j = 0; j < columns; j++)
             {
-                strs.push("<td><a href=\"http://www.fileformat.info/info/unicode/char/");
+                var temp_strs = [];
                 var value = base + lines * j + i;
                 var unicode = to_unicode_code(value);
-                strs.push(unicode);
-                strs.push("/index.htm\">");
+                temp_strs.push(unicode);
+                temp_strs.push("/index.htm\">");
                 if (display_style === 16)
                 {
-                    strs.push("U+");
-                    strs.push(unicode.toUpperCase());
+                    temp_strs.push("U+");
+                    temp_strs.push(unicode.toUpperCase());
                 }
                 else
                 {
-                    strs.push(value.toString(10));
+                    temp_strs.push(value.toString(10));
                 }
-                strs.push("</a></td><td><span>")
+                temp_strs.push("</a></td><td><span>")
                 if (value === locate)
                 {
-                    strs.push("<mark>");
-                    strs.push(fromCodePoint(value));
-                    strs.push("</mark>");
+                    temp_strs.push("<mark>");
+                    temp_strs.push(fromCodePoint(value));
+                    temp_strs.push("</mark>");
                 }
                 else
                 {
-                    strs.push(fromCodePoint(value));
+                    temp_strs.push(fromCodePoint(value));
                 }
-                strs.push("</span></td>");
+                cols.push(temp_strs.join(""));
             }
-            strs.push("</tr>")
+            rows.push(cols.join("</span></td><td><a href=\"http://www.fileformat.info/info/unicode/char/"));
         }
-        strs.push("</tbody></table>");
+        strs.push(rows.join("</span></td></tr><tr><td><a href=\"http://www.fileformat.info/info/unicode/char/"));
+        strs.push("</span></td></tr></tbody></table>");
 
         table_container_element.innerHTML = strs.join("");
         table_element = <HTMLTableElement>table_container_element.firstElementChild;

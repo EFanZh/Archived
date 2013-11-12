@@ -9,7 +9,7 @@ namespace Sorting
     {
         private int operand_a = -1, operand_b = -1;
         private SortOperation sort_operation = SortOperation.None;
-        private Brush fill_brush = new SolidBrush(Color.SkyBlue);
+        private Brush fill_brush = new SolidBrush(Color.FromArgb(0xff, 0x45, 0x72, 0xff));
         private Brush compare_brush = new SolidBrush(Color.Green);
         private Pen set_value_pen = new Pen(Color.Red, 2.0f);
         private Pen set_value_indirect_pen = new Pen(Color.Purple, 2.0f);

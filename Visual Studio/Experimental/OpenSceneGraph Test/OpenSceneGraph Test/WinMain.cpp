@@ -1,37 +1,11 @@
 #include "MainWindow.h"
+#include "TestScene.h"
 
-int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPWSTR lpCmdLine, _In_ int nCmdShow)
+int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLine, int nCmdShow)
 {
-  UNREFERENCED_PARAMETER(hInstance);
-  UNREFERENCED_PARAMETER(hPrevInstance);
-  UNREFERENCED_PARAMETER(lpCmdLine);
+  MainWindow main_window;
 
-  ATOM atom = RegisterMainWindowClass();
-  if (atom == NULL)
-  {
-    return 1;
-  }
+  main_window.Show(nCmdShow);
 
-  HWND hWnd = CreateMainWindow();
-  if (hWnd == NULL)
-  {
-    return 1;
-  }
-
-  ShowWindow(hWnd, nCmdShow);
-  UpdateWindow(hWnd);
-
-  BOOL ret;
-  MSG msg;
-  while ((ret = GetMessage(&msg, NULL, 0, 0)) != 0)
-  {
-    if (ret == -1)
-    {
-      return 1;
-    }
-    TranslateMessage(&msg);
-    DispatchMessage(&msg);
-  }
-
-  return msg.wParam;
+  return Win32GUILibrary::BasicMessageLoop().Run();
 }

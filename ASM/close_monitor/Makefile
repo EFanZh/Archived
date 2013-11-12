@@ -1,3 +1,3 @@
 ﻿close_monitor.exe: close_monitor.asm
-	ml close_monitor.asm /link /ENTRY:main /SUBSYSTEM:WINDOWS
+	ml.exe close_monitor.asm /link /MERGE:.rdata=.text /SUBSYSTEM:WINDOWS
 	del *.obj *.lnk

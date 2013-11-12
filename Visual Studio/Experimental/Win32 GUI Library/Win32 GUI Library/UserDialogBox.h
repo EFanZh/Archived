@@ -1,6 +1,7 @@
 #ifndef USERDIALOGBOX_H
 #define USERDIALOGBOX_H
 
+#include "Win32GUILibraryBase.h"
 #include "ThunkWindowTemplate.h"
 #include "Win32GUILibraryUtilities.h"
 

@@ -213,7 +213,7 @@ void MainWindow_OnVScroll(HWND hWnd, HWND hWndCtl, UINT code, int pos)
   GetScrollInfo(hWnd, SB_VERT, &si);
   if (si.nPos != pos_saved)
   {
-    ScrollWindowEx(hWnd, 0, line_height * (pos_saved - si.nPos), NULL, NULL, NULL, NULL, (120 << 16) | SW_SMOOTHSCROLL);
+    ScrollWindowEx(hWnd, 0, line_height * (pos_saved - si.nPos), NULL, NULL, NULL, NULL, (abs(pos_saved - si.nPos) * 4 << 16) | SW_SMOOTHSCROLL);
     UpdateWindow(hWnd);
   }
 }

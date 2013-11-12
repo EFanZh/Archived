@@ -36,23 +36,20 @@ document.addEventListener("DOMContentLoaded", function ()
                 var v1 = parseFloat(s1);
                 var v2 = parseFloat(s2);
                 var c1, c2;
-                if (!isNaN(v1) && !isNaN(v2))
-                {
-                    c1 = v1;
-                    c2 = v2;
-                }
-                else
+
+                if (isNaN(v1) || isNaN(v2))
                 {
                     c1 = s1;
                     c2 = s2;
                 }
-                if (c1 < c2)
+                else
+                {
+                    c1 = v1;
+                    c2 = v2;
+                }
+                if (c1 < c2 || (c1 === c2 && first.rowIndex < second.rowIndex))
                 {
                     return less;
-                }
-                else if (first.cells[col].innerText === second.cells[col].innerText)
-                {
-                    return 0;
                 }
                 else
                 {

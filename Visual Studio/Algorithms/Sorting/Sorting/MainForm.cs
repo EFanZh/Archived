@@ -34,7 +34,7 @@ namespace Sorting
             PropertyInfo pi = panelDisplay.GetType().GetProperty("DoubleBuffered", BindingFlags.Instance | BindingFlags.NonPublic);
             pi.SetValue(panelDisplay, true);
 
-            sv.Interval = 0.1;
+            sv.Interval = 2;
             sv.Size = panelDisplay.ClientSize;
             sort_worker = CreateSortManager<InsertionSortManager>();
         }

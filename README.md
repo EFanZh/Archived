@@ -1,1 +1,1 @@
-This repository contains my programs.
+My programs.

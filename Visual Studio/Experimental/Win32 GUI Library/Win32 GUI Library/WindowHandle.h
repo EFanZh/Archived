@@ -23,6 +23,16 @@ namespace Win32GUILibrary
       return hWnd;
     }
 
+    HDC BeginPaint(LPPAINTSTRUCT lpPaint)
+    {
+      return ::BeginPaint(hWnd, lpPaint);
+    }
+
+    BOOL EndPaint(const PAINTSTRUCT *lpPaint)
+    {
+      return ::EndPaint(hWnd, lpPaint);
+    }
+
     HBRUSH GetBackgroundBrush()
     {
       return reinterpret_cast<HBRUSH>(::GetClassLongPtr(hWnd, GCLP_HBRBACKGROUND));
@@ -43,11 +53,6 @@ namespace Win32GUILibrary
       return ::GetWindowText(hWnd, lpString, nMaxCount);
     }
 
-    int SetText(LPTSTR lpString)
-    {
-      return ::SetWindowText(hWnd, lpString);
-    }
-
     int GetTextLength()
     {
       return ::GetWindowTextLength(hWnd);
@@ -56,6 +61,21 @@ namespace Win32GUILibrary
     BOOL InvalidateRect(const RECT *lpRect, BOOL bErase)
     {
       return ::InvalidateRect(hWnd, lpRect, bErase);
+    }
+
+    LRESULT SendMessage(UINT uMsg, WPARAM wParam, LPARAM lParam)
+    {
+      return ::SendMessage(hWnd, uMsg, wParam, lParam);
+    }
+
+    int SetText(LPTSTR lpString)
+    {
+      return ::SetWindowText(hWnd, lpString);
+    }
+
+    BOOL Show(int nCmdShow)
+    {
+      return ::ShowWindow(hWnd, nCmdShow);
     }
   };
 }

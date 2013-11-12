@@ -6,7 +6,7 @@
 // @version     1.0
 // ==/UserScript==
 
-(function ()
+function fix_links()
 {
     "use strict";
 
@@ -15,9 +15,12 @@
     for (var i in links)
     {
         var a = links[i].firstElementChild;
+
         if (a !== undefined)
         {
-            a.onmousedown = null;
+            a.removeAttribute("onmousedown");
         }
     }
-})();
+}
+
+fix_links();

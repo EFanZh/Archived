@@ -6,29 +6,15 @@ int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, 
   UNREFERENCED_PARAMETER(hPrevInstance);
   UNREFERENCED_PARAMETER(lpCmdLine);
 
-  ATOM atom = RegisterMainWindowClass();
-  if (atom == NULL)
-  {
-    return 1;
-  }
+  RegisterMainWindowClass();
 
   HWND hWnd = CreateMainWindow();
-  if (hWnd == NULL)
-  {
-    return 1;
-  }
 
   ShowWindow(hWnd, nCmdShow);
-  UpdateWindow(hWnd);
 
-  BOOL ret;
   MSG msg;
-  while ((ret = GetMessage(&msg, NULL, 0, 0)) != 0)
+  while (GetMessage(&msg, NULL, 0, 0))
   {
-    if (ret == -1)
-    {
-      return 1;
-    }
     TranslateMessage(&msg);
     DispatchMessage(&msg);
   }

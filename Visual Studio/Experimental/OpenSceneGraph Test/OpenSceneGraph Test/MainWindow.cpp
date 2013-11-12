@@ -1,42 +1,53 @@
 #include "MainWindow.h"
 
-static LPCTSTR main_window_class_name = TEXT("MainWindow");
-
-LRESULT CALLBACK MainWindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
-void MainWindow_OnDestroy(HWND hWnd);
-
-ATOM RegisterMainWindowClass()
+MainWindow::MainWindow()
 {
-  WNDCLASSEX wcex = { sizeof(wcex) };
-
-  wcex.lpfnWndProc = MainWindowProc;
-  wcex.hInstance = HINST_THISCOMPONENT;
-  wcex.hIcon = reinterpret_cast<HICON>(LoadImage(NULL, IDI_APPLICATION, IMAGE_ICON, 0, 0, LR_SHARED));
-  wcex.hCursor = reinterpret_cast<HCURSOR>(LoadImage(NULL, IDC_ARROW, IMAGE_CURSOR, 0, 0, LR_SHARED));
-  wcex.lpszClassName = main_window_class_name;
-  wcex.hIconSm = wcex.hIcon;
-
-  return RegisterClassEx(&wcex);
+  this->Create(0, TEXT("OpenSceneGraph Test"), WS_OVERLAPPEDWINDOW, CW_USEDEFAULT, CW_USEDEFAULT, 640, 360, HWND_DESKTOP, NULL, NULL);
 }
 
-HWND CreateMainWindow()
-{
-  return CreateWindowEx(0, main_window_class_name, TEXT("Win32 Application"), WS_OVERLAPPEDWINDOW, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, HWND_DESKTOP, NULL, HINST_THISCOMPONENT, NULL);
-}
-
-LRESULT CALLBACK MainWindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
+LRESULT MainWindow::WindowProc(UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
   switch (uMsg)
   {
-    HANDLE_MSG(hWnd, WM_DESTROY, MainWindow_OnDestroy);
+    WGL_HANDLE_WM_CREATE(OnCreate);
+    WGL_HANDLE_WM_DESTROY(OnDestroy);
   default:
-    return DefWindowProc(hWnd, uMsg, wParam, lParam);
+    if (uMsg != WM_SETCURSOR && uMsg != WM_NCHITTEST)
+    {
+      return scene.HandleNativeMessage(*this, uMsg, wParam, lParam);
+    }
+    else
+    {
+      return this->DefaultWindowProc(uMsg, wParam, lParam);
+    }
   }
 }
 
-void MainWindow_OnDestroy(HWND hWnd)
+BOOL MainWindow::OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
-  UNREFERENCED_PARAMETER(hWnd);
+  scene.BeginRender(*this);
 
-  PostQuitMessage(0);
+  return TRUE;
+}
+
+void MainWindow::OnDestroy()
+{
+  scene.EndRender();
+  PostQuitMessage(EXIT_SUCCESS);
+}
+
+void MainWindow::OnPaint()
+{
+  PAINTSTRUCT ps;
+
+  this->BeginPaint(&ps);
+  this->EndPaint(&ps);
+}
+
+Win32GUILibrary::WindowClass MainWindow::GetWindowClass()
+{
+  HICON icon = static_cast<HICON>(::LoadImage(NULL, IDI_APPLICATION, IMAGE_ICON, 0, 0, LR_SHARED));
+  HCURSOR cursor = static_cast<HCURSOR>(::LoadImage(NULL, IDI_APPLICATION, IMAGE_CURSOR, 0, 0, LR_SHARED));
+
+  return Win32GUILibrary::WindowClass(0, 0, 0, icon, cursor, NULL, NULL, TEXT("MainWindow"), icon);
 }

@@ -1,41 +1,44 @@
 #ifndef WIN32GUILIBRARYUTILITIES_H
 #define WIN32GUILIBRARYUTILITIES_H
 
-class HMENUOrInt
+namespace Win32GUILibrary
 {
-  HMENU hMenu;
-
-public:
-  HMENUOrInt(HMENU hMenu) : hMenu(hMenu)
+  class HMENUOrInt
   {
-  }
+    HMENU hMenu;
 
-  HMENUOrInt(int nID) : hMenu(reinterpret_cast<HMENU>(nID))
+  public:
+    HMENUOrInt(HMENU hMenu) : hMenu(hMenu)
+    {
+    }
+
+    HMENUOrInt(int nID) : hMenu(reinterpret_cast<HMENU>(nID))
+    {
+    }
+
+    operator HMENU()
+    {
+      return hMenu;
+    }
+  };
+
+  template<class TProcType, class TReturnType, int proc_type>
+  class ThunkWindowTemplateTrait
   {
-  }
+  public:
+    typedef TProcType ProcType;
+    typedef TReturnType ReturnType;
 
-  operator HMENU()
+    enum { PROC_TYPE = proc_type };
+  };
+
+  class ThunkWindowTemplateTraitUserWindow : public ThunkWindowTemplateTrait<WNDPROC, LRESULT, GWLP_WNDPROC>
   {
-    return hMenu;
-  }
-};
+  };
 
-template<class TProcType, class TReturnType, int proc_type>
-class ThunkWindowTemplateTrait
-{
-public:
-  typedef TProcType ProcType;
-  typedef TReturnType ReturnType;
-
-  enum { PROC_TYPE = proc_type };
-};
-
-class ThunkWindowTemplateTraitUserWindow : public ThunkWindowTemplateTrait<WNDPROC, LRESULT, GWLP_WNDPROC>
-{
-};
-
-class ThunkWindowTemplateTraitUserDialogBox : public ThunkWindowTemplateTrait<DLGPROC, INT_PTR, DWLP_DLGPROC>
-{
-};
+  class ThunkWindowTemplateTraitUserDialogBox : public ThunkWindowTemplateTrait<DLGPROC, INT_PTR, DWLP_DLGPROC>
+  {
+  };
+}
 
 #endif // WIN32GUILIBRARYUTILITIES_H

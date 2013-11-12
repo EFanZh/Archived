@@ -1,13 +1,23 @@
 #ifndef STDAFX_H
 #define STDAFX_H
 
-#define STRICT
-#define WIN32_LEAN_AND_MEAN
+#include <BasicMessageLoop.h>
+#include <UserWindow.h>
+#include <MessageCrackers.h>
+#include <osg\ShapeDrawable>
+#include <osgGA\TrackballManipulator>
+#include <osgViewer\Viewer>
+#include <osgViewer\api\Win32\GraphicsWindowWin32>
+#include <osgViewer\config\SingleWindow>
 
-#include <Windows.h>
-#include <windowsx.h>
-
-EXTERN_C IMAGE_DOS_HEADER __ImageBase;
-#define HINST_THISCOMPONENT reinterpret_cast<HINSTANCE>(&__ImageBase)
+#ifdef _DEBUG
+#pragma comment(lib, "osgd.lib")
+#pragma comment(lib, "osgViewerd.lib")
+#pragma comment(lib, "osgGAd.lib")
+#else
+#pragma comment(lib, "osg.lib")
+#pragma comment(lib, "osgViewer.lib")
+#pragma comment(lib, "osgGA.lib")
+#endif
 
 #endif // STDAFX_H

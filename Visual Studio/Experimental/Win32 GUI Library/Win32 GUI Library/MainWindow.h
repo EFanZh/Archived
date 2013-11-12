@@ -2,7 +2,7 @@
 #define MAINWINDOW_H
 
 #include "UserWindow.h"
-#include "Button.h"
+#include "CommonControls.h"
 
 class MainWindow : public Win32GUILibrary::UserWindow<MainWindow>
 {

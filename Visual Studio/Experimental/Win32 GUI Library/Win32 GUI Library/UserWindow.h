@@ -1,6 +1,7 @@
 #ifndef USERWINDOW_H
 #define USERWINDOW_H
 
+#include "Win32GUILibraryBase.h"
 #include "ThunkWindowTemplate.h"
 #include "Win32GUILibraryUtilities.h"
 #include "WindowClass.h"

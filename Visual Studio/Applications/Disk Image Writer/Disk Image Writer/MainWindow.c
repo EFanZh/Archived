@@ -305,7 +305,7 @@ void MainWindow_OnSize(HWND hWnd, UINT state, int cx, int cy)
     SetWindowPos(GetDlgItem(hw_status_bar_main, ID_PROGRESSBAR_MAIN), NULL, 0, 0, rect_part.right - rect_part.left - 3, rect_part.bottom - rect_part.top - 1, SWP_NOMOVE | SWP_NOREDRAW | SWP_NOZORDER);
   }
 
-  RedrawWindow(hWnd, NULL, NULL, RDW_ERASE | RDW_FRAME | RDW_INVALIDATE | RDW_ALLCHILDREN) ;
+  RedrawWindow(hWnd, NULL, NULL, RDW_ERASE | RDW_FRAME | RDW_INVALIDATE | RDW_ALLCHILDREN);
 }
 
 void MainWindow_OnActivate(HWND hWnd, UINT state, HWND hWndActDeact, BOOL fMinimized)
@@ -348,17 +348,15 @@ void MainWindow_OnCommand(HWND hWnd, int id, HWND hWndCtl, UINT codeNotify)
   switch (id)
   {
   case ID_BUTTON_IMAGEFILE:
+    if (SUCCEEDED(IFileOpenDialog_Show(p_file_open_dialog, hWnd)))
     {
-      if (SUCCEEDED(IFileOpenDialog_Show(p_file_open_dialog, hWnd)))
+      IShellItem *isi;
+      if (SUCCEEDED(IFileOpenDialog_GetResult(p_file_open_dialog, &isi)))
       {
-        IShellItem *isi;
-        if (SUCCEEDED(IFileOpenDialog_GetResult(p_file_open_dialog, &isi)))
+        LPTSTR file_name;
+        if (SUCCEEDED(IShellItem_GetDisplayName(isi, SIGDN_DESKTOPABSOLUTEEDITING, &file_name)))
         {
-          LPTSTR file_name;
-          if (SUCCEEDED(IShellItem_GetDisplayName(isi, SIGDN_DESKTOPABSOLUTEEDITING, &file_name)))
-          {
-            SetWindowText(GetDlgItem(hWnd, ID_EDIT_IMAGEFILE), file_name);
-          }
+          SetWindowText(GetDlgItem(hWnd, ID_EDIT_IMAGEFILE), file_name);
         }
       }
     }

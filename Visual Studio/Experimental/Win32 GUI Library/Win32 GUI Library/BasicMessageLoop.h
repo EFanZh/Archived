@@ -1,6 +1,8 @@
 #ifndef BASICMESSAGELOOP_H
 #define BASICMESSAGELOOP_H
 
+#include "Win32GUILibraryBase.h"
+
 namespace Win32GUILibrary
 {
   class BasicMessageLoop
