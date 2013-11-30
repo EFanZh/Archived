@@ -28,7 +28,6 @@ namespace SocketNS
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.spltrMain = new System.Windows.Forms.Splitter();
             this.tlStrpRequest = new System.Windows.Forms.ToolStrip();
             this.tlStrpLblServer = new System.Windows.Forms.ToolStripLabel();
@@ -52,9 +51,9 @@ namespace SocketNS
             // spltrMain
             // 
             this.spltrMain.Dock = System.Windows.Forms.DockStyle.Top;
-            this.spltrMain.Location = new System.Drawing.Point(0, 210);
+            this.spltrMain.Location = new System.Drawing.Point(0, 255);
             this.spltrMain.Name = "spltrMain";
-            this.spltrMain.Size = new System.Drawing.Size(704, 3);
+            this.spltrMain.Size = new System.Drawing.Size(744, 3);
             this.spltrMain.TabIndex = 1;
             this.spltrMain.TabStop = false;
             // 
@@ -72,7 +71,7 @@ namespace SocketNS
             this.tlStrpBtnSendRequest});
             this.tlStrpRequest.Location = new System.Drawing.Point(0, 0);
             this.tlStrpRequest.Name = "tlStrpRequest";
-            this.tlStrpRequest.Size = new System.Drawing.Size(704, 25);
+            this.tlStrpRequest.Size = new System.Drawing.Size(744, 25);
             this.tlStrpRequest.TabIndex = 0;
             this.tlStrpRequest.Text = "toolStrip1";
             // 
@@ -85,7 +84,7 @@ namespace SocketNS
             // tlStrpTxtBxServer
             // 
             this.tlStrpTxtBxServer.Name = "tlStrpTxtBxServer";
-            this.tlStrpTxtBxServer.Size = new System.Drawing.Size(100, 25);
+            this.tlStrpTxtBxServer.Size = new System.Drawing.Size(116, 25);
             // 
             // tlStrpLblPort
             // 
@@ -96,7 +95,7 @@ namespace SocketNS
             // tlStrpTxtBxPort
             // 
             this.tlStrpTxtBxPort.Name = "tlStrpTxtBxPort";
-            this.tlStrpTxtBxPort.Size = new System.Drawing.Size(100, 25);
+            this.tlStrpTxtBxPort.Size = new System.Drawing.Size(116, 25);
             // 
             // tlStrpSprtr1
             // 
@@ -114,14 +113,14 @@ namespace SocketNS
             this.tlStrpCmbBxRequestEncoding.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.tlStrpCmbBxRequestEncoding.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.tlStrpCmbBxRequestEncoding.Name = "tlStrpCmbBxRequestEncoding";
-            this.tlStrpCmbBxRequestEncoding.Size = new System.Drawing.Size(120, 25);
+            this.tlStrpCmbBxRequestEncoding.Size = new System.Drawing.Size(139, 25);
             // 
             // tlStrpBtnSendRequest
             // 
             this.tlStrpBtnSendRequest.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.tlStrpBtnSendRequest.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tlStrpBtnSendRequest.Name = "tlStrpBtnSendRequest";
-            this.tlStrpBtnSendRequest.Size = new System.Drawing.Size(70, 22);
+            this.tlStrpBtnSendRequest.Size = new System.Drawing.Size(54, 22);
             this.tlStrpBtnSendRequest.Text = "Send(&N)";
             this.tlStrpBtnSendRequest.Click += new System.EventHandler(this.tlStrpBtnSendRequest_Click);
             // 
@@ -132,7 +131,7 @@ namespace SocketNS
             this.txtBxRequest.Multiline = true;
             this.txtBxRequest.Name = "txtBxRequest";
             this.txtBxRequest.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtBxRequest.Size = new System.Drawing.Size(704, 185);
+            this.txtBxRequest.Size = new System.Drawing.Size(744, 230);
             this.txtBxRequest.TabIndex = 1;
             this.txtBxRequest.WordWrap = false;
             // 
@@ -143,9 +142,9 @@ namespace SocketNS
             this.tlStrpLblRespondEncoding,
             this.tlStrpCmbBxRespondEncoding,
             this.tlStrpBtnClearRespond});
-            this.tlStrpRespond.Location = new System.Drawing.Point(0, 213);
+            this.tlStrpRespond.Location = new System.Drawing.Point(0, 258);
             this.tlStrpRespond.Name = "tlStrpRespond";
-            this.tlStrpRespond.Size = new System.Drawing.Size(704, 25);
+            this.tlStrpRespond.Size = new System.Drawing.Size(744, 25);
             this.tlStrpRespond.TabIndex = 0;
             this.tlStrpRespond.Text = "toolStrip2";
             // 
@@ -160,39 +159,40 @@ namespace SocketNS
             this.tlStrpCmbBxRespondEncoding.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.tlStrpCmbBxRespondEncoding.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.tlStrpCmbBxRespondEncoding.Name = "tlStrpCmbBxRespondEncoding";
-            this.tlStrpCmbBxRespondEncoding.Size = new System.Drawing.Size(120, 25);
+            this.tlStrpCmbBxRespondEncoding.Size = new System.Drawing.Size(139, 25);
             // 
             // tlStrpBtnClearRespond
             // 
             this.tlStrpBtnClearRespond.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.tlStrpBtnClearRespond.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tlStrpBtnClearRespond.Name = "tlStrpBtnClearRespond";
-            this.tlStrpBtnClearRespond.Size = new System.Drawing.Size(68, 22);
+            this.tlStrpBtnClearRespond.Size = new System.Drawing.Size(52, 22);
             this.tlStrpBtnClearRespond.Text = "Clear(&L)";
             this.tlStrpBtnClearRespond.Click += new System.EventHandler(this.tlStrpBtnClearRespond_Click);
             // 
             // txtBxRespond
             // 
             this.txtBxRespond.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtBxRespond.Location = new System.Drawing.Point(0, 238);
+            this.txtBxRespond.Location = new System.Drawing.Point(0, 283);
             this.txtBxRespond.Multiline = true;
             this.txtBxRespond.Name = "txtBxRespond";
             this.txtBxRespond.ReadOnly = true;
             this.txtBxRespond.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtBxRespond.Size = new System.Drawing.Size(704, 204);
+            this.txtBxRespond.Size = new System.Drawing.Size(744, 194);
             this.txtBxRespond.TabIndex = 1;
             this.txtBxRespond.WordWrap = false;
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(704, 442);
+            this.ClientSize = new System.Drawing.Size(744, 477);
             this.Controls.Add(this.txtBxRespond);
             this.Controls.Add(this.tlStrpRespond);
             this.Controls.Add(this.spltrMain);
             this.Controls.Add(this.txtBxRequest);
             this.Controls.Add(this.tlStrpRequest);
+            this.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.Name = "MainForm";
             this.Text = "Socket";
             this.tlStrpRequest.ResumeLayout(false);

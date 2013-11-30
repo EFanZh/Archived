@@ -30,7 +30,7 @@ namespace SocketNS
             try
             {
                 tc = new TcpClient(tlStrpTxtBxServer.Text, int.Parse(tlStrpTxtBxPort.Text));
-                tc.ReceiveTimeout = 60000;
+                tc.ReceiveTimeout = 2000;
                 ns = tc.GetStream();
                 msg = Encoding.GetEncoding(tlStrpCmbBxRequestEncoding.Text).GetBytes(txtBxRequest.Text);
                 ns.Write(msg, 0, msg.Length);
