@@ -4,11 +4,14 @@
 #include <BasicMessageLoop.h>
 #include <UserWindow.h>
 #include <MessageCrackers.h>
+#include <osg\MatrixTransform>
 #include <osg\ShapeDrawable>
 #include <osgGA\TrackballManipulator>
 #include <osgViewer\Viewer>
 #include <osgViewer\api\Win32\GraphicsWindowWin32>
 #include <osgViewer\config\SingleWindow>
+
+#pragma comment(lib, "ComCtl32.Lib")
 
 #ifdef _DEBUG
 #pragma comment(lib, "osgd.lib")

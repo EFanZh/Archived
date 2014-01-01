@@ -53,16 +53,19 @@
     <ClInclude Include="UserDialogBox.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Win32GUILibraryUtilities.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ThunkWindowTemplate.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="MessageCracker.h">
+    <ClInclude Include="CommonControls.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CommonControls.h">
+    <ClInclude Include="BasicDialogMessageLoop.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MessageCrackers.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ThunkWindowStaticMembers.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

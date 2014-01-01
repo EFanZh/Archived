@@ -7,6 +7,9 @@
 // void OnDestroy()
 #define WGL_HANDLE_WM_DESTROY(fn) case WM_DESTROY: return fn(), 0
 
+// void OnSize(UINT state, int cx, int cy)
+#define WGL_HANDLE_WM_SIZE(fn) case WM_SIZE: return fn(wParam, LOWORD(lParam), HIWORD(lParam)), 0
+
 // void OnPaint()
 #define WGL_HANDLE_WM_PAINT(fn) case WM_PAINT: return fn(), 0
 

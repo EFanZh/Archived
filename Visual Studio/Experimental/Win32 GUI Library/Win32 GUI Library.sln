@@ -1,7 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Win32 GUI Library", "Win32 GUI Library\Win32 GUI Library.vcxproj", "{0F08B2BC-DD40-4D79-9DEC-4E5C792D18AA}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Simple GUI Library", "Simple GUI Library\Simple GUI Library.vcxproj", "{3A2CF4A8-84A0-4D2B-B2C5-34D7AB8D75CB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,6 +17,10 @@ Global
 		{0F08B2BC-DD40-4D79-9DEC-4E5C792D18AA}.Debug|Win32.Build.0 = Debug|Win32
 		{0F08B2BC-DD40-4D79-9DEC-4E5C792D18AA}.Release|Win32.ActiveCfg = Release|Win32
 		{0F08B2BC-DD40-4D79-9DEC-4E5C792D18AA}.Release|Win32.Build.0 = Release|Win32
+		{3A2CF4A8-84A0-4D2B-B2C5-34D7AB8D75CB}.Debug|Win32.ActiveCfg = Debug|Win32
+		{3A2CF4A8-84A0-4D2B-B2C5-34D7AB8D75CB}.Debug|Win32.Build.0 = Debug|Win32
+		{3A2CF4A8-84A0-4D2B-B2C5-34D7AB8D75CB}.Release|Win32.ActiveCfg = Release|Win32
+		{3A2CF4A8-84A0-4D2B-B2C5-34D7AB8D75CB}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

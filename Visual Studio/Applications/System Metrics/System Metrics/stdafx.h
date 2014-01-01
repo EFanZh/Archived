@@ -8,9 +8,12 @@
 #include <tchar.h>
 #include <Windows.h>
 #include <windowsx.h>
+#include <CommCtrl.h>
 #include <Uxtheme.h>
 
+#pragma comment(lib, "ComCtl32.Lib")
 #pragma comment(lib, "Uxtheme.lib")
+#pragma comment(linker, "\"/manifestdependency:type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' processorArchitecture='*' publicKeyToken='6595b64144ccf1df' language='*'\"")
 
 extern IMAGE_DOS_HEADER __ImageBase;
 #define HINST_THISCOMPONENT ((HINSTANCE)&__ImageBase)

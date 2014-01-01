@@ -1,7 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Color Space", "Color Space\Color Space.csproj", "{12472D0B-E788-47CE-965A-DBD90E05D3FD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Color Picker", "Color Picker\Color Picker.csproj", "{C7CC4636-B60B-45B0-A653-0BE9C6A4D078}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,6 +17,10 @@ Global
 		{12472D0B-E788-47CE-965A-DBD90E05D3FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{12472D0B-E788-47CE-965A-DBD90E05D3FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{12472D0B-E788-47CE-965A-DBD90E05D3FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C7CC4636-B60B-45B0-A653-0BE9C6A4D078}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7CC4636-B60B-45B0-A653-0BE9C6A4D078}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7CC4636-B60B-45B0-A653-0BE9C6A4D078}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7CC4636-B60B-45B0-A653-0BE9C6A4D078}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

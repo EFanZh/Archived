@@ -36,7 +36,7 @@ namespace Fractal
             tree.ColorTo = Color.FromArgb(32, Color.ForestGreen);
             tree.Size = this.ClientSize;
 
-            //Export();
+            // Export();
         }
 
         private void MainForm_ClientSizeChanged(object sender, EventArgs e)

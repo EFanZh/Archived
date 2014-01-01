@@ -12,7 +12,7 @@ namespace MyColorDialog
 {
     public partial class MainForm : Form
     {
-        private MyColorDialog c;
+        private MyColorDialog c = new MyColorDialog();
 
         public MainForm()
         {
@@ -21,6 +21,7 @@ namespace MyColorDialog
 
         private void MainForm_Click(object sender, EventArgs e)
         {
+            c.ShowDialog();
         }
     }
 }

@@ -91,8 +91,10 @@
     <ClCompile Include="WinMain.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BasicDialogMessageLoop.h" />
     <ClInclude Include="BasicMessageLoop.h" />
-    <ClInclude Include="MessageCracker.h" />
+    <ClInclude Include="MessageCrackers.h" />
+    <ClInclude Include="ThunkWindowStaticMembers.h" />
     <ClInclude Include="UserDialogBox.h" />
     <ClInclude Include="CommonControls.h" />
     <ClInclude Include="ThunkWindowTemplate.h" />
@@ -101,7 +103,6 @@
     <ClInclude Include="ThunkWindow.h" />
     <ClInclude Include="UserWindow.h" />
     <ClInclude Include="Win32GUILibraryBase.h" />
-    <ClInclude Include="Win32GUILibraryUtilities.h" />
     <ClInclude Include="WindowClass.h" />
     <ClInclude Include="WindowHandle.h" />
   </ItemGroup>

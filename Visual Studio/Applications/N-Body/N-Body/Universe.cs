@@ -17,6 +17,7 @@ namespace NBody
         public IEnumerable<Planet> Planets
         {
             get;
+            private set;
         }
     }
 }

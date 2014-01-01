@@ -1,24 +1,22 @@
 #ifndef USERDIALOGBOX_H
 #define USERDIALOGBOX_H
 
-#include "Win32GUILibraryBase.h"
 #include "ThunkWindowTemplate.h"
-#include "Win32GUILibraryUtilities.h"
 
 namespace Win32GUILibrary
 {
   template<class T>
   class UserDialogBox : public ThunkWindowTemplate<ThunkWindowTemplateTraitUserDialogBox>
   {
-    static INT_PTR CALLBACK StaticDialogProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
+    static INT_PTR CALLBACK RedirectDialogProc(T *p_this, UINT uMsg, WPARAM wParam, LPARAM lParam)
     {
-      return reinterpret_cast<T *>(hWnd)->DialogProc(uMsg, wParam, lParam);
+      return p_this->DialogProc(uMsg, wParam, lParam);
     }
 
-  public:
+  protected:
     INT_PTR DoModal(HWND hWndParent, LPARAM dwInitParam = NULL)
     {
-      UserProcWindow::AddCreateWindowInfo(this, StaticDialogProc);
+      ThunkWindow::AddCreateWindowInfo(this, RedirectDialogProc);
 
       return ::DialogBoxParam(HINST_THISCOMPONENT, MAKEINTRESOURCE(T::IDD), hWndParent, ThunkWindowTemplate::StartWindowProc, dwInitParam);
     }

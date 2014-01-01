@@ -7,17 +7,23 @@
 #include <Windows.h>
 #include <osg\MatrixTransform>
 #include <osg\ShapeDrawable>
-#include <osgDB\ReadFile>
+#include <osgFX\Outline>
+#include <osgGA\GUIEventHandler>
+#include <osgUtil\IntersectionVisitor>
 #include <osgViewer\Viewer>
 #include <osgViewer\config\SingleWindow>
 
 #ifdef _DEBUG
 #pragma comment(lib, "osgd.lib")
-#pragma comment(lib, "osgDBd.lib")
+#pragma comment(lib, "osgGAd.lib")
+#pragma comment(lib, "osgFXd.lib")
+#pragma comment(lib, "osgUtild.lib")
 #pragma comment(lib, "osgViewerd.lib")
 #else
 #pragma comment(lib, "osg.lib")
-#pragma comment(lib, "osgDB.lib")
+#pragma comment(lib, "osgGA.lib")
+#pragma comment(lib, "osgFX.lib")
+#pragma comment(lib, "osgUtil.lib")
 #pragma comment(lib, "osgViewer.lib")
 #endif
 

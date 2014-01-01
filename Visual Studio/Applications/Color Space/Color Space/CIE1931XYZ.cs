@@ -6,7 +6,7 @@ namespace ColorSpace
 {
     internal class CIE1931XYZ
     {
-        private const string cmfFile = "ciexyz31_1.csv";
+        private const string cmfFile = "lin2012xyz2e_fine_7sf.csv";
 
         public static IEnumerable<double[]> GetColorMatchFunction()
         {

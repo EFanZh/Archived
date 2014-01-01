@@ -14,6 +14,7 @@ namespace PrimeNumberCalculator
         private SpinLock spin_lock_list = new SpinLock();
 
         public event EventHandler OutputResult;
+
         public event AsyncCompletedEventHandler CalculateCompleted;
 
         public Calculator()
@@ -111,7 +112,7 @@ namespace PrimeNumberCalculator
                 long k = (long)Math.Sqrt(i);
                 for (int j = 1; j < len; j++)
                 {
-                    if (i % PrimeNumberList[j] == 0)
+                    if (PrimeNumberList[j] <= k && i % PrimeNumberList[j] == 0)
                     {
                         goto NEXT;
                     }

@@ -23,7 +23,7 @@ namespace Win32GUILibrary
       p_wcex->hIconSm = hIconSm;
     }
 
-    WindowClass(const WindowClass &rhs): p_wcex(new WNDCLASSEX())
+    WindowClass(const WindowClass &rhs) : p_wcex(new WNDCLASSEX())
     {
       *p_wcex = *rhs.p_wcex;
     }

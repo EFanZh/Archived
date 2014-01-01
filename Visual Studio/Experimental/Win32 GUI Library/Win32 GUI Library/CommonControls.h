@@ -14,7 +14,8 @@ namespace Win32GUILibrary
   public:
     HWND Create(DWORD dwExStyle, LPCTSTR lpWindowName, DWORD dwStyle, int x, int y, int nWidth, int nHeight, HWND hWndParent, int nID, LPVOID lpParam)
     {
-      return ::CreateWindowEx(dwExStyle, T::GetControlClassName(), lpWindowName, dwStyle, x, y, nWidth, nHeight, hWndParent, reinterpret_cast<HMENU>(nID), HINST_THISCOMPONENT, lpParam);
+      this->SetHWnd(::CreateWindowEx(dwExStyle, T::GetControlClassName(), lpWindowName, dwStyle, x, y, nWidth, nHeight, hWndParent, reinterpret_cast<HMENU>(nID), HINST_THISCOMPONENT, lpParam));
+      return *this;
     }
   };
 

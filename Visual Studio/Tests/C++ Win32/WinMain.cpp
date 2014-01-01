@@ -5,6 +5,9 @@
 #include <windowsx.h>
 #include <CommCtrl.h>
 
+#pragma comment(lib, "ComCtl32.Lib")
+#pragma comment(linker, "\"/manifestdependency:type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' processorArchitecture='*' publicKeyToken='6595b64144ccf1df' language='*'\"")
+
 LRESULT CALLBACK WindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 BOOL OnCreate(HWND hWnd, LPCREATESTRUCT lpCreateStruct);
 void OnDestroy(HWND hWnd);
@@ -18,10 +21,10 @@ int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 
   wcex.lpfnWndProc = WindowProc;
   wcex.hInstance = hInstance;
-  wcex.hIcon = static_cast<HICON>(LoadImage(NULL, IDI_APPLICATION, IMAGE_ICON, 0, 0, LR_SHARED));
+  LoadIconMetric(NULL, IDI_APPLICATION, LIM_LARGE, &wcex.hIcon);
   wcex.hCursor = static_cast<HCURSOR>(LoadImage(NULL, IDC_ARROW, IMAGE_CURSOR, 0, 0, LR_SHARED));
   wcex.lpszClassName = TEXT("MainWindow");
-  wcex.hIconSm = wcex.hIcon;
+  LoadIconMetric(NULL, IDI_APPLICATION, LIM_SMALL, &wcex.hIconSm);
 
   RegisterClassEx(&wcex);
 

@@ -2,7 +2,7 @@
 
 MainWindow::MainWindow()
 {
-  this->Create(0, TEXT("OpenSceneGraph Test"), WS_OVERLAPPEDWINDOW, CW_USEDEFAULT, CW_USEDEFAULT, 640, 360, HWND_DESKTOP, NULL, NULL);
+  this->Create(0, TEXT("OpenSceneGraph Test"), WS_OVERLAPPEDWINDOW | WS_CLIPCHILDREN, CW_USEDEFAULT, CW_USEDEFAULT, 640, 360, HWND_DESKTOP, NULL, NULL);
 }
 
 LRESULT MainWindow::WindowProc(UINT uMsg, WPARAM wParam, LPARAM lParam)
@@ -25,6 +25,8 @@ LRESULT MainWindow::WindowProc(UINT uMsg, WPARAM wParam, LPARAM lParam)
 
 BOOL MainWindow::OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
+  UNREFERENCED_PARAMETER(lpCreateStruct);
+
   scene.BeginRender(*this);
 
   return TRUE;
@@ -46,8 +48,11 @@ void MainWindow::OnPaint()
 
 Win32GUILibrary::WindowClass MainWindow::GetWindowClass()
 {
-  HICON icon = static_cast<HICON>(::LoadImage(NULL, IDI_APPLICATION, IMAGE_ICON, 0, 0, LR_SHARED));
-  HCURSOR cursor = static_cast<HCURSOR>(::LoadImage(NULL, IDI_APPLICATION, IMAGE_CURSOR, 0, 0, LR_SHARED));
+  HICON h1, h2;
+  HCURSOR cursor = static_cast<HCURSOR>(::LoadImage(NULL, IDC_ARROW, IMAGE_CURSOR, 0, 0, LR_SHARED));
 
-  return Win32GUILibrary::WindowClass(0, 0, 0, icon, cursor, NULL, NULL, TEXT("MainWindow"), icon);
+  LoadIconMetric(NULL, IDI_APPLICATION, LIM_LARGE, &h1);
+  LoadIconMetric(NULL, IDI_APPLICATION, LIM_SMALL, &h2);
+
+  return Win32GUILibrary::WindowClass(0, 0, 0, h1, cursor, NULL, NULL, TEXT("MainWindow"), h2);
 }

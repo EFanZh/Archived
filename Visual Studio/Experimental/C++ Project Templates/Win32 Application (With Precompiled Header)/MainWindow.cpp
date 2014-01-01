@@ -11,10 +11,10 @@ ATOM RegisterMainWindowClass()
 
   wcex.lpfnWndProc = MainWindowProc;
   wcex.hInstance = HINST_THISCOMPONENT;
-  wcex.hIcon = static_cast<HICON>(LoadImage(NULL, IDI_APPLICATION, IMAGE_ICON, 0, 0, LR_SHARED));
+  LoadIconMetric(NULL, IDI_APPLICATION, LIM_LARGE, &wcex.hIcon);
   wcex.hCursor = static_cast<HCURSOR>(LoadImage(NULL, IDC_ARROW, IMAGE_CURSOR, 0, 0, LR_SHARED));
-  wcex.lpszClassName = main_window_class_name;
-  wcex.hIconSm = wcex.hIcon;
+  wcex.lpszClassName = TEXT("MainWindow");
+  LoadIconMetric(NULL, IDI_APPLICATION, LIM_SMALL, &wcex.hIconSm);
 
   return RegisterClassEx(&wcex);
 }

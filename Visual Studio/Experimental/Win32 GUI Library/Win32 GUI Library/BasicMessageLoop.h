@@ -8,7 +8,7 @@ namespace Win32GUILibrary
   class BasicMessageLoop
   {
   public:
-    int Run()
+    static int Run()
     {
       MSG msg;
 

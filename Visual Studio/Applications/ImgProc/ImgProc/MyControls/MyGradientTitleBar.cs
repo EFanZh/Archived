@@ -8,15 +8,15 @@ namespace ImgProc.MyControls
     [ToolboxItem(true)]
     internal class MyGradientTitleBar : Label
     {
-        static Color defaultGradientBeginColor = SystemColors.ActiveCaption;
-        static Color defaultGradientEndColor = SystemColors.GradientActiveCaption;
-        static Color defaultBackColor = SystemColors.ActiveCaption;
-        static Color defaultForeColor = SystemColors.ActiveCaptionText;
-        static Font defaultFont = SystemFonts.CaptionFont;
-        Color gradientBeginColor;
-        Color gradientEndColor;
-        const DockStyle defaultDock = DockStyle.Top;
-        const ContentAlignment defaultTextAlign = ContentAlignment.MiddleLeft;
+        private static Color defaultGradientBeginColor = SystemColors.ActiveCaption;
+        private static Color defaultGradientEndColor = SystemColors.GradientActiveCaption;
+        private static Color defaultBackColor = SystemColors.ActiveCaption;
+        private static Color defaultForeColor = SystemColors.ActiveCaptionText;
+        private static Font defaultFont = SystemFonts.CaptionFont;
+        private Color gradientBeginColor;
+        private Color gradientEndColor;
+        private const DockStyle defaultDock = DockStyle.Top;
+        private const ContentAlignment defaultTextAlign = ContentAlignment.MiddleLeft;
 
         public MyGradientTitleBar()
         {
@@ -26,6 +26,7 @@ namespace ImgProc.MyControls
             ResetForeColor();
             ResetFont();
             TextAlign = defaultTextAlign;
+            this.DoubleBuffered = true;
         }
 
         protected override void OnPaintBackground(PaintEventArgs pevent)

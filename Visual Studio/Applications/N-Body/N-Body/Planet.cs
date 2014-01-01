@@ -10,6 +10,8 @@ namespace NBody
     {
         private Vector Location
         {
+            get;
+            set;
         }
 
         private double Mass

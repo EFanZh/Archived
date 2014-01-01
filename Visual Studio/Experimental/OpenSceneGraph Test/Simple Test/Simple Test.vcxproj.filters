@@ -21,10 +21,10 @@
     <ClCompile Include="stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MyScene.cpp">
+    <ClCompile Include="TestController.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="RotateCallback.cpp">
+    <ClCompile Include="TestScene.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -32,10 +32,10 @@
     <ClInclude Include="stdafx.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="MyScene.h">
+    <ClInclude Include="TestController.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="RotateCallback.h">
+    <ClInclude Include="TestScene.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

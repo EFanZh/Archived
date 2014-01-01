@@ -30,9 +30,10 @@ HWND Window::CreateEx(DWORD dwExStyle, LPCTSTR lpWindowName, DWORD dwStyle, int 
     wcex.cbSize = sizeof(wcex);
     wcex.lpfnWndProc = StaticWindowProc;
     wcex.hInstance = hInstance;
-    wcex.hIcon = (HICON)LoadImage(NULL, IDI_APPLICATION, IMAGE_ICON, 0, 0, LR_SHARED);
+    LoadIconMetric(NULL, IDI_APPLICATION, LIM_LARGE, &wcex.hIcon);
     wcex.hCursor = (HCURSOR)LoadImage(NULL, IDC_ARROW, IMAGE_CURSOR, 0, 0, LR_SHARED);
     wcex.lpszClassName = window_class_name;
+    LoadIconMetric(NULL, IDI_APPLICATION, LIM_SMALL, &wcex.hIconSm);
     if (!RegisterClassEx(&wcex))
     {
       return NULL;

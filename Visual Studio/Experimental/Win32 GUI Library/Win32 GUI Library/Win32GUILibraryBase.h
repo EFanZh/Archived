@@ -11,8 +11,6 @@
 #include <Windows.h>
 #include <windowsx.h>
 #include <CommCtrl.h>
-#include <Uxtheme.h>
-#include <dwmapi.h>
 #include <atlstdthunk.h>
 
 // Libraries.

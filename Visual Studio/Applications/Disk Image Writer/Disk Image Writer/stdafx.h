@@ -2,6 +2,7 @@
 #define STDAFX_H
 
 #define STRICT
+#define WIN32_LEAN_AND_MEAN
 
 #include <strsafe.h>
 #include <Windows.h>
@@ -10,6 +11,7 @@
 #define COBJMACROS
 #define CINTERFACE
 #undef __cplusplus
+#include <shellapi.h>
 #include <ShObjIdl.h>
 
 #pragma comment(lib, "ComCtl32.Lib")

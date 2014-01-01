@@ -7,45 +7,46 @@ namespace Win32GUILibrary
 {
   class ThunkWindow : public WindowHandle
   {
-    ATL::CStdCallThunk thunk;
-
-    typedef std::map<DWORD, std::tuple<ThunkWindow *, void *>> CreateWindowInfoMap;
-    typedef std::tuple<ThunkWindow *, void *> CreateWindowInfo;
-
-    static CreateWindowInfoMap &GetCreateWindowInfoMap()
+    // Spin lock class.
+    class SpinLock
     {
-      static CreateWindowInfoMap tid_to_cwi_map;
+      static const LONG UNLOCKED = 0L;
+      static const LONG LOCKED = 1L;
 
-      return tid_to_cwi_map;
-    }
+      LONG lock_state = UNLOCKED;
 
-    static CRITICAL_SECTION *GetCriticalSection()
-    {
-      static CRITICAL_SECTION critical_section;
-      bool need_to_initialize = true;
-
-      if (need_to_initialize)
+    public:
+      void Lock()
       {
-        InitializeCriticalSection(&critical_section);
-        need_to_initialize = false;
+        while (InterlockedExchange(&lock_state, LOCKED) == LOCKED)
+        {
+          continue;
+        }
       }
 
-      return &critical_section;
-    }
+      void Unlock()
+      {
+        InterlockedExchange(&lock_state, UNLOCKED);
+      }
+    };
 
-    static const CreateWindowInfo ExtractCreateWindowInfo()
+    typedef std::tuple<ThunkWindow *, void *> CreateInfo;
+
+    ATL::CStdCallThunk thunk;
+
+    static std::map<DWORD, CreateInfo> create_info_map;
+    static SpinLock spin_lock;
+
+    static const CreateInfo ExtractCreateWindowInfo()
     {
       DWORD tid = GetCurrentThreadId();
-      CreateWindowInfoMap &cwi_map = GetCreateWindowInfoMap();
-      CRITICAL_SECTION *p_critical_section = GetCriticalSection();
-      CreateWindowInfo result;
 
-      EnterCriticalSection(p_critical_section);
+      spin_lock.Lock();
 
-      result = cwi_map[tid];
-      cwi_map.erase(tid);
+      CreateInfo result = std::move(create_info_map[tid]);
+      create_info_map.erase(tid);
 
-      LeaveCriticalSection(p_critical_section);
+      spin_lock.Unlock();
 
       return std::move(result);
     }
@@ -56,6 +57,15 @@ namespace Win32GUILibrary
       this->SetHWnd(hWnd);
       this->thunk.Init(reinterpret_cast<DWORD_PTR>(proc), this);
       ::SetWindowLongPtr(hWnd, proc_type, reinterpret_cast<LONG_PTR>(thunk.GetCodeAddress()));
+    }
+
+    static void AddCreateWindowInfo(ThunkWindow *p_this, void *static_proc)
+    {
+      spin_lock.Lock();
+
+      create_info_map[GetCurrentThreadId()] = std::make_tuple(p_this, static_proc);
+
+      spin_lock.Unlock();
     }
 
     static void *InitThunkProc(HWND hWnd, int proc_type)
@@ -69,15 +79,16 @@ namespace Win32GUILibrary
       return p_window->thunk.GetCodeAddress();
     }
 
-    static void AddCreateWindowInfo(ThunkWindow *p_this, void *static_proc)
+    static void ProcessWindowClass(WNDCLASSEX &wcex)
     {
-      CRITICAL_SECTION *p_critical_section = GetCriticalSection();
+      wcex.cbSize = sizeof(wcex);
+      wcex.hInstance = HINST_THISCOMPONENT;
+    }
 
-      EnterCriticalSection(p_critical_section);
-
-      GetCreateWindowInfoMap()[GetCurrentThreadId()] = std::make_tuple(p_this, static_proc);
-
-      LeaveCriticalSection(p_critical_section);
+  public:
+    ~ThunkWindow()
+    {
+      this->Destroy();
     }
   };
 }

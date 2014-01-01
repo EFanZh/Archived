@@ -1,44 +1,57 @@
 #ifndef USERWINDOW_H
 #define USERWINDOW_H
 
-#include "Win32GUILibraryBase.h"
 #include "ThunkWindowTemplate.h"
-#include "Win32GUILibraryUtilities.h"
-#include "WindowClass.h"
 
 namespace Win32GUILibrary
 {
+  // Forward declaration.
+  class HMENUOrInt;
+
   template<class T>
   class UserWindow : public ThunkWindowTemplate<ThunkWindowTemplateTraitUserWindow>
   {
-    static LRESULT CALLBACK StaticWindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
+    static LRESULT CALLBACK RedirectWindowProc(T *p_this, UINT uMsg, WPARAM wParam, LPARAM lParam)
     {
-      return reinterpret_cast<T *>(hWnd)->WindowProc(uMsg, wParam, lParam);
+      return p_this->WindowProc(uMsg, wParam, lParam);
     }
 
   protected:
-    LRESULT DefaultWindowProc(UINT uMsg, WPARAM wParam, LPARAM lParam)
-    {
-      return ::DefWindowProc(*this, uMsg, wParam, lParam);
-    }
-
-  public:
     HWND Create(DWORD dwExStyle, LPCTSTR lpWindowName, DWORD dwStyle, int x, int y, int nWidth, int nHeight, HWND hWndParent, HMENUOrInt hMenuOrnId, LPVOID lpParam)
     {
-      ThunkWindow::AddCreateWindowInfo(this, StaticWindowProc);
+      ThunkWindow::AddCreateWindowInfo(this, RedirectWindowProc);
 
-      return ::CreateWindowEx(dwExStyle, reinterpret_cast<LPCTSTR>(InitWindowClass()), lpWindowName, dwStyle, x, y, nWidth, nHeight, hWndParent, hMenuOrnId, HINST_THISCOMPONENT, lpParam);
+      return ::CreateWindowEx(dwExStyle, reinterpret_cast<LPCTSTR>(T::class_atom), lpWindowName, dwStyle, x, y, nWidth, nHeight, hWndParent, hMenuOrnId, HINST_THISCOMPONENT, lpParam);
     }
 
-    static ATOM InitWindowClass()
+    static ATOM RegisterWindowClass(WNDCLASSEX &wcex)
     {
-      static ATOM class_atom = T::GetWindowClass().Register(ThunkWindowTemplate::StartWindowProc);
+      ThunkWindowTemplate::ProcessWindowClass(wcex);
 
-      return class_atom;
+      T::class_atom = ::RegisterClassEx(&wcex);
+
+      return T::class_atom;
+    }
+  };
+
+  class HMENUOrInt
+  {
+    HMENU hMenu;
+
+  public:
+    HMENUOrInt(HMENU hMenu) : hMenu(hMenu)
+    {
+    }
+
+    HMENUOrInt(int nID) : hMenu(reinterpret_cast<HMENU>(nID))
+    {
+    }
+
+    operator HMENU()
+    {
+      return hMenu;
     }
   };
 }
-
-#define DECLARE_USER_WINDOW_CLASS(style, cbClsExtra, cbWndExtra, hIcon, hCursor, hbrBackground, lpszMenuName, lpszClassName, hIconSm) static Win32GUILibrary::WindowClass GetWindowClass() { return Win32GUILibrary::WindowClass(style, cbClsExtra, cbWndExtra, hIcon, hCursor, hbrBackground, lpszMenuName, lpszClassName, hIconSm); }
 
 #endif // USERWINDOW_H

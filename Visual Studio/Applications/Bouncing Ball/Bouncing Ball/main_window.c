@@ -30,12 +30,12 @@ ATOM RegisterMainWindowClass(HINSTANCE hInstance)
   wcex.cbClsExtra = 0;
   wcex.cbWndExtra = 0;
   wcex.hInstance = hInstance;
-  wcex.hIcon = (HICON)LoadImage(NULL, IDI_APPLICATION, IMAGE_ICON, 0, 0, LR_SHARED);
+  LoadIconMetric(NULL, IDI_APPLICATION, LIM_LARGE, &wcex.hIcon);
   wcex.hCursor = (HCURSOR)LoadImage(NULL, IDC_ARROW, IMAGE_CURSOR, 0, 0, LR_SHARED);
   wcex.hbrBackground = GetStockBrush(BLACK_BRUSH);
   wcex.lpszMenuName = NULL;
   wcex.lpszClassName = main_window_class_name;
-  wcex.hIconSm = wcex.hIcon;
+  LoadIconMetric(NULL, IDI_APPLICATION, LIM_SMALL, &wcex.hIconSm);
 
   return RegisterClassEx(&wcex);
 }
@@ -74,7 +74,7 @@ void MainWindow_OnDestroy(HWND hWnd)
 
   KillTimer(hWnd, ID_TIMER);
 
-  PostQuitMessage(EXIT_SUCCESS);
+  PostQuitMessage(0);
 }
 
 void MainWindow_OnSize(HWND hWnd, UINT state, int cx, int cy)

@@ -30,7 +30,7 @@ static int button_close_dx = 0;
 static int statusbar_main_dw = 0;
 static int statusbar_main_h = 0;
 
-#define MAINWINDOW_STYLE ((WS_OVERLAPPEDWINDOW | WS_CLIPCHILDREN) & ~WS_MAXIMIZEBOX & ~WS_THICKFRAME)
+#define MAINWINDOW_STYLE ((WS_OVERLAPPEDWINDOW | WS_CLIPCHILDREN) & ~WS_MAXIMIZEBOX)
 #define GLOBAL_CONTROL_STYLE (WS_CHILD | WS_VISIBLE | WS_CLIPCHILDREN | WS_CLIPSIBLINGS)
 #define GLOBAL_TAB_CONTROL_STYLE (GLOBAL_CONTROL_STYLE | WS_TABSTOP)
 #define BUTTON_STYLE (GLOBAL_TAB_CONTROL_STYLE)
@@ -38,7 +38,7 @@ static int statusbar_main_h = 0;
 #define EDIT_STYLE (GLOBAL_TAB_CONTROL_STYLE | ES_AUTOHSCROLL | ES_READONLY)
 #define PROGRESSBAR_STYLE (GLOBAL_CONTROL_STYLE)
 #define STATIC_STYLE (GLOBAL_CONTROL_STYLE | SS_CENTERIMAGE)
-#define STATUSBAR_STYLE (GLOBAL_CONTROL_STYLE)
+#define STATUSBAR_STYLE (GLOBAL_CONTROL_STYLE | CCS_BOTTOM)
 
 // Dialog Box Command IDs
 #define ID_BUTTON_GO IDOK
@@ -60,11 +60,11 @@ ATOM RegisterMainWindowClass(void)
 
   wcex.lpfnWndProc = MainWindowProc;
   wcex.hInstance = GetModuleHandle(NULL);
-  wcex.hIcon = LoadIcon(NULL, IDI_APPLICATION);
-  wcex.hCursor = LoadCursor(NULL, IDC_ARROW);
+  LoadIconMetric(NULL, IDI_APPLICATION, LIM_LARGE, &wcex.hIcon);
+  wcex.hCursor = (HCURSOR)LoadImage(NULL, IDC_ARROW, IMAGE_CURSOR, 0, 0, LR_SHARED);
   wcex.hbrBackground = GetSysColorBrush(COLOR_3DFACE);
   wcex.lpszClassName = main_window_class_name;
-  wcex.hIconSm = wcex.hIcon;
+  LoadIconMetric(NULL, IDI_APPLICATION, LIM_SMALL, &wcex.hIconSm);
 
   return RegisterClassEx(&wcex);
 }
