@@ -5,8 +5,24 @@
 
 namespace Win32GUILibrary
 {
-  // Forward declaration.
-  class HMENUOrInt;
+  class HMENUOrInt
+  {
+    HMENU hMenu;
+
+  public:
+    HMENUOrInt(HMENU hMenu) : hMenu(hMenu)
+    {
+    }
+
+    HMENUOrInt(int nID) : hMenu(reinterpret_cast<HMENU>(nID))
+    {
+    }
+
+    operator HMENU()
+    {
+      return hMenu;
+    }
+  };
 
   template<class T>
   class UserWindow : public ThunkWindowTemplate<ThunkWindowTemplateTraitUserWindow>
@@ -26,30 +42,12 @@ namespace Win32GUILibrary
 
     static ATOM RegisterWindowClass(WNDCLASSEX &wcex)
     {
+      // Set necessary fields.
       ThunkWindowTemplate::ProcessWindowClass(wcex);
 
       T::class_atom = ::RegisterClassEx(&wcex);
 
       return T::class_atom;
-    }
-  };
-
-  class HMENUOrInt
-  {
-    HMENU hMenu;
-
-  public:
-    HMENUOrInt(HMENU hMenu) : hMenu(hMenu)
-    {
-    }
-
-    HMENUOrInt(int nID) : hMenu(reinterpret_cast<HMENU>(nID))
-    {
-    }
-
-    operator HMENU()
-    {
-      return hMenu;
     }
   };
 }

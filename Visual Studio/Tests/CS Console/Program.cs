@@ -1,9 +1,12 @@
-﻿namespace CSConsole
+﻿using System;
+
+namespace CSConsole
 {
     internal class Program
     {
-        private static void Main(string[] args)
+        public static void Main(String[] args)
         {
         }
+
     }
 }

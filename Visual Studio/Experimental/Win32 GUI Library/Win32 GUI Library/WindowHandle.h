@@ -10,13 +10,18 @@ namespace Win32GUILibrary
     HWND hWnd;
 
   protected:
+    WindowHandle()
+    {
+    }
+
     void SetHWnd(HWND value)
     {
       hWnd = value;
     }
 
   public:
-    WindowHandle(HWND hWnd = NULL) : hWnd(hWnd)
+
+    WindowHandle(HWND hWnd) : hWnd(hWnd)
     {
     }
 
@@ -95,6 +100,19 @@ namespace Win32GUILibrary
       return ::MoveWindow(hWnd, X, Y, nWidth, nHeight, bRepaint);
     }
 
+    BOOL RemoveSubclass(SUBCLASSPROC pfnSubclass, UINT_PTR uIdSubclass)
+    {
+      return ::RemoveWindowSubclass(hWnd, pfnSubclass, uIdSubclass);
+    }
+
+#pragma push_macro("SendMessage")
+#undef SendMessage
+    LRESULT SendMessage(UINT uMsg, WPARAM wParam, LPARAM lParam)
+#pragma pop_macro("SendMessage")
+    {
+      return ::SendMessage(hWnd, uMsg, wParam, lParam);
+    }
+
     LRESULT SendMessage(UINT uMsg, WPARAM wParam, LPARAM lParam)
     {
       return ::SendMessage(hWnd, uMsg, wParam, lParam);
@@ -103,6 +121,16 @@ namespace Win32GUILibrary
     HWND SetFocus()
     {
       return ::SetFocus(hWnd);
+    }
+
+    LONG_PTR SetLongPtr(int nIndex, LONG_PTR dwNewLong)
+    {
+      return ::SetWindowLongPtr(hWnd, nIndex, dwNewLong);
+    }
+
+    BOOL SetSubclass(SUBCLASSPROC pfnSubclass, UINT_PTR uIdSubclass, DWORD_PTR dwRefData)
+    {
+      return ::SetWindowSubclass(hWnd, pfnSubclass, uIdSubclass, dwRefData);
     }
 
     int SetText(LPTSTR lpString)

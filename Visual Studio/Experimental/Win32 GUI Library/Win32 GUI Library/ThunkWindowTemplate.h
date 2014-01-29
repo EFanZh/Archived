@@ -9,15 +9,11 @@ namespace Win32GUILibrary
   class ThunkWindowTemplate : public ThunkWindow
   {
   protected:
-    // Create from existing window handle.
-    void CreateFromHWnd(HWND hWnd)
-    {
-      this->CreateFromHWndInternal(hWnd, StartWindowProc, T::PROC_TYPE);
-    }
-
     static void ProcessWindowClass(WNDCLASSEX &wcex)
     {
+      // Set necessary fields.
       ThunkWindow::ProcessWindowClass(wcex);
+
       wcex.lpfnWndProc = StartWindowProc;
     }
 

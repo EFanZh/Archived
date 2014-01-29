@@ -7,7 +7,6 @@ namespace SimpleBatchRename
     {
         public const Int32 WM_NOTIFY = 0x004e;
         public const Int32 WM_LBUTTONDBLCLK = 0x0203;
-        public const Int32 WM_USER = 0x0400;
 
         public const UInt32 LVN_FIRST = unchecked(0u - 100u);
         public const UInt32 LVN_GETEMPTYMARKUP = LVN_FIRST - 87;

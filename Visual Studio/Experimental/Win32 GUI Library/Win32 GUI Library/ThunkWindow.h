@@ -10,8 +10,11 @@ namespace Win32GUILibrary
     // Spin lock class.
     class SpinLock
     {
-      static const LONG UNLOCKED = 0L;
-      static const LONG LOCKED = 1L;
+      enum LockState : LONG
+      {
+        UNLOCKED,
+        LOCKED
+      };
 
       LONG lock_state = UNLOCKED;
 
@@ -30,33 +33,18 @@ namespace Win32GUILibrary
       }
     };
 
-    typedef std::tuple<ThunkWindow *, void *> CreateInfo;
-
     ATL::CStdCallThunk thunk;
 
-    static std::map<DWORD, CreateInfo> create_info_map;
+    static std::map<DWORD, std::tuple<ThunkWindow *, void *>> create_info_map;
     static SpinLock spin_lock;
 
-    static const CreateInfo ExtractCreateWindowInfo()
-    {
-      DWORD tid = GetCurrentThreadId();
-
-      spin_lock.Lock();
-
-      CreateInfo result = std::move(create_info_map[tid]);
-      create_info_map.erase(tid);
-
-      spin_lock.Unlock();
-
-      return std::move(result);
-    }
-
   protected:
+    // Change window procedure to thunk.
     void CreateFromHWndInternal(HWND hWnd, void *proc, int proc_type)
     {
       this->SetHWnd(hWnd);
       this->thunk.Init(reinterpret_cast<DWORD_PTR>(proc), this);
-      ::SetWindowLongPtr(hWnd, proc_type, reinterpret_cast<LONG_PTR>(thunk.GetCodeAddress()));
+      this->SetLongPtr(proc_type, reinterpret_cast<LONG_PTR>(thunk.GetCodeAddress()));
     }
 
     static void AddCreateWindowInfo(ThunkWindow *p_this, void *static_proc)
@@ -73,7 +61,15 @@ namespace Win32GUILibrary
       ThunkWindow *p_window;
       void *proc;
 
-      std::tie(p_window, proc) = ExtractCreateWindowInfo();
+      // Extract create info.
+      spin_lock.Lock();
+
+      const auto &result_iter = create_info_map.find(GetCurrentThreadId());
+      std::tie(p_window, proc) = result_iter->second;
+      create_info_map.erase(result_iter);
+
+      spin_lock.Unlock();
+
       p_window->CreateFromHWndInternal(hWnd, proc, proc_type);
 
       return p_window->thunk.GetCodeAddress();

@@ -14,6 +14,7 @@
 #include <atlstdthunk.h>
 
 // Libraries.
+#pragma comment(lib, "ComCtl32.Lib")
 #pragma comment(lib, "atls.lib")
 
 // Enable visual style.

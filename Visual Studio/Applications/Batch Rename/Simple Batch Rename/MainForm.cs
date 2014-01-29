@@ -186,14 +186,7 @@ namespace SimpleBatchRename
                     break;
                 }
             }
-            if (target_point.Y > rect.Top + rect.Height / 2)
-            {
-                listViewFileList.InsertionMark.AppearsAfterItem = true;
-            }
-            else
-            {
-                listViewFileList.InsertionMark.AppearsAfterItem = false;
-            }
+            listViewFileList.InsertionMark.AppearsAfterItem = target_point.Y > rect.Top + rect.Height / 2;
         }
 
         private void listViewFileList_DragLeave(object sender, EventArgs e)
@@ -215,10 +208,14 @@ namespace SimpleBatchRename
             else if (e.Data.GetDataPresent(typeof(ListView.SelectedListViewItemCollection)))
             {
                 var move_items = e.Data.GetData(typeof(ListView.SelectedListViewItemCollection)) as ListView.SelectedListViewItemCollection;
+                Debug.Assert(move_items != null);
+
                 var new_move_items = new List<ListViewItem>();
                 for (int i = 0; i < move_items.Count; i++)
                 {
                     ListViewItem new_item = move_items[i].Clone() as ListViewItem;
+                    Debug.Assert(new_item != null);
+
                     new_move_items.Add(listViewFileList.Items.Insert(target_index + i, new_item));
                     if (move_items[i].Focused)
                     {
@@ -312,6 +309,7 @@ namespace SimpleBatchRename
             if (!Renamer.RenameTest(dict_tasks))
             {
                 MessageBox.Show("重命名条件未满足。", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                buttonRename.Enabled = true;
                 return;
             }
             try
@@ -464,11 +462,20 @@ namespace SimpleBatchRename
             switch (comboBoxExtensionFormat.SelectedIndex)
             {
                 case 1:
-                    return Path.GetExtension(file).ToLower();
+                    {
+                        string extension = Path.GetExtension(file);
+                        return extension == null ? string.Empty : extension.ToLower();
+                    }
                 case 2:
-                    return Path.GetExtension(file).ToUpper();
+                    {
+                        string extension = Path.GetExtension(file);
+                        return extension == null ? string.Empty : extension.ToUpper();
+                    }
                 default:
-                    return Path.GetExtension(file);
+                    {
+                        string extension = Path.GetExtension(file);
+                        return extension ?? string.Empty;
+                    }
             }
         }
 

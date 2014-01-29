@@ -29,6 +29,7 @@ namespace SimpleBatchRename
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.buttonImport = new System.Windows.Forms.Button();
             this.buttonRemove = new System.Windows.Forms.Button();
             this.buttonClear = new System.Windows.Forms.Button();
@@ -138,13 +139,13 @@ namespace SimpleBatchRename
             this.toolStripMenuItemFileListSelectAll,
             this.toolStripMenuItemFileListClear});
             this.contextMenuStripFileList.Name = "contextMenuStripFileList";
-            this.contextMenuStripFileList.Size = new System.Drawing.Size(153, 114);
+            this.contextMenuStripFileList.Size = new System.Drawing.Size(143, 92);
             // 
             // toolStripMenuItemFileListImport
             // 
             this.toolStripMenuItemFileListImport.Name = "toolStripMenuItemFileListImport";
             this.toolStripMenuItemFileListImport.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.I)));
-            this.toolStripMenuItemFileListImport.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItemFileListImport.Size = new System.Drawing.Size(142, 22);
             this.toolStripMenuItemFileListImport.Text = "导入";
             this.toolStripMenuItemFileListImport.Click += new System.EventHandler(this.toolStripMenuItemFileListImport_Click);
             // 
@@ -153,7 +154,7 @@ namespace SimpleBatchRename
             this.toolStripMenuItemFileListRemove.Enabled = false;
             this.toolStripMenuItemFileListRemove.Name = "toolStripMenuItemFileListRemove";
             this.toolStripMenuItemFileListRemove.ShortcutKeys = System.Windows.Forms.Keys.Delete;
-            this.toolStripMenuItemFileListRemove.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItemFileListRemove.Size = new System.Drawing.Size(142, 22);
             this.toolStripMenuItemFileListRemove.Text = "移除";
             this.toolStripMenuItemFileListRemove.Click += new System.EventHandler(this.toolStripMenuItemFileListRemove_Click);
             // 
@@ -161,7 +162,7 @@ namespace SimpleBatchRename
             // 
             this.toolStripMenuItemFileListSelectAll.Name = "toolStripMenuItemFileListSelectAll";
             this.toolStripMenuItemFileListSelectAll.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.A)));
-            this.toolStripMenuItemFileListSelectAll.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItemFileListSelectAll.Size = new System.Drawing.Size(142, 22);
             this.toolStripMenuItemFileListSelectAll.Text = "全选";
             this.toolStripMenuItemFileListSelectAll.Click += new System.EventHandler(this.toolStripMenuItemFileListSelectAll_Click);
             // 
@@ -169,7 +170,7 @@ namespace SimpleBatchRename
             // 
             this.toolStripMenuItemFileListClear.Enabled = false;
             this.toolStripMenuItemFileListClear.Name = "toolStripMenuItemFileListClear";
-            this.toolStripMenuItemFileListClear.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItemFileListClear.Size = new System.Drawing.Size(142, 22);
             this.toolStripMenuItemFileListClear.Text = "清空";
             this.toolStripMenuItemFileListClear.Click += new System.EventHandler(this.toolStripMenuItemFileListClear_Click);
             // 
@@ -332,6 +333,7 @@ namespace SimpleBatchRename
             this.Controls.Add(this.buttonRemove);
             this.Controls.Add(this.buttonImport);
             this.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(300, 300);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
