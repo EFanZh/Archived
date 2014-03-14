@@ -1,12 +1,9 @@
-﻿using System;
-
-namespace CSConsole
+﻿namespace CSConsole
 {
-    internal class Program
+    internal static class Program
     {
-        public static void Main(String[] args)
+        public static void Main()
         {
         }
-
     }
 }

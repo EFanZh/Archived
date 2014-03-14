@@ -1,4 +1,4 @@
-namespace SocketNS
+namespace TCPClient
 {
     partial class MainForm
     {

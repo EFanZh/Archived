@@ -3,7 +3,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Windows.Forms;
 
-namespace SocketNS
+namespace TCPClient
 {
     public partial class MainForm : Form
     {
@@ -22,20 +22,18 @@ namespace SocketNS
 
         private void tlStrpBtnSendRequest_Click(object sender, EventArgs e)
         {
-            byte[] buf, msg;
-            int count, bufsz;
-            NetworkStream ns;
-            TcpClient tc;
-
             try
             {
-                tc = new TcpClient(tlStrpTxtBxServer.Text, int.Parse(tlStrpTxtBxPort.Text));
-                tc.ReceiveTimeout = 2000;
-                ns = tc.GetStream();
-                msg = Encoding.GetEncoding(tlStrpCmbBxRequestEncoding.Text).GetBytes(txtBxRequest.Text);
+                TcpClient tc = new TcpClient(tlStrpTxtBxServer.Text, int.Parse(tlStrpTxtBxPort.Text))
+                {
+                    ReceiveTimeout = 2000
+                };
+                NetworkStream ns = tc.GetStream();
+                byte[] msg = Encoding.GetEncoding(tlStrpCmbBxRequestEncoding.Text).GetBytes(txtBxRequest.Text);
                 ns.Write(msg, 0, msg.Length);
-                bufsz = 256;
-                buf = new byte[bufsz];
+                const int bufsz = 256;
+                byte[] buf = new byte[bufsz];
+                int count;
                 do
                 {
                     count = ns.Read(buf, 0, bufsz);

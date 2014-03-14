@@ -5,7 +5,7 @@
 (require (planet neil/html-parsing:2:0))
 
 ; Generate options
-(define *update-data* #f)
+(define *update-data* #t)
 (define *generate-graph* #f)
 
 (define *generate-levels* '(1 2 3 4 5))
