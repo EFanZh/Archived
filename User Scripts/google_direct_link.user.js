@@ -18,7 +18,8 @@ function fix_links()
 
         if (a !== undefined)
         {
-            a.removeAttribute("onmousedown");
+            console.log(a.mousedown);
+            a.mousedown = null;
         }
     }
 }

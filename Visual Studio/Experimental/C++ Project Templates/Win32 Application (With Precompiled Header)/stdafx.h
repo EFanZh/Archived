@@ -1,7 +1,8 @@
 #ifndef STDAFX_H
 #define STDAFX_H
 
-#define STRICT
+#include <tchar.h>
+
 #define WIN32_LEAN_AND_MEAN
 
 #include <Windows.h>
