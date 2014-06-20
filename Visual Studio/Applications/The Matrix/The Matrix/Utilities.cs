@@ -4,7 +4,7 @@ namespace TheMatrix
 {
     internal static class Utilities
     {
-        private static string base_string = "012345678ABCDEFGHIJKLMNOPQRabcdefghijklmnopqrstuvwxyz";// "!\"#$%&'()*+,-./0123456789:;<=>?ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_abcdefghijklmnopqrstuvwxyz{|}~ ;";
+        private static string base_string = "012345678ABCDEFGHIJKLMNOPQRabcdefghijklmnopqrstuvwxyz"; // "!\"#$%&'()*+,-./0123456789:;<=>?ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_abcdefghijklmnopqrstuvwxyz{|}~ ;";
 
         static Utilities()
         {

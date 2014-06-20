@@ -8,7 +8,6 @@ namespace TheMatrix
     {
         private Scene scene;
 
-        // private Font font = new Font("mCode15", 9.781712f);
         private Font font = new Font("Consolas", 9.0f);
 
         private SizeF char_size;
@@ -20,7 +19,7 @@ namespace TheMatrix
             char_size = GetCharSize();
             this.ClientSize = new Size((int)Math.Ceiling(char_size.Width * 80), (int)Math.Ceiling(char_size.Height * 25));
             this.CenterToScreen();
-            scene = new Scene(GetLogicalSize(), this.ClientSize, font, Color.Transparent, 2, 0.25, 24, 32, 0.5, 2, Color.FromArgb(210, 255, 220), Color.FromArgb(118, 238, 127), Color.FromArgb(0, 118, 238, 127), 0.1, 16);
+            scene = new Scene(GetLogicalSize(), this.ClientSize, font, Color.Transparent, 5, 0.25, 24, 32, 1, 2, Color.FromArgb(210, 255, 220), Color.FromArgb(118, 238, 127), Color.FromArgb(0, 118, 238, 127), 0.1, 16);
         }
 
         private void MainForm_Paint(object sender, PaintEventArgs e)
@@ -65,7 +64,7 @@ namespace TheMatrix
             {
                 SizeF size1 = graphics.MeasureString("0", font);
                 SizeF size2 = graphics.MeasureString("00\r\n00", font);
-                return SizeF.Subtract(size2, size1);
+                return size2 - size1;
             }
         }
 
