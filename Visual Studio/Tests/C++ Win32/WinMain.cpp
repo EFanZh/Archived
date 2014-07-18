@@ -3,8 +3,10 @@
 #include <Windows.h>
 #include <windowsx.h>
 #include <CommCtrl.h>
+#include <dwmapi.h>
 
 #pragma comment(lib, "ComCtl32.Lib")
+#pragma comment(lib, "dwmapi.lib")
 #pragma comment(linker, "\"/manifestdependency:type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' processorArchitecture='*' publicKeyToken='6595b64144ccf1df' language='*'\"")
 
 LRESULT CALLBACK WindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
@@ -31,7 +33,7 @@ int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 
     RegisterClassEx(&wcex);
 
-    HWND hWnd = CreateWindowEx(0, wcex.lpszClassName, TEXT("TreeView Test"), WS_OVERLAPPEDWINDOW, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, HWND_DESKTOP, NULL, hInstance, NULL);
+    HWND hWnd = CreateWindowEx(0, wcex.lpszClassName, TEXT("TreeView Test"), WS_OVERLAPPEDWINDOW & ~WS_CAPTION, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, HWND_DESKTOP, NULL, hInstance, NULL);
     ShowWindow(hWnd, nCmdShow);
 
     MSG msg;

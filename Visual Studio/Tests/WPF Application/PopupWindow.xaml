@@ -1,0 +1,6 @@
+﻿<Window x:Class="WPFApplication.PopupWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Style="{StaticResource FancyWindow}" Title="PopupWindow" Loaded="Window_Loaded">
+    <StackPanel>
+        <Label Content="This is a Label." />
+        <TextBox Height="Auto"></TextBox>
+    </StackPanel>
+</Window>

@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -16,16 +17,13 @@ namespace CSWindows
         public MainForm()
         {
             InitializeComponent();
+            label1.Text = Thread.CurrentThread.ManagedThreadId.ToString();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private async void button1_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(pageSetupDialog1.ShowDialog().ToString());
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show(printDialog1.ShowDialog().ToString());
+            await Task.Run(() => Thread.Sleep(5000));
+            label1.Text = Thread.CurrentThread.ManagedThreadId.ToString();
         }
     }
 }
