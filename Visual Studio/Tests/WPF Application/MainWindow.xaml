@@ -1,28 +1,4 @@
 ﻿<Window x:Class="WPFApplication.MainWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:local="clr-namespace:WPFApplication" Title="MainWindow" Width="400" SizeToContent="Height" UseLayoutRounding="True">
-    <ScrollViewer VerticalScrollBarVisibility="Auto">
-        <local:FormLayoutPanel Padding="10" ColumnSpacing="2" RowSpacing="4" VerticalAlignment="Top">
-            <Label Style="{StaticResource FormLabel}" Content="Button:" />
-            <Button Style="{StaticResource FormSingleLineField}" Content="Button" Click="Button_Click" />
-            <Label Style="{StaticResource FormLabel}" Content="CheckBox:" />
-            <CheckBox Style="{StaticResource FormAutoSingleLineField}" Content="CheckBox" />
-            <Label Style="{StaticResource FormLabel}" Content="ComboBox:" />
-            <ComboBox Style="{StaticResource FormSingleLineField}" />
-            <Label Style="{StaticResource FormLabel}" Content="DatePicker:" />
-            <DatePicker Style="{StaticResource FormSingleLineField}" />
-            <Label Style="{StaticResource FormLabel}" Content="TextBlock:" />
-            <TextBlock Style="{StaticResource FormAutoSingleLineField}" Text="TextBlock" />
-            <Label Style="{StaticResource FormLabel}" Content="PasswordBox:" />
-            <PasswordBox Style="{StaticResource FormSingleLineField}" />
-            <Label Style="{StaticResource FormLabel}" Content="ProgressBar:" />
-            <ProgressBar Style="{StaticResource FormProgressBarField}" />
-            <Label Style="{StaticResource FormLabel}" Content="RadioButton:" />
-            <RadioButton Style="{StaticResource FormAutoSingleLineField}" Content="RadioButton" />
-            <Label Style="{StaticResource FormLabel}" Content="Slider:" />
-            <Slider Style="{StaticResource FormAutoSingleLineField}" />
-            <Label Style="{StaticResource FormLabel}" Content="TextBox:" />
-            <TextBox Text="TextBox" Style="{StaticResource FormSingleLineField}" />
-            <Label Style="{StaticResource FormLabel}" Content="MultiLine TextBox:" />
-            <TextBox Style="{StaticResource FormMultiLineTextBoxField}" AcceptsReturn="True" Text="MultiLine TextBox" Height="Auto" />
-        </local:FormLayoutPanel>
-    </ScrollViewer>
+    <Grid>
+    </Grid>
 </Window>

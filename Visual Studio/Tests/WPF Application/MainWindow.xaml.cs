@@ -11,12 +11,5 @@ namespace WPFApplication
         {
             InitializeComponent();
         }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            PopupWindow popup_window = new PopupWindow();
-            popup_window.Owner = this;
-            popup_window.Show();
-        }
     }
 }
