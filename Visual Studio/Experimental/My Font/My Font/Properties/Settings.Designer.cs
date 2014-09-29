@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Sorting.Properties {
+namespace MyFont.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
