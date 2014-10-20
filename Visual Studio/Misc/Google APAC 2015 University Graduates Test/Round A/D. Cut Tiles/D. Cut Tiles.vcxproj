@@ -11,9 +11,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{B372CDCB-0ADF-4100-9587-4FAC9B29081A}</ProjectGuid>
+    <ProjectGuid>{6A9B0D2C-C7EF-4276-95CA-56F8F0A3D30B}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>Round_B___C__Card_Game</RootNamespace>
+    <RootNamespace>D__Cut_Tiles</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -81,10 +81,10 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="C-large-practice.in" />
-    <None Include="C-large-practice.out" />
-    <None Include="C-small-practice.in" />
-    <None Include="C-small-practice.out" />
+    <None Include="D-large-practice.in" />
+    <None Include="D-large-practice.out" />
+    <None Include="D-small-practice.in" />
+    <None Include="D-small-practice.out" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

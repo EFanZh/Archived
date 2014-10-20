@@ -11,9 +11,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{57EFBE1C-EF57-4AF1-9F40-48E175F6311C}</ProjectGuid>
+    <ProjectGuid>{B694A983-6E45-45E1-B117-F154111610D5}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>Round_A___D__Cut_Tiles</RootNamespace>
+    <RootNamespace>D__Parentheses_Order</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">

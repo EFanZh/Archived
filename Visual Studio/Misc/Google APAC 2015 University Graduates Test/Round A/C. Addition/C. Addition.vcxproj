@@ -11,9 +11,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{0982CF03-B555-4345-A448-442FC6500B0D}</ProjectGuid>
+    <ProjectGuid>{59B8B7D2-5562-4E77-B7B1-FE04716CFB10}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>Round_B___B__New_Years_Eve</RootNamespace>
+    <RootNamespace>C__Addition</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -81,10 +81,10 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="B-large-practice.in" />
-    <None Include="B-large-practice.out" />
-    <None Include="B-small-practice.in" />
-    <None Include="B-small-practice.out" />
+    <None Include="C-large-practice.in" />
+    <None Include="C-large-practice.out" />
+    <None Include="C-small-practice.in" />
+    <None Include="C-small-practice.out" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

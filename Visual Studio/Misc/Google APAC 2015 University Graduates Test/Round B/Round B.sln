@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30723.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "A. Password Attacker", "A. Password Attacker\A. Password Attacker.vcxproj", "{219FEE9A-E0A4-4953-923B-E7F7816DCD31}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "B. New Years Eve", "B. New Years Eve\B. New Years Eve.vcxproj", "{700DB7AC-DE04-49BF-A7AA-8C48F76C6040}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "C. Card Game", "C. Card Game\C. Card Game.vcxproj", "{6F7770A7-0E2A-4A3D-9252-C4FA5E68D048}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "D. Parentheses Order", "D. Parentheses Order\D. Parentheses Order.vcxproj", "{B694A983-6E45-45E1-B117-F154111610D5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{219FEE9A-E0A4-4953-923B-E7F7816DCD31}.Debug|Win32.ActiveCfg = Debug|Win32
+		{219FEE9A-E0A4-4953-923B-E7F7816DCD31}.Debug|Win32.Build.0 = Debug|Win32
+		{219FEE9A-E0A4-4953-923B-E7F7816DCD31}.Release|Win32.ActiveCfg = Release|Win32
+		{219FEE9A-E0A4-4953-923B-E7F7816DCD31}.Release|Win32.Build.0 = Release|Win32
+		{700DB7AC-DE04-49BF-A7AA-8C48F76C6040}.Debug|Win32.ActiveCfg = Debug|Win32
+		{700DB7AC-DE04-49BF-A7AA-8C48F76C6040}.Debug|Win32.Build.0 = Debug|Win32
+		{700DB7AC-DE04-49BF-A7AA-8C48F76C6040}.Release|Win32.ActiveCfg = Release|Win32
+		{700DB7AC-DE04-49BF-A7AA-8C48F76C6040}.Release|Win32.Build.0 = Release|Win32
+		{6F7770A7-0E2A-4A3D-9252-C4FA5E68D048}.Debug|Win32.ActiveCfg = Debug|Win32
+		{6F7770A7-0E2A-4A3D-9252-C4FA5E68D048}.Debug|Win32.Build.0 = Debug|Win32
+		{6F7770A7-0E2A-4A3D-9252-C4FA5E68D048}.Release|Win32.ActiveCfg = Release|Win32
+		{6F7770A7-0E2A-4A3D-9252-C4FA5E68D048}.Release|Win32.Build.0 = Release|Win32
+		{B694A983-6E45-45E1-B117-F154111610D5}.Debug|Win32.ActiveCfg = Debug|Win32
+		{B694A983-6E45-45E1-B117-F154111610D5}.Debug|Win32.Build.0 = Debug|Win32
+		{B694A983-6E45-45E1-B117-F154111610D5}.Release|Win32.ActiveCfg = Release|Win32
+		{B694A983-6E45-45E1-B117-F154111610D5}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

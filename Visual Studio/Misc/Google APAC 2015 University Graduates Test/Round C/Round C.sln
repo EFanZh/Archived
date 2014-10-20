@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30723.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "A. Minesweeper", "A. Minesweeper\A. Minesweeper.vcxproj", "{A50CDE5A-C955-49F8-AC17-F30504AE1AA3}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "B. Taking Metro", "B. Taking Metro\B. Taking Metro.vcxproj", "{CEB0D56D-F142-42C9-9794-32AB3FFC142B}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "C. Broken Calculator", "C. Broken Calculator\C. Broken Calculator.vcxproj", "{FBCF0F53-C53F-4685-8BBE-95D77E0DB161}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "D. Tetris", "D. Tetris\D. Tetris.vcxproj", "{BF4953B4-594C-411A-AA68-8DFFB2F3ED94}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A50CDE5A-C955-49F8-AC17-F30504AE1AA3}.Debug|Win32.ActiveCfg = Debug|Win32
+		{A50CDE5A-C955-49F8-AC17-F30504AE1AA3}.Debug|Win32.Build.0 = Debug|Win32
+		{A50CDE5A-C955-49F8-AC17-F30504AE1AA3}.Release|Win32.ActiveCfg = Release|Win32
+		{A50CDE5A-C955-49F8-AC17-F30504AE1AA3}.Release|Win32.Build.0 = Release|Win32
+		{CEB0D56D-F142-42C9-9794-32AB3FFC142B}.Debug|Win32.ActiveCfg = Debug|Win32
+		{CEB0D56D-F142-42C9-9794-32AB3FFC142B}.Debug|Win32.Build.0 = Debug|Win32
+		{CEB0D56D-F142-42C9-9794-32AB3FFC142B}.Release|Win32.ActiveCfg = Release|Win32
+		{CEB0D56D-F142-42C9-9794-32AB3FFC142B}.Release|Win32.Build.0 = Release|Win32
+		{FBCF0F53-C53F-4685-8BBE-95D77E0DB161}.Debug|Win32.ActiveCfg = Debug|Win32
+		{FBCF0F53-C53F-4685-8BBE-95D77E0DB161}.Debug|Win32.Build.0 = Debug|Win32
+		{FBCF0F53-C53F-4685-8BBE-95D77E0DB161}.Release|Win32.ActiveCfg = Release|Win32
+		{FBCF0F53-C53F-4685-8BBE-95D77E0DB161}.Release|Win32.Build.0 = Release|Win32
+		{BF4953B4-594C-411A-AA68-8DFFB2F3ED94}.Debug|Win32.ActiveCfg = Debug|Win32
+		{BF4953B4-594C-411A-AA68-8DFFB2F3ED94}.Debug|Win32.Build.0 = Debug|Win32
+		{BF4953B4-594C-411A-AA68-8DFFB2F3ED94}.Release|Win32.ActiveCfg = Release|Win32
+		{BF4953B4-594C-411A-AA68-8DFFB2F3ED94}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

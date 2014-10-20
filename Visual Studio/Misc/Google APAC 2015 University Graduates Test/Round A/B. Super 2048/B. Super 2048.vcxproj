@@ -11,9 +11,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{69619867-1922-4158-91DA-BCB78D54F951}</ProjectGuid>
+    <ProjectGuid>{821C05B8-3C5D-4E47-94AE-A3F37012574A}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>Round_B___D__Parentheses_Order</RootNamespace>
+    <RootNamespace>B__Super_2048</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -81,10 +81,10 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="D-large-practice.in" />
-    <None Include="D-large-practice.out" />
-    <None Include="D-small-practice.in" />
-    <None Include="D-small-practice.out" />
+    <None Include="B-large-practice.in" />
+    <None Include="B-large-practice.out" />
+    <None Include="B-small-practice.in" />
+    <None Include="B-small-practice.out" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
