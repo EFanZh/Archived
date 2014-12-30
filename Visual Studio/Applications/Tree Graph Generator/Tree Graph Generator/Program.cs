@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.Linq;
 
 namespace TreeGraphGenerator
 {
@@ -14,7 +16,7 @@ namespace TreeGraphGenerator
                 {
                     graphics.PageUnit = GraphicsUnit.Point;
 
-                    Font labelFont = new Font("Times New Roman", 9.0f, FontStyle.Regular, GraphicsUnit.Pixel);
+                    Font labelFont = new Font("SimSun", 9.0f, FontStyle.Regular, GraphicsUnit.Point);
                     DrawTreeContext context = new DrawTreeContext()
                     {
                         Graphics = graphics,
@@ -24,9 +26,10 @@ namespace TreeGraphGenerator
                         LabelFont = labelFont,
                         LabelHeight = labelFont.Size,
                         NodeHorizontalSep = 9.0,
-                        NodeVerticalSep = 18.0,
-                        NodeHorizontalPadding = 4.5,
-                        NodeVerticalPadding = 4.5
+                        NodeVerticalSep = 24.0,
+                        NodeHorizontalPadding = 3.75,
+                        NodeVerticalPadding = 3.75,
+                        PreferCjk = true
                     };
 
                     treeNode.DrawTree(context, new PointD(treeNode.Layout(context).Pivot, 0.0));
@@ -36,34 +39,46 @@ namespace TreeGraphGenerator
 
         private static void Main()
         {
-            TreeNode root = new TreeNode("根节点")
+            TreeNode root = new TreeNode("供热站虚拟仿真系统")
             {
                 Children =
                 {
-                    new TreeNode("参考线开关")
-                    {
-                        Children = {new TreeNode("参考线")}
-                    },
-                    new TreeNode("工具摄像机")
+                    new TreeNode("框架模块")
                     {
                         Children =
                         {
-                            new TreeNode("工具容器")
-                            {
-                                Children =
-                                {
-                                    new TreeNode("平移工具"),
-                                    new TreeNode("旋转工具"),
-                                }
-                            }
+                            new TreeNode("应用程序类"),
+                            new TreeNode("主窗口")
                         }
                     },
-                    new TreeNode("组件实例占位符组"),
-                    new TreeNode("组件实例组")
+                    new TreeNode("组件管理模块")
+                    {
+                        Children =
+                        {
+                            new TreeNode("组件数据结构"),
+                            new TreeNode("用户交互模块")
+                        }
+                    },
+                    new TreeNode("装配流程管理模块")
+                    {
+                        Children =
+                        {
+                            new TreeNode("装配流程定义"),
+                            new TreeNode("装配流程的加载")
+                        }
+                    },
+                    new TreeNode("装配控制模块")
+                    {
+                        Children =
+                        {
+                            new TreeNode("自动装配控制"),
+                            new TreeNode("手动装配控制"),
+                        }
+                    }
                 }
             };
 
-            DrawTree(root, @"D:\test.emf");
+            DrawTree(root, @"D:\1.wmf");
         }
     }
 }

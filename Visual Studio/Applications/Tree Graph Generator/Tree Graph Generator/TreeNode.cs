@@ -10,7 +10,10 @@ namespace TreeGraphGenerator
         private double offset;
         private SizeD nodeSize;
 
-        private static readonly StringFormat stringFormat = new StringFormat() { Alignment = StringAlignment.Center };
+        private static readonly StringFormat stringFormat = new StringFormat()
+        {
+            Alignment = StringAlignment.Center
+        };
 
         public TreeNode(string label)
         {
@@ -30,11 +33,16 @@ namespace TreeGraphGenerator
             private set;
         }
 
+        public override string ToString()
+        {
+            return Label;
+        }
+
         private double MeasureNode(DrawTreeContext context)
         {
             double borderThickness = context.BorderPen == null ? 0.0 : context.BorderPen.Width;
 
-            nodeSize = new SizeD((context.NodeHorizontalPadding + borderThickness) * 2.0 + context.Graphics.MeasureString(Label, context.LabelFont).Width,
+            nodeSize = new SizeD((context.NodeHorizontalPadding + borderThickness) * 2.0 + context.Graphics.MeasureString(Label, context.LabelFont, PointF.Empty, stringFormat).Width,
                                  (context.NodeVerticalPadding + borderThickness) * 2.0 + context.LabelHeight);
 
             return nodeSize.Width;
@@ -123,12 +131,26 @@ namespace TreeGraphGenerator
                 }
             }
 
-            context.Graphics.DrawString(Label,
-                                        context.LabelFont,
-                                        context.LabelBrush,
-                                        (float)location.X,
-                                        (float)(location.Y + (context.BorderPen == null ? 0.0 : context.BorderPen.Width) + context.NodeVerticalPadding),
-                                        stringFormat);
+            if (context.PreferCjk)
+            {
+                stringFormat.LineAlignment = StringAlignment.Near;
+                context.Graphics.DrawString(Label,
+                                            context.LabelFont,
+                                            context.LabelBrush,
+                                            (float)location.X,
+                                            (float)(location.Y + (context.BorderPen == null ? 0.0 : context.BorderPen.Width) + context.NodeVerticalPadding),
+                                            stringFormat);
+            }
+            else
+            {
+                stringFormat.LineAlignment = StringAlignment.Center;
+                context.Graphics.DrawString(Label,
+                                            context.LabelFont,
+                                            context.LabelBrush,
+                                            (float)location.X,
+                                            (float)(location.Y + nodeSize.Height / 2.0),
+                                            stringFormat);
+            }
         }
 
         public void DrawTree(DrawTreeContext context, PointD location)

@@ -28,126 +28,174 @@ namespace PartitionSizeCalculator
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBoxGb = new System.Windows.Forms.TextBox();
-            this.labelConvert = new System.Windows.Forms.Label();
-            this.textBoxMbNtfs1 = new System.Windows.Forms.TextBox();
-            this.labelMbNtfs = new System.Windows.Forms.Label();
-            this.textBoxMbFat32 = new System.Windows.Forms.TextBox();
-            this.labelMbFat32 = new System.Windows.Forms.Label();
-            this.labelNtfs = new System.Windows.Forms.Label();
-            this.labelFat32 = new System.Windows.Forms.Label();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.textBoxSource = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.textBoxSystem = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.textBoxPrecise = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // textBoxGb
+            // tableLayoutPanel1
             // 
-            this.textBoxGb.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.textBoxGb.Location = new System.Drawing.Point(12, 26);
-            this.textBoxGb.Name = "textBoxGb";
-            this.textBoxGb.Size = new System.Drawing.Size(100, 23);
-            this.textBoxGb.TabIndex = 0;
-            this.textBoxGb.TextChanged += new System.EventHandler(this.textBoxGb_TextChanged);
-            this.textBoxGb.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxGb_KeyDown);
+            this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel1.ColumnCount = 6;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel1.Controls.Add(this.textBoxSource, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.label1, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.label3, 5, 0);
+            this.tableLayoutPanel1.Controls.Add(this.textBoxSystem, 4, 0);
+            this.tableLayoutPanel1.Controls.Add(this.label2, 3, 0);
+            this.tableLayoutPanel1.Controls.Add(this.label6, 2, 0);
+            this.tableLayoutPanel1.Controls.Add(this.label4, 3, 2);
+            this.tableLayoutPanel1.Controls.Add(this.textBoxPrecise, 4, 2);
+            this.tableLayoutPanel1.Controls.Add(this.label5, 5, 2);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(12, 12);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 3;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 6F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(342, 52);
+            this.tableLayoutPanel1.TabIndex = 8;
             // 
-            // labelConvert
+            // textBoxSource
             // 
-            this.labelConvert.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.labelConvert.AutoSize = true;
-            this.labelConvert.Location = new System.Drawing.Point(118, 29);
-            this.labelConvert.Name = "labelConvert";
-            this.labelConvert.Size = new System.Drawing.Size(41, 15);
-            this.labelConvert.TabIndex = 1;
-            this.labelConvert.Text = "GB =>";
+            this.textBoxSource.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxSource.Location = new System.Drawing.Point(0, 14);
+            this.textBoxSource.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
+            this.textBoxSource.Name = "textBoxSource";
+            this.tableLayoutPanel1.SetRowSpan(this.textBoxSource, 3);
+            this.textBoxSource.Size = new System.Drawing.Size(80, 23);
+            this.textBoxSource.TabIndex = 0;
+            this.textBoxSource.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.textBoxSource.TextChanged += new System.EventHandler(this.textBoxSource_TextChanged);
             // 
-            // textBoxMbNtfs1
+            // label1
             // 
-            this.textBoxMbNtfs1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.textBoxMbNtfs1.Location = new System.Drawing.Point(214, 12);
-            this.textBoxMbNtfs1.Name = "textBoxMbNtfs1";
-            this.textBoxMbNtfs1.ReadOnly = true;
-            this.textBoxMbNtfs1.Size = new System.Drawing.Size(100, 23);
-            this.textBoxMbNtfs1.TabIndex = 3;
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(83, 18);
+            this.label1.Name = "label1";
+            this.tableLayoutPanel1.SetRowSpan(this.label1, 3);
+            this.label1.Size = new System.Drawing.Size(22, 15);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "GB";
             // 
-            // labelMbNtfs
+            // label2
             // 
-            this.labelMbNtfs.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.labelMbNtfs.AutoSize = true;
-            this.labelMbNtfs.Location = new System.Drawing.Point(320, 15);
-            this.labelMbNtfs.Name = "labelMbNtfs";
-            this.labelMbNtfs.Size = new System.Drawing.Size(25, 15);
-            this.labelMbNtfs.TabIndex = 4;
-            this.labelMbNtfs.Text = "MB";
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(140, 4);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(48, 15);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "System:";
             // 
-            // textBoxMbFat32
+            // textBoxSystem
             // 
-            this.textBoxMbFat32.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.textBoxMbFat32.Location = new System.Drawing.Point(214, 41);
-            this.textBoxMbFat32.Name = "textBoxMbFat32";
-            this.textBoxMbFat32.ReadOnly = true;
-            this.textBoxMbFat32.Size = new System.Drawing.Size(100, 23);
-            this.textBoxMbFat32.TabIndex = 6;
+            this.textBoxSystem.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxSystem.Location = new System.Drawing.Point(191, 0);
+            this.textBoxSystem.Margin = new System.Windows.Forms.Padding(0);
+            this.textBoxSystem.Name = "textBoxSystem";
+            this.textBoxSystem.ReadOnly = true;
+            this.textBoxSystem.Size = new System.Drawing.Size(120, 23);
+            this.textBoxSystem.TabIndex = 3;
+            this.textBoxSystem.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // labelMbFat32
+            // label3
             // 
-            this.labelMbFat32.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.labelMbFat32.AutoSize = true;
-            this.labelMbFat32.Location = new System.Drawing.Point(320, 44);
-            this.labelMbFat32.Name = "labelMbFat32";
-            this.labelMbFat32.Size = new System.Drawing.Size(25, 15);
-            this.labelMbFat32.TabIndex = 7;
-            this.labelMbFat32.Text = "MB";
+            this.label3.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(314, 4);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(25, 15);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "MB";
             // 
-            // labelNtfs
+            // label4
             // 
-            this.labelNtfs.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.labelNtfs.AutoSize = true;
-            this.labelNtfs.Location = new System.Drawing.Point(170, 15);
-            this.labelNtfs.Name = "labelNtfs";
-            this.labelNtfs.Size = new System.Drawing.Size(38, 15);
-            this.labelNtfs.TabIndex = 2;
-            this.labelNtfs.Text = "NTFS:";
+            this.label4.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(141, 33);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(47, 15);
+            this.label4.TabIndex = 5;
+            this.label4.Text = "Precise:";
             // 
-            // labelFat32
+            // textBoxPrecise
             // 
-            this.labelFat32.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.labelFat32.AutoSize = true;
-            this.labelFat32.Location = new System.Drawing.Point(165, 44);
-            this.labelFat32.Name = "labelFat32";
-            this.labelFat32.Size = new System.Drawing.Size(43, 15);
-            this.labelFat32.TabIndex = 5;
-            this.labelFat32.Text = "FAT32:";
+            this.textBoxPrecise.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxPrecise.Location = new System.Drawing.Point(191, 29);
+            this.textBoxPrecise.Margin = new System.Windows.Forms.Padding(0);
+            this.textBoxPrecise.Name = "textBoxPrecise";
+            this.textBoxPrecise.ReadOnly = true;
+            this.textBoxPrecise.Size = new System.Drawing.Size(120, 23);
+            this.textBoxPrecise.TabIndex = 6;
+            this.textBoxPrecise.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // label5
+            // 
+            this.label5.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(314, 33);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(21, 15);
+            this.label5.TabIndex = 7;
+            this.label5.Text = "KB";
+            // 
+            // label6
+            // 
+            this.label6.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(111, 18);
+            this.label6.Name = "label6";
+            this.tableLayoutPanel1.SetRowSpan(this.label6, 3);
+            this.label6.Size = new System.Drawing.Size(23, 15);
+            this.label6.TabIndex = 8;
+            this.label6.Text = "=>";
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(357, 76);
-            this.Controls.Add(this.labelMbFat32);
-            this.Controls.Add(this.textBoxMbFat32);
-            this.Controls.Add(this.labelFat32);
-            this.Controls.Add(this.labelMbNtfs);
-            this.Controls.Add(this.textBoxMbNtfs1);
-            this.Controls.Add(this.labelNtfs);
-            this.Controls.Add(this.labelConvert);
-            this.Controls.Add(this.textBoxGb);
+            this.ClientSize = new System.Drawing.Size(366, 76);
+            this.Controls.Add(this.tableLayoutPanel1);
             this.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Partition Size Calculator";
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.TextBox textBoxGb;
-        private System.Windows.Forms.Label labelConvert;
-        private System.Windows.Forms.TextBox textBoxMbNtfs1;
-        private System.Windows.Forms.Label labelMbNtfs;
-        private System.Windows.Forms.TextBox textBoxMbFat32;
-        private System.Windows.Forms.Label labelMbFat32;
-        private System.Windows.Forms.Label labelNtfs;
-        private System.Windows.Forms.Label labelFat32;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.TextBox textBoxSource;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox textBoxSystem;
+        private System.Windows.Forms.TextBox textBoxPrecise;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label6;
+
     }
 }
 

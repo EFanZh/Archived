@@ -69,5 +69,11 @@ namespace TreeGraphGenerator
             get;
             set;
         }
+
+        public bool PreferCjk
+        {
+            get;
+            set;
+        }
     }
 }

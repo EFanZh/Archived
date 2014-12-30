@@ -33,7 +33,7 @@
                                             *src-heroes-rel-path*))
 
 ; Some other consts.
-(define *http-user-agent* "User-Agent: Mozilla/5.0")
+(define *http-user-agent* "User-Agent: Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2243.0 Safari/537.36")
 (define *data-file* "data.txt")
 
 ; Set date format.

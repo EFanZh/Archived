@@ -1,4 +1,5 @@
 using System;
+using System.Globalization;
 using System.Windows.Forms;
 
 namespace PartitionSizeCalculator
@@ -10,45 +11,22 @@ namespace PartitionSizeCalculator
             InitializeComponent();
         }
 
-        private void textBoxGb_TextChanged(object sender, EventArgs e)
+        private void textBoxSource_TextChanged(object sender, EventArgs e)
         {
-            decimal value;
+            decimal source;
 
-            if (decimal.TryParse(textBoxGb.Text, out value))
+            if (decimal.TryParse(textBoxSource.Text, out source))
             {
-                if (value < 0)
-                {
-                    value = 0;
-                    textBoxGb.Text = value.ToString();
-                }
                 try
                 {
-                    textBoxMbNtfs1.Text = Math.Ceiling(Math.Ceiling(value * 2097152 / 16065) * 16065 / 2048).ToString();
-                    textBoxMbFat32.Text = (1028 * value - 4).ToString();
+                    decimal kb = 1024 * 1024 * source + 4;
+                    decimal mb = Math.Ceiling(kb / 1024);
+
+                    textBoxSystem.Text = mb.ToString("N0");
+                    textBoxPrecise.Text = kb.ToString("N0");
                 }
                 catch (Exception)
                 {
-                }
-            }
-        }
-
-        private void textBoxGb_KeyDown(object sender, KeyEventArgs e)
-        {
-            decimal value;
-
-            if (decimal.TryParse(textBoxGb.Text, out value))
-            {
-                switch (e.KeyCode)
-                {
-                    case Keys.Up:
-                        textBoxGb.Text = (Math.Floor(value) + 1).ToString();
-                        break;
-
-                    case Keys.Down:
-                        textBoxGb.Text = (Math.Ceiling(value) - 1).ToString();
-                        break;
-                    default:
-                        break;
                 }
             }
         }
