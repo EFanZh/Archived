@@ -1,5 +1,7 @@
 #include <algorithm>
+#include <codecvt>
 #include <iostream>
+#include <locale>
 #include <string>
 #include <unordered_map>
 
@@ -7,27 +9,38 @@ using namespace std;
 
 int main()
 {
-    wstring s;
+    u32string s;
+    wbuffer_convert<codecvt_utf16<char32_t, 0x10ffff, codecvt_mode(5)>, char32_t> wbuffer(cin.rdbuf());
+    basic_istream<char32_t> wstream(&wbuffer);
 
-    while (!wcin.eof())
+    while (!wstream.eof())
     {
-        auto ch = wcin.get();
+        char32_t ch = wstream.get();
 
         if (!iswspace(ch))
         {
-            s += ch;
+            s += towupper(ch);
         }
+    }
+
+    for (auto ch : s)
+    {
+        cout << ch << endl;
     }
 
     const size_t n = 12;
 
     unordered_map<wstring, int> dict;
+    wstring_convert<codecvt<wchar_t, char, mbstate_t>, wchar_t> convert;
 
     for (size_t length = 1; length <= n; ++length)
     {
-        for (size_t i = 0; i < s.length() - 1 - length; ++i)
+        for (size_t i = 0; i + (1 + length) < s.length(); ++i)
         {
-            ++dict[s.substr(i, length)];
+            auto seg = s.substr(i, length);
+            auto k = convert.from_bytes((char *)seg.data(), (char *)(seg.data() + seg.length()));
+
+            ++dict[k];
         }
     }
 
@@ -41,7 +54,7 @@ int main()
              return rhs.first.length() * rhs.second < lhs.first.length() * lhs.second;
          });
 
-    for(const auto &item : v)
+    for (const auto &item : v)
     {
         wcout << item.first << L": " << item.second << L'\n';
     }

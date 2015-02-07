@@ -250,6 +250,12 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "092. Reverse Linked List II
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "103. Binary Tree Zigzag Level Order Traversal", "103. Binary Tree Zigzag Level Order Traversal\103. Binary Tree Zigzag Level Order Traversal.vcxproj", "{0519A71C-F71C-4F09-88DE-DBD7C91A75C2}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "105. Construct Binary Tree from Preorder and Inorder Traversal", "105. Construct Binary Tree from Preorder and Inorder Traversal\105. Construct Binary Tree from Preorder and Inorder Traversal.vcxproj", "{706927ED-4652-4217-A4AE-1D4A1D76F78B}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "106. Construct Binary Tree from Inorder and Postorder Traversal", "106. Construct Binary Tree from Inorder and Postorder Traversal\106. Construct Binary Tree from Inorder and Postorder Traversal.vcxproj", "{A47BD78B-AB67-4394-9059-D19658CDCAB7}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "113. Path Sum II", "113. Path Sum II\113. Path Sum II.vcxproj", "{7A812675-E098-42CE-81CD-5FC22CDCCDDC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -736,6 +742,18 @@ Global
 		{0519A71C-F71C-4F09-88DE-DBD7C91A75C2}.Debug|Win32.Build.0 = Debug|Win32
 		{0519A71C-F71C-4F09-88DE-DBD7C91A75C2}.Release|Win32.ActiveCfg = Release|Win32
 		{0519A71C-F71C-4F09-88DE-DBD7C91A75C2}.Release|Win32.Build.0 = Release|Win32
+		{706927ED-4652-4217-A4AE-1D4A1D76F78B}.Debug|Win32.ActiveCfg = Debug|Win32
+		{706927ED-4652-4217-A4AE-1D4A1D76F78B}.Debug|Win32.Build.0 = Debug|Win32
+		{706927ED-4652-4217-A4AE-1D4A1D76F78B}.Release|Win32.ActiveCfg = Release|Win32
+		{706927ED-4652-4217-A4AE-1D4A1D76F78B}.Release|Win32.Build.0 = Release|Win32
+		{A47BD78B-AB67-4394-9059-D19658CDCAB7}.Debug|Win32.ActiveCfg = Debug|Win32
+		{A47BD78B-AB67-4394-9059-D19658CDCAB7}.Debug|Win32.Build.0 = Debug|Win32
+		{A47BD78B-AB67-4394-9059-D19658CDCAB7}.Release|Win32.ActiveCfg = Release|Win32
+		{A47BD78B-AB67-4394-9059-D19658CDCAB7}.Release|Win32.Build.0 = Release|Win32
+		{7A812675-E098-42CE-81CD-5FC22CDCCDDC}.Debug|Win32.ActiveCfg = Debug|Win32
+		{7A812675-E098-42CE-81CD-5FC22CDCCDDC}.Debug|Win32.Build.0 = Debug|Win32
+		{7A812675-E098-42CE-81CD-5FC22CDCCDDC}.Release|Win32.ActiveCfg = Release|Win32
+		{7A812675-E098-42CE-81CD-5FC22CDCCDDC}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -861,5 +879,8 @@ Global
 		{E349E0AC-7AC0-4BB0-B688-EEF5BAC4E2F9} = {57387E8D-D6F8-4B26-98FA-B25DF670DEB6}
 		{5363AE12-188C-4AD9-A3A9-162A5B52AFD8} = {57387E8D-D6F8-4B26-98FA-B25DF670DEB6}
 		{0519A71C-F71C-4F09-88DE-DBD7C91A75C2} = {57387E8D-D6F8-4B26-98FA-B25DF670DEB6}
+		{706927ED-4652-4217-A4AE-1D4A1D76F78B} = {57387E8D-D6F8-4B26-98FA-B25DF670DEB6}
+		{A47BD78B-AB67-4394-9059-D19658CDCAB7} = {57387E8D-D6F8-4B26-98FA-B25DF670DEB6}
+		{7A812675-E098-42CE-81CD-5FC22CDCCDDC} = {57387E8D-D6F8-4B26-98FA-B25DF670DEB6}
 	EndGlobalSection
 EndGlobal
