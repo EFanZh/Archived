@@ -256,6 +256,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "106. Construct Binary Tree 
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "113. Path Sum II", "113. Path Sum II\113. Path Sum II.vcxproj", "{7A812675-E098-42CE-81CD-5FC22CDCCDDC}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "016. 3Sum Closest", "016. 3Sum Closest\016. 3Sum Closest.vcxproj", "{BAF57B59-CB81-463E-9CAD-C372E5408824}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -754,6 +756,10 @@ Global
 		{7A812675-E098-42CE-81CD-5FC22CDCCDDC}.Debug|Win32.Build.0 = Debug|Win32
 		{7A812675-E098-42CE-81CD-5FC22CDCCDDC}.Release|Win32.ActiveCfg = Release|Win32
 		{7A812675-E098-42CE-81CD-5FC22CDCCDDC}.Release|Win32.Build.0 = Release|Win32
+		{BAF57B59-CB81-463E-9CAD-C372E5408824}.Debug|Win32.ActiveCfg = Debug|Win32
+		{BAF57B59-CB81-463E-9CAD-C372E5408824}.Debug|Win32.Build.0 = Debug|Win32
+		{BAF57B59-CB81-463E-9CAD-C372E5408824}.Release|Win32.ActiveCfg = Release|Win32
+		{BAF57B59-CB81-463E-9CAD-C372E5408824}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
