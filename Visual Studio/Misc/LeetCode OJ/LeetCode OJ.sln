@@ -260,6 +260,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "016. 3Sum Closest", "016. 3
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "188. Best Time to Buy and Sell Stock IV", "188. Best Time to Buy and Sell Stock IV\188. Best Time to Buy and Sell Stock IV.vcxproj", "{7DE6FBC7-FE01-48A4-8C2D-E05A8846F4EA}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "189. Rotate Array", "189. Rotate Array\189. Rotate Array.vcxproj", "{8BBB78FB-C05E-476D-92B4-06F42FC80323}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -766,6 +768,10 @@ Global
 		{7DE6FBC7-FE01-48A4-8C2D-E05A8846F4EA}.Debug|Win32.Build.0 = Debug|Win32
 		{7DE6FBC7-FE01-48A4-8C2D-E05A8846F4EA}.Release|Win32.ActiveCfg = Release|Win32
 		{7DE6FBC7-FE01-48A4-8C2D-E05A8846F4EA}.Release|Win32.Build.0 = Release|Win32
+		{8BBB78FB-C05E-476D-92B4-06F42FC80323}.Debug|Win32.ActiveCfg = Debug|Win32
+		{8BBB78FB-C05E-476D-92B4-06F42FC80323}.Debug|Win32.Build.0 = Debug|Win32
+		{8BBB78FB-C05E-476D-92B4-06F42FC80323}.Release|Win32.ActiveCfg = Release|Win32
+		{8BBB78FB-C05E-476D-92B4-06F42FC80323}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -896,5 +902,6 @@ Global
 		{7A812675-E098-42CE-81CD-5FC22CDCCDDC} = {57387E8D-D6F8-4B26-98FA-B25DF670DEB6}
 		{BAF57B59-CB81-463E-9CAD-C372E5408824} = {57387E8D-D6F8-4B26-98FA-B25DF670DEB6}
 		{7DE6FBC7-FE01-48A4-8C2D-E05A8846F4EA} = {57387E8D-D6F8-4B26-98FA-B25DF670DEB6}
+		{8BBB78FB-C05E-476D-92B4-06F42FC80323} = {57387E8D-D6F8-4B26-98FA-B25DF670DEB6}
 	EndGlobalSection
 EndGlobal
