@@ -1,5 +1,4 @@
-#ifndef STDAFX_H
-#define STDAFX_H
+#pragma once
 
 #include <tchar.h>
 
@@ -14,5 +13,3 @@
 
 EXTERN_C IMAGE_DOS_HEADER __ImageBase;
 #define HINST_THISCOMPONENT reinterpret_cast<HINSTANCE>(&__ImageBase)
-
-#endif // STDAFX_H

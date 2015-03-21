@@ -8,19 +8,16 @@ int WINAPI _tWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance,
 
     RegisterMainWindowClass();
 
+    HWND hWnd = CreateMainWindow();
+    ::ShowWindow(hWnd, nCmdShow);
+
+    MSG msg;
+
+    while (::GetMessage(&msg, NULL, 0, 0))
     {
-        HWND hWnd = CreateMainWindow();
-        ShowWindow(hWnd, nCmdShow);
+        ::TranslateMessage(&msg);
+        ::DispatchMessage(&msg);
     }
 
-    {
-        MSG msg;
-        while (GetMessage(&msg, NULL, 0, 0))
-        {
-            TranslateMessage(&msg);
-            DispatchMessage(&msg);
-        }
-
-        return msg.wParam;
-    }
+    return msg.wParam;
 }
