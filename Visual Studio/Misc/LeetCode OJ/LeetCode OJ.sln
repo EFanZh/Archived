@@ -270,6 +270,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "055. Jump Game", "055. Jump
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "190. Reverse Bits", "190. Reverse Bits\190. Reverse Bits.vcxproj", "{C1710964-7685-4596-870E-1C94CBC09B9C}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "086. Partition List", "086. Partition List\086. Partition List.vcxproj", "{39F2AB79-F5C2-4159-ABFE-842FC6F173DC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -796,6 +798,10 @@ Global
 		{C1710964-7685-4596-870E-1C94CBC09B9C}.Debug|Win32.Build.0 = Debug|Win32
 		{C1710964-7685-4596-870E-1C94CBC09B9C}.Release|Win32.ActiveCfg = Release|Win32
 		{C1710964-7685-4596-870E-1C94CBC09B9C}.Release|Win32.Build.0 = Release|Win32
+		{39F2AB79-F5C2-4159-ABFE-842FC6F173DC}.Debug|Win32.ActiveCfg = Debug|Win32
+		{39F2AB79-F5C2-4159-ABFE-842FC6F173DC}.Debug|Win32.Build.0 = Debug|Win32
+		{39F2AB79-F5C2-4159-ABFE-842FC6F173DC}.Release|Win32.ActiveCfg = Release|Win32
+		{39F2AB79-F5C2-4159-ABFE-842FC6F173DC}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
