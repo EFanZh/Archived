@@ -274,6 +274,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "086. Partition List", "086.
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "172. Factorial Trailing Zeroes", "172. Factorial Trailing Zeroes\172. Factorial Trailing Zeroes.vcxproj", "{B4DFD96D-9C4E-457B-A618-2BA63EEDCDFA}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "090. Subsets II", "090. Subsets II\090. Subsets II.vcxproj", "{16FA6281-791D-4992-B319-270E04609249}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -808,6 +810,10 @@ Global
 		{B4DFD96D-9C4E-457B-A618-2BA63EEDCDFA}.Debug|Win32.Build.0 = Debug|Win32
 		{B4DFD96D-9C4E-457B-A618-2BA63EEDCDFA}.Release|Win32.ActiveCfg = Release|Win32
 		{B4DFD96D-9C4E-457B-A618-2BA63EEDCDFA}.Release|Win32.Build.0 = Release|Win32
+		{16FA6281-791D-4992-B319-270E04609249}.Debug|Win32.ActiveCfg = Debug|Win32
+		{16FA6281-791D-4992-B319-270E04609249}.Debug|Win32.Build.0 = Debug|Win32
+		{16FA6281-791D-4992-B319-270E04609249}.Release|Win32.ActiveCfg = Release|Win32
+		{16FA6281-791D-4992-B319-270E04609249}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -945,5 +951,6 @@ Global
 		{C1710964-7685-4596-870E-1C94CBC09B9C} = {57387E8D-D6F8-4B26-98FA-B25DF670DEB6}
 		{39F2AB79-F5C2-4159-ABFE-842FC6F173DC} = {57387E8D-D6F8-4B26-98FA-B25DF670DEB6}
 		{B4DFD96D-9C4E-457B-A618-2BA63EEDCDFA} = {57387E8D-D6F8-4B26-98FA-B25DF670DEB6}
+		{16FA6281-791D-4992-B319-270E04609249} = {57387E8D-D6F8-4B26-98FA-B25DF670DEB6}
 	EndGlobalSection
 EndGlobal
