@@ -284,6 +284,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "160. Intersection of Two Li
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "109. Convert Sorted List to Binary Search Tree", "109. Convert Sorted List to Binary Search Tree\109. Convert Sorted List to Binary Search Tree.vcxproj", "{3986208F-88D6-4679-BD5A-935F7710AB1C}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "039. Combination Sum", "039. Combination Sum\039. Combination Sum.vcxproj", "{8000C7AF-EF88-413E-B52C-259AFC1108D3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -838,6 +840,10 @@ Global
 		{3986208F-88D6-4679-BD5A-935F7710AB1C}.Debug|Win32.Build.0 = Debug|Win32
 		{3986208F-88D6-4679-BD5A-935F7710AB1C}.Release|Win32.ActiveCfg = Release|Win32
 		{3986208F-88D6-4679-BD5A-935F7710AB1C}.Release|Win32.Build.0 = Release|Win32
+		{8000C7AF-EF88-413E-B52C-259AFC1108D3}.Debug|Win32.ActiveCfg = Debug|Win32
+		{8000C7AF-EF88-413E-B52C-259AFC1108D3}.Debug|Win32.Build.0 = Debug|Win32
+		{8000C7AF-EF88-413E-B52C-259AFC1108D3}.Release|Win32.ActiveCfg = Release|Win32
+		{8000C7AF-EF88-413E-B52C-259AFC1108D3}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -980,5 +986,6 @@ Global
 		{D46D5CB7-2EC3-4673-9BAA-12D8E927ACFA} = {57387E8D-D6F8-4B26-98FA-B25DF670DEB6}
 		{998787C9-AC35-422E-B8C0-469F4930DD7A} = {57387E8D-D6F8-4B26-98FA-B25DF670DEB6}
 		{3986208F-88D6-4679-BD5A-935F7710AB1C} = {57387E8D-D6F8-4B26-98FA-B25DF670DEB6}
+		{8000C7AF-EF88-413E-B52C-259AFC1108D3} = {57387E8D-D6F8-4B26-98FA-B25DF670DEB6}
 	EndGlobalSection
 EndGlobal
