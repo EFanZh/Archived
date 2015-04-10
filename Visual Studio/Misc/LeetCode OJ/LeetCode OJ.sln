@@ -288,6 +288,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "039. Combination Sum", "039
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "062. Unique Paths", "062. Unique Paths\062. Unique Paths.vcxproj", "{89C40600-556A-4E77-BBE5-2180DC44BEC8}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "119. Pascal's Triangle II", "119. Pascal's Triangle II\119. Pascal's Triangle II.vcxproj", "{3EDDCF7B-A079-499E-9B48-6E98B64768DA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -850,6 +852,10 @@ Global
 		{89C40600-556A-4E77-BBE5-2180DC44BEC8}.Debug|Win32.Build.0 = Debug|Win32
 		{89C40600-556A-4E77-BBE5-2180DC44BEC8}.Release|Win32.ActiveCfg = Release|Win32
 		{89C40600-556A-4E77-BBE5-2180DC44BEC8}.Release|Win32.Build.0 = Release|Win32
+		{3EDDCF7B-A079-499E-9B48-6E98B64768DA}.Debug|Win32.ActiveCfg = Debug|Win32
+		{3EDDCF7B-A079-499E-9B48-6E98B64768DA}.Debug|Win32.Build.0 = Debug|Win32
+		{3EDDCF7B-A079-499E-9B48-6E98B64768DA}.Release|Win32.ActiveCfg = Release|Win32
+		{3EDDCF7B-A079-499E-9B48-6E98B64768DA}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -993,5 +999,6 @@ Global
 		{998787C9-AC35-422E-B8C0-469F4930DD7A} = {57387E8D-D6F8-4B26-98FA-B25DF670DEB6}
 		{3986208F-88D6-4679-BD5A-935F7710AB1C} = {57387E8D-D6F8-4B26-98FA-B25DF670DEB6}
 		{8000C7AF-EF88-413E-B52C-259AFC1108D3} = {57387E8D-D6F8-4B26-98FA-B25DF670DEB6}
+		{3EDDCF7B-A079-499E-9B48-6E98B64768DA} = {57387E8D-D6F8-4B26-98FA-B25DF670DEB6}
 	EndGlobalSection
 EndGlobal
