@@ -1,0 +1,27 @@
+﻿<Window x:Class="SearchFiles.MainWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Title="Search Files">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Label Grid.Column="0" Grid.Row="0" Content="Folder:" />
+            <TextBox Grid.Column="1" Grid.Row="0" VerticalContentAlignment="Center" Text="{Binding Model.Folder, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}, UpdateSourceTrigger=PropertyChanged}" />
+            <Label Grid.Column="0" Grid.Row="1" Content="Keyword:" />
+            <TextBox Grid.Column="1" Grid.Row="1" VerticalContentAlignment="Center" Text="{Binding Model.Keyword, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}, UpdateSourceTrigger=PropertyChanged}" />
+        </Grid>
+        <ListBox Grid.Row="1" ItemsSource="{Binding Model.Result, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" />
+        <StatusBar Grid.Row="2">
+            <TextBlock x:Name="StateTextBlock" Text="{Binding Model.State, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" />
+        </StatusBar>
+    </Grid>
+</Window>
