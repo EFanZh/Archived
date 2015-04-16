@@ -116,8 +116,21 @@ namespace SubtitleFontReplacer
             string path = FolderTextBox.Text;
             var dict = FontMapping.ToDictionary(pair => pair.Original, pair => pair.Target);
 
+
             try
             {
+                if (dict.Any(p => string.IsNullOrWhiteSpace(p.Key) || string.IsNullOrWhiteSpace(p.Value)))
+                {
+                    MessageBox.Show("Fields can not be empty.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+
+                    return;
+                }
+
+                if (MessageBox.Show("You sure?", "Question", MessageBoxButton.YesNo, MessageBoxImage.Question) != MessageBoxResult.Yes)
+                {
+                    return;
+                }
+
                 await Task.Run(() =>
                 {
                     foreach (string file in GetFiles(path))
