@@ -116,7 +116,6 @@ namespace SubtitleFontReplacer
             string path = FolderTextBox.Text;
             var dict = FontMapping.ToDictionary(pair => pair.Original, pair => pair.Target);
 
-
             try
             {
                 if (dict.Any(p => string.IsNullOrWhiteSpace(p.Key) || string.IsNullOrWhiteSpace(p.Value)))
@@ -133,11 +132,17 @@ namespace SubtitleFontReplacer
 
                 await Task.Run(() =>
                 {
-                    foreach (string file in GetFiles(path))
+                    try
                     {
-                        string content = File.ReadAllText(file);
+                        foreach (string file in GetFiles(path))
+                        {
+                            string content = File.ReadAllText(file);
 
-                        File.WriteAllText(file, Process(content, dict));
+                            File.WriteAllText(file, Process(content, dict));
+                        }
+                    }
+                    catch (Exception)
+                    {
                     }
                 });
             }
