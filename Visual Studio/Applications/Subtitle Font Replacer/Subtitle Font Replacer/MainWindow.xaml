@@ -14,18 +14,23 @@
             <Setter Property="Padding" Value="4,2" />
         </Style>
     </Window.Resources>
-    <DockPanel>
-            <Grid DockPanel.Dock="Top" Margin="8">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition />
-                    <ColumnDefinition Width="Auto" />
-                </Grid.ColumnDefinitions>
-                <Label Grid.Column="0" Content="Target Folder:" Style="{StaticResource SingleLineLabel}" Margin="0,0,8,0" />
-                <TextBox Grid.Column="1" x:Name="FolderTextBox" Style="{StaticResource SingleLineControl}" Margin="0,0,8,0" />
-                <Button Grid.Column="2" Content="Select Folder" Style="{StaticResource SingleLineButton}" />
-            </Grid>
-        <Grid>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Margin="8">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Content="Target Folder:" Style="{StaticResource SingleLineLabel}" Margin="0,0,8,0" />
+            <TextBox Grid.Column="1" x:Name="FolderTextBox" Style="{StaticResource SingleLineControl}" Margin="0,0,8,0" />
+            <Button Grid.Column="2" Content="Select Folder" Style="{StaticResource SingleLineButton}" />
+        </Grid>
+        <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="0.618*" />
                 <ColumnDefinition Width="Auto" />
@@ -38,7 +43,7 @@
                         <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
                     <TextBlock Grid.Column="0" Style="{StaticResource WigetTitle}" Text="Font List" />
-                    <Button Grid.Column="1"  Style="{StaticResource SingleLineButton}" Content="⟳" Click="AnalyzeButton_Click" />
+                    <Button Grid.Column="1" Style="{StaticResource SingleLineButton}" Content="⟳" Click="AnalyzeButton_Click" />
                 </Grid>
                 <ListBox x:Name="ExistingFontsListBox" BorderThickness="0" ItemsSource="{Binding ExistingFonts, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" MouseDoubleClick="ExistingFontsListBox_MouseDoubleClick" />
             </DockPanel>
@@ -62,5 +67,8 @@
                 </DataGrid>
             </DockPanel>
         </Grid>
-    </DockPanel>
+        <StatusBar Grid.Row="2">
+            <TextBlock x:Name="StateTextBlock" />
+        </StatusBar>
+    </Grid>
 </Window>

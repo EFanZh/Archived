@@ -1,5 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text.RegularExpressions;
 
@@ -8,146 +8,91 @@ namespace SubtitleFontReplacer
     internal static class Parser
     {
         private const RegexOptions CommonRegexOptions = RegexOptions.Multiline | RegexOptions.Compiled;
-        private static readonly Regex StyleSectionLineRegex = new Regex(@"^\s*\[V4\+? Styles\]\s*\r?$", CommonRegexOptions);
-        private static readonly Regex EventsSectionLineRegex = new Regex(@"^\s*\[Events\]\s*\r?$", CommonRegexOptions);
-        private static readonly Regex FormatLineRegex = new Regex(@"^\s*Format:.*\r?$", CommonRegexOptions);
-        private static readonly Regex FormatLineLabelRegex = new Regex(@"^\s*Format:", CommonRegexOptions);
-        private static readonly Regex StyleLineOrNextSectionRegex = new Regex(@"^\s*(Style:|\[).*\r?$", CommonRegexOptions);
-        private static readonly Regex StyleLineLabelRegex = new Regex(@"^\s*Style:", CommonRegexOptions);
-        private static readonly Regex FieldRegex = new Regex(@"(\{[^\{\}]*\}|[^,$\{\}])*(,|$)", CommonRegexOptions);
-        private static readonly Regex DialogueLineOrNextSectionRegex = new Regex(@"^\s*(Dialogue:|\[).*\r?$", CommonRegexOptions);
-        private static readonly Regex DialogueLineLabelRegex = new Regex(@"^\s*Dialogue:", CommonRegexOptions);
+
+        private static readonly Regex StyleFontNamePrefixRegex = new Regex(@"^[^,]*,\s*@?", CommonRegexOptions);
+        private static readonly Regex FontNameRegex = new Regex(@"([^,\\]*[^,\s\\])?", CommonRegexOptions);
+        private static readonly Regex SectionTitleRegex = new Regex(@"^\s*\[[\[\]]*\]\s*$", CommonRegexOptions);
+        private static readonly Regex EventsSectionLineRegex = new Regex(@"^\s*\[\s*EVENTS\s*\]\s*$", CommonRegexOptions);
+        private static readonly Regex DialogueTextPrefixRegex = new Regex(@"^([^,]*,){9}\s*", CommonRegexOptions);
         private static readonly Regex ControlCodeRegex = new Regex(@"\{[^\{\}]*\}", CommonRegexOptions);
-        private static readonly Regex FontNameOverridePrefixRegex = new Regex(@"\\fn", CommonRegexOptions);
-        private static readonly Regex FontNameRegex = new Regex(@"[^\s@]([^\{\}\\]*[^\s\{\}\\])?", CommonRegexOptions);
+        private static readonly Regex FontNameOverridePrefixRegex = new Regex(@"\\fn\s*@?", CommonRegexOptions);
+        private static readonly Regex LabelRegex = new Regex(@"^[^:]*:", CommonRegexOptions);
+        private static readonly Regex LineRegex = new Regex(@"^.*$", CommonRegexOptions);
+
+        private static KeyValuePair<string, int> ExtractFontNameFromStyle(string line)
+        {
+            Match styleFontNamePrefixMatch = StyleFontNamePrefixRegex.Match(line);
+            Match fontNameMatch = FontNameRegex.Match(line, styleFontNamePrefixMatch.Index + styleFontNamePrefixMatch.Length);
+
+            return new KeyValuePair<string, int>(fontNameMatch.Value, fontNameMatch.Index);
+        }
+
+        private static IEnumerable<KeyValuePair<string, int>> ExtractFontNamesFromControlCodes(string controlCodes)
+        {
+            for (Match prefix = FontNameOverridePrefixRegex.Match(controlCodes); prefix.Success; prefix = prefix.NextMatch())
+            {
+                Match fontNameMatch = FontNameRegex.Match(controlCodes, prefix.Index + prefix.Length);
+
+                yield return new KeyValuePair<string, int>(fontNameMatch.Value, fontNameMatch.Index);
+            }
+        }
+
+        private static IEnumerable<KeyValuePair<string, int>> ExtractFontNamesFromDialogue(string line)
+        {
+            Match textPrefixMatch = DialogueTextPrefixRegex.Match(line);
+
+            for (Match controlCode = ControlCodeRegex.Match(line, textPrefixMatch.Index + textPrefixMatch.Length); controlCode.Success; controlCode = controlCode.NextMatch())
+            {
+                foreach (var fontName in ExtractFontNamesFromControlCodes(line.Substring(controlCode.Index + 1, controlCode.Length - 2)))
+                {
+                    yield return new KeyValuePair<string, int>(fontName.Key, controlCode.Index + fontName.Value + 1);
+                }
+            }
+        }
 
         public static KeyValuePair<string, int>[] Parse(string content)
         {
-            var fontNames = new List<KeyValuePair<string, int>>();
+            var result = new List<KeyValuePair<string, int>>();
+            bool hadEventsSection = false;
 
-            // Find style section.
-            Match styleSectionLineMatch = StyleSectionLineRegex.Match(content);
-
-            if (!styleSectionLineMatch.Success)
+            for (Match lineMatch = LineRegex.Match(content); lineMatch.Success; lineMatch = lineMatch.NextMatch())
             {
-                goto End;
-            }
+                string line = lineMatch.Value;
 
-            Match formatLineMatch = FormatLineRegex.Match(content, styleSectionLineMatch.Index + styleSectionLineMatch.Length);
-
-            if (!formatLineMatch.Success)
-            {
-                goto End;
-            }
-
-            Match formatLineLabelMatch = FormatLineLabelRegex.Match(formatLineMatch.Value); // Cannot fail.
-            var format = formatLineMatch.Value.Substring(formatLineLabelMatch.Length).Split(',').Select(s => s.Trim()).ToArray();
-            int fontNameIndex = Array.IndexOf(format, "Fontname");
-
-            if (fontNameIndex == -1)
-            {
-                goto End;
-            }
-
-            Match styleMatch = StyleLineOrNextSectionRegex.Match(content, formatLineMatch.Index + formatLineMatch.Length);
-
-            while (styleMatch.Success)
-            {
-                Match styleLineLabelMatch = StyleLineLabelRegex.Match(styleMatch.Value);
-
-                if (styleLineLabelMatch.Success)
+                if (SectionTitleRegex.IsMatch(line))
                 {
-                    Match fieldMatch = FieldRegex.Match(styleMatch.Value, styleLineLabelMatch.Length);
-
-                    for (int i = 0; i < fontNameIndex; i++)
+                    if (hadEventsSection)
                     {
-                        fieldMatch = fieldMatch.NextMatch();
+                        break;
                     }
 
-                    string fontName = fieldMatch.Value;
-
-                    if (fontName[fontName.Length - 1] == ',')
+                    if (EventsSectionLineRegex.IsMatch(line.ToUpper()))
                     {
-                        fontName = fontName.Substring(0, fontName.Length - 1);
-                    }
-
-                    int offset = 0;
-
-                    if (fontName.StartsWith("@"))
-                    {
-                        fontName = fontName.Substring(1);
-                        offset = 1;
-                    }
-
-                    fontNames.Add(new KeyValuePair<string, int>(fontName, styleMatch.Index + fieldMatch.Index + offset));
-                }
-                else
-                {
-                    break;
-                }
-
-                styleMatch = styleMatch.NextMatch();
-            }
-
-            if (!styleMatch.Success)
-            {
-                goto End;
-            }
-
-            // Events section.
-            Match eventsSectionLineMatch = EventsSectionLineRegex.Match(content, styleMatch.Index);
-
-            if (!eventsSectionLineMatch.Success)
-            {
-                goto End;
-            }
-
-            formatLineMatch = FormatLineRegex.Match(content, eventsSectionLineMatch.Index + eventsSectionLineMatch.Length);
-            formatLineLabelMatch = FormatLineLabelRegex.Match(formatLineMatch.Value);
-            format = formatLineMatch.Value.Substring(formatLineLabelMatch.Length).Split(',').Select(s => s.Trim()).ToArray();
-
-            int textIndex = Array.IndexOf(format, "Text");
-
-            if (textIndex == -1)
-            {
-                goto End;
-            }
-
-            Match dialogueMatch = DialogueLineOrNextSectionRegex.Match(content, formatLineMatch.Index + formatLineMatch.Length);
-
-            while (dialogueMatch.Success)
-            {
-                Match dialogueLineLabelMatch = DialogueLineLabelRegex.Match(dialogueMatch.Value);
-
-                if (dialogueLineLabelMatch.Success)
-                {
-                    Match fieldMatch = FieldRegex.Match(dialogueMatch.Value, dialogueLineLabelMatch.Length);
-
-                    for (int i = 0; i < textIndex; i++)
-                    {
-                        fieldMatch = fieldMatch.NextMatch();
-                    }
-
-                    for (Match current = ControlCodeRegex.Match(fieldMatch.Value); current.Success; current = current.NextMatch())
-                    {
-                        for (Match prefix = FontNameOverridePrefixRegex.Match(current.Value); prefix.Success; prefix = prefix.NextMatch())
-                        {
-                            Match fontNameMatch = FontNameRegex.Match(current.Value, prefix.Index + prefix.Length);
-
-                            fontNames.Add(new KeyValuePair<string, int>(fontNameMatch.Value, dialogueMatch.Index + fieldMatch.Index + current.Index + fontNameMatch.Index));
-                        }
+                        hadEventsSection = true;
                     }
                 }
                 else
                 {
-                    break;
-                }
+                    Match labelMatch = LabelRegex.Match(line);
 
-                dialogueMatch = dialogueMatch.NextMatch();
+                    switch (labelMatch.Value.Trim().ToUpper())
+                    {
+                        case "STYLE:":
+                            {
+                                var k = ExtractFontNameFromStyle(line);
+
+                                result.Add(new KeyValuePair<string, int>(k.Key, lineMatch.Index + k.Value));
+                                break;
+                            }
+
+                        case "DIALOGUE:":
+                            result.AddRange(ExtractFontNamesFromDialogue(line).Select(p => new KeyValuePair<string, int>(p.Key, lineMatch.Index + p.Value)));
+                            break;
+                    }
+                }
             }
 
-        End:
-            return fontNames.ToArray();
+            return result.ToArray();
         }
     }
 }

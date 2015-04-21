@@ -56,6 +56,12 @@ namespace SubtitleFontReplacer
             set;
         }
 
+        public string State
+        {
+            get;
+            set;
+        }
+
         private void MainWindow_Closing(object sender, CancelEventArgs e)
         {
             try
@@ -73,32 +79,20 @@ namespace SubtitleFontReplacer
 
             string path = FolderTextBox.Text;
 
-            var task = Task.Run(() =>
+            ExistingFonts.Clear();
+
+            foreach (var file in GetFiles(path))
             {
-                var files = GetFiles(path);
-                var fonts = new HashSet<string>(files.Select(File.ReadAllText).Select(Parser.Parse).SelectMany(r => r.Select(p => p.Key)));
-
-                return fonts.OrderBy(s => s).ToArray();
-            });
-
-            try
-            {
-                var results = await task;
-
-                ExistingFonts.Clear();
-                foreach (var font in results)
+                foreach (var result in await AnalyzeFile(file))
                 {
-                    ExistingFonts.Add(font);
+                    if (!ExistingFonts.Contains(result.Key))
+                    {
+                        ExistingFonts.Add(result.Key);
+                    }
                 }
             }
-            catch (Exception exception)
-            {
-                MessageBox.Show(exception.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            finally
-            {
-                ((UIElement)sender).IsEnabled = true;
-            }
+
+            ((UIElement)sender).IsEnabled = true;
         }
 
         private void ExistingFontsListBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -130,21 +124,10 @@ namespace SubtitleFontReplacer
                     return;
                 }
 
-                await Task.Run(() =>
+                foreach (string file in GetFiles(path))
                 {
-                    try
-                    {
-                        foreach (string file in GetFiles(path))
-                        {
-                            string content = File.ReadAllText(file);
-
-                            File.WriteAllText(file, Process(content, dict));
-                        }
-                    }
-                    catch (Exception)
-                    {
-                    }
-                });
+                    await ProcessFile(file, dict);
+                }
             }
             catch (Exception exception)
             {
@@ -168,7 +151,17 @@ namespace SubtitleFontReplacer
 
         private static IEnumerable<string> GetFiles(string path)
         {
-            return Directory.EnumerateFiles(path, "*", SearchOption.AllDirectories).Where(Filter);
+            IEnumerable<string> result = new string[0];
+
+            try
+            {
+                result = Directory.EnumerateFiles(path, "*", SearchOption.AllDirectories).Where(Filter);
+            }
+            catch (Exception)
+            {
+            }
+
+            return result;
         }
 
         private static bool Filter(string file)
@@ -176,6 +169,39 @@ namespace SubtitleFontReplacer
             var upper = file.ToUpper();
 
             return upper.EndsWith(".ASS") || upper.EndsWith(".SSA");
+        }
+
+        private async Task<KeyValuePair<string, int>[]> AnalyzeFile(string file)
+        {
+            StateTextBlock.Text = file;
+
+            return await Task.Run(() =>
+            {
+                try
+                {
+                    return Parser.Parse(File.ReadAllText(file));
+                }
+                catch (Exception)
+                {
+                    return new KeyValuePair<string, int>[0];
+                }
+            });
+        }
+
+        private async Task ProcessFile(string file, IDictionary<string, string> mapping)
+        {
+            StateTextBlock.Text = file;
+
+            await Task.Run(() =>
+            {
+                try
+                {
+                    File.WriteAllText(file, Process(File.ReadAllText(file), mapping));
+                }
+                catch (Exception)
+                {
+                }
+            });
         }
 
         private static string Process(string content, IDictionary<string, string> mapping)
