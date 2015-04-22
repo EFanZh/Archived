@@ -294,6 +294,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "063. Unique Paths II", "063
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "078. Subsets", "078. Subsets\078. Subsets.vcxproj", "{5CF823FE-8412-4367-80F1-171082D1B703}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "011. Container With Most Water", "011. Container With Most Water\011. Container With Most Water.vcxproj", "{20F071A8-BAC4-4672-A1CB-F55EED523C30}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -868,6 +870,10 @@ Global
 		{5CF823FE-8412-4367-80F1-171082D1B703}.Debug|Win32.Build.0 = Debug|Win32
 		{5CF823FE-8412-4367-80F1-171082D1B703}.Release|Win32.ActiveCfg = Release|Win32
 		{5CF823FE-8412-4367-80F1-171082D1B703}.Release|Win32.Build.0 = Release|Win32
+		{20F071A8-BAC4-4672-A1CB-F55EED523C30}.Debug|Win32.ActiveCfg = Debug|Win32
+		{20F071A8-BAC4-4672-A1CB-F55EED523C30}.Debug|Win32.Build.0 = Debug|Win32
+		{20F071A8-BAC4-4672-A1CB-F55EED523C30}.Release|Win32.ActiveCfg = Release|Win32
+		{20F071A8-BAC4-4672-A1CB-F55EED523C30}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -1015,5 +1021,6 @@ Global
 		{3EDDCF7B-A079-499E-9B48-6E98B64768DA} = {57387E8D-D6F8-4B26-98FA-B25DF670DEB6}
 		{56ED22C7-3F40-473B-94A1-B61303A33C7F} = {57387E8D-D6F8-4B26-98FA-B25DF670DEB6}
 		{5CF823FE-8412-4367-80F1-171082D1B703} = {57387E8D-D6F8-4B26-98FA-B25DF670DEB6}
+		{20F071A8-BAC4-4672-A1CB-F55EED523C30} = {57387E8D-D6F8-4B26-98FA-B25DF670DEB6}
 	EndGlobalSection
 EndGlobal
