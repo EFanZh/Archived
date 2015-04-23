@@ -84,11 +84,29 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="MainWindow.h" />
+    <ClInclude Include="Application.h" />
+    <ClInclude Include="Brush.h" />
+    <ClInclude Include="Cursor.h" />
+    <ClInclude Include="IconMetric.h" />
+    <ClInclude Include="Ref.h" />
+    <ClInclude Include="SpinLock.h" />
+    <ClInclude Include="Icon.h" />
+    <ClInclude Include="StandardCursorId.h" />
+    <ClInclude Include="StandardIconId.h" />
+    <ClInclude Include="WindowClass.h" />
+    <ClInclude Include="WindowClassBase.h" />
+    <ClInclude Include="WindowClassStyle.h" />
+    <ClInclude Include="ExtendedWindowStyle.h" />
+    <ClInclude Include="Menu.h" />
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="String.h" />
+    <ClInclude Include="TestWindow.h" />
+    <ClInclude Include="Window.h" />
+    <ClInclude Include="WindowMessage.h" />
+    <ClInclude Include="WindowsObject.h" />
+    <ClInclude Include="WindowStyle.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="MainWindow.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>

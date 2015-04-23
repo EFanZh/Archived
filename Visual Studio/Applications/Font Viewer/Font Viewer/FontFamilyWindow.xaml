@@ -1,0 +1,69 @@
+﻿<Window x:Class="FontViewer.FontFamilyWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:fontViewer="clr-namespace:FontViewer" mc:Ignorable="d" Title="{Binding FontFamily, StringFormat='Font Family - {0}'}" SizeToContent="WidthAndHeight" d:DataContext="{d:DesignInstance fontViewer:FontFamilyWrapper }">
+    <StackPanel Orientation="Horizontal">
+        <GroupBox Header="Properties">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0" Grid.Column="0" Content="Source:" />
+                <TextBox Grid.Row="0" Grid.Column="1" Style="{StaticResource ReadOnlyTextBoxStyle}" Text="{Binding FontFamily.Source, Mode=OneTime}" />
+                <Label Grid.Row="1" Grid.Column="0" Content="Baseline:" />
+                <TextBox Grid.Row="1" Grid.Column="1" Style="{StaticResource ReadOnlyTextBoxStyle}" Text="{Binding FontFamily.Baseline}" />
+                <Label Grid.Row="2" Grid.Column="0" Content="Line Spacing:" />
+                <TextBox Grid.Row="2" Grid.Column="1" Style="{StaticResource ReadOnlyTextBoxStyle}" Text="{Binding FontFamily.LineSpacing}" />
+            </Grid>
+        </GroupBox>
+        <GroupBox Header="Family Names">
+            <ListView ItemsSource="{Binding FontFamily.FamilyNames}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Language" DisplayMemberBinding="{Binding Key}" />
+                        <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Value}" />
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </GroupBox>
+        <GroupBox Header="Family Typefaces">
+            <ListView ItemsSource="{Binding FontFamily.FamilyTypefaces}" Style="{StaticResource ObjectListListBoxStyle}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Weight" DisplayMemberBinding="{Binding Weight}" />
+                        <GridViewColumn Header="Style" DisplayMemberBinding="{Binding Style}" />
+                        <GridViewColumn Header="Stretch" DisplayMemberBinding="{Binding Stretch}" />
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </GroupBox>
+        <GroupBox Header="Family Maps:">
+            <ListView ItemsSource="{Binding FontFamily.FamilyMaps}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Unicode" DisplayMemberBinding="{Binding Unicode}" />
+                        <GridViewColumn Header="Target" DisplayMemberBinding="{Binding Target}" />
+                        <GridViewColumn Header="Scale" DisplayMemberBinding="{Binding Scale}" />
+                        <GridViewColumn Header="Language" DisplayMemberBinding="{Binding Language}" />
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </GroupBox>
+        <GroupBox Header="Typefaces">
+            <ListView ItemsSource="{Binding Typefaces}" Style="{StaticResource ObjectListListBoxStyle}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Weight" DisplayMemberBinding="{Binding Weight}" />
+                        <GridViewColumn Header="Is Bold Simulated" DisplayMemberBinding="{Binding IsBoldSimulated}" />
+                        <GridViewColumn Header="Style" DisplayMemberBinding="{Binding Style}" />
+                        <GridViewColumn Header="Is Oblique Simulated" DisplayMemberBinding="{Binding IsObliqueSimulated}" />
+                        <GridViewColumn Header="Stretch" DisplayMemberBinding="{Binding Stretch}" />
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </GroupBox>
+    </StackPanel>
+</Window>
