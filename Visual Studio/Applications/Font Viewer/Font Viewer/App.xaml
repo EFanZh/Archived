@@ -10,9 +10,11 @@
         <Style x:Key="ObjectButtonStyle" TargetType="Button">
             <EventSetter Event="Click" Handler="ObjectButton_Click" />
         </Style>
-        <Style x:Key="ObjectListListBoxStyle" TargetType="ListBox">
-            <Setter Property="IsSynchronizedWithCurrentItem" Value="True" />
-            <EventSetter Event="MouseDoubleClick" Handler="ObjectListBox_MouseDoubleClick" />
+        <Style x:Key="ObjectListBoxItemStyle" TargetType="ListBoxItem">
+            <EventSetter Event="MouseDoubleClick" Handler="ObjectListBoxItem_MouseDoubleClick" />
+        </Style>
+        <Style TargetType="GridViewColumnHeader">
+            <EventSetter Event="Click" Handler="GridViewColumnHeader_Click" />
         </Style>
     </Application.Resources>
 </Application>

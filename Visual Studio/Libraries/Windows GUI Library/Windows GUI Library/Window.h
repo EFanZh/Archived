@@ -34,12 +34,26 @@ public:
            int height = CW_USEDEFAULT,
            Ref<Window> parent = GetDesktop(),
            Ref<Menu> menu = nullptr,
+           void *param = nullptr) : Window(reinterpret_cast<LPTSTR>(classId), windowName, style, extendedStyle, x, y, width, height, parent, menu, param)
+    {
+    }
+
+    Window(Ref<WindowsString> className,
+           Ref<WindowsString> windowName = nullptr,
+           WindowStyle style = WindowStyle::OverlappedWindow,
+           ExtendedWindowStyle extendedStyle = ExtendedWindowStyle::None,
+           int x = CW_USEDEFAULT,
+           int y = CW_USEDEFAULT,
+           int width = CW_USEDEFAULT,
+           int height = CW_USEDEFAULT,
+           Ref<Window> parent = GetDesktop(),
+           Ref<Menu> menu = nullptr,
            void *param = nullptr)
     {
         WindowClassBase::AddCreateInfo(this);
 
         ::CreateWindowEx(static_cast<DWORD>(extendedStyle),
-                         reinterpret_cast<LPCTSTR>(classId),
+                         className,
                          windowName,
                          static_cast<DWORD>(style),
                          x,
@@ -59,6 +73,6 @@ public:
 
     static Ref<Window> GetDesktop()
     {
-        return NULL;
+        return HWND_DESKTOP;
     }
 };

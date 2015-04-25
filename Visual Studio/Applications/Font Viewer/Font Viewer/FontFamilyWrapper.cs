@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Windows.Markup;
 using System.Windows.Media;
 
 namespace FontViewer
@@ -11,6 +13,9 @@ namespace FontViewer
         public FontFamilyWrapper(FontFamily fontFamily)
         {
             this.fontFamily = fontFamily;
+
+            FamilyNames = fontFamily.FamilyNames.ToArray();
+            Typefaces = fontFamily.GetTypefaces().ToArray();
         }
 
         public FontFamily FontFamily
@@ -21,12 +26,16 @@ namespace FontViewer
             }
         }
 
-        public ICollection<Typeface> Typefaces
+        public IList<KeyValuePair<XmlLanguage, string>> FamilyNames
         {
-            get
-            {
-                return fontFamily.GetTypefaces();
-            }
+            get;
+            private set;
+        }
+
+        public IList<Typeface> Typefaces
+        {
+            get;
+            private set;
         }
     }
 }

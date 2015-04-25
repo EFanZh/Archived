@@ -5,6 +5,8 @@ VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Font Viewer", "Font Viewer\Font Viewer.csproj", "{7C07632D-CD69-4B0F-99B5-62F5F40933D4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{BD7AC671-562E-4969-A6D0-5D0806424CAA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{7C07632D-CD69-4B0F-99B5-62F5F40933D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7C07632D-CD69-4B0F-99B5-62F5F40933D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7C07632D-CD69-4B0F-99B5-62F5F40933D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD7AC671-562E-4969-A6D0-5D0806424CAA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD7AC671-562E-4969-A6D0-5D0806424CAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD7AC671-562E-4969-A6D0-5D0806424CAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD7AC671-562E-4969-A6D0-5D0806424CAA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

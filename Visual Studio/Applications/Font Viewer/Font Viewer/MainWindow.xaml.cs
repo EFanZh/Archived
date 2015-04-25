@@ -1,4 +1,7 @@
-﻿using System.Windows;
+﻿using System;
+using System.Linq;
+using System.Reflection;
+using System.Windows;
 
 namespace FontViewer
 {

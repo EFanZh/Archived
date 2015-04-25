@@ -80,6 +80,7 @@
   <ItemGroup>
     <ClInclude Include="Application.h" />
     <ClInclude Include="Brush.h" />
+    <ClInclude Include="Button.h" />
     <ClInclude Include="Cursor.h" />
     <ClInclude Include="ExtendedWindowStyle.h" />
     <ClInclude Include="Icon.h" />

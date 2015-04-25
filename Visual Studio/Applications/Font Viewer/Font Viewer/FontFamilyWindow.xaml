@@ -20,7 +20,7 @@
             </Grid>
         </GroupBox>
         <GroupBox Header="Family Names">
-            <ListView ItemsSource="{Binding FontFamily.FamilyNames}">
+            <ListView ItemsSource="{Binding FamilyNames}">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="Language" DisplayMemberBinding="{Binding Key}" />
@@ -30,7 +30,7 @@
             </ListView>
         </GroupBox>
         <GroupBox Header="Family Typefaces">
-            <ListView ItemsSource="{Binding FontFamily.FamilyTypefaces}" Style="{StaticResource ObjectListListBoxStyle}">
+            <ListView ItemsSource="{Binding FontFamily.FamilyTypefaces}" ItemContainerStyle="{StaticResource ObjectListBoxItemStyle}">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="Weight" DisplayMemberBinding="{Binding Weight}" />
@@ -53,7 +53,7 @@
             </ListView>
         </GroupBox>
         <GroupBox Header="Typefaces">
-            <ListView ItemsSource="{Binding Typefaces}" Style="{StaticResource ObjectListListBoxStyle}">
+            <ListView ItemsSource="{Binding Typefaces}" ItemContainerStyle="{StaticResource ObjectListBoxItemStyle}">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="Weight" DisplayMemberBinding="{Binding Weight}" />

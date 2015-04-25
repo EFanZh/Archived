@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Threading;
 
 namespace FontViewer
 {
@@ -20,38 +23,55 @@ namespace FontViewer
             { typeof(Typeface), typeof(TypefaceWindow) },
         };
 
+        private static ConditionalWeakTable<ListView, ListViewObjectComparer> listViewComparers = new ConditionalWeakTable<ListView, ListViewObjectComparer>();
+
         private void ObjectButton_Click(object sender, RoutedEventArgs e)
         {
-            Button button = (Button)sender;
-            object obj = button.Content;
-
-            if (obj == null)
-            {
-                return;
-            }
-
-            Type objectType = obj.GetType();
-            ConstructorInfo constructorInfo = TypeWindowDictionary[objectType].GetConstructor(new[] { objectType });
-            Window window = (Window)constructorInfo.Invoke(new[] { obj });
-
-            window.Show();
+            ShowObjectWinow(((Button)sender).Content);
         }
 
-        private void ObjectListBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        private void ObjectListBoxItem_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            ListBox listBox = (ListBox)sender;
-            object currentItem = listBox.Items.CurrentItem;
+            ShowObjectWinow(((ListBoxItem)sender).Content);
+        }
 
-            if (currentItem == null)
+        private void GridViewColumnHeader_Click(object sender, RoutedEventArgs e)
+        {
+            GridViewColumnHeader header = (GridViewColumnHeader)sender;
+            ListCollectionView view = GetListCollectionViewFromGridViewColumnHeader(header);
+
+            using (view.DeferRefresh())
             {
-                return;
+                ListViewObjectComparer comparer = (ListViewObjectComparer)view.CustomSort ?? new ListViewObjectComparer();
+
+                comparer.SortBy(header.Column);
+
+                view.CustomSort = comparer;
+            }
+        }
+
+        private static void ShowObjectWinow(object obj)
+        {
+            Dispatcher.CurrentDispatcher.BeginInvoke(new Action(() =>
+            {
+                Type objectType = obj.GetType();
+                ConstructorInfo constructorInfo = TypeWindowDictionary[objectType].GetConstructor(new[] { objectType });
+                Window window = (Window)constructorInfo.Invoke(new[] { obj });
+
+                window.Show();
+            }));
+        }
+
+        private static ListCollectionView GetListCollectionViewFromGridViewColumnHeader(GridViewColumnHeader header)
+        {
+            DependencyObject p = VisualTreeHelper.GetParent(header);
+
+            while (!(p is ListView))
+            {
+                p = VisualTreeHelper.GetParent(p);
             }
 
-            Type objectType = currentItem.GetType();
-            ConstructorInfo constructorInfo = TypeWindowDictionary[objectType].GetConstructor(new[] { objectType });
-            Window window = (Window)constructorInfo.Invoke(new[] { currentItem });
-
-            window.Show();
+            return (ListCollectionView)CollectionViewSource.GetDefaultView(((ListView)p).ItemsSource);
         }
     }
 }

@@ -1,17 +1,15 @@
-﻿<Window x:Class="FontViewer.MainWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition />
-            <ColumnDefinition />
-            <ColumnDefinition />
-        </Grid.ColumnDefinitions>
-        <ListBox Grid.Column="0" ItemsSource="{x:Static Fonts.SystemFontFamilies}" Style="{StaticResource ObjectListListBoxStyle}" />
-        <ListBox Grid.Column="1" ItemsSource="{x:Static Fonts.SystemTypefaces}" Style="{StaticResource ObjectListListBoxStyle}">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <TextBlock Text="{Binding Style}" />
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
-    </Grid>
+﻿<Window x:Class="FontViewer.MainWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Title="Font Viewer" Height="350" Width="525">
+    <TabControl>
+        <TabItem Header="System Font Families">
+            <ListView ItemsSource="{x:Static Fonts.SystemFontFamilies}" ItemContainerStyle="{StaticResource ObjectListBoxItemStyle}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Source" DisplayMemberBinding="{Binding Source}" />
+                        <GridViewColumn Header="Baseline" DisplayMemberBinding="{Binding Baseline}" />
+                        <GridViewColumn Header="LineSpacing" DisplayMemberBinding="{Binding LineSpacing}" />
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </TabItem>
+    </TabControl>
 </Window>
