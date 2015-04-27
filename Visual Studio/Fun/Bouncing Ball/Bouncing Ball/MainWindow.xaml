@@ -5,7 +5,7 @@
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
-        <Canvas Grid.Column="0" MinHeight="{Binding BallSize}" Background="{Binding Background}" RenderTransformOrigin="0.5 0.5" SizeChanged="Canvas_SizeChanged">
+        <Canvas x:Name="MainCanvas" Grid.Column="0" MinHeight="{Binding BallSize}" Background="{Binding Background}" RenderTransformOrigin="0.5 0.5" SizeChanged="Canvas_SizeChanged">
             <Canvas.RenderTransform>
                 <ScaleTransform ScaleY="-1" />
             </Canvas.RenderTransform>

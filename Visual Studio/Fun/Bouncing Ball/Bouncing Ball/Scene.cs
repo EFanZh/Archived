@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Windows;
 using System.Windows.Media;
 
 namespace BouncingBall
@@ -19,19 +22,26 @@ namespace BouncingBall
         private double ballY;
         private double time;
 
-        private Func<double> xFunc;
-        private Func<double> yFunc;
+        private Func<double, double> xFunc;
+        private Func<double, double> yFunc;
+        private readonly FixedSizeQueue<KeyValuePair<int, double>> afterimageListX = new FixedSizeQueue<KeyValuePair<int, double>>();
+        private readonly FixedSizeQueue<KeyValuePair<int, double>> afterimageListY = new FixedSizeQueue<KeyValuePair<int, double>>();
+        private int afterimageCount;
+        private double afterimageInterval;
+        private int lastAfterimage = 0;
 
         public Scene()
         {
             Background = new SolidColorBrush(Colors.Beige);
-            GravitationalAcceleration = 100;
+            GravitationalAcceleration = 2000;
             BallSize = 64;
             BallBrush = new SolidColorBrush(Colors.SkyBlue);
             BallInitialLocationX = 1000;
-            BallInitialLocationY = 600;
-            BallInitialSpeedX = 100;
+            BallInitialLocationY = 800;
+            BallInitialSpeedX = 700;
             BallInitialSpeedY = 0;
+            AfterimageCount = 60;
+            AfterimageInterval = 0.02;
         }
 
         public double Width
@@ -79,6 +89,36 @@ namespace BouncingBall
                 gravitationalAcceleration = value;
 
                 UpdateYFunc();
+            }
+        }
+
+        public int AfterimageCount
+        {
+            get
+            {
+                return afterimageCount;
+            }
+            set
+            {
+                afterimageCount = value;
+
+                UpdateAfterimageX();
+                UpdateAfterimageY();
+            }
+        }
+
+        public double AfterimageInterval
+        {
+            get
+            {
+                return afterimageInterval;
+            }
+            set
+            {
+                afterimageInterval = value;
+
+                UpdateAfterimageX();
+                UpdateAfterimageY();
             }
         }
 
@@ -187,6 +227,14 @@ namespace BouncingBall
             }
         }
 
+        public IEnumerable<KeyValuePair<int, Point>> Afterimages
+        {
+            get
+            {
+                return afterimageListX.Zip(afterimageListY, (x, y) => new KeyValuePair<int, Point>(x.Key, new Point(x.Value, y.Value)));
+            }
+        }
+
         public double Time
         {
             get
@@ -197,8 +245,11 @@ namespace BouncingBall
             {
                 time = value;
 
-                BallX = xFunc();
-                BallY = yFunc();
+                UpdateAfterimageX();
+                BallX = xFunc(Time);
+
+                UpdateAfterimageY();
+                BallY = yFunc(Time);
 
                 OnPropertyChanged();
             }
@@ -219,9 +270,9 @@ namespace BouncingBall
             double halfP = Width - BallSize;
             double p = halfP * 2.0;
 
-            xFunc = () =>
+            xFunc = t =>
             {
-                double x = PositiveMod(BallInitialLocationX + BallInitialSpeedX * Time, p);
+                double x = PositiveMod(BallInitialLocationX + BallInitialSpeedX * t, p);
 
                 if (x > halfP)
                 {
@@ -231,7 +282,7 @@ namespace BouncingBall
                 return x;
             };
 
-            BallX = xFunc();
+            BallX = xFunc(Time);
         }
 
         private void UpdateYFunc()
@@ -243,15 +294,37 @@ namespace BouncingBall
             var offset = (BallInitialSpeedY + maxV) / GravitationalAcceleration; // (v0 - (-maxV)) / g
             var p = (maxV - minV) * 2.0 / GravitationalAcceleration;
 
-            yFunc = () =>
+            yFunc = t =>
             {
-                var x = (Time + offset) % p - p * 0.5;
+                var x = (t + offset) % p - p * 0.5;
                 var v = x * GravitationalAcceleration + (x < 0 ? -minV : minV);
 
                 return (e0 - v * v * 0.5) / GravitationalAcceleration;
             };
 
-            BallY = yFunc();
+            BallY = yFunc(Time);
+        }
+
+        private void UpdateAfterimageX()
+        {
+            UpdateAfterimage(afterimageListX, xFunc);
+        }
+
+        private void UpdateAfterimageY()
+        {
+            UpdateAfterimage(afterimageListY, yFunc);
+        }
+
+        private void UpdateAfterimage(FixedSizeQueue<KeyValuePair<int, double>> afterimages, Func<double, double> func)
+        {
+            afterimages.MaxCount = AfterimageCount;
+
+            int n = (int)Math.Floor(Time / afterimageInterval);
+
+            for (int i = lastAfterimage + 1; i <= n; i++)
+            {
+                afterimages.Enqueue(new KeyValuePair<int, double>(i, func(afterimageInterval * i)));
+            }
         }
 
         private static double PositiveMod(double x, double y)
