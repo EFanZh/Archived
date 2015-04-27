@@ -300,6 +300,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "012. Integer to Roman", "01
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "013. Roman to Integer", "013. Roman to Integer\013. Roman to Integer.vcxproj", "{BE5C31BA-6248-4171-B907-C499B6FB3330}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "024. Swap Nodes in Pairs", "024. Swap Nodes in Pairs\024. Swap Nodes in Pairs.vcxproj", "{F033EEF0-74A1-4051-A8AB-1A362E82EBE8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -886,6 +888,10 @@ Global
 		{BE5C31BA-6248-4171-B907-C499B6FB3330}.Debug|Win32.Build.0 = Debug|Win32
 		{BE5C31BA-6248-4171-B907-C499B6FB3330}.Release|Win32.ActiveCfg = Release|Win32
 		{BE5C31BA-6248-4171-B907-C499B6FB3330}.Release|Win32.Build.0 = Release|Win32
+		{F033EEF0-74A1-4051-A8AB-1A362E82EBE8}.Debug|Win32.ActiveCfg = Debug|Win32
+		{F033EEF0-74A1-4051-A8AB-1A362E82EBE8}.Debug|Win32.Build.0 = Debug|Win32
+		{F033EEF0-74A1-4051-A8AB-1A362E82EBE8}.Release|Win32.ActiveCfg = Release|Win32
+		{F033EEF0-74A1-4051-A8AB-1A362E82EBE8}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -1036,5 +1042,6 @@ Global
 		{20F071A8-BAC4-4672-A1CB-F55EED523C30} = {57387E8D-D6F8-4B26-98FA-B25DF670DEB6}
 		{E71D9443-A95E-4935-A2E1-D9FF3406D79C} = {57387E8D-D6F8-4B26-98FA-B25DF670DEB6}
 		{BE5C31BA-6248-4171-B907-C499B6FB3330} = {57387E8D-D6F8-4B26-98FA-B25DF670DEB6}
+		{F033EEF0-74A1-4051-A8AB-1A362E82EBE8} = {57387E8D-D6F8-4B26-98FA-B25DF670DEB6}
 	EndGlobalSection
 EndGlobal
