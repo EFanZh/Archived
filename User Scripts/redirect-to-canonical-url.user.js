@@ -10,8 +10,24 @@
 
 var filters =
 [
-    msdnFilter
+    msdnFilter,
+    createRegexFilter(/^https?:\/\/www\.imdb\.com/)
 ];
+
+function createRegexFilter(regex)
+{
+    return function (url)
+    {
+        if (regex.test(url))
+        {
+            return { handled: true, url: url };
+        }
+        else
+        {
+            return { handled: false };
+        }
+    };
+}
 
 function msdnFilter(url)
 {
@@ -42,14 +58,13 @@ function redirect()
 
             if (result.handled)
             {
-                url = result.url;
-                break;
-            }
-        }
+                if (window.location.href != result.url)
+                {
+                    window.location.href = result.url;
+                }
 
-        if (window.location.href != url)
-        {
-            window.location.href = url;
+                return;
+            }
         }
     }
 }
