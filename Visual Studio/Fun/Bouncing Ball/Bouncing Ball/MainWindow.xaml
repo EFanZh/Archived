@@ -9,7 +9,7 @@
             <Canvas.RenderTransform>
                 <ScaleTransform ScaleY="-1" />
             </Canvas.RenderTransform>
-            <Ellipse Canvas.Left="{Binding BallX}" Canvas.Top="{Binding BallY}" Width="{Binding BallSize}" Height="{Binding BallSize}" Fill="{Binding BallBrush}" />
+            <Ellipse Canvas.Left="{Binding BallX}" Canvas.Top="{Binding BallY}" Width="{Binding BallSize}" Height="{Binding BallSize}" Fill="{Binding BallBrush}" StrokeThickness="{Binding BallStrokeThickness}" Stroke="{Binding BallStroke}" />
         </Canvas>
         <GridSplitter Grid.Column="1" HorizontalAlignment="Center" Width="5" />
         <Grid Grid.Column="2"></Grid>

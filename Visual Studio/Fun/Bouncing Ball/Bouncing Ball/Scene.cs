@@ -33,15 +33,17 @@ namespace BouncingBall
         public Scene()
         {
             Background = new SolidColorBrush(Colors.Beige);
-            GravitationalAcceleration = 2000;
+            GravitationalAcceleration = 10.0;
             BallSize = 64;
             BallBrush = new SolidColorBrush(Colors.SkyBlue);
-            BallInitialLocationX = 1000;
-            BallInitialLocationY = 800;
-            BallInitialSpeedX = 700;
+            BallStrokeThickness = 2.0;
+            BallStroke = new SolidColorBrush(Colors.DarkCyan);
+            BallInitialLocationX = 0.0;
+            BallInitialLocationY = 800.0;
+            BallInitialSpeedX = 40.0;
             BallInitialSpeedY = 0;
             AfterimageCount = 60;
-            AfterimageInterval = 0.02;
+            AfterimageInterval = 0.25;
         }
 
         public double Width
@@ -138,6 +140,18 @@ namespace BouncingBall
         }
 
         public Brush BallBrush
+        {
+            get;
+            set;
+        }
+
+        public double BallStrokeThickness
+        {
+            get;
+            set;
+        }
+
+        public Brush BallStroke
         {
             get;
             set;

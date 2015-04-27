@@ -16,6 +16,7 @@ namespace BouncingBall
         private readonly Scene scene = new Scene();
         private readonly DateTime startTime = DateTime.Now;
         private readonly List<Ellipse> afterimages = new List<Ellipse>();
+        private int frame = 0;
 
         public MainWindow()
         {
@@ -30,13 +31,13 @@ namespace BouncingBall
                 Width = scene.BallSize,
                 Height = scene.BallSize,
                 Fill = scene.BallBrush,
-                Stroke = new SolidColorBrush(Colors.Aqua),
-                StrokeThickness = 2.0
+                StrokeThickness = scene.BallStrokeThickness,
+                Stroke = scene.BallStroke
             }));
 
             foreach (var afterimage in afterimages)
             {
-                MainCanvas.Children.Add(afterimage);
+                MainCanvas.Children.Insert(MainCanvas.Children.Count - 1, afterimage);
             }
         }
 
@@ -51,6 +52,9 @@ namespace BouncingBall
         private void CompositionTarget_Rendering(object sender, EventArgs e)
         {
             double time = (DateTime.Now - startTime).TotalSeconds;
+            ++frame;
+
+            App.Current.MainWindow.Title = (frame / time).ToString();
 
             scene.Time = time;
 
@@ -61,7 +65,7 @@ namespace BouncingBall
                 afterimages[i].Visibility = Visibility.Visible;
                 afterimages[i].SetValue(Canvas.LeftProperty, afterImagePositions[i].Value.X);
                 afterimages[i].SetValue(Canvas.TopProperty, afterImagePositions[i].Value.Y);
-                afterimages[i].Opacity = 1.0 - ((time - scene.AfterimageInterval * afterImagePositions[i].Key)) / (scene.AfterimageInterval * scene.AfterimageCount);
+                afterimages[i].Opacity = 0.382 * (1.0 - ((time - scene.AfterimageInterval * afterImagePositions[i].Key)) / (scene.AfterimageInterval * scene.AfterimageCount));
             }
 
             for (int i = afterImagePositions.Length; i < afterimages.Count; i++)
