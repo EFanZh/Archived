@@ -1,56 +1,40 @@
 using System;
+using FontRegistryTools.Shared;
 using Microsoft.Win32;
 
 namespace CheckFontRegistry
 {
-    internal class Program
+    internal static class Program
     {
-        private static void Main(string[] args)
+        private static void Main()
         {
-            string tt_postfix = " (TrueType)";
-            string ot_postfix = " (OpenType)";
-            string[] tt_ext = new string[] { ".ttf", ".ttc" };
-            string[] ot_ext = new string[] { ".otf" };
-            var key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts");
-            foreach (var name in key.GetValueNames())
-            {
-                var value = key.GetValue(name) as string;
-                if (IsMatchValue(value, tt_ext))
-                {
-                    if (!IsMatchName(name, tt_postfix))
-                    {
-                        Console.WriteLine("{0} : {1}", name, value);
-                    }
-                }
-                else if (IsMatchValue(value, ot_ext))
-                {
-                    if (!IsMatchName(name, ot_postfix))
-                    {
-                        Console.WriteLine("{0} : {1}", name, value);
-                    }
-                }
-            }
-        }
+            var key = Utility.GetFontRegistryKey(RegistryKeyPermissionCheck.Default);
 
-        private static bool IsMatchValue(string value, string[] exts)
-        {
-            foreach (var ext in exts)
+            foreach (var font in Utility.GetFontList(key))
             {
-                if (value.EndsWith(ext, StringComparison.OrdinalIgnoreCase))
+                var result = Utility.Process(font.Key, font.Value);
+
+                switch (result.Item1)
                 {
-                    return true;
+                    case ProcessResult.Fixed:
+                        Console.Write("[");
+                        Utility.WriteColoredText(ConsoleColor.Green, "Can Fix");
+                        Console.Write("]\nOld: \"");
+                        Utility.WriteColoredText(ConsoleColor.DarkYellow, font.Key);
+                        Console.Write("\" = \"{0}\"\nNew: \"", font.Value);
+                        Utility.WriteColoredText(ConsoleColor.DarkCyan, result.Item2);
+                        Console.WriteLine("\" = \"{0}\"\n", font.Value);
+                        break;
+
+                    case ProcessResult.Unfixed:
+                        Console.Write("[");
+                        Utility.WriteColoredText(ConsoleColor.Red, "Cannot Fix");
+                        Console.Write("]\nOld: \"");
+                        Utility.WriteColoredText(ConsoleColor.DarkYellow, font.Key);
+                        Console.WriteLine("\" = \"{0}\"\n", font.Value);
+                        break;
                 }
             }
-            return false;
-        }
-
-        private static bool IsMatchName(string name, string postfix)
-        {
-            if (name.EndsWith(postfix, StringComparison.OrdinalIgnoreCase))
-            {
-                return true;
-            }
-            return false;
         }
     }
 }

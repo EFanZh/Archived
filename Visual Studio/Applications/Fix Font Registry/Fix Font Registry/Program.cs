@@ -1,73 +1,33 @@
 using System;
+using FontRegistryTools.Shared;
 using Microsoft.Win32;
 
 namespace FixFontRegistry
 {
-    internal class Program
+    internal static class Program
     {
-        private static void Main(string[] args)
+        private static void Main()
         {
-            string tt_postfix = " (TrueType)";
-            string ot_postfix = " (OpenType)";
-            string[] tt_ext = new string[] { ".ttf", ".ttc" };
-            string[] ot_ext = new string[] { ".otf" };
-            var key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts", RegistryKeyPermissionCheck.ReadWriteSubTree);
-            foreach (var name in key.GetValueNames())
-            {
-                var value = key.GetValue(name) as string;
-                if (IsMatchValue(value, tt_ext))
-                {
-                    if (!IsMatchName(name, tt_postfix))
-                    {
-                        Console.WriteLine("{0} : {1}", name, value);
-                        if (IsMatchName(name, ot_postfix))
-                        {
-                            RenameRegistryValue(key, name, name.Substring(0, name.Length - ot_postfix.Length) + tt_postfix);
-                            Console.WriteLine("Fixed.", name, value);
-                        }
-                    }
-                }
-                else if (IsMatchValue(value, ot_ext))
-                {
-                    if (!IsMatchName(name, ot_postfix))
-                    {
-                        Console.WriteLine("{0} : {1}", name, value);
-                        if (IsMatchName(name, tt_postfix))
-                        {
-                            RenameRegistryValue(key, name, name.Substring(0, name.Length - tt_postfix.Length) + ot_postfix);
-                            Console.WriteLine("Fixed.", name, value);
-                        }
-                    }
-                }
-            }
-            Console.ReadLine();
-        }
+            var key = Utility.GetFontRegistryKey(RegistryKeyPermissionCheck.ReadWriteSubTree);
 
-        private static bool IsMatchValue(string value, string[] exts)
-        {
-            foreach (var ext in exts)
+            foreach (var font in Utility.GetFontList(key))
             {
-                if (value.EndsWith(ext, StringComparison.OrdinalIgnoreCase))
+                var result = Utility.Process(font.Key, font.Value);
+
+                if (result.Item1 != ProcessResult.Fixed)
                 {
-                    return true;
+                    continue;
                 }
-            }
-            return false;
-        }
 
-        private static bool IsMatchName(string name, string postfix)
-        {
-            if (name.EndsWith(postfix, StringComparison.OrdinalIgnoreCase))
-            {
-                return true;
+                Utility.RenameFontName(key, font.Key, result.Item2, font.Value);
+                Console.Write("[");
+                Utility.WriteColoredText(ConsoleColor.Green, "Fixed");
+                Console.Write("]\nOld: \"");
+                Utility.WriteColoredText(ConsoleColor.DarkYellow, font.Key);
+                Console.Write("\" = \"{0}\"\nNew: \"", font.Value);
+                Utility.WriteColoredText(ConsoleColor.DarkCyan, result.Item2);
+                Console.WriteLine("\" = \"{0}\"\n", font.Value);
             }
-            return false;
-        }
-
-        public static void RenameRegistryValue(RegistryKey key, string name, string new_name)
-        {
-            key.SetValue(new_name, key.GetValue(name));
-            key.DeleteValue(name);
         }
     }
 }

@@ -1,9 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fix Font Registry", "Fix Font Registry\Fix Font Registry.csproj", "{823A9681-7D7E-45FC-A2AB-EC1207DD2E63}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Check Font Registry", "Check Font Registry\Check Font Registry.csproj", "{DA8B6978-0C56-4F64-AB7A-6E576103CA36}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FontRegistryTools.Shared", "FontRegistryTools.Shared\FontRegistryTools.Shared.csproj", "{F3634C5E-76F8-4C21-ABBF-33A968DD426C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,6 +23,10 @@ Global
 		{DA8B6978-0C56-4F64-AB7A-6E576103CA36}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DA8B6978-0C56-4F64-AB7A-6E576103CA36}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DA8B6978-0C56-4F64-AB7A-6E576103CA36}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3634C5E-76F8-4C21-ABBF-33A968DD426C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3634C5E-76F8-4C21-ABBF-33A968DD426C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3634C5E-76F8-4C21-ABBF-33A968DD426C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3634C5E-76F8-4C21-ABBF-33A968DD426C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
