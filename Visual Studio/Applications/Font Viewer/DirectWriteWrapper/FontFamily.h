@@ -1,6 +1,7 @@
 ﻿#pragma once
 
 #include "ComObject.h"
+#include "LocalizedStrings.h"
 
 namespace DirectWriteWrapper
 {
@@ -8,5 +9,7 @@ namespace DirectWriteWrapper
     {
     public:
         FontFamily(::IUnknown *fontFamily);
+
+        LocalizedStrings ^GetFamilyNames();
     };
 }

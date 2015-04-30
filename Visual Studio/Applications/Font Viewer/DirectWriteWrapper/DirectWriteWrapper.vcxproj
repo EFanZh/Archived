@@ -87,6 +87,7 @@
     <ClInclude Include="FontCollection.h" />
     <ClInclude Include="FontFamily.h" />
     <ClInclude Include="LocalizedStrings.h" />
+    <ClInclude Include="ComReadOnlyList.h" />
     <ClInclude Include="Stdafx.h" />
   </ItemGroup>
   <ItemGroup>

@@ -17,7 +17,7 @@ namespace Test
         {
             InitializeComponent();
 
-            var k = factory.GetSystemFontCollection(true);
+            var k = factory.GetSystemFontCollection(true)[4].GetFamilyNames();
         }
 
         private void ListBoxItem_MouseDoubleClick(object sender, MouseButtonEventArgs e)
