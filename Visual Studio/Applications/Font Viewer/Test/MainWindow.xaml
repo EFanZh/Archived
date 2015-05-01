@@ -1,5 +1,3 @@
 ﻿<Window x:Class="Test.MainWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <ListBox>
-        <ListBoxItem MouseDoubleClick="ListBoxItem_MouseDoubleClick" Content="Test" />
-    </ListBox>
+    <FlowDocumentReader Document="{Binding Document, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" />
 </Window>

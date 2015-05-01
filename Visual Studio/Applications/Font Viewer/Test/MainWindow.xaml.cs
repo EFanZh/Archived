@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Linq;
 using System.Threading;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Documents;
 using System.Windows.Input;
-using DirectWriteWrapper;
+using System.Windows.Media;
 
 namespace Test
 {
@@ -11,18 +14,17 @@ namespace Test
     /// </summary>
     public partial class MainWindow : Window
     {
-        private static Factory factory = new Factory(FactoryType.Shared);
-
         public MainWindow()
         {
             InitializeComponent();
 
-            var k = factory.GetSystemFontCollection(true)[4].GetFamilyNames();
+            Document = new FontListDocument(Fonts.SystemFontFamilies.OrderBy(f => f.FamilyNames.First().Value));
         }
 
-        private void ListBoxItem_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        public FlowDocument Document
         {
-            this.Dispatcher.BeginInvoke(new Action(() => (new Window()).Show()));
+            get;
+            private set;
         }
     }
 }

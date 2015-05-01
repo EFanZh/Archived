@@ -39,6 +39,24 @@
     <ClInclude Include="ComReadOnlyList.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="FontList.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Font.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="InformationalStringId.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FontWeight.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FontStyle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FontStretch.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.cpp">
@@ -57,6 +75,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="LocalizedStrings.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FontList.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Font.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

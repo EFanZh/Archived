@@ -2,6 +2,7 @@
 
 #include "ComObject.h"
 #include "LocalizedStrings.h"
+#include "FontList.h"
 
 namespace DirectWriteWrapper
 {
@@ -10,6 +11,12 @@ namespace DirectWriteWrapper
     public:
         FontFamily(::IUnknown *fontFamily);
 
-        LocalizedStrings ^GetFamilyNames();
+        property LocalizedStrings ^FamilyNames
+        {
+            LocalizedStrings ^get();
+        }
+
+        Font ^GetFirstMatchingFont(FontWeight weight, FontStretch stretch, FontStyle style);
+        FontList ^GetMatchingFonts(FontWeight weight, FontStretch stretch, FontStyle style);
     };
 }
