@@ -4,7 +4,6 @@
 
 #pragma once
 
-#include <vector>
 #include <dwrite_2.h>
 #include <vcclr.h>
 

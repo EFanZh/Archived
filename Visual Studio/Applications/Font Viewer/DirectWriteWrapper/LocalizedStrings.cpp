@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "LocalizedStrings.h"
+#include "Buffer.h"
 
 using namespace System::Text;
 
@@ -17,11 +18,11 @@ namespace DirectWriteWrapper
 
         this->GetComObject()->GetLocaleNameLength(index, &length);
 
-        std::vector<WCHAR> buffer(length + 1);
+        Buffer<WCHAR> buffer(length + 1);
 
-        this->GetComObject()->GetLocaleName(index, buffer.data(), buffer.size());
+        this->GetComObject()->GetLocaleName(index, buffer.GetBuffer(), buffer.GetSize());
 
-        return gcnew String(buffer.data());
+        return gcnew String(buffer.GetBuffer());
     }
 
     int LocalizedStrings::LocaleNameList::Count::get()
@@ -41,11 +42,11 @@ namespace DirectWriteWrapper
 
         this->GetComObject()->GetStringLength(index, &length);
 
-        std::vector<WCHAR> buffer(length + 1);
+        Buffer<WCHAR> buffer(length + 1);
 
-        this->GetComObject()->GetString(index, buffer.data(), buffer.size());
+        this->GetComObject()->GetString(index, buffer.GetBuffer(), buffer.GetSize());
 
-        return gcnew String(buffer.data());
+        return gcnew String(buffer.GetBuffer());
     }
 
     int LocalizedStrings::StringList::Count::get()

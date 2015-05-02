@@ -79,6 +79,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Buffer.h" />
     <ClInclude Include="ComObject.h" />
     <ClInclude Include="FactoryType.h" />
     <ClInclude Include="Factory.h" />
