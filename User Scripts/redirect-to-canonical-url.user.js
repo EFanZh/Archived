@@ -11,7 +11,7 @@
 var filters =
 [
     msdnFilter,
-    createRegexFilter(/^https?:\/\/www\.imdb\.com/)
+    createRegexFilter(/^https?:\/\/www\.imdb\.com\/(name|title)\//)
 ];
 
 function createRegexFilter(regex)

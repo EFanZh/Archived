@@ -52,6 +52,7 @@ namespace Sorting
             this.toolStripMenuItemQuickSort = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemStandardQuickSort = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemRandomizedQuickSort = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemXSort = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButtonCancelOperation = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonInstantUpdate = new System.Windows.Forms.ToolStripButton();
@@ -158,7 +159,8 @@ namespace Sorting
             this.toolStripMenuItemMergeSort,
             this.toolStripMenuItemBubbleSort,
             this.toolStripMenuItemHeapSort,
-            this.toolStripMenuItemQuickSort});
+            this.toolStripMenuItemQuickSort,
+            this.toolStripMenuItemXSort});
             this.toolStripSplitButtonSort.Enabled = false;
             this.toolStripSplitButtonSort.Image = ((System.Drawing.Image)(resources.GetObject("toolStripSplitButtonSort.Image")));
             this.toolStripSplitButtonSort.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -255,6 +257,12 @@ namespace Sorting
             this.toolStripMenuItemRandomizedQuickSort.Size = new System.Drawing.Size(198, 22);
             this.toolStripMenuItemRandomizedQuickSort.Text = "Randomized Quick Sort";
             // 
+            // toolStripMenuItemXSort
+            // 
+            this.toolStripMenuItemXSort.Name = "toolStripMenuItemXSort";
+            this.toolStripMenuItemXSort.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItemXSort.Text = "X Sort";
+            // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
@@ -347,6 +355,7 @@ namespace Sorting
         private System.Windows.Forms.ToolStripButton toolStripButtonInstantUpdate;
         private System.Windows.Forms.ToolStripTextBox toolStripTextBoxRestTime;
         private System.Windows.Forms.ToolStripLabel toolStripLabelRestTime;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemXSort;
     }
 }
 

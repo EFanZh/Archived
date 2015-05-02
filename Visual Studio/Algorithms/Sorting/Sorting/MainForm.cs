@@ -29,6 +29,7 @@ namespace Sorting
             AssociateToolStripMenuItemSortHandlers<BubbleSort2Manager>(toolStripMenuItemBubbleSort2);
             AssociateToolStripMenuItemSortHandlers<HeapSortManager>(toolStripMenuItemHeapSort);
             AssociateToolStripMenuItemSortHandlers<StandardQuickSortManager>(toolStripMenuItemStandardQuickSort);
+            AssociateToolStripMenuItemSortHandlers<XSortManager>(toolStripMenuItemXSort);
             AssociateToolStripMenuItemSortHandlers<RandomizedQuickSortManager>(toolStripMenuItemRandomizedQuickSort);
 
             PropertyInfo pi = panelDisplay.GetType().GetProperty("DoubleBuffered", BindingFlags.Instance | BindingFlags.NonPublic);
