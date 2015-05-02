@@ -45,9 +45,10 @@ namespace DirectWriteWrapper
         LocaleNameList ^localeNameList;
         StringList ^stringList;
 
-    public:
+    internal:
         LocalizedStrings(::IDWriteLocalizedStrings *localizedStrings);
 
+    public:
         property String ^default[String ^]
         {
             virtual String ^get(String ^key);

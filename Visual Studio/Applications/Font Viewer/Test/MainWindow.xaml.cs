@@ -1,11 +1,4 @@
-﻿using System;
-using System.Linq;
-using System.Threading;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
+﻿using System.Windows;
 
 namespace Test
 {
@@ -17,14 +10,6 @@ namespace Test
         public MainWindow()
         {
             InitializeComponent();
-
-            Document = new FontListDocument(Fonts.SystemFontFamilies.OrderBy(f => f.FamilyNames.First().Value));
-        }
-
-        public FlowDocument Document
-        {
-            get;
-            private set;
         }
     }
 }

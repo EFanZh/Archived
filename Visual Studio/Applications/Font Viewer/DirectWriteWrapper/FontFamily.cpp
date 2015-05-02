@@ -3,7 +3,7 @@
 
 namespace DirectWriteWrapper
 {
-    FontFamily::FontFamily(::IUnknown *fontFamily) : ComObject(fontFamily)
+    FontFamily::FontFamily(::IDWriteFontFamily *fontFamily) : ComObject(fontFamily)
     {
     }
 

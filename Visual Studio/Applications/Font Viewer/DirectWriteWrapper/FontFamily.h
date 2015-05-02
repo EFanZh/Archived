@@ -8,9 +8,10 @@ namespace DirectWriteWrapper
 {
     public ref class FontFamily : public ComObject < ::IDWriteFontFamily >
     {
-    public:
-        FontFamily(::IUnknown *fontFamily);
+    internal:
+        FontFamily(::IDWriteFontFamily *fontFamily);
 
+    public:
         property LocalizedStrings ^FamilyNames
         {
             LocalizedStrings ^get();

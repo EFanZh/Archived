@@ -8,9 +8,10 @@ namespace DirectWriteWrapper
 {
     public ref class FontList : ComReadOnlyList < ::IDWriteFontList, Font ^ >
     {
-    public:
+    internal:
         FontList(::IDWriteFontList *fontList);
 
+    public:
         property Font ^default[int]
         {
             virtual Font ^get(int index) override;

@@ -18,7 +18,7 @@ namespace GenerateFontList
 
             StringBuilder stringBuilder = new StringBuilder();
 
-            fontFamilies.First().ToLaTeX(stringBuilder, 1);
+            fontFamilies.First().ToLaTeX(stringBuilder, 0);
 
             foreach (var fontFamily in fontFamilies.Skip(1))
             {

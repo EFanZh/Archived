@@ -10,9 +10,10 @@ namespace DirectWriteWrapper
 {
     public ref class FontCollection : ComReadOnlyList < ::IDWriteFontCollection, FontFamily ^ >
     {
-    public:
+    internal:
         FontCollection(::IDWriteFontCollection *fontCollection);
 
+    public:
         property FontFamily ^default[int]
         {
             virtual FontFamily ^get(int index) override;
