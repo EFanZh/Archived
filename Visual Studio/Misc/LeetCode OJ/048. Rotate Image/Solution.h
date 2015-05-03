@@ -9,10 +9,11 @@ public:
 
         for (size_t level = 0; level < levels; ++level)
         {
-            for (size_t i = level; i < matrix.size() - 1 - level; ++i)
+            size_t level2 = matrix.size() - 1 - level;
+
+            for (size_t i = level; i < level2; ++i)
             {
                 size_t i2 = matrix.size() - 1 - i;
-                size_t level2 = matrix.size() - 1 - level;
                 int saved = matrix[level][i];
 
                 matrix[level][i] = matrix[i2][level];
