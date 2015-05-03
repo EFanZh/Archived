@@ -310,6 +310,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "046. Permutations", "046. P
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "058. Length of Last Word", "058. Length of Last Word\058. Length of Last Word.vcxproj", "{26BAFDD2-DD28-4185-B8A7-68034E2306CE}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "048. Rotate Image", "048. Rotate Image\048. Rotate Image.vcxproj", "{C7C88210-19BB-438E-847D-9E1B87934D93}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -916,6 +918,10 @@ Global
 		{26BAFDD2-DD28-4185-B8A7-68034E2306CE}.Debug|Win32.Build.0 = Debug|Win32
 		{26BAFDD2-DD28-4185-B8A7-68034E2306CE}.Release|Win32.ActiveCfg = Release|Win32
 		{26BAFDD2-DD28-4185-B8A7-68034E2306CE}.Release|Win32.Build.0 = Release|Win32
+		{C7C88210-19BB-438E-847D-9E1B87934D93}.Debug|Win32.ActiveCfg = Debug|Win32
+		{C7C88210-19BB-438E-847D-9E1B87934D93}.Debug|Win32.Build.0 = Debug|Win32
+		{C7C88210-19BB-438E-847D-9E1B87934D93}.Release|Win32.ActiveCfg = Release|Win32
+		{C7C88210-19BB-438E-847D-9E1B87934D93}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -1071,5 +1077,6 @@ Global
 		{35F1ED1A-2FA0-4150-A816-3304F42767D2} = {57387E8D-D6F8-4B26-98FA-B25DF670DEB6}
 		{E24C221A-2EA4-4AB5-A8CA-353EC2E4F7E4} = {57387E8D-D6F8-4B26-98FA-B25DF670DEB6}
 		{26BAFDD2-DD28-4185-B8A7-68034E2306CE} = {57387E8D-D6F8-4B26-98FA-B25DF670DEB6}
+		{C7C88210-19BB-438E-847D-9E1B87934D93} = {57387E8D-D6F8-4B26-98FA-B25DF670DEB6}
 	EndGlobalSection
 EndGlobal
