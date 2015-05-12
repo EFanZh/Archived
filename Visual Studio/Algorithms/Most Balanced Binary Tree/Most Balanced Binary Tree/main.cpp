@@ -342,7 +342,7 @@ int main()
 
     for (int i = 0; i < 10000000; ++i)
     {
-        TreeNode::Insert(root, rand(), 0);
+        TreeNode::Insert(root, i, i);
 
         if (root->IsValid(numeric_limits<int>::min(), numeric_limits<int>::max()).first)
         {

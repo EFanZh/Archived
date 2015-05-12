@@ -1,6 +1,9 @@
-﻿internal class Program
+﻿namespace CSharpConsoleTest
 {
-    private static void Main()
+    internal class Program
     {
+        private static void Main()
+        {
+        }
     }
 }

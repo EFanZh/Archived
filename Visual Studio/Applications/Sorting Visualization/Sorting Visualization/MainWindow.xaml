@@ -1,0 +1,45 @@
+﻿<Window x:Class="SortingVisualization.MainWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Title="MainWindow" Height="350" Width="525">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.618*" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="1.0*" />
+        </Grid.ColumnDefinitions>
+        <Image Grid.Column="0">
+            <Image.Source>
+                <DrawingImage>
+                    <DrawingImage.Drawing>
+                        <DrawingGroup x:Name="SceneDrawingGroup" />
+                    </DrawingImage.Drawing>
+                </DrawingImage>
+            </Image.Source>
+        </Image>
+        <GridSplitter Grid.Column="1" HorizontalAlignment="Center" Width="5.0" />
+        <StackPanel Grid.Column="2">
+            <GroupBox Header="Generate">
+                <StackPanel>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0" Content="Count:" />
+                        <Slider Grid.Column="1" />
+                        <TextBox Grid.Column="2" />
+                    </Grid>
+                    <StackPanel Orientation="Horizontal">
+                        <Button Content="Randomized" />
+                    </StackPanel>
+                </StackPanel>
+            </GroupBox>
+            <GroupBox Header="Manipulate">
+                <StackPanel>
+                    <Button Content="Inseration Sort" />
+                    <Separator />
+                    <Button Content="Cancel" />
+                </StackPanel>
+            </GroupBox>
+        </StackPanel>
+    </Grid>
+</Window>
