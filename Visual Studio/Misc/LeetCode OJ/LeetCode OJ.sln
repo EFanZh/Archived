@@ -334,6 +334,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "112. Path Sum", "112. Path 
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "114. Flatten Binary Tree to Linked List", "114. Flatten Binary Tree to Linked List\114. Flatten Binary Tree to Linked List.vcxproj", "{26C9683B-E3A3-4BEE-89FA-142D2ED73FE9}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "117. Populating Next Right Pointers in Each Node II", "117. Populating Next Right Pointers in Each Node II\117. Populating Next Right Pointers in Each Node II.vcxproj", "{3D989B0B-CB6F-426C-9A03-A577E9EE57BF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -988,6 +990,10 @@ Global
 		{26C9683B-E3A3-4BEE-89FA-142D2ED73FE9}.Debug|Win32.Build.0 = Debug|Win32
 		{26C9683B-E3A3-4BEE-89FA-142D2ED73FE9}.Release|Win32.ActiveCfg = Release|Win32
 		{26C9683B-E3A3-4BEE-89FA-142D2ED73FE9}.Release|Win32.Build.0 = Release|Win32
+		{3D989B0B-CB6F-426C-9A03-A577E9EE57BF}.Debug|Win32.ActiveCfg = Debug|Win32
+		{3D989B0B-CB6F-426C-9A03-A577E9EE57BF}.Debug|Win32.Build.0 = Debug|Win32
+		{3D989B0B-CB6F-426C-9A03-A577E9EE57BF}.Release|Win32.ActiveCfg = Release|Win32
+		{3D989B0B-CB6F-426C-9A03-A577E9EE57BF}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -1155,5 +1161,6 @@ Global
 		{77B76669-D4D5-4A19-BA7A-AB53BECCE631} = {57387E8D-D6F8-4B26-98FA-B25DF670DEB6}
 		{00379590-443E-4E45-BD43-E17D57D5C676} = {57387E8D-D6F8-4B26-98FA-B25DF670DEB6}
 		{26C9683B-E3A3-4BEE-89FA-142D2ED73FE9} = {57387E8D-D6F8-4B26-98FA-B25DF670DEB6}
+		{3D989B0B-CB6F-426C-9A03-A577E9EE57BF} = {57387E8D-D6F8-4B26-98FA-B25DF670DEB6}
 	EndGlobalSection
 EndGlobal

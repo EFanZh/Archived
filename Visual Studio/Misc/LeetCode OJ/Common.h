@@ -180,7 +180,9 @@ ListNode *MakeList(vector<unique_ptr<ListNode>> &pool, initializer_list<int> inp
     return head;
 }
 
-TreeNode *MakeTree(vector<unique_ptr<TreeNode>> &pool, istream &input)
+
+template <class T = TreeNode>
+T *MakeTree(vector<unique_ptr<T>> &pool, istream &input)
 {
     using namespace Detail;
 
@@ -198,14 +200,14 @@ TreeNode *MakeTree(vector<unique_ptr<TreeNode>> &pool, istream &input)
         return nullptr;
     }
 
-    TreeNode *root = nullptr;
-    queue<TreeNode **> q;
+    T *root = nullptr;
+    queue<T **> q;
 
     q.emplace(&root);
 
     while (!q.empty())
     {
-        TreeNode **item = q.front();
+        T **item = q.front();
 
         q.pop();
 
@@ -219,7 +221,7 @@ TreeNode *MakeTree(vector<unique_ptr<TreeNode>> &pool, istream &input)
 
             tie(x, c) = GetInteger(c, input);
 
-            pool.emplace_back(make_unique<TreeNode>(x));
+            pool.emplace_back(make_unique<T>(x));
 
             *item = pool.back().get();
             q.emplace(&(*item)->left);
