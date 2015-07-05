@@ -1,6 +1,6 @@
 #pragma once
 
-static const pair<int, const char *> letters[] =
+static const pair<int, string> letters[] =
 {
     { 1000, "M" },
     { 900, "CM" },
@@ -27,9 +27,7 @@ public:
 
         for (const auto &letter : letters)
         {
-            while (equal(s.cbegin() + i,
-                s.cbegin() + (i + letter.second.length()),
-                letter.second.cbegin()))
+            while (equal(s.cbegin() + i, s.cbegin() + (i + letter.second.length()), letter.second.cbegin()))
             {
                 result += letter.first;
                 i += letter.second.length();

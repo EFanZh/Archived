@@ -1,6 +1,5 @@
 #pragma once
 
-#include <cstdint>
 #include <array>
 #include <functional>
 #include <iostream>
@@ -13,6 +12,8 @@
 #include <sstream>
 #include <unordered_map>
 #include <unordered_set>
+
+#include <cstdint>
 
 using namespace std;
 
