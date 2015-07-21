@@ -10,17 +10,23 @@ namespace DirectWriteWrapper
 
     LocalizedStrings::LocaleNameList::LocaleNameList(::IDWriteLocalizedStrings *localizedStrings) : ComReadOnlyList(localizedStrings)
     {
+        // TODO:
+        localizedStrings->AddRef();
     }
 
     String ^LocalizedStrings::LocaleNameList::default::get(int index)
     {
         UINT32 length;
 
-        this->GetComObject()->GetLocaleNameLength(index, &length);
+        HRESULT hr = this->GetComObject()->GetLocaleNameLength(index, &length);
 
-        Buffer<WCHAR> buffer(length + 1);
+        assert(SUCCEEDED(hr));
 
-        this->GetComObject()->GetLocaleName(index, buffer.GetBuffer(), buffer.GetSize());
+        Buffer<WCHAR, UINT32> buffer(length + 1);
+
+        hr = this->GetComObject()->GetLocaleName(index, buffer.GetBuffer(), buffer.GetSize());
+
+        assert(SUCCEEDED(hr));
 
         return gcnew String(buffer.GetBuffer());
     }
@@ -34,17 +40,23 @@ namespace DirectWriteWrapper
 
     LocalizedStrings::StringList::StringList(::IDWriteLocalizedStrings *localizedStrings) : ComReadOnlyList(localizedStrings)
     {
+        // TODO:
+        localizedStrings->AddRef();
     }
 
     String ^LocalizedStrings::StringList::default::get(int index)
     {
         UINT32 length;
 
-        this->GetComObject()->GetStringLength(index, &length);
+        HRESULT hr = this->GetComObject()->GetStringLength(index, &length);
 
-        Buffer<WCHAR> buffer(length + 1);
+        assert(SUCCEEDED(hr));
 
-        this->GetComObject()->GetString(index, buffer.GetBuffer(), buffer.GetSize());
+        Buffer<WCHAR, UINT32> buffer(length + 1);
+
+        hr = this->GetComObject()->GetString(index, buffer.GetBuffer(), buffer.GetSize());
+
+        assert(SUCCEEDED(hr));
 
         return gcnew String(buffer.GetBuffer());
     }
@@ -73,8 +85,9 @@ namespace DirectWriteWrapper
         UINT32 index;
         BOOL exists;
         pin_ptr<const WCHAR> p = ::PtrToStringChars(key);
+        HRESULT hr = this->GetComObject()->FindLocaleName(p, &index, &exists);
 
-        this->GetComObject()->FindLocaleName(p, &index, &exists);
+        assert(SUCCEEDED(hr));
 
         return stringList[index];
     }
@@ -99,8 +112,9 @@ namespace DirectWriteWrapper
         UINT32 index;
         BOOL exists;
         pin_ptr<const WCHAR> p = ::PtrToStringChars(key);
+        HRESULT hr = this->GetComObject()->FindLocaleName(p, &index, &exists);
 
-        this->GetComObject()->FindLocaleName(p, &index, &exists);
+        assert(SUCCEEDED(hr));
 
         return exists ? true : false;
     }
@@ -110,8 +124,9 @@ namespace DirectWriteWrapper
         UINT32 index;
         BOOL exists;
         pin_ptr<const WCHAR> p = ::PtrToStringChars(key);
+        HRESULT hr = this->GetComObject()->FindLocaleName(p, &index, &exists);
 
-        this->GetComObject()->FindLocaleName(p, &index, &exists);
+        assert(SUCCEEDED(hr));
 
         if (!exists)
         {

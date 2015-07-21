@@ -9,8 +9,10 @@ namespace DirectWriteWrapper
     {
         ::IUnknown *unknown;
 
-        ::DWriteCreateFactory(static_cast<DWRITE_FACTORY_TYPE>(factoryType), __uuidof(IDWriteFactory), &unknown);
+        HRESULT hr = ::DWriteCreateFactory(static_cast<DWRITE_FACTORY_TYPE>(factoryType), __uuidof(IDWriteFactory), &unknown);
 
+        assert(SUCCEEDED(hr));
+        
         this->SetComObject(unknown);
     }
 
@@ -18,7 +20,9 @@ namespace DirectWriteWrapper
     {
         ::IDWriteFontCollection *fontCollection;
 
-        this->GetComObject()->GetSystemFontCollection(&fontCollection, checkForUpdates);
+        HRESULT hr = this->GetComObject()->GetSystemFontCollection(&fontCollection, checkForUpdates);
+
+        assert(SUCCEEDED(hr));
 
         return gcnew FontCollection(fontCollection);
     }

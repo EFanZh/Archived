@@ -12,7 +12,9 @@ namespace DirectWriteWrapper
     {
         ::IDWriteFontFamily *fontFamily;
 
-        this->GetComObject()->GetFontFamily(&fontFamily);
+        HRESULT hr = this->GetComObject()->GetFontFamily(&fontFamily);
+
+        assert(SUCCEEDED(hr));
 
         return gcnew DirectWriteWrapper::FontFamily(fontFamily);
     }
@@ -41,7 +43,9 @@ namespace DirectWriteWrapper
     {
         ::IDWriteLocalizedStrings *faceNames;
 
-        this->GetComObject()->GetFaceNames(&faceNames);
+        HRESULT hr = this->GetComObject()->GetFaceNames(&faceNames);
+
+        assert(SUCCEEDED(hr));
 
         return gcnew LocalizedStrings(faceNames);
     }
@@ -51,7 +55,9 @@ namespace DirectWriteWrapper
         IDWriteLocalizedStrings *informationalStrings;
         BOOL exists;
 
-        this->GetComObject()->GetInformationalStrings(static_cast<DWRITE_INFORMATIONAL_STRING_ID>(informationalStringId), &informationalStrings, &exists);
+        HRESULT hr = this->GetComObject()->GetInformationalStrings(static_cast<DWRITE_INFORMATIONAL_STRING_ID>(informationalStringId), &informationalStrings, &exists);
+
+        assert(SUCCEEDED(hr));
 
         if (exists)
         {
@@ -67,7 +73,9 @@ namespace DirectWriteWrapper
     {
         BOOL exists;
 
-        this->GetComObject()->HasCharacter(unicodeValue, &exists);
+        HRESULT hr = this->GetComObject()->HasCharacter(unicodeValue, &exists);
+
+        assert(SUCCEEDED(hr));
 
         return exists ? true : false;
     }

@@ -11,7 +11,9 @@ namespace DirectWriteWrapper
     {
         ::IDWriteLocalizedStrings *localizedStrings;
 
-        this->GetComObject()->GetFamilyNames(&localizedStrings);
+        HRESULT hr = this->GetComObject()->GetFamilyNames(&localizedStrings);
+
+        assert(SUCCEEDED(hr));
 
         return gcnew LocalizedStrings(localizedStrings);
     }
@@ -20,10 +22,12 @@ namespace DirectWriteWrapper
     {
         ::IDWriteFont *font;
 
-        this->GetComObject()->GetFirstMatchingFont(static_cast<DWRITE_FONT_WEIGHT>(weight),
-                                                   static_cast<DWRITE_FONT_STRETCH>(stretch),
-                                                   static_cast<DWRITE_FONT_STYLE>(style),
-                                                   &font);
+        HRESULT hr = this->GetComObject()->GetFirstMatchingFont(static_cast<DWRITE_FONT_WEIGHT>(weight),
+                                                                static_cast<DWRITE_FONT_STRETCH>(stretch),
+                                                                static_cast<DWRITE_FONT_STYLE>(style),
+                                                                &font);
+
+        assert(SUCCEEDED(hr));
 
         return gcnew Font(font);
     }
@@ -32,10 +36,12 @@ namespace DirectWriteWrapper
     {
         ::IDWriteFontList *fontList;
 
-        this->GetComObject()->GetMatchingFonts(static_cast<DWRITE_FONT_WEIGHT>(weight),
-                                               static_cast<DWRITE_FONT_STRETCH>(stretch),
-                                               static_cast<DWRITE_FONT_STYLE>(style),
-                                               &fontList);
+        HRESULT hr = this->GetComObject()->GetMatchingFonts(static_cast<DWRITE_FONT_WEIGHT>(weight),
+                                                            static_cast<DWRITE_FONT_STRETCH>(stretch),
+                                                            static_cast<DWRITE_FONT_STYLE>(style),
+                                                            &fontList);
+
+        assert(SUCCEEDED(hr));
 
         return gcnew FontList(fontList);
     }

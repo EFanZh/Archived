@@ -26,7 +26,7 @@ namespace GenerateFontList
                 fontFamily.ToLaTeX(stringBuilder, 0);
             }
 
-            File.WriteAllText("E:\\1.txt", stringBuilder.ToString());
+            File.WriteAllText("E:\\1.txt", stringBuilder.ToString(), Encoding.UTF8);
         }
     }
 }

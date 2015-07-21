@@ -42,6 +42,8 @@ namespace SubtitleFontReplacer
             catch (Exception)
             {
             }
+
+            this.Dispatcher.Hooks.DispatcherInactive += (sender, e) => StateTextBlock.Text = "Ready.";
         }
 
         public ObservableCollection<string> ExistingFonts
@@ -66,7 +68,7 @@ namespace SubtitleFontReplacer
         {
             try
             {
-                File.WriteAllLines(ConfigFile, FontMapping.Select(m => string.Format("{0}, {1}", m.Original, m.Target)));
+                File.WriteAllLines(ConfigFile, FontMapping.OrderBy(m => m.Original).Select(m => string.Format("{0}, {1}", m.Original, m.Target)));
             }
             catch (Exception)
             {
@@ -97,9 +99,11 @@ namespace SubtitleFontReplacer
 
         private void ExistingFontsListBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            if (ExistingFontsListBox.SelectedItem != null)
+            string fontName = (string)ExistingFontsListBox.SelectedItem;
+
+            if (fontName != null && FontMapping.All(m => !string.Equals(m.Original, fontName, StringComparison.InvariantCultureIgnoreCase)))
             {
-                FontMapping.Add(new FontMapping((string)ExistingFontsListBox.SelectedItem, string.Empty));
+                FontMapping.Add(new FontMapping(fontName, string.Empty));
             }
         }
 

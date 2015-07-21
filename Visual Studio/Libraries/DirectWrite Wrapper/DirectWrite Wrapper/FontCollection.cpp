@@ -11,7 +11,9 @@ namespace DirectWriteWrapper
     {
         ::IDWriteFontFamily *fontFamily;
 
-        this->GetComObject()->GetFontFamily(index, &fontFamily);
+        HRESULT hr = this->GetComObject()->GetFontFamily(index, &fontFamily);
+
+        assert(SUCCEEDED(hr));
 
         return gcnew FontFamily(fontFamily);
     }

@@ -1,4 +1,4 @@
-﻿<Window x:Class="SubtitleFontReplacer.MainWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Title="MainWindow" Closing="MainWindow_Closing">
+﻿<Window x:Class="SubtitleFontReplacer.MainWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Title="Subtitle Font Replacer" FontFamily="Segoe UI, Microsoft YaHei" Closing="MainWindow_Closing">
     <Window.Resources>
         <Style x:Key="SingleLineControl" TargetType="Control">
             <Setter Property="VerticalContentAlignment" Value="Center" />
@@ -26,7 +26,7 @@
                 <ColumnDefinition />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            <Label Grid.Column="0" Content="Target Folder:" Style="{StaticResource SingleLineLabel}" Margin="0,0,8,0" />
+            <Label Grid.Column="0" Content="Subtitle Folder:" Style="{StaticResource SingleLineLabel}" Margin="0,0,8,0" />
             <TextBox Grid.Column="1" x:Name="FolderTextBox" Style="{StaticResource SingleLineControl}" Margin="0,0,8,0" />
             <Button Grid.Column="2" Content="Select Folder" Style="{StaticResource SingleLineButton}" />
         </Grid>
@@ -57,7 +57,7 @@
                     <TextBlock Grid.Column="0" Style="{StaticResource WigetTitle}" Text="Process" />
                     <Button Grid.Column="1" Content="Process" Style="{StaticResource SingleLineButton}" Click="ProcessButton_Click" />
                 </Grid>
-                <DataGrid x:Name="FontMappingDataGrid" Background="{x:Static SystemColors.WindowBrush}" BorderThickness="0" ItemsSource="{Binding FontMapping, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" IsSynchronizedWithCurrentItem="True">
+                <DataGrid x:Name="FontMappingDataGrid" Background="{x:Static SystemColors.WindowBrush}" BorderThickness="0" HorizontalGridLinesBrush="#FFEAEAEA" VerticalGridLinesBrush="#FFEAEAEA" ItemsSource="{Binding FontMapping, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" IsSynchronizedWithCurrentItem="True">
                     <DataGrid.ContextMenu>
                         <ContextMenu>
                             <MenuItem Header="Add" Click="AddFontMappingButton_Click" />

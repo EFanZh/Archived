@@ -11,7 +11,9 @@ namespace DirectWriteWrapper
     {
         ::IDWriteFont *font;
 
-        this->GetComObject()->GetFont(index, &font);
+        HRESULT hr = this->GetComObject()->GetFont(index, &font);
+
+        assert(SUCCEEDED(hr));
 
         return gcnew Font(font);
     }

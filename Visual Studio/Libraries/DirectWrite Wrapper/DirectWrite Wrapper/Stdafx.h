@@ -4,7 +4,8 @@
 
 #pragma once
 
+#include <cassert>
 #include <dwrite_2.h>
 #include <vcclr.h>
 
-#pragma comment(lib, "Dwrite.lib")
+#pragma comment(lib, "dwrite.lib")

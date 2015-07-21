@@ -2,16 +2,17 @@
 
 namespace DirectWriteWrapper
 {
-    template <class T>
+    template <class T, class TSize = size_t>
     class Buffer
     {
         T *data = nullptr;
-        size_t size = 0;
+        TSize size = 0;
 
     public:
-        Buffer(size_t count)
+        Buffer(TSize count)
         {
             data = new T[count];
+            memset(data, sizeof(T) * count, 0);
             this->size = size;
         }
 
@@ -25,7 +26,7 @@ namespace DirectWriteWrapper
             return data;
         }
 
-        size_t GetSize()
+        TSize GetSize()
         {
             return size;
         }
