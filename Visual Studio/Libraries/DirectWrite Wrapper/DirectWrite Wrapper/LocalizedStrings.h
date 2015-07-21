@@ -8,7 +8,7 @@ using namespace System::Runtime::InteropServices;
 
 namespace DirectWriteWrapper
 {
-    public ref class LocalizedStrings : ComReadOnlyList< ::IDWriteLocalizedStrings, KeyValuePair<String ^, String ^>>, IReadOnlyDictionary < String ^, String ^ >
+    public ref class LocalizedStrings : ComReadOnlyList< ::IDWriteLocalizedStrings, KeyValuePair<String ^, String ^>>, IReadOnlyDictionary< String ^, String ^>
     {
         ref class LocaleNameList : ComReadOnlyList < ::IDWriteLocalizedStrings, String ^ >
         {
@@ -20,7 +20,7 @@ namespace DirectWriteWrapper
                 virtual String ^get(int index) override;
             }
 
-            property int Count
+                property int Count
             {
                 virtual int get() override;
             }
@@ -36,7 +36,7 @@ namespace DirectWriteWrapper
                 virtual String ^get(int index) override;
             }
 
-            property int Count
+                property int Count
             {
                 virtual int get() override;
             }
@@ -54,12 +54,12 @@ namespace DirectWriteWrapper
             virtual String ^get(String ^key);
         }
 
-        property KeyValuePair<String ^, String ^> default[int ^]
+            property KeyValuePair<String ^, String ^> default[int ^]
         {
             virtual KeyValuePair<String ^, String ^> get(int index) override;
         }
 
-        property int Count
+            property int Count
         {
             virtual int get() override;
         }

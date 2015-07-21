@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "001. Two Sum", "001. Two Sum\001. Two Sum.vcxproj", "{219FEE9A-E0A4-4953-923B-E7F7816DCD31}"
 EndProject
@@ -335,6 +335,24 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "114. Flatten Binary Tree to Linked List", "114. Flatten Binary Tree to Linked List\114. Flatten Binary Tree to Linked List.vcxproj", "{26C9683B-E3A3-4BEE-89FA-142D2ED73FE9}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "117. Populating Next Right Pointers in Each Node II", "117. Populating Next Right Pointers in Each Node II\117. Populating Next Right Pointers in Each Node II.vcxproj", "{3D989B0B-CB6F-426C-9A03-A577E9EE57BF}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "128. Longest Consecutive Sequence", "128. Longest Consecutive Sequence\128. Longest Consecutive Sequence.vcxproj", "{0A3AD924-55E2-42A9-AAF1-45BAD2549E40}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "129. Sum Root to Leaf Numbers", "129. Sum Root to Leaf Numbers\129. Sum Root to Leaf Numbers.vcxproj", "{B7A64822-CE37-4C18-9812-5E134D4B295F}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "142. Linked List Cycle II", "142. Linked List Cycle II\142. Linked List Cycle II.vcxproj", "{6640A522-32D0-4AD9-97A8-3A498C88F4C2}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "153. Find Minimum in Rotated Sorted Array", "153. Find Minimum in Rotated Sorted Array\153. Find Minimum in Rotated Sorted Array.vcxproj", "{A6B8DD97-F543-44B9-AE89-1C33160A4516}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "154. Find Minimum in Rotated Sorted Array II", "154. Find Minimum in Rotated Sorted Array II\154. Find Minimum in Rotated Sorted Array II.vcxproj", "{23886A3C-4990-4DEA-9D9F-488145F8BB09}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "162. Find Peak Element", "162. Find Peak Element\162. Find Peak Element.vcxproj", "{02138817-2785-4F12-AC4D-0225D3F9EE9E}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "169. Majority Element", "169. Majority Element\169. Majority Element.vcxproj", "{250B5423-CACA-4E7B-BB66-720B744A0D11}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "191. Number of 1 Bits", "191. Number of 1 Bits\191. Number of 1 Bits.vcxproj", "{9D6FB960-79E7-41B9-A84F-FABA4573AAC5}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "173. Binary Search Tree Iterator", "173. Binary Search Tree Iterator\173. Binary Search Tree Iterator.vcxproj", "{B03C7B95-FFB0-4594-9362-E5CC6FB5BF75}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -994,6 +1012,42 @@ Global
 		{3D989B0B-CB6F-426C-9A03-A577E9EE57BF}.Debug|Win32.Build.0 = Debug|Win32
 		{3D989B0B-CB6F-426C-9A03-A577E9EE57BF}.Release|Win32.ActiveCfg = Release|Win32
 		{3D989B0B-CB6F-426C-9A03-A577E9EE57BF}.Release|Win32.Build.0 = Release|Win32
+		{0A3AD924-55E2-42A9-AAF1-45BAD2549E40}.Debug|Win32.ActiveCfg = Debug|Win32
+		{0A3AD924-55E2-42A9-AAF1-45BAD2549E40}.Debug|Win32.Build.0 = Debug|Win32
+		{0A3AD924-55E2-42A9-AAF1-45BAD2549E40}.Release|Win32.ActiveCfg = Release|Win32
+		{0A3AD924-55E2-42A9-AAF1-45BAD2549E40}.Release|Win32.Build.0 = Release|Win32
+		{B7A64822-CE37-4C18-9812-5E134D4B295F}.Debug|Win32.ActiveCfg = Debug|Win32
+		{B7A64822-CE37-4C18-9812-5E134D4B295F}.Debug|Win32.Build.0 = Debug|Win32
+		{B7A64822-CE37-4C18-9812-5E134D4B295F}.Release|Win32.ActiveCfg = Release|Win32
+		{B7A64822-CE37-4C18-9812-5E134D4B295F}.Release|Win32.Build.0 = Release|Win32
+		{6640A522-32D0-4AD9-97A8-3A498C88F4C2}.Debug|Win32.ActiveCfg = Debug|Win32
+		{6640A522-32D0-4AD9-97A8-3A498C88F4C2}.Debug|Win32.Build.0 = Debug|Win32
+		{6640A522-32D0-4AD9-97A8-3A498C88F4C2}.Release|Win32.ActiveCfg = Release|Win32
+		{6640A522-32D0-4AD9-97A8-3A498C88F4C2}.Release|Win32.Build.0 = Release|Win32
+		{A6B8DD97-F543-44B9-AE89-1C33160A4516}.Debug|Win32.ActiveCfg = Debug|Win32
+		{A6B8DD97-F543-44B9-AE89-1C33160A4516}.Debug|Win32.Build.0 = Debug|Win32
+		{A6B8DD97-F543-44B9-AE89-1C33160A4516}.Release|Win32.ActiveCfg = Release|Win32
+		{A6B8DD97-F543-44B9-AE89-1C33160A4516}.Release|Win32.Build.0 = Release|Win32
+		{23886A3C-4990-4DEA-9D9F-488145F8BB09}.Debug|Win32.ActiveCfg = Debug|Win32
+		{23886A3C-4990-4DEA-9D9F-488145F8BB09}.Debug|Win32.Build.0 = Debug|Win32
+		{23886A3C-4990-4DEA-9D9F-488145F8BB09}.Release|Win32.ActiveCfg = Release|Win32
+		{23886A3C-4990-4DEA-9D9F-488145F8BB09}.Release|Win32.Build.0 = Release|Win32
+		{02138817-2785-4F12-AC4D-0225D3F9EE9E}.Debug|Win32.ActiveCfg = Debug|Win32
+		{02138817-2785-4F12-AC4D-0225D3F9EE9E}.Debug|Win32.Build.0 = Debug|Win32
+		{02138817-2785-4F12-AC4D-0225D3F9EE9E}.Release|Win32.ActiveCfg = Release|Win32
+		{02138817-2785-4F12-AC4D-0225D3F9EE9E}.Release|Win32.Build.0 = Release|Win32
+		{250B5423-CACA-4E7B-BB66-720B744A0D11}.Debug|Win32.ActiveCfg = Debug|Win32
+		{250B5423-CACA-4E7B-BB66-720B744A0D11}.Debug|Win32.Build.0 = Debug|Win32
+		{250B5423-CACA-4E7B-BB66-720B744A0D11}.Release|Win32.ActiveCfg = Release|Win32
+		{250B5423-CACA-4E7B-BB66-720B744A0D11}.Release|Win32.Build.0 = Release|Win32
+		{9D6FB960-79E7-41B9-A84F-FABA4573AAC5}.Debug|Win32.ActiveCfg = Debug|Win32
+		{9D6FB960-79E7-41B9-A84F-FABA4573AAC5}.Debug|Win32.Build.0 = Debug|Win32
+		{9D6FB960-79E7-41B9-A84F-FABA4573AAC5}.Release|Win32.ActiveCfg = Release|Win32
+		{9D6FB960-79E7-41B9-A84F-FABA4573AAC5}.Release|Win32.Build.0 = Release|Win32
+		{B03C7B95-FFB0-4594-9362-E5CC6FB5BF75}.Debug|Win32.ActiveCfg = Debug|Win32
+		{B03C7B95-FFB0-4594-9362-E5CC6FB5BF75}.Debug|Win32.Build.0 = Debug|Win32
+		{B03C7B95-FFB0-4594-9362-E5CC6FB5BF75}.Release|Win32.ActiveCfg = Release|Win32
+		{B03C7B95-FFB0-4594-9362-E5CC6FB5BF75}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -1162,5 +1216,14 @@ Global
 		{00379590-443E-4E45-BD43-E17D57D5C676} = {57387E8D-D6F8-4B26-98FA-B25DF670DEB6}
 		{26C9683B-E3A3-4BEE-89FA-142D2ED73FE9} = {57387E8D-D6F8-4B26-98FA-B25DF670DEB6}
 		{3D989B0B-CB6F-426C-9A03-A577E9EE57BF} = {57387E8D-D6F8-4B26-98FA-B25DF670DEB6}
+		{0A3AD924-55E2-42A9-AAF1-45BAD2549E40} = {57387E8D-D6F8-4B26-98FA-B25DF670DEB6}
+		{B7A64822-CE37-4C18-9812-5E134D4B295F} = {57387E8D-D6F8-4B26-98FA-B25DF670DEB6}
+		{6640A522-32D0-4AD9-97A8-3A498C88F4C2} = {57387E8D-D6F8-4B26-98FA-B25DF670DEB6}
+		{A6B8DD97-F543-44B9-AE89-1C33160A4516} = {57387E8D-D6F8-4B26-98FA-B25DF670DEB6}
+		{23886A3C-4990-4DEA-9D9F-488145F8BB09} = {57387E8D-D6F8-4B26-98FA-B25DF670DEB6}
+		{02138817-2785-4F12-AC4D-0225D3F9EE9E} = {57387E8D-D6F8-4B26-98FA-B25DF670DEB6}
+		{250B5423-CACA-4E7B-BB66-720B744A0D11} = {57387E8D-D6F8-4B26-98FA-B25DF670DEB6}
+		{9D6FB960-79E7-41B9-A84F-FABA4573AAC5} = {57387E8D-D6F8-4B26-98FA-B25DF670DEB6}
+		{B03C7B95-FFB0-4594-9362-E5CC6FB5BF75} = {57387E8D-D6F8-4B26-98FA-B25DF670DEB6}
 	EndGlobalSection
 EndGlobal
