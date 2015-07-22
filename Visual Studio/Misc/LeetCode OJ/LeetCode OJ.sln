@@ -360,6 +360,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "199. Binary Tree Right Side
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "200. Number of Islands", "200. Number of Islands\200. Number of Islands.vcxproj", "{82522406-4C5D-4255-91E6-9F92DA9CA5D5}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "201. Bitwise AND of Numbers Range", "201. Bitwise AND of Numbers Range\201. Bitwise AND of Numbers Range.vcxproj", "{EEEFC2FE-8890-4CDB-8CB8-4C2D7FFF9B30}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -1066,6 +1068,10 @@ Global
 		{82522406-4C5D-4255-91E6-9F92DA9CA5D5}.Debug|Win32.Build.0 = Debug|Win32
 		{82522406-4C5D-4255-91E6-9F92DA9CA5D5}.Release|Win32.ActiveCfg = Release|Win32
 		{82522406-4C5D-4255-91E6-9F92DA9CA5D5}.Release|Win32.Build.0 = Release|Win32
+		{EEEFC2FE-8890-4CDB-8CB8-4C2D7FFF9B30}.Debug|Win32.ActiveCfg = Debug|Win32
+		{EEEFC2FE-8890-4CDB-8CB8-4C2D7FFF9B30}.Debug|Win32.Build.0 = Debug|Win32
+		{EEEFC2FE-8890-4CDB-8CB8-4C2D7FFF9B30}.Release|Win32.ActiveCfg = Release|Win32
+		{EEEFC2FE-8890-4CDB-8CB8-4C2D7FFF9B30}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -1246,5 +1252,6 @@ Global
 		{29E7B494-517A-478C-8C29-91E0435349C3} = {57387E8D-D6F8-4B26-98FA-B25DF670DEB6}
 		{7E7CB5FE-6284-43C1-AC71-1D0CC476EA6D} = {57387E8D-D6F8-4B26-98FA-B25DF670DEB6}
 		{82522406-4C5D-4255-91E6-9F92DA9CA5D5} = {57387E8D-D6F8-4B26-98FA-B25DF670DEB6}
+		{EEEFC2FE-8890-4CDB-8CB8-4C2D7FFF9B30} = {57387E8D-D6F8-4B26-98FA-B25DF670DEB6}
 	EndGlobalSection
 EndGlobal
