@@ -8,9 +8,9 @@ using namespace System::Runtime::InteropServices;
 
 namespace DirectWriteWrapper
 {
-    public ref class LocalizedStrings : ComReadOnlyList< ::IDWriteLocalizedStrings, KeyValuePair<String ^, String ^>>, IReadOnlyDictionary< String ^, String ^>
+    public ref class LocalizedStrings : ComReadOnlyList<::IDWriteLocalizedStrings, KeyValuePair<String ^, String ^>>, IReadOnlyDictionary<String ^, String ^>
     {
-        ref class LocaleNameList : ComReadOnlyList < ::IDWriteLocalizedStrings, String ^ >
+        ref class LocaleNameList : ComReadOnlyList<::IDWriteLocalizedStrings, String ^>
         {
         public:
             LocaleNameList(::IDWriteLocalizedStrings *localizedStrings);
@@ -26,7 +26,7 @@ namespace DirectWriteWrapper
             }
         };
 
-        ref class StringList : ComReadOnlyList < ::IDWriteLocalizedStrings, String ^ >
+        ref class StringList : ComReadOnlyList<::IDWriteLocalizedStrings, String ^>
         {
         public:
             StringList(::IDWriteLocalizedStrings *localizedStrings);

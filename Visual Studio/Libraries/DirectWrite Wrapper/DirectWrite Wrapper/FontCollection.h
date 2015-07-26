@@ -8,7 +8,7 @@ using namespace System::Collections::Generic;
 
 namespace DirectWriteWrapper
 {
-    public ref class FontCollection : ComReadOnlyList < ::IDWriteFontCollection, FontFamily ^ >
+    public ref class FontCollection : ComReadOnlyList<::IDWriteFontCollection, FontFamily ^>
     {
     internal:
         FontCollection(::IDWriteFontCollection *fontCollection);
@@ -19,7 +19,7 @@ namespace DirectWriteWrapper
             virtual FontFamily ^get(int index) override;
         }
 
-        property int Count
+            property int Count
         {
             virtual int get() override;
         }

@@ -1,0 +1,20 @@
+﻿<Window x:Class="CheckFileList.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Check File List"
+        DataContext="{Binding RelativeSource={RelativeSource Self}}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Label Grid.Row="0" Content="Target Folder" />
+        <TextBox Grid.Row="1" Text="{Binding TargetFolder}" />
+        <Label Grid.Row="2" Content="File List:" />
+        <TextBox Grid.Row="3" AcceptsReturn="True" Text="{Binding FileList}" />
+        <Button Grid.Row="4" Content="Check" Click="CheckButton_Click" />
+    </Grid>
+</Window>

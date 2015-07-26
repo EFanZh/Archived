@@ -7,9 +7,9 @@ using namespace System::Collections::Generic;
 namespace DirectWriteWrapper
 {
     template <class TList, class TItem>
-    public ref class ComReadOnlyList abstract : ComObject<TList>, IReadOnlyList < TItem >
+    public ref class ComReadOnlyList abstract : ComObject<TList>, IReadOnlyList<TItem>
     {
-        ref class Enumerator : IEnumerator < TItem >
+        ref class Enumerator : IEnumerator<TItem>
         {
             ComReadOnlyList ^list;
             int index = -1;
@@ -63,7 +63,7 @@ namespace DirectWriteWrapper
             virtual TItem get(int index) abstract;
         }
 
-        property int Count
+            property int Count
         {
             virtual int get() abstract;
         }

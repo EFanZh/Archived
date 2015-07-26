@@ -10,7 +10,7 @@ namespace DirectWriteWrapper
 {
     ref class FontFamily;
 
-    public ref class Font : ComObject < ::IDWriteFont >
+    public ref class Font : ComObject<::IDWriteFont>
     {
     internal:
         Font(::IDWriteFont *font);
