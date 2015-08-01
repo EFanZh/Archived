@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -112,7 +113,7 @@ namespace SubtitleFontReplacer
             ((UIElement)sender).IsEnabled = false;
 
             string path = FolderTextBox.Text;
-            var dict = FontMapping.ToDictionary(pair => pair.Original, pair => pair.Target);
+            var dict = FontMapping.ToDictionary(pair => pair.Original.ToUpper(CultureInfo.InvariantCulture), pair => pair.Target);
 
             try
             {
@@ -210,7 +211,7 @@ namespace SubtitleFontReplacer
 
         private static string Process(string content, IDictionary<string, string> mapping)
         {
-            var result = Parser.Parse(content);
+            var result = Parser.Parse(content).Select(p => new KeyValuePair<string, int>(p.Key.ToUpper(CultureInfo.InvariantCulture), p.Value)).ToArray();
 
             if (result.Length > 0)
             {
