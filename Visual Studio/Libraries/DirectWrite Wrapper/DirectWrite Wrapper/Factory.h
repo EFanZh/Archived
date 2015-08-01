@@ -9,7 +9,7 @@ using namespace System::Collections::Generic;
 
 namespace DirectWriteWrapper
 {
-    public ref class Factory : ComObject<IDWriteFactory2>
+    public ref class Factory : ComObject<::IDWriteFactory>
     {
     public:
         Factory(FactoryType factoryType);
