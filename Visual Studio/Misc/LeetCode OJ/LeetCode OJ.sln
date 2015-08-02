@@ -380,6 +380,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "209. Minimum Size Subarray 
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "210. Course Schedule II", "210. Course Schedule II\210. Course Schedule II.vcxproj", "{FA4F9496-A233-4A56-A8BF-9FFA58981ECD}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "226. Invert Binary Tree", "226. Invert Binary Tree\226. Invert Binary Tree.vcxproj", "{196341AC-F05A-4718-903E-ED2CAE43166B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -1516,6 +1518,14 @@ Global
 		{FA4F9496-A233-4A56-A8BF-9FFA58981ECD}.Release|Win32.Build.0 = Release|Win32
 		{FA4F9496-A233-4A56-A8BF-9FFA58981ECD}.Release|x64.ActiveCfg = Release|x64
 		{FA4F9496-A233-4A56-A8BF-9FFA58981ECD}.Release|x64.Build.0 = Release|x64
+		{196341AC-F05A-4718-903E-ED2CAE43166B}.Debug|Win32.ActiveCfg = Debug|Win32
+		{196341AC-F05A-4718-903E-ED2CAE43166B}.Debug|Win32.Build.0 = Debug|Win32
+		{196341AC-F05A-4718-903E-ED2CAE43166B}.Debug|x64.ActiveCfg = Debug|x64
+		{196341AC-F05A-4718-903E-ED2CAE43166B}.Debug|x64.Build.0 = Debug|x64
+		{196341AC-F05A-4718-903E-ED2CAE43166B}.Release|Win32.ActiveCfg = Release|Win32
+		{196341AC-F05A-4718-903E-ED2CAE43166B}.Release|Win32.Build.0 = Release|Win32
+		{196341AC-F05A-4718-903E-ED2CAE43166B}.Release|x64.ActiveCfg = Release|x64
+		{196341AC-F05A-4718-903E-ED2CAE43166B}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
