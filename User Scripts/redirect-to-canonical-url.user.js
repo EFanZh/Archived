@@ -8,13 +8,13 @@
 
 "use strict";
 
-var filters =
+var whiteList =
 [
-    msdnFilter,
-    createRegexFilter(/^https?:\/\/www\.imdb\.com\/(name|title)\//)
+    msdn,
+    createRegexWhiteListItem(/^https?:\/\/www\.imdb\.com\/(name|title)\//)
 ];
 
-function createRegexFilter(regex)
+function createRegexWhiteListItem(regex)
 {
     return function (url)
     {
@@ -29,7 +29,7 @@ function createRegexFilter(regex)
     };
 }
 
-function msdnFilter(url)
+function msdn(url)
 {
     if (/^https?:\/\/msdn\.microsoft\.com\/[^\/]*\/library\//.test(url))
     {
@@ -46,7 +46,7 @@ function msdnFilter(url)
 
 function redirect()
 {
-    var canonical = document.querySelector("link[rel='canonical']");
+    var canonical = document.querySelector('link[rel="canonical"]');
 
     if (canonical != null)
     {
