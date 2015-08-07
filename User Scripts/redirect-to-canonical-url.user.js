@@ -52,9 +52,9 @@ function redirect()
     {
         var url = canonical.href;
 
-        for (var i = 0; i < filters.length; ++i)
+        for (var i = 0; i < whiteList.length; ++i)
         {
-            var result = filters[i](url);
+            var result = whiteList[i](url);
 
             if (result.handled)
             {
