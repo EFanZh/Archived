@@ -382,6 +382,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "210. Course Schedule II", "
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "226. Invert Binary Tree", "226. Invert Binary Tree\226. Invert Binary Tree.vcxproj", "{196341AC-F05A-4718-903E-ED2CAE43166B}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "212. Word Search II", "212. Word Search II\212. Word Search II.vcxproj", "{51EB50E4-C520-45E0-B1C2-FC525225F8EC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -1526,6 +1528,14 @@ Global
 		{196341AC-F05A-4718-903E-ED2CAE43166B}.Release|Win32.Build.0 = Release|Win32
 		{196341AC-F05A-4718-903E-ED2CAE43166B}.Release|x64.ActiveCfg = Release|x64
 		{196341AC-F05A-4718-903E-ED2CAE43166B}.Release|x64.Build.0 = Release|x64
+		{51EB50E4-C520-45E0-B1C2-FC525225F8EC}.Debug|Win32.ActiveCfg = Debug|Win32
+		{51EB50E4-C520-45E0-B1C2-FC525225F8EC}.Debug|Win32.Build.0 = Debug|Win32
+		{51EB50E4-C520-45E0-B1C2-FC525225F8EC}.Debug|x64.ActiveCfg = Debug|x64
+		{51EB50E4-C520-45E0-B1C2-FC525225F8EC}.Debug|x64.Build.0 = Debug|x64
+		{51EB50E4-C520-45E0-B1C2-FC525225F8EC}.Release|Win32.ActiveCfg = Release|Win32
+		{51EB50E4-C520-45E0-B1C2-FC525225F8EC}.Release|Win32.Build.0 = Release|Win32
+		{51EB50E4-C520-45E0-B1C2-FC525225F8EC}.Release|x64.ActiveCfg = Release|x64
+		{51EB50E4-C520-45E0-B1C2-FC525225F8EC}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,0 +1,11 @@
+﻿<Window x:Class="Test.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Test">
+    <DockPanel>
+        <Slider DockPanel.Dock="Top" Name="MainSlider" ValueChanged="MainSlider_ValueChanged" />
+        <Border Name="MainCanvas" SizeChanged="MainCanvas_SizeChanged">
+            <Image Name="MainImage" Stretch="Fill" />
+        </Border>
+    </DockPanel>
+</Window>

@@ -1,97 +1,47 @@
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Drawing;
-using System.Drawing.Drawing2D;
-using System.Linq;
+using System.Drawing.Imaging;
+using System.Threading.Tasks;
 
 namespace ColorSpace
 {
     internal class Program
     {
-        private static Random random = new Random();
-
-        private static int GetDitheredValue(double x)
+        private static Bitmap Generate(double t)
         {
-            int i = (int)x;
-            double xd = x - i;
-            return random.NextDouble() < xd ? i + 1 : i;
-        }
+            int width = 512;
+            int height = 512;
 
-        private static double[] xyYToXYZ(double[] xyY)
-        {
-            double t = xyY[2] / xyY[1];
-            return new[] { t * xyY[0], xyY[2], t * (1 - xyY[0] - xyY[1]) };
-        }
+            Bitmap bitmap = new Bitmap(width, height, PixelFormat.Format24bppRgb);
 
-        private static double[] XYZTosRGB(double[] XYZ)
-        {
-            double[] rgb_l = new[]
+            for (int y = 0; y < height; y++)
             {
-                3.2406 * XYZ[0] - 1.5372 * XYZ[1] - 0.4986 * XYZ[2],
-                -0.9689 * XYZ[0] + 1.8758 * XYZ[1] + 0.0415 * XYZ[2],
-                0.0557 * XYZ[0] - 0.204 * XYZ[1] + 1.057 * XYZ[2]
-            };
-
-            return rgb_l.Select(c => c <= 0.0031308 ? 12.92 * c : 1.055 * Math.Pow(c, 1.0 / 2.4) - 0.055).ToArray();
-        }
-
-        private static double[] CompressRGB(double[] rgb)
-        {
-            var rgb2 = rgb.Select(c => c < 0.0 ? 0.0 : c < 1.0 ? c : 1.0);
-            return rgb2.ToArray();
-        }
-
-        private static Color sRGBToColor(double[] sRGB)
-        {
-            int[] v = sRGB.Select(c => GetDitheredValue(255.0 * c)).ToArray();
-
-            return Color.FromArgb(v[0], v[1], v[2]);
-        }
-
-        private static Bitmap GenerateSpectrumGraph(IEnumerable<double[]> data, int size)
-        {
-            Bitmap bitmap = new Bitmap(data.Count(), size);
-            Graphics g = Graphics.FromImage(bitmap);
-
-            int x = 0;
-            foreach (var item in data)
-            {
-                double t = 0.3;
-                g.DrawLine(new Pen(sRGBToColor(CompressRGB(XYZTosRGB(item.Skip(1).Select(c => c * t).ToArray())))), x, 0, x, size);
-                x++;
-            }
-
-            return bitmap;
-        }
-
-        private static Bitmap GenerateChromaticityGraph(int size)
-        {
-            Bitmap bitmap = new Bitmap(size, size);
-            PointF pr = new PointF(0.64f * size, size - 0.33f * size);
-            PointF pg = new PointF(0.3f * size, size - 0.6f * size);
-            PointF pb = new PointF(0.15f * size, size - 0.06f * size);
-
-            for (int x = 0; x < size; x++)
-            {
-                for (int y = 0; y < size; y++)
+                for (int x = 0; x < width; x++)
                 {
-                    bitmap.SetPixel(x, size - 1 - y, sRGBToColor(CompressRGB(XYZTosRGB(xyYToXYZ(new[] { (x + 0.5) / size, (y + 0.5) / size, 0.0721 })))));
+                    double a = 200 * ((double)x / width - 0.5);
+                    double b = 200 * (1.0 - (double)y / height - 0.5);
+
+                    ColorLab lab = new ColorLab() { L = t, A = a, B = b };
+                    ColorSrgb srgb = lab.ToColorXyz().ToSrgbLinear().ToCropped().ToColorSrgb();
+
+                    bitmap.SetPixel(x, y, Color.FromArgb(255, (int)(Math.Round(srgb.R * 255.0)), (int)(Math.Round(srgb.G * 255.0)), (int)(Math.Round(srgb.B * 255.0))));
                 }
             }
 
-            Graphics g = Graphics.FromImage(bitmap);
-            g.SmoothingMode = SmoothingMode.HighQuality;
-            g.CompositingQuality = CompositingQuality.HighQuality;
-            g.PixelOffsetMode = PixelOffsetMode.HighQuality;
-            g.DrawPolygon(Pens.Black, new[] { pr, pg, pb });
-
             return bitmap;
         }
 
-        private static void Main()
+        private static void Main(string[] args)
         {
-            GenerateSpectrumGraph(CIE1931XYZ.GetColorMatchFunction(), 256).Save("D:\\1.png");
-            GenerateChromaticityGraph(2560).Save("D:\\2.png");
+            const int count = 256;
+            int tasks = count;
+
+            Parallel.For(0, count, i =>
+            {
+                Generate(i * 100.0 / count).Save($"Colors - {i:000}.png");
+                --tasks;
+                Console.WriteLine(tasks);
+            });
         }
     }
 }
