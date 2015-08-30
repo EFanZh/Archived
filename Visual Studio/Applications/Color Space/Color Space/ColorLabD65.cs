@@ -2,7 +2,7 @@
 
 namespace ColorSpace
 {
-    internal class ColorLab
+    internal class ColorLabD65
     {
         public double L
         {
@@ -29,15 +29,11 @@ namespace ColorSpace
 
         public ColorXyz ToColorXyz()
         {
-            const double xn = 0.95047;
-            const double yn = 1.0;
-            const double zn = 1.08883;
-
             return new ColorXyz()
             {
-                X = xn * ToXyz(1.0 / 116.0 * (L + 16.0) + 1.0 / 500.0 * A),
-                Y = yn * ToXyz(1.0 / 116.0 * (L + 16.0)),
-                Z = zn * ToXyz(1.0 / 116.0 * (L + 16.0) - 1.0 / 200.0 * B)
+                X = D65.X * ToXyz(1.0 / 116.0 * (L + 16.0) + 1.0 / 500.0 * A),
+                Y = D65.Y * ToXyz(1.0 / 116.0 * (L + 16.0)),
+                Z = D65.Z * ToXyz(1.0 / 116.0 * (L + 16.0) - 1.0 / 200.0 * B)
             };
         }
 

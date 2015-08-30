@@ -66,12 +66,7 @@ namespace ColorSpace
             }
             else
             {
-                return new ColorSrgbLinear()
-                {
-                    R = Math.Max(Math.Min(R, 1.0), 0.0),
-                    G = Math.Max(Math.Min(G, 1.0), 0.0),
-                    B = Math.Max(Math.Min(B, 1.0), 0.0)
-                };
+                return this;
             }
         }
 
@@ -82,6 +77,16 @@ namespace ColorSpace
                 R = ToSrgb(R),
                 G = ToSrgb(G),
                 B = ToSrgb(B)
+            };
+        }
+
+        public ColorXyz ToColorXyz()
+        {
+            return new ColorXyz()
+            {
+                X = 0.4124 * R + 0.3576 * G + 0.1805 * B,
+                Y = 0.2126 * R + 0.7152 * G + 0.0722 * B,
+                Z = 0.0193 * R + 0.1192 * G + 0.9505 * B
             };
         }
 

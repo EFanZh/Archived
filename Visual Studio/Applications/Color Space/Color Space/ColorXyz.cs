@@ -22,6 +22,38 @@ namespace ColorSpace
             set;
         }
 
+        public double L => X + Y + Z;
+
+        public double H
+        {
+            get
+            {
+                double max = Math.Max(Math.Max(X, Y), Z);
+                double min = Math.Min(Math.Min(X, Y), Z);
+                double value;
+
+                if (X == max)
+                {
+                    value = (Y - Z) / (max - min);
+                }
+                else if (Y == max)
+                {
+                    value = 2.0 + (Z - X) / (max - min);
+                }
+                else
+                {
+                    value = 4.0 + (X - Y) / (max - min);
+                }
+
+                if (value < 0.0)
+                {
+                    value += 6.0;
+                }
+
+                return value / 6.0;
+            }
+        }
+
         public override string ToString()
         {
             return $"({X}, {Y}, {Z})";
@@ -37,13 +69,13 @@ namespace ColorSpace
             };
         }
 
-        public ColorLab ToColorLab()
+        public ColorLabD65 ToColorLab()
         {
             const double xn = 0.95047;
             const double yn = 1.0;
             const double zn = 1.08883;
 
-            return new ColorLab()
+            return new ColorLabD65()
             {
                 L = 116.0 * ToLab(Y / yn) - 16.0,
                 A = 500.0 * (ToLab(X / xn) - ToLab(Y / yn)),

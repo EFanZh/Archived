@@ -43,13 +43,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ColorLab.cs" />
+    <Compile Include="ColorLabD65.cs" />
     <Compile Include="ColorSrgb.cs" />
     <Compile Include="ColorSrgbLinear.cs" />
     <Compile Include="ColorXyy.cs" />
     <Compile Include="ColorXyz.cs" />
+    <Compile Include="D65.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ColorVector.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

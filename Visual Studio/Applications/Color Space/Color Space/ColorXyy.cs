@@ -30,7 +30,7 @@
             return new ColorXyz()
             {
                 X = BigY * X / Y,
-                Y = Y,
+                Y = BigY,
                 Z = BigY * (1.0 - X - Y) / Y
             };
         }
