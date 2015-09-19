@@ -9,13 +9,13 @@ namespace SubtitleFontReplacer
     {
         private const RegexOptions CommonRegexOptions = RegexOptions.Multiline | RegexOptions.Compiled;
 
-        private static readonly Regex StyleFontNamePrefixRegex = new Regex(@"^[^,]*,\s*@?", CommonRegexOptions);
+        private static readonly Regex StyleFontNamePrefixRegex = new Regex(@"^[^,]*,\s*", CommonRegexOptions);
         private static readonly Regex FontNameRegex = new Regex(@"([^,\\]*[^,\s\\])?", CommonRegexOptions);
         private static readonly Regex SectionTitleRegex = new Regex(@"^\s*\[[\[\]]*\]\s*$", CommonRegexOptions);
         private static readonly Regex EventsSectionLineRegex = new Regex(@"^\s*\[\s*EVENTS\s*\]\s*$", CommonRegexOptions);
         private static readonly Regex DialogueTextPrefixRegex = new Regex(@"^([^,]*,){9}\s*", CommonRegexOptions);
         private static readonly Regex ControlCodeRegex = new Regex(@"\{[^\{\}]*\}", CommonRegexOptions);
-        private static readonly Regex FontNameOverridePrefixRegex = new Regex(@"\\fn\s*@?", CommonRegexOptions);
+        private static readonly Regex FontNameOverridePrefixRegex = new Regex(@"\\fn\s*", CommonRegexOptions);
         private static readonly Regex LabelRegex = new Regex(@"^[^:]*:", CommonRegexOptions);
         private static readonly Regex LineRegex = new Regex(@"^.*$", CommonRegexOptions);
 
