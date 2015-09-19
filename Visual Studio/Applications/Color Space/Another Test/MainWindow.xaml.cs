@@ -29,37 +29,5 @@ namespace Another_Test
         {
             InitializeComponent();
         }
-
-        private void InputSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
-        {
-            QueueTask(InputSlider.Value);
-        }
-
-        private async void QueueTask(double task)
-        {
-            queuedTask = task;
-
-            if (double.IsNaN(currentTask))
-            {
-                while (!double.IsNaN(queuedTask))
-                {
-                    currentTask = queuedTask;
-                    queuedTask = double.NaN;
-
-                    ResultTextBlock.Text = await ProcessTask(currentTask);
-
-                    currentTask = double.NaN;
-                }
-            }
-        }
-
-        private static async Task<string> ProcessTask(double task)
-        {
-            return await Task.Run(() =>
-            {
-                Thread.Sleep(1000);
-                return task.ToString(CultureInfo.InvariantCulture);
-            });
-        }
     }
 }

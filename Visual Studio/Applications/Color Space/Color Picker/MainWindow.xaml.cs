@@ -23,6 +23,16 @@ namespace ColorPicker
         public MainWindow()
         {
             InitializeComponent();
+
+            ChannelValuesWrapPanel.Children.Add(new ChannelValuesController(new LinearColorSpace("sRGB",
+                                                                                                 Channel.CreateStandardChannel("Red"),
+                                                                                                 Channel.CreateStandardChannel("Green"),
+                                                                                                 Channel.CreateStandardChannel("Blue"))));
+
+            ChannelValuesWrapPanel.Children.Add(new ChannelValuesController(new LinearColorSpace("scRGB",
+                                                                                                 Channel.CreateStandardChannel("Reddddddddddd"),
+                                                                                                 Channel.CreateStandardChannel("Green"),
+                                                                                                 Channel.CreateStandardChannel("Blue"))));
         }
     }
 }

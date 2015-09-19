@@ -8,7 +8,7 @@
         Title="MainWindow" Height="350" Width="525">
     <DockPanel>
         <GroupBox DockPanel.Dock="Right" Header="Source">
-            <WrapPanel Orientation="Vertical">
+            <WrapPanel Grid.IsSharedSizeScope="True" Name="ChannelValuesWrapPanel" Orientation="Vertical">
             </WrapPanel>
         </GroupBox>
         <GroupBox DockPanel.Dock="Top" Header="Options">
@@ -32,7 +32,24 @@
         </GroupBox>
         <DockPanel>
             <Border DockPanel.Dock="Right" Width="24" BorderThickness="1" BorderBrush="Black">
-                <Image />
+                <Track Orientation="Vertical" Minimum="0.0" Maximum="1.0">
+                    <Track.DecreaseRepeatButton>
+                        <RepeatButton
+                             Command="{x:Static Slider.DecreaseLarge}" />
+                    </Track.DecreaseRepeatButton>
+                    <Track.IncreaseRepeatButton>
+                        <RepeatButton
+                             Command="{x:Static Slider.IncreaseLarge}" />
+                    </Track.IncreaseRepeatButton>
+                    <Track.Thumb>
+                        <Thumb x:Name="Thumb"
+                             OverridesDefaultStyle="True"
+                             Focusable="False"
+                             VerticalAlignment="Top"
+                             Width="18"
+                             Height="11" />
+                    </Track.Thumb>
+                </Track>
             </Border>
             <Border BorderThickness="1" BorderBrush="Black">
                 <Image />
