@@ -5,72 +5,31 @@ namespace ColorPicker
 {
     internal class Model
     {
-        public Model(IEnumerable<ColorContext> profiles)
-        {
-            Profiles = profiles;
-        }
-
-        public int MainAreaWidth
+        public ColorSpace CurrentColorSpace
         {
             get;
             set;
         }
 
-        public int MainAreaHeight
+        public Channel CurrentControlChannel
         {
             get;
             set;
         }
 
-        public int SelectedChannelWidth
+        public double CurrentControlChannelValue
         {
             get;
             set;
         }
 
-        public int SelectedChannelHeight
+        public double CurrentChannelXValue
         {
             get;
             set;
         }
 
-        public bool FilterDeviceColors
-        {
-            get;
-            set;
-        }
-
-        public bool FilterTargetColors
-        {
-            get;
-            set;
-        }
-
-        public IEnumerable<ColorContext> Profiles
-        {
-            private set;
-            get;
-        }
-
-        public ColorContext DeviceColorProfile
-        {
-            get;
-            set;
-        }
-
-        public ColorContext TargetColorProfile
-        {
-            get;
-            set;
-        }
-
-        public ImageSource MainImageSource
-        {
-            get;
-            set;
-        }
-
-        public ImageSource SelectedChannelImageSource
+        public double CurrentChannelYValue
         {
             get;
             set;

@@ -55,6 +55,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="ControlChannelSlider.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -70,6 +74,9 @@
     <Compile Include="ColorVector.cs" />
     <Compile Include="ColorVectorFast.cs" />
     <Compile Include="ControlChannelChangedEventArgs.cs" />
+    <Compile Include="ControlChannelSlider.xaml.cs">
+      <DependentUpon>ControlChannelSlider.xaml</DependentUpon>
+    </Compile>
     <Compile Include="FastColorTransformMatrix.cs" />
     <Compile Include="LinearColorSpace.cs" />
     <Compile Include="MainWindow.xaml.cs">
@@ -97,7 +104,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

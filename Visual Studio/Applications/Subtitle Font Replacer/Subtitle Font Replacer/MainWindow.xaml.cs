@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Globalization;
 using System.IO;
@@ -16,47 +15,21 @@ namespace SubtitleFontReplacer
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    partial class MainWindow : Window
     {
-        private const string ConfigFile = "config.txt";
-
         public MainWindow()
         {
+            Model = new Model();
+            Model.Load();
+
             InitializeComponent();
-
-            ExistingFonts = new ObservableCollection<string>();
-            FontMapping = new ObservableCollection<FontMapping>();
-
-            try
-            {
-                var fontMappings = from mapping in
-                                       from line in File.ReadAllLines(ConfigFile)
-                                       where line.Contains(",")
-                                       select line.Split(',')
-                                   select new FontMapping(mapping[0].Trim(), mapping[1].Trim());
-
-                foreach (var mapping in fontMappings)
-                {
-                    FontMapping.Add(mapping);
-                }
-            }
-            catch (Exception)
-            {
-            }
 
             this.Dispatcher.Hooks.DispatcherInactive += (sender, e) => StateTextBlock.Text = "Ready.";
         }
 
-        public ObservableCollection<string> ExistingFonts
+        public Model Model
         {
             get;
-            private set;
-        }
-
-        public ObservableCollection<FontMapping> FontMapping
-        {
-            get;
-            set;
         }
 
         public string State
@@ -67,13 +40,7 @@ namespace SubtitleFontReplacer
 
         private void MainWindow_Closing(object sender, CancelEventArgs e)
         {
-            try
-            {
-                File.WriteAllLines(ConfigFile, FontMapping.OrderBy(m => m.Original).Select(m => string.Format("{0}, {1}", m.Original, m.Target)));
-            }
-            catch (Exception)
-            {
-            }
+            Model.Save();
         }
 
         private async void AnalyzeButton_Click(object sender, RoutedEventArgs e)
@@ -82,15 +49,15 @@ namespace SubtitleFontReplacer
 
             string path = FolderTextBox.Text;
 
-            ExistingFonts.Clear();
+            Model.ExistingFonts.Clear();
 
-            foreach (var file in GetFiles(path))
+            foreach (var file in await GetFiles(path))
             {
                 foreach (var result in await AnalyzeFile(file))
                 {
-                    if (!ExistingFonts.Contains(result.Key))
+                    if (!Model.ExistingFonts.Contains(result.Key))
                     {
-                        ExistingFonts.Add(result.Key);
+                        Model.ExistingFonts.Add(result.Key);
                     }
                 }
             }
@@ -102,9 +69,9 @@ namespace SubtitleFontReplacer
         {
             string fontName = (string)ExistingFontsListBox.SelectedItem;
 
-            if (fontName != null && FontMapping.All(m => !string.Equals(m.Original, fontName, StringComparison.InvariantCultureIgnoreCase)))
+            if (fontName != null)
             {
-                FontMapping.Add(new FontMapping(fontName, string.Empty));
+                Model.AddFontMapping(fontName, string.Empty);
             }
         }
 
@@ -113,7 +80,7 @@ namespace SubtitleFontReplacer
             ((UIElement)sender).IsEnabled = false;
 
             string path = FolderTextBox.Text;
-            var dict = FontMapping.ToDictionary(pair => pair.Original.ToUpper(CultureInfo.InvariantCulture), pair => pair.Target);
+            var dict = Model.CreateReplaceDictionary();
 
             try
             {
@@ -129,7 +96,7 @@ namespace SubtitleFontReplacer
                     return;
                 }
 
-                foreach (string file in GetFiles(path))
+                foreach (string file in await GetFiles(path))
                 {
                     await ProcessFile(file, dict);
                 }
@@ -146,27 +113,44 @@ namespace SubtitleFontReplacer
 
         private void AddFontMappingButton_Click(object sender, RoutedEventArgs e)
         {
-            FontMapping.Add(new FontMapping("Original", "Target"));
+            Model.FontMappings.Add(new FontMapping("Original", "Target"));
         }
 
         private void RemoveFontMappingButton_Click(object sender, RoutedEventArgs e)
         {
-            FontMapping.RemoveAt(CollectionViewSource.GetDefaultView(FontMapping).CurrentPosition);
+            Model.FontMappings.RemoveAt(CollectionViewSource.GetDefaultView(Model.FontMappings).CurrentPosition);
         }
 
-        private static IEnumerable<string> GetFiles(string path)
+        private async static Task<IEnumerable<string>> GetFiles(string path)
         {
-            IEnumerable<string> result = new string[0];
-
-            try
+            return await Task.Run(() =>
             {
-                result = Directory.EnumerateFiles(path, "*", SearchOption.AllDirectories).Where(Filter);
-            }
-            catch (Exception)
-            {
-            }
+                var result = new List<string>();
+                var s = new Stack<string>();
 
-            return result;
+                s.Push(path);
+
+                while (s.Count > 0)
+                {
+                    string current = s.Pop();
+
+                    try
+                    {
+                        result.AddRange(Directory.EnumerateFiles(current).Where(Filter));
+
+                        foreach (string next in Directory.EnumerateDirectories(current).Reverse())
+                        {
+                            s.Push(next);
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        // Ignored.
+                    }
+                }
+
+                return result;
+            });
         }
 
         private static bool Filter(string file)
@@ -205,6 +189,7 @@ namespace SubtitleFontReplacer
                 }
                 catch (Exception)
                 {
+                    // Ignored.
                 }
             });
         }

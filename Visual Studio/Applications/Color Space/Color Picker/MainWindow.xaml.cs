@@ -18,7 +18,7 @@ namespace ColorPicker
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    partial class MainWindow : Window
     {
         public MainWindow()
         {
@@ -33,6 +33,11 @@ namespace ColorPicker
                                                                                                  Channel.CreateStandardChannel("Reddddddddddd"),
                                                                                                  Channel.CreateStandardChannel("Green"),
                                                                                                  Channel.CreateStandardChannel("Blue"))));
+        }
+
+        public Model Model
+        {
+            get;
         }
     }
 }

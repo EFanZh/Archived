@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ColorPicker"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="350" Width="525"
+        DataContext="{Binding Model, RelativeSource={RelativeSource Self}}">
     <DockPanel>
         <GroupBox DockPanel.Dock="Right" Header="Source">
             <WrapPanel Grid.IsSharedSizeScope="True" Name="ChannelValuesWrapPanel" Orientation="Vertical">
@@ -31,28 +32,21 @@
             </Grid>
         </GroupBox>
         <DockPanel>
-            <Border DockPanel.Dock="Right" Width="24" BorderThickness="1" BorderBrush="Black">
-                <Track Orientation="Vertical" Minimum="0.0" Maximum="1.0">
-                    <Track.DecreaseRepeatButton>
-                        <RepeatButton
-                             Command="{x:Static Slider.DecreaseLarge}" />
-                    </Track.DecreaseRepeatButton>
-                    <Track.IncreaseRepeatButton>
-                        <RepeatButton
-                             Command="{x:Static Slider.IncreaseLarge}" />
-                    </Track.IncreaseRepeatButton>
-                    <Track.Thumb>
-                        <Thumb x:Name="Thumb"
-                             OverridesDefaultStyle="True"
-                             Focusable="False"
-                             VerticalAlignment="Top"
-                             Width="18"
-                             Height="11" />
-                    </Track.Thumb>
-                </Track>
-            </Border>
+            <Slider DockPanel.Dock="Right" Orientation="Vertical" BorderThickness="1" BorderBrush="Black" Minimum="{Binding CurrentControlChannel.MinValue}" Maximum="{Binding CurrentControlChannel.MaxValue}" Value="{Binding CurrentControlChannelValue}" />
             <Border BorderThickness="1" BorderBrush="Black">
-                <Image />
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition  Width="Auto" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition  Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Slider Grid.Row="0" Grid.Column="0" Orientation="Vertical" />
+                    <Image Grid.Row="0" Grid.Column="1" />
+                    <Slider Grid.Row="1" Grid.Column="1" />
+                </Grid>
             </Border>
         </DockPanel>
     </DockPanel>
