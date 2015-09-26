@@ -32,7 +32,10 @@ namespace SubtitleFontReplacer
             {
                 Match fontNameMatch = FontNameRegex.Match(controlCodes, prefix.Index + prefix.Length);
 
-                yield return new KeyValuePair<string, int>(fontNameMatch.Value, fontNameMatch.Index);
+                if (fontNameMatch.Value.Length > 0)
+                {
+                    yield return new KeyValuePair<string, int>(fontNameMatch.Value, fontNameMatch.Index);
+                }
             }
         }
 
@@ -80,7 +83,10 @@ namespace SubtitleFontReplacer
                             {
                                 var k = ExtractFontNameFromStyle(line);
 
-                                result.Add(new KeyValuePair<string, int>(k.Key, lineMatch.Index + k.Value));
+                                if (k.Key.Length > 0)
+                                {
+                                    result.Add(new KeyValuePair<string, int>(k.Key, lineMatch.Index + k.Value));
+                                }
                                 break;
                             }
 

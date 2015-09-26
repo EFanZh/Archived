@@ -55,9 +55,12 @@ namespace SubtitleFontReplacer
             {
                 foreach (var result in await AnalyzeFile(file))
                 {
-                    if (!Model.ExistingFonts.Contains(result.Key))
+                    string fontName = result.Key.StartsWith("@") ? result.Key.Substring(1) : result.Key;
+                    string fontNameUpper = fontName.ToUpper();
+
+                    if (Model.ExistingFonts.All(f => !f.ToUpper().Equals(fontNameUpper, StringComparison.InvariantCultureIgnoreCase)))
                     {
-                        Model.ExistingFonts.Add(result.Key);
+                        Model.ExistingFonts.Add(fontName);
                     }
                 }
             }
@@ -71,7 +74,7 @@ namespace SubtitleFontReplacer
 
             if (fontName != null)
             {
-                Model.AddFontMapping(fontName, string.Empty);
+                Model.AddFontMapping(fontName, string.Empty, string.Empty);
             }
         }
 
@@ -113,7 +116,7 @@ namespace SubtitleFontReplacer
 
         private void AddFontMappingButton_Click(object sender, RoutedEventArgs e)
         {
-            Model.FontMappings.Add(new FontMapping("Original", "Target"));
+            Model.FontMappings.Add(new FontMapping(string.Empty, string.Empty, string.Empty));
         }
 
         private void RemoveFontMappingButton_Click(object sender, RoutedEventArgs e)

@@ -26,7 +26,7 @@ namespace SubtitleFontReplacer
                                        from line in File.ReadAllLines(ConfigFile)
                                        where line.Contains(",")
                                        select line.Split(',')
-                                   select new FontMapping(mapping[0].Trim(), mapping[1].Trim());
+                                   select new FontMapping(mapping[0].Trim(), mapping[1].Trim(), mapping[2].Trim());
 
                 foreach (var mapping in fontMappings)
                 {
@@ -47,7 +47,7 @@ namespace SubtitleFontReplacer
             {
                 try
                 {
-                    File.WriteAllLines(ConfigFile, FontMappings.OrderBy(m => m.Original).Select(m => $"{m.Original}, {m.Target}"));
+                    File.WriteAllLines(ConfigFile, FontMappings.OrderBy(m => m.Original).Select(m => $"{m.Original}, {m.Target}, {m.VerticalTarget}"));
                 }
                 catch (Exception)
                 {
@@ -66,17 +66,27 @@ namespace SubtitleFontReplacer
             get;
         }
 
-        public void AddFontMapping(string original, string target)
+        public void AddFontMapping(string original, string target, string verticalTarget)
         {
             if (FontMappings.All(m => !string.Equals(m.Original, original, StringComparison.InvariantCultureIgnoreCase)))
             {
-                FontMappings.Add(new FontMapping(original, target));
+                FontMappings.Add(new FontMapping(original, target, verticalTarget));
             }
         }
 
         public IDictionary<string, string> CreateReplaceDictionary()
         {
-            return FontMappings.ToDictionary(pair => pair.Original.ToUpper(CultureInfo.InvariantCulture), pair => pair.Target);
+            var dict = new Dictionary<string, string>();
+
+            foreach (var fontMapping in FontMappings)
+            {
+                string key = fontMapping.Original.ToUpper(CultureInfo.InvariantCulture);
+
+                dict.Add(key, fontMapping.Target);
+                dict.Add('@' + key, '@' + fontMapping.VerticalTarget);
+            }
+
+            return dict;
         }
     }
 }

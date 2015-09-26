@@ -2,10 +2,11 @@
 {
     public class FontMapping
     {
-        public FontMapping(string original, string target)
+        public FontMapping(string original, string target, string verticalTarget)
         {
             Original = original;
             Target = target;
+            VerticalTarget = verticalTarget;
         }
 
         public string Original
@@ -15,6 +16,12 @@
         }
 
         public string Target
+        {
+            get;
+            set;
+        }
+
+        public string VerticalTarget
         {
             get;
             set;
