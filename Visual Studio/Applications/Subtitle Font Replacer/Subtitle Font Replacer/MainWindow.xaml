@@ -57,7 +57,12 @@
                     <TextBlock Grid.Column="0" Style="{StaticResource WigetTitle}" Text="Process" />
                     <Button Grid.Column="1" Content="Process" Style="{StaticResource SingleLineButton}" Click="ProcessButton_Click" />
                 </Grid>
-                <DataGrid x:Name="FontMappingDataGrid" Background="{x:Static SystemColors.WindowBrush}" BorderThickness="0" HorizontalGridLinesBrush="#FFEAEAEA" VerticalGridLinesBrush="#FFEAEAEA" CanUserResizeRows="False" ItemsSource="{Binding FontMappings}" RowHeaderWidth="0" IsSynchronizedWithCurrentItem="True">
+                <DataGrid x:Name="FontMappingDataGrid" Background="{x:Static SystemColors.WindowBrush}" BorderThickness="0" HorizontalGridLinesBrush="#FFEAEAEA" VerticalGridLinesBrush="#FFEAEAEA" CanUserResizeRows="False" RowHeaderWidth="0" IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding FontMappings}" AutoGenerateColumns="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding Original}" Header="Original" />
+                        <DataGridTextColumn Binding="{Binding Target}" Header="New Font" />
+                        <DataGridTextColumn Binding="{Binding VerticalTarget}" Header="New Vertical Font" />
+                    </DataGrid.Columns>
                     <DataGrid.ContextMenu>
                         <ContextMenu>
                             <MenuItem Header="Add" Click="AddFontMappingButton_Click" />
