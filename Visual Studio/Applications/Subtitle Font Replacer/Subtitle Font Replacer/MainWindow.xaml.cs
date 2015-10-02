@@ -24,7 +24,7 @@ namespace SubtitleFontReplacer
 
             InitializeComponent();
 
-            this.Dispatcher.Hooks.DispatcherInactive += (sender, e) => StateTextBlock.Text = "Ready.";
+            ExistingFontsListBox.Items.SortDescriptions.Add(new SortDescription());
         }
 
         public Model Model
@@ -45,6 +45,7 @@ namespace SubtitleFontReplacer
 
         private async void AnalyzeButton_Click(object sender, RoutedEventArgs e)
         {
+            StateTextBlock.Text = "Analyzing...";
             ((UIElement)sender).IsEnabled = false;
 
             string path = FolderTextBox.Text;
@@ -66,6 +67,7 @@ namespace SubtitleFontReplacer
             }
 
             ((UIElement)sender).IsEnabled = true;
+            StateTextBlock.Text = "Ready.";
         }
 
         private void ExistingFontsListBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -80,19 +82,14 @@ namespace SubtitleFontReplacer
 
         private async void ProcessButton_Click(object sender, RoutedEventArgs e)
         {
+            StateTextBlock.Text = "Processing...";
             ((UIElement)sender).IsEnabled = false;
 
             string path = FolderTextBox.Text;
-            var dict = Model.CreateReplaceDictionary();
 
             try
             {
-                if (dict.Any(p => string.IsNullOrWhiteSpace(p.Key) || string.IsNullOrWhiteSpace(p.Value)))
-                {
-                    MessageBox.Show("Fields can not be empty.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-
-                    return;
-                }
+                var dict = Model.CreateReplaceDictionary();
 
                 if (MessageBox.Show("You sure?", "Question", MessageBoxButton.YesNo, MessageBoxImage.Question) != MessageBoxResult.Yes)
                 {
@@ -111,6 +108,7 @@ namespace SubtitleFontReplacer
             finally
             {
                 ((UIElement)sender).IsEnabled = true;
+                StateTextBlock.Text = "Analyzing...";
             }
         }
 

@@ -59,9 +59,9 @@
                 </Grid>
                 <DataGrid x:Name="FontMappingDataGrid" Background="{x:Static SystemColors.WindowBrush}" BorderThickness="0" HorizontalGridLinesBrush="#FFEAEAEA" VerticalGridLinesBrush="#FFEAEAEA" CanUserResizeRows="False" RowHeaderWidth="0" IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding FontMappings}" AutoGenerateColumns="False">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Binding="{Binding Original}" Header="Original" />
-                        <DataGridTextColumn Binding="{Binding Target}" Header="New Font" />
-                        <DataGridTextColumn Binding="{Binding VerticalTarget}" Header="New Vertical Font" />
+                        <DataGridTextColumn Binding="{Binding Original}" Header="Old" />
+                        <DataGridTextColumn Binding="{Binding Target}" Header="New" />
+                        <DataGridTextColumn Binding="{Binding VerticalTarget}" Header="New Vertical (Optional)" />
                     </DataGrid.Columns>
                     <DataGrid.ContextMenu>
                         <ContextMenu>

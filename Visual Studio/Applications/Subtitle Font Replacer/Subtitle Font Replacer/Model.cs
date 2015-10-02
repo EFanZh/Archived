@@ -22,15 +22,24 @@ namespace SubtitleFontReplacer
         {
             try
             {
-                var fontMappings = from mapping in
-                                       from line in File.ReadAllLines(ConfigFile)
-                                       where line.Contains(",")
-                                       select line.Split(',')
-                                   select new FontMapping(mapping[0].Trim(), mapping[1].Trim(), mapping[2].Trim());
-
-                foreach (var mapping in fontMappings)
+                foreach (var line in File.ReadAllLines(ConfigFile).Select(l => l.Split(',')))
                 {
-                    FontMappings.Add(mapping);
+                    if (line.Length >= 3)
+                    {
+                        var newFont = line[1].Trim();
+                        var newVerticalFont = line[2].Trim();
+
+                        if (string.Equals(newFont, newVerticalFont, StringComparison.InvariantCulture))
+                        {
+                            newVerticalFont = null;
+                        }
+
+                        FontMappings.Add(new FontMapping(line[0].Trim(), newFont, newVerticalFont));
+                    }
+                    else if (line.Length == 2)
+                    {
+                        FontMappings.Add(new FontMapping(line[0].Trim(), line[1].Trim(), null));
+                    }
                 }
 
                 loaded = true;
@@ -47,7 +56,17 @@ namespace SubtitleFontReplacer
             {
                 try
                 {
-                    File.WriteAllLines(ConfigFile, FontMappings.OrderBy(m => m.Original).Select(m => $"{m.Original}, {m.Target}, {m.VerticalTarget}"));
+                    File.WriteAllLines(ConfigFile, FontMappings.OrderBy(m => m.Original).Select(m =>
+                    {
+                        if (string.IsNullOrEmpty(m.VerticalTarget) || string.Equals(m.Target, m.VerticalTarget))
+                        {
+                            return $"{m.Original.Trim()}, {m.Target.Trim()}";
+                        }
+                        else
+                        {
+                            return $"{m.Original.Trim()}, {m.Target.Trim()}, {m.VerticalTarget.Trim()}";
+                        }
+                    }));
                 }
                 catch (Exception)
                 {
@@ -80,10 +99,24 @@ namespace SubtitleFontReplacer
 
             foreach (var fontMapping in FontMappings)
             {
-                string key = fontMapping.Original.ToUpper(CultureInfo.InvariantCulture);
+                if (string.IsNullOrWhiteSpace(fontMapping.Original) || string.IsNullOrWhiteSpace(fontMapping.Target))
+                {
+                    throw new Exception("Original font or target font cannot be empty.");
+                }
 
-                dict.Add(key, fontMapping.Target);
-                dict.Add('@' + key, '@' + fontMapping.VerticalTarget);
+                string key = fontMapping.Original.ToUpper(CultureInfo.InvariantCulture).Trim();
+                string target = fontMapping.Target.Trim();
+
+                dict.Add(key, target);
+
+                if (string.IsNullOrWhiteSpace(fontMapping.VerticalTarget))
+                {
+                    dict.Add('@' + key, '@' + target);
+                }
+                else
+                {
+                    dict.Add('@' + key, '@' + fontMapping.VerticalTarget.Trim());
+                }
             }
 
             return dict;
