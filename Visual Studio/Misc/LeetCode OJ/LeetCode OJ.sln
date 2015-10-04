@@ -474,6 +474,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "284. Peeking Iterator", "28
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "287. Find the Duplicate Number", "287. Find the Duplicate Number\287. Find the Duplicate Number.vcxproj", "{6E9700C9-6819-458E-AE99-7C3D0E13C537}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "289. Game of Life", "289. Game of Life\289. Game of Life.vcxproj", "{C20B46B5-C0D8-4BBF-BA3B-41E22BAE44CE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -1986,6 +1988,14 @@ Global
 		{6E9700C9-6819-458E-AE99-7C3D0E13C537}.Release|Win32.Build.0 = Release|Win32
 		{6E9700C9-6819-458E-AE99-7C3D0E13C537}.Release|x64.ActiveCfg = Release|x64
 		{6E9700C9-6819-458E-AE99-7C3D0E13C537}.Release|x64.Build.0 = Release|x64
+		{C20B46B5-C0D8-4BBF-BA3B-41E22BAE44CE}.Debug|Win32.ActiveCfg = Debug|Win32
+		{C20B46B5-C0D8-4BBF-BA3B-41E22BAE44CE}.Debug|Win32.Build.0 = Debug|Win32
+		{C20B46B5-C0D8-4BBF-BA3B-41E22BAE44CE}.Debug|x64.ActiveCfg = Debug|x64
+		{C20B46B5-C0D8-4BBF-BA3B-41E22BAE44CE}.Debug|x64.Build.0 = Debug|x64
+		{C20B46B5-C0D8-4BBF-BA3B-41E22BAE44CE}.Release|Win32.ActiveCfg = Release|Win32
+		{C20B46B5-C0D8-4BBF-BA3B-41E22BAE44CE}.Release|Win32.Build.0 = Release|Win32
+		{C20B46B5-C0D8-4BBF-BA3B-41E22BAE44CE}.Release|x64.ActiveCfg = Release|x64
+		{C20B46B5-C0D8-4BBF-BA3B-41E22BAE44CE}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -2223,5 +2233,6 @@ Global
 		{8353BA55-7094-4B8D-9B12-479287DE2902} = {57387E8D-D6F8-4B26-98FA-B25DF670DEB6}
 		{E3B31DA2-5539-40CC-B61F-EA1AE572F407} = {57387E8D-D6F8-4B26-98FA-B25DF670DEB6}
 		{6E9700C9-6819-458E-AE99-7C3D0E13C537} = {57387E8D-D6F8-4B26-98FA-B25DF670DEB6}
+		{C20B46B5-C0D8-4BBF-BA3B-41E22BAE44CE} = {57387E8D-D6F8-4B26-98FA-B25DF670DEB6}
 	EndGlobalSection
 EndGlobal
