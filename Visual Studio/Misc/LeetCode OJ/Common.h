@@ -17,6 +17,9 @@
 
 using namespace std;
 
+template <class T>
+using Pool = vector<unique_ptr<T>>;
+
 struct Interval
 {
     int start = 0;
@@ -164,7 +167,7 @@ vector<vector<char>> convertStringToMatrix(const T &container)
     return result;
 }
 
-ListNode *MakeList(vector<unique_ptr<ListNode>> &pool, initializer_list<int> input)
+ListNode *MakeList(Pool<ListNode> &pool, initializer_list<int> input)
 {
     ListNode *head = nullptr;
     ListNode **p = &head;
@@ -182,7 +185,7 @@ ListNode *MakeList(vector<unique_ptr<ListNode>> &pool, initializer_list<int> inp
 
 
 template <class T = TreeNode>
-T *MakeTree(vector<unique_ptr<T>> &pool, istream &input)
+T *MakeTree(Pool<T> &pool, istream &input)
 {
     using namespace Detail;
 
