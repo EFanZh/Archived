@@ -3,39 +3,36 @@
 class Solution
 {
 public:
-    int lengthOfLongestSubstring(string s)
+    int lengthOfLongestSubstring(const string &s)
     {
-        if (s.empty())
+        if (s.length() <= 1)
         {
-            return 0;
+            return static_cast<int>(s.length());
         }
 
-        array<int, 256> current;
+        const int length = static_cast<int>(s.length());
+        array<int, 256> window;
+        int windowBegin = 0;
+        int result = 0;
 
-        fill(current.begin(), current.end(), -1);
+        fill(window.begin(), window.end(), -1);
 
-        size_t i = 0;
-        size_t maxLength = 0;
-
-        for (size_t j = 0; j < s.length(); ++j)
+        for (int i = 0; i < length; ++i)
         {
-            if (current[s[j]] != -1)
+            auto &current = window[s[i]];
+
+            if (current < windowBegin) // If current == -1 or current is not in the window.
             {
-                maxLength = max(maxLength, j - i);
-
-                size_t newBegin = current[s[j]];
-
-                for (; i < newBegin; ++i)
-                {
-                    current[s[i]] = -1;
-                }
-
-                ++i;
+                result = max(result, i - windowBegin + 1);
+            }
+            else
+            {
+                windowBegin = current + 1;
             }
 
-            current[s[j]] = j;
+            current = i;
         }
 
-        return max(maxLength, s.length() - i);
+        return result;
     }
 };
