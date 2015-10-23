@@ -102,7 +102,7 @@ namespace ColorSpace
                     color.Component2 = 1.0 + (color.Component2 - 1.0) * dp;
                     color.Component3 = 1.0 + (color.Component3 - 1.0) * dp;
 
-                    color.ConvertSRgbToFinalSRgb();
+                    color.ConvertLinearSRgbToSRgb();
 
                     bitmap.SetPixel(x, y, color.ToColor());
                 }
@@ -187,7 +187,7 @@ namespace ColorSpace
 
                     colorVector.ConvertXyyToSRgb();
                     colorVector.CompressLuminance();
-                    colorVector.ConvertSRgbToFinalSRgb();
+                    colorVector.ConvertLinearSRgbToSRgb();
 
                     bitmap.SetPixel(x, bitmap.Height - 1 - y, colorVector.ToColor());
                 }
@@ -195,13 +195,92 @@ namespace ColorSpace
             }
         }
 
+        private class ColorComparer : IComparer<KeyValuePair<Color, double>>
+        {
+            public int Compare(KeyValuePair<Color, double> x, KeyValuePair<Color, double> y)
+            {
+                if (x.Value < y.Value)
+                {
+                    return -1;
+                }
+                else if (x.Value > y.Value)
+                {
+                    return 1;
+                }
+                else
+                {
+                    int result = x.Key.R - y.Key.R;
+
+                    if (result != 0)
+                    {
+                        return result;
+                    }
+
+                    result = x.Key.G - y.Key.G;
+
+                    if (result != 0)
+                    {
+                        return result;
+                    }
+
+                    return x.Key.B - y.Key.B;
+                }
+            }
+        }
+
+        private static IEnumerable<KeyValuePair<Color, double>> SortColors()
+        {
+            var result = new KeyValuePair<Color, double>[256 * 256 * 256];
+            int i = 0;
+
+            for (short r = 0; r < 256; ++r)
+            {
+                for (short g = 0; g < 256; ++g)
+                {
+                    for (short b = 0; b < 256; ++b)
+                    {
+                        ColorVector colorVector = new ColorVector(r / 255.0, g / 255.0, b / 255.0);
+
+                        colorVector.ConvertSRgbToLinearSRgb();
+                        colorVector.ConvertLinearSRgbToXyz();
+
+                        result[i] = new KeyValuePair<Color, double>(Color.FromArgb(r, g, b), colorVector.Component2);
+
+                        if (i % 1000000 == 0)
+                        {
+                            Console.WriteLine(i);
+                        }
+
+                        i++;
+                    }
+                }
+            }
+
+            return result.OrderBy(t => t, new ColorComparer());
+        }
+
         private static void Main(string[] args)
         {
             using (Bitmap bitmap = new Bitmap(4096, 4096))
             {
-                GenerateColorRing(bitmap, 10.0);
+                int i = 0;
 
-                bitmap.Save("E:\\3.png");
+                foreach (var color in SortColors())
+                {
+                    int row = i / 4096;
+                    int column = i % 4096;
+
+                    bitmap.SetPixel(column, row, color.Key);
+
+                    if (column == 0)
+                    {
+                        Console.WriteLine(row);
+                    }
+
+                    ++i;
+                }
+
+                bitmap.Save("E:\\1.png");
             }
         }
     }

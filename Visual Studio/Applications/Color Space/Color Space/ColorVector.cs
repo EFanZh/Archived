@@ -67,11 +67,18 @@ namespace ColorSpace
             }
         }
 
-        public void ConvertSRgbToFinalSRgb()
+        public void ConvertLinearSRgbToSRgb()
         {
-            Component1 = SRgbToFinalSRgb(Component1);
-            Component2 = SRgbToFinalSRgb(Component2);
-            Component3 = SRgbToFinalSRgb(Component3);
+            Component1 = LinearSRgbToSRgb(Component1);
+            Component2 = LinearSRgbToSRgb(Component2);
+            Component3 = LinearSRgbToSRgb(Component3);
+        }
+
+        public void ConvertSRgbToLinearSRgb()
+        {
+            Component1 = SRgbToLinearSRgb(Component1);
+            Component2 = SRgbToLinearSRgb(Component2);
+            Component3 = SRgbToLinearSRgb(Component3);
         }
 
         public void ConvertXyyToSRgbSmart()
@@ -117,6 +124,25 @@ namespace ColorSpace
             SetSRgbSmart(r, g, b, y);
         }
 
+        public void ConvertLinearSRgbToXyz()
+        {
+            const double m11 = 8504.0 / 20625.0;
+            const double m12 = 447.0 / 1250.0;
+            const double m13 = 361.0 / 2000.0;
+            const double m21 = 1063.0 / 5000.0;
+            const double m22 = 447.0 / 625.0;
+            const double m23 = 361.0 / 5000.0;
+            const double m31 = 1063.0 / 55000.0;
+            const double m32 = 149.0 / 1250.0;
+            const double m33 = 28519.0 / 30000.0;
+            double r = Component1;
+            double g = Component2;
+            double b = Component3;
+            Component1 = (m11 * r + m12 * g + m13 * b);
+            Component2 = (m21 * r + m22 * g + m23 * b);
+            Component3 = (m31 * r + m32 * g + m33 * b);
+        }
+
         public Color ToColor()
         {
             double min = Math.Min(Math.Min(Component1, Component2), Component3);
@@ -152,9 +178,9 @@ namespace ColorSpace
             }
             else
             {
-                Component1 = SRgbToFinalSRgb(bigY + rOffset * upperBound);
-                Component2 = SRgbToFinalSRgb(bigY + gOffset * upperBound);
-                Component3 = SRgbToFinalSRgb(bigY + bOffset * upperBound);
+                Component1 = LinearSRgbToSRgb(bigY + rOffset * upperBound);
+                Component2 = LinearSRgbToSRgb(bigY + gOffset * upperBound);
+                Component3 = LinearSRgbToSRgb(bigY + bOffset * upperBound);
             }
         }
 
@@ -172,9 +198,23 @@ namespace ColorSpace
             }
         }
 
-        private static double SRgbToFinalSRgb(double x)
+        private static double LinearSRgbToSRgb(double c)
         {
-            return x <= 0.0031308 ? x * 12.92 : Math.Pow(x, 1.0 / 2.4) * 1.055 - 0.055;
+            return c <= 0.0031308 ? c * 12.92 : Math.Pow(c, 1.0 / 2.4) * 1.055 - 0.055;
+        }
+
+        private static double SRgbToLinearSRgb(double c)
+        {
+            const double a = 0.055;
+
+            if (c <= 0.04045)
+            {
+                return c / 12.92;
+            }
+            else
+            {
+                return Math.Pow((c + a) / (1 + a), 2.4);
+            }
         }
 
         private static byte ToColorComponent(double c)
