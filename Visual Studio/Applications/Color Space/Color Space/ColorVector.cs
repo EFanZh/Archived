@@ -34,6 +34,36 @@ namespace ColorSpace
             set;
         }
 
+        public double Hue
+        {
+            get
+            {
+                double hue;
+                double min = Math.Min(Math.Min(Component1, Component3), Component2);
+                double max = Math.Max(Math.Max(Component1, Component2), Component3);
+
+                if (max == Component1)
+                {
+                    hue = (Component2 - Component3) / (max - min);
+                }
+                else if (max == Component2)
+                {
+                    hue = 2.0 + (Component3 - Component1) / (max - min);
+                }
+                else
+                {
+                    hue = 4.0 + (Component1 - Component2) / (max - min);
+                }
+
+                if (hue < 0.0)
+                {
+                    hue += 6.0;
+                }
+
+                return hue;
+            }
+        }
+
         public void ConvertXyyToSRgb()
         {
             const double f11 = 330000.0 / 88229.0;
@@ -101,6 +131,19 @@ namespace ColorSpace
             double b = (f31 * x + f32 * y + f33) * scale;
 
             SetSRgbSmart(r, g, b, bigY);
+        }
+
+        public void ConvertXyzToXyy()
+        {
+            double total = Component1 + Component2 + Component3;
+            double bigY = Component2;
+
+            if (total != 0.0)
+            {
+                Component1 /= total;
+                Component2 /= total;
+                Component3 = bigY;
+            }
         }
 
         public void ConvertXyzToSRgbSmart()

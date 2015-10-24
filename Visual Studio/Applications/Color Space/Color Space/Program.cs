@@ -195,42 +195,9 @@ namespace ColorSpace
             }
         }
 
-        private class ColorComparer : IComparer<KeyValuePair<Color, double>>
+        private static Tuple<Color, double, double>[] GenerateColors()
         {
-            public int Compare(KeyValuePair<Color, double> x, KeyValuePair<Color, double> y)
-            {
-                if (x.Value < y.Value)
-                {
-                    return -1;
-                }
-                else if (x.Value > y.Value)
-                {
-                    return 1;
-                }
-                else
-                {
-                    int result = x.Key.R - y.Key.R;
-
-                    if (result != 0)
-                    {
-                        return result;
-                    }
-
-                    result = x.Key.G - y.Key.G;
-
-                    if (result != 0)
-                    {
-                        return result;
-                    }
-
-                    return x.Key.B - y.Key.B;
-                }
-            }
-        }
-
-        private static IEnumerable<KeyValuePair<Color, double>> SortColors()
-        {
-            var result = new KeyValuePair<Color, double>[256 * 256 * 256];
+            var result = new Tuple<Color, double, double>[256 * 256 * 256];
             int i = 0;
 
             for (short r = 0; r < 256; ++r)
@@ -243,8 +210,10 @@ namespace ColorSpace
 
                         colorVector.ConvertSRgbToLinearSRgb();
                         colorVector.ConvertLinearSRgbToXyz();
+                        colorVector.ConvertXyzToXyy();
+                        double hue = Math.Atan2(colorVector.Component2 - D65.SmallY, colorVector.Component1 - D65.SmallX);
 
-                        result[i] = new KeyValuePair<Color, double>(Color.FromArgb(r, g, b), colorVector.Component2);
+                        result[i] = new Tuple<Color, double, double>(Color.FromArgb(r, g, b), colorVector.Component3, hue);
 
                         if (i % 1000000 == 0)
                         {
@@ -256,31 +225,31 @@ namespace ColorSpace
                 }
             }
 
-            return result.OrderBy(t => t, new ColorComparer());
+            return result;
         }
 
         private static void Main(string[] args)
         {
-            using (Bitmap bitmap = new Bitmap(4096, 4096))
+            var allColors = GenerateColors().OrderBy(t => t.Item2).ToArray();
+
+            for (int i = 0; i < 256; i++)
             {
-                int i = 0;
+                var planeColors = allColors.Skip(256 * 256 * i).Take(256 * 256).OrderBy(p => p.Item3).ToArray();
 
-                foreach (var color in SortColors())
+                using (Bitmap bitmap = new Bitmap(256, 256))
                 {
-                    int row = i / 4096;
-                    int column = i % 4096;
-
-                    bitmap.SetPixel(column, row, color.Key);
-
-                    if (column == 0)
+                    for (int j = 0; j < 256; j++)
                     {
-                        Console.WriteLine(row);
+                        var rowColors = planeColors.Skip(256 * j).Take(256).OrderBy(p => p.Item1.GetSaturation()).ToArray();
+
+                        for (int k = 0; k < rowColors.Length; k++)
+                        {
+                            bitmap.SetPixel(j, 255 - k, rowColors[k].Item1);
+                        }
                     }
 
-                    ++i;
+                    bitmap.Save($@"colors-sorted-by-luminance-{i:000}.png");
                 }
-
-                bitmap.Save("E:\\1.png");
             }
         }
     }

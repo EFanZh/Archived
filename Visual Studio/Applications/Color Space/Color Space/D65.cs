@@ -22,5 +22,21 @@ namespace ColorSpace
         {
             get;
         } = 1.08883;
+
+        public static double SmallX
+        {
+            get
+            {
+                return X / (X + Y + Z);
+            }
+        }
+
+        public static double SmallY
+        {
+            get
+            {
+                return Y / (X + Y + Z);
+            }
+        }
     }
 }
