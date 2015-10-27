@@ -2,8 +2,8 @@
 
 (([name . "Visual Studio Dark"]
   [general ([default ([background (30 30 30)]
-                        [foreground (220 220 220 102)])]
-            [selected ([background (51 153 255)])]
+                      [foreground (220 220 220)])]
+            [selected ([background (51 153 255 102)])]
             [selected-inactive ([background . (86 86 86)])]
             [line-number ([background (30 30 30)]
                             [foreground (43 145 175)])]
