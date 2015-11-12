@@ -185,7 +185,7 @@ namespace ColorSpace
                     double cy = (y + 0.5) / bitmap.Height;
                     ColorVector colorVector = new ColorVector(cx, cy, bigY);
 
-                    colorVector.ConvertXyyToSRgb();
+                    colorVector.ConvertXyyToLinearSRgb();
                     colorVector.CompressLuminance();
                     colorVector.ConvertLinearSRgbToSRgb();
 
@@ -228,29 +228,53 @@ namespace ColorSpace
             return result;
         }
 
-        private static void Main(string[] args)
+        private static void GenerateXyyColors(Bitmap bitmap, double bigY)
         {
-            var allColors = GenerateColors().OrderBy(t => t.Item2).ToArray();
+            double width = bitmap.Width - 1;
+            double height = bitmap.Width - 1;
 
-            for (int i = 0; i < 256; i++)
+            for (int y = 0; y < bitmap.Height; y++)
             {
-                var planeColors = allColors.Skip(256 * 256 * i).Take(256 * 256).OrderBy(p => p.Item3).ToArray();
-
-                using (Bitmap bitmap = new Bitmap(256, 256))
+                for (int x = 0; x <= y; x++)
                 {
-                    for (int j = 0; j < 256; j++)
+                    double cx = (x + 0.5) / width;
+                    double cy = 1.0 - (y + 0.5) / height;
+
+                    ColorVector colorVector = new ColorVector()
                     {
-                        var rowColors = planeColors.Skip(256 * j).Take(256).OrderBy(p => p.Item1.GetSaturation()).ToArray();
+                        Component1 = cx,
+                        Component2 = cy,
+                        Component3 = bigY
+                    };
 
-                        for (int k = 0; k < rowColors.Length; k++)
-                        {
-                            bitmap.SetPixel(j, 255 - k, rowColors[k].Item1);
-                        }
+                    colorVector.ConvertXyyToLinearSRgb();
+
+                    if (colorVector.IsCanonical())
+                    {
+                        colorVector.ConvertLinearSRgbToSRgb();
+
+                        bitmap.SetPixel(x, y, colorVector.ToColor());
                     }
-
-                    bitmap.Save($@"colors-sorted-by-luminance-{i:000}.png");
                 }
             }
+        }
+
+        private static void Main(string[] args)
+        {
+            const int count = 1001;
+            const int size = 1000;
+
+            Parallel.ForEach(Enumerable.Range(0, count), i =>
+            {
+                double bigY = i / (count - 1.0);
+
+                using (Bitmap bitmap = new Bitmap(size, size))
+                {
+                    GenerateXyyColors(bitmap, bigY);
+
+                    bitmap.Save($@"E:\Colors\xyy-colors-{i:0000}.png");
+                }
+            });
         }
     }
 }

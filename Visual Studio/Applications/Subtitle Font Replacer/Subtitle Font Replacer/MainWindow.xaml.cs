@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -188,8 +189,9 @@ namespace SubtitleFontReplacer
                 {
                     File.WriteAllText(file, Process(File.ReadAllText(file), mapping));
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
+                    Debug.WriteLine(ex.Message);
                     // Ignored.
                 }
             });

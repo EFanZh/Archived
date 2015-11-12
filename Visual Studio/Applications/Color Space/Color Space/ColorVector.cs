@@ -64,8 +64,15 @@ namespace ColorSpace
             }
         }
 
-        public void ConvertXyyToSRgb()
+        public void ConvertXyyToLinearSRgb()
         {
+            // TODO: Check this.
+            if (Component3 == 0.0)
+            {
+                Component1 = 0.0;
+                Component2 = 0.0;
+            }
+
             const double f11 = 330000.0 / 88229.0;
             const double f12 = -275000.0 / 264687.0;
             const double f13 = -44000.0 / 88229.0;
@@ -94,6 +101,25 @@ namespace ColorSpace
                 Component1 /= max;
                 Component2 /= max;
                 Component3 /= max;
+            }
+        }
+
+        public bool IsCanonical()
+        {
+            return Component1 >= 0.0 && Component1 <= 1.0 &&
+                   Component2 >= 0.0 && Component2 <= 1.0 &&
+                   Component3 >= 0.0 && Component3 <= 1.0;
+        }
+
+        public void Chop()
+        {
+            if (Component1 < 0.0 || Component1 > 1.0 ||
+                Component2 < 0.0 || Component2 > 1.0 ||
+                Component3 < 0.0 || Component3 > 1.0)
+            {
+                Component1 = 0.0;
+                Component2 = 0.0;
+                Component3 = 0.0;
             }
         }
 
