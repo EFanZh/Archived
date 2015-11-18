@@ -17,5 +17,7 @@
                 return 16500m / 50153m;
             }
         }
+
+        public static decimal D65Z => 1m - D65X - D65Y;
     }
 }

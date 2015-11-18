@@ -40,9 +40,9 @@ namespace SearchColors
 
         private static void Main(string[] args)
         {
-            Searcher searcher = new Searcher(Color.FromArgb(255, 0, 255));
+            Searcher searcher = new Searcher(Color.FromArgb(0, 0, 255));
 
-            Parallel.ForEach(Directory.GetFiles(@"E:\Rainbows", "*", SearchOption.AllDirectories), f =>
+            Parallel.ForEach(Directory.GetFiles(@"E:\Colors", "*", SearchOption.AllDirectories), f =>
             {
                 if (TestColor(f, searcher))
                 {

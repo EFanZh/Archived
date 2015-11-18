@@ -59,6 +59,17 @@ namespace ColorSpace.Common
             }
         }
 
+        public double GetSaturation(double whiteX, double whiteY)
+        {
+            double total = Component1 + Component2 + Component3;
+            double x = Component1 / total;
+            double y = Component2 / total;
+            double dx = x - whiteX;
+            double dy = y - whiteY;
+
+            return Math.Sqrt(dx * dx + dy * dy);
+        }
+
         public void ConvertXyyToLinearSRgb()
         {
             // TODO: Check this.
