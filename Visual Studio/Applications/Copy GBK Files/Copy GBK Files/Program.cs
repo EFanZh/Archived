@@ -27,7 +27,7 @@ namespace CopyGbkFiles
         {
             foreach (char ch in s)
             {
-                if (char.IsControl(ch) && ch != '\r' && ch != '\n')
+                if (char.IsControl(ch) && !char.IsWhiteSpace(ch))
                 {
                     return false;
                 }
