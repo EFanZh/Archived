@@ -125,7 +125,7 @@ void MainWindow_OnPaint(HWND hWnd)
         }
         else
         {
-            info = TEXT("Press °∞H°± key to hold.");
+            info = TEXT("Press ‚ÄúH‚Äù key to hold.");
         }
         TextOut(hdc, 11, 11, info, _tcslen(info));
 

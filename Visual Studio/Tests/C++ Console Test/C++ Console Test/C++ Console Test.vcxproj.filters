@@ -19,4 +19,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="cp936.txt" />
+    <Text Include="utf-8.txt" />
+    <Text Include="empty.txt" />
+  </ItemGroup>
 </Project>
