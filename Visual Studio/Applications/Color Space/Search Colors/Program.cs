@@ -42,7 +42,7 @@ namespace SearchColors
         {
             Searcher searcher = new Searcher(Color.FromArgb(0, 0, 255));
 
-            Parallel.ForEach(Directory.GetFiles(@"E:\Colors", "*", SearchOption.AllDirectories), f =>
+            Parallel.ForEach(Directory.GetFiles(@"E:\EFanZh\Temp\Colors", "*", SearchOption.AllDirectories), f =>
             {
                 if (TestColor(f, searcher))
                 {
