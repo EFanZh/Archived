@@ -9,6 +9,11 @@ namespace BouncingBall
         private readonly Queue<T> queue = new Queue<T>();
         private int maxCount;
 
+        public FixedSizeQueue(int maxCount)
+        {
+            this.maxCount = maxCount;
+        }
+
         public IEnumerator<T> GetEnumerator()
         {
             return queue.GetEnumerator();
@@ -24,29 +29,11 @@ namespace BouncingBall
             ((ICollection)queue).CopyTo(array, index);
         }
 
-        public int Count
-        {
-            get
-            {
-                return queue.Count;
-            }
-        }
+        public int Count => queue.Count;
 
-        public object SyncRoot
-        {
-            get
-            {
-                return ((ICollection)queue).SyncRoot;
-            }
-        }
+        public object SyncRoot => ((ICollection)queue).SyncRoot;
 
-        public bool IsSynchronized
-        {
-            get
-            {
-                return ((ICollection)queue).IsSynchronized;
-            }
-        }
+        public bool IsSynchronized => ((ICollection)queue).IsSynchronized;
 
         public int MaxCount
         {
@@ -67,7 +54,7 @@ namespace BouncingBall
 
         public void Enqueue(T item)
         {
-            while (queue.Count >= MaxCount)
+            if (queue.Count == MaxCount)
             {
                 queue.Dequeue();
             }

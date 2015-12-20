@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bouncing Ball", "Bouncing Ball\Bouncing Ball.csproj", "{3B45D74D-FB8A-46BE-BFD4-44D8B0BF93F1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bouncing Ball Accelerate", "Bouncing Ball Accelerate\Bouncing Ball Accelerate.csproj", "{8831E40E-B367-43FD-91FB-432C56497B42}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{3B45D74D-FB8A-46BE-BFD4-44D8B0BF93F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3B45D74D-FB8A-46BE-BFD4-44D8B0BF93F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3B45D74D-FB8A-46BE-BFD4-44D8B0BF93F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8831E40E-B367-43FD-91FB-432C56497B42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8831E40E-B367-43FD-91FB-432C56497B42}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8831E40E-B367-43FD-91FB-432C56497B42}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8831E40E-B367-43FD-91FB-432C56497B42}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

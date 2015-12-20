@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -13,10 +12,14 @@ namespace BouncingBall
     /// </summary>
     public partial class MainWindow : Window
     {
-        private readonly Scene scene = new Scene();
+        private readonly Scene scene = new Scene(g: 256.0,
+                                                 ballSize: 64.0,
+                                                 ballIinitialLocation: new Point(16.0, 512.0),
+                                                 ballIinitialVelocity: new Vector(256.0, 0.0),
+                                                 maxAfterimageCount: 64,
+                                                 afterimageInterval: TimeSpan.FromSeconds(0.0625));
+        
         private readonly DateTime startTime = DateTime.Now;
-        private readonly List<Ellipse> afterimages = new List<Ellipse>();
-        private int frame = 0;
 
         public MainWindow()
         {
@@ -24,54 +27,94 @@ namespace BouncingBall
 
             this.DataContext = scene;
 
+            CreateAfterimages();
+
             CompositionTarget.Rendering += CompositionTarget_Rendering;
-
-            afterimages.AddRange(Enumerable.Range(0, scene.AfterimageCount).Select(i => new Ellipse()
-            {
-                Width = scene.BallSize,
-                Height = scene.BallSize,
-                Fill = scene.BallBrush,
-                StrokeThickness = scene.BallStrokeThickness,
-                Stroke = scene.BallStroke
-            }));
-
-            foreach (var afterimage in afterimages)
-            {
-                MainCanvas.Children.Insert(MainCanvas.Children.Count - 1, afterimage);
-            }
         }
 
         private void Canvas_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            Canvas canvas = (Canvas)sender;
+            var newSize = ((Canvas)sender).RenderSize;
 
-            scene.Width = canvas.ActualWidth;
-            scene.Height = canvas.ActualHeight;
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            if (scene.Width != newSize.Width)
+            {
+                scene.Width = newSize.Width;
+
+                scene.ClearXCache();
+            }
+
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            if (scene.Height != newSize.Height)
+            {
+                scene.Height = newSize.Height;
+
+                scene.ClearYCache();
+            }
         }
 
         private void CompositionTarget_Rendering(object sender, EventArgs e)
         {
-            double time = (DateTime.Now - startTime).TotalSeconds;
-            ++frame;
+            var time = DateTime.Now - startTime;
 
-            App.Current.MainWindow.Title = (frame / time).ToString();
+            SetBallLocation(time);
+            UpdateAfterimages(time);
+        }
 
-            scene.Time = time;
-
-            var afterImagePositions = scene.Afterimages.ToArray();
-
-            for (int i = 0; i < afterImagePositions.Length; i++)
+        private void CreateAfterimages()
+        {
+            for (var i = 0; i < scene.MaxAfterimageCount; ++i)
             {
-                afterimages[i].Visibility = Visibility.Visible;
-                afterimages[i].SetValue(Canvas.LeftProperty, afterImagePositions[i].Value.X);
-                afterimages[i].SetValue(Canvas.TopProperty, afterImagePositions[i].Value.Y);
-                afterimages[i].Opacity = 0.382 * (1.0 - ((time - scene.AfterimageInterval * afterImagePositions[i].Key)) / (scene.AfterimageInterval * scene.AfterimageCount));
+                this.MainCanvas.Children.Insert(MainCanvas.Children.Count - 1,
+                                                new Ellipse()
+                                                {
+                                                    Width = scene.BallSize,
+                                                    Height = scene.BallSize,
+                                                    Fill = MainBall.Fill,
+                                                    StrokeThickness = MainBall.StrokeThickness,
+                                                    Stroke = MainBall.Stroke
+                                                });
+            }
+        }
+
+        private void SetBallLocation(TimeSpan time)
+        {
+            var ballLocation = scene.GetCurrentPosition(time);
+
+            MainBall.SetValue(Canvas.LeftProperty, ballLocation.X);
+            MainBall.SetValue(Canvas.TopProperty, ballLocation.Y);
+        }
+
+        private void UpdateAfterimages(TimeSpan time)
+        {
+            var afterImagePositions = scene.GetAfterImages(time).ToArray();
+            var visibleFrom = scene.MaxAfterimageCount - afterImagePositions.Length;
+            var opacityInterval = 1.0 / scene.MaxAfterimageCount;
+            var opacityFrom = (1.0 -
+                               (time.Ticks % scene.AfterimageInterval.Ticks) / (double)scene.AfterimageInterval.Ticks) *
+                              opacityInterval;
+            var i = 0;
+
+            for (; i < visibleFrom; i++)
+            {
+                GetAfterimage(i).Visibility = Visibility.Hidden;
             }
 
-            for (int i = afterImagePositions.Length; i < afterimages.Count; i++)
+            for (; i < scene.MaxAfterimageCount; i++)
             {
-                afterimages[i].Visibility = Visibility.Hidden;
+                var afterimage = GetAfterimage(i);
+                var position = afterImagePositions[i - visibleFrom];
+
+                afterimage.Visibility = Visibility.Visible;
+                afterimage.SetValue(Canvas.LeftProperty, position.X);
+                afterimage.SetValue(Canvas.TopProperty, position.Y);
+                afterimage.Opacity = opacityFrom + i * opacityInterval;
             }
+        }
+
+        private Ellipse GetAfterimage(int index)
+        {
+            return (Ellipse)MainCanvas.Children[index];
         }
     }
 }
