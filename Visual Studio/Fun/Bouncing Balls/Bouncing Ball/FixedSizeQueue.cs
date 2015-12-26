@@ -4,62 +4,92 @@ using System.Collections.Generic;
 
 namespace BouncingBall
 {
-    internal class FixedSizeQueue<T> : IEnumerable<T>, ICollection, IEnumerable
+    internal class FixedSizeQueue<T> : IEnumerable<T>, ICollection
     {
-        private readonly Queue<T> queue = new Queue<T>();
-        private int maxCount;
+        private readonly T[] buffer;
+        private int head = 0;
+        private int length = 0;
+
+        private class Enumerator : IEnumerator<T>
+        {
+            private readonly FixedSizeQueue<T> queue;
+            private int index = -1;
+
+            public Enumerator(FixedSizeQueue<T> queue)
+            {
+                this.queue = queue;
+            }
+
+            public T Current => queue.buffer[queue.GetBufferIndex(index)];
+
+            object IEnumerator.Current => Current;
+
+            public void Dispose()
+            {
+            }
+
+            public bool MoveNext()
+            {
+                ++index;
+
+                return index < queue.length;
+            }
+
+            public void Reset()
+            {
+                index = -1;
+            }
+        }
 
         public FixedSizeQueue(int maxCount)
         {
-            this.maxCount = maxCount;
+            this.buffer = new T[maxCount];
         }
+
+        public int Count => length;
+
+        public bool IsSynchronized => false;
+
+        public object SyncRoot => this;
+
+        public int MaxCount => buffer.Length;
 
         public IEnumerator<T> GetEnumerator()
         {
-            return queue.GetEnumerator();
+            return new Enumerator(this);
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            return ((IEnumerable)queue).GetEnumerator();
+            return GetEnumerator();
         }
 
         public void CopyTo(Array array, int index)
         {
-            ((ICollection)queue).CopyTo(array, index);
-        }
-
-        public int Count => queue.Count;
-
-        public object SyncRoot => ((ICollection)queue).SyncRoot;
-
-        public bool IsSynchronized => ((ICollection)queue).IsSynchronized;
-
-        public int MaxCount
-        {
-            get
+            for (var i = 0; i < length; i++)
             {
-                return maxCount;
-            }
-            set
-            {
-                maxCount = value;
-
-                while (queue.Count > maxCount)
-                {
-                    queue.Dequeue();
-                }
+                array.SetValue(buffer[GetBufferIndex(i)], index + i);
             }
         }
 
-        public void Enqueue(T item)
+        public void Enqueue(T value)
         {
-            if (queue.Count == MaxCount)
-            {
-                queue.Dequeue();
-            }
+            buffer[GetBufferIndex(length)] = value;
 
-            queue.Enqueue(item);
+            if (length == MaxCount)
+            {
+                ++head;
+                head %= MaxCount;
+            }
+            else
+            {
+                ++length;
+            }
+        }
+
+        private int GetBufferIndex(int index)
+        {
+            return (head + index) % MaxCount;
         }
     }
 }

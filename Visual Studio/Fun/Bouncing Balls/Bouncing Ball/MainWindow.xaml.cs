@@ -12,12 +12,12 @@ namespace BouncingBall
     /// </summary>
     public partial class MainWindow : Window
     {
-        private readonly Scene scene = new Scene(g: 32.0,
+        private readonly Scene scene = new Scene(g: 9.8 * 100.0 / 2.54 * 96,
                                                  ballSize: 64.0,
-                                                 ballIinitialLocation: new Point(16.0, 512.0),
-                                                 ballIinitialVelocity: new Vector(48.0, 0.0),
+                                                 ballIinitialLocation: new Point(0.0, 800.0),
+                                                 ballIinitialVelocity: new Vector(2500.0, 0.0),
                                                  maxAfterimageCount: 64,
-                                                 afterimageInterval: TimeSpan.FromSeconds(0.5));
+                                                 afterimageInterval: TimeSpan.FromSeconds(0.005));
 
         private readonly DateTime startTime = DateTime.Now;
 
@@ -108,7 +108,7 @@ namespace BouncingBall
                 afterimage.Visibility = Visibility.Visible;
                 afterimage.SetValue(Canvas.LeftProperty, position.X);
                 afterimage.SetValue(Canvas.TopProperty, position.Y);
-                afterimage.Opacity = opacityFrom + i * opacityInterval;
+                afterimage.Opacity = (opacityFrom + i * opacityInterval) * 0.2;
             }
         }
 
