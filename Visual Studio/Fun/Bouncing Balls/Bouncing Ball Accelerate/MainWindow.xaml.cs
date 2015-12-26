@@ -12,7 +12,7 @@ namespace BouncingBallAccelerate
     {
         private readonly Scene scene = new Scene(ballSize: 64.0,
                                                  initialBallLocation: new Point(0.0, 0.0),
-                                                 acceleration: new Vector(16.0, 16.0));
+                                                 acceleration: new Vector(256.0, 256.0));
 
         private readonly DateTime startTime = DateTime.Now;
 

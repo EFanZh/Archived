@@ -12,13 +12,13 @@ namespace BouncingBall
     /// </summary>
     public partial class MainWindow : Window
     {
-        private readonly Scene scene = new Scene(g: 256.0,
+        private readonly Scene scene = new Scene(g: 32.0,
                                                  ballSize: 64.0,
                                                  ballIinitialLocation: new Point(16.0, 512.0),
-                                                 ballIinitialVelocity: new Vector(256.0, 0.0),
+                                                 ballIinitialVelocity: new Vector(48.0, 0.0),
                                                  maxAfterimageCount: 64,
-                                                 afterimageInterval: TimeSpan.FromSeconds(0.0625));
-        
+                                                 afterimageInterval: TimeSpan.FromSeconds(0.5));
+
         private readonly DateTime startTime = DateTime.Now;
 
         public MainWindow()
