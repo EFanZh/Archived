@@ -6,7 +6,13 @@ using System.Threading.Tasks;
 
 namespace PInvokeHelper.Parser
 {
-    internal class FunctionDeclaration
+    class Modifier
     {
+        public ModifierType Type
+        {
+            get;
+        }
+
+
     }
 }

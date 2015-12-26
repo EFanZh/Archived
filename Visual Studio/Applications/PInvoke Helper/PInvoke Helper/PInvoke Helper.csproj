@@ -9,9 +9,10 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>PInvokeHelper</RootNamespace>
     <AssemblyName>PInvoke Helper</AssemblyName>
-    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -43,23 +44,34 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Parser\FunctionDeclaration.cs" />
-    <Compile Include="Parser\SymbolDeclaration.cs" />
+    <Compile Include="Parser2\Attribute.cs" />
+    <Compile Include="Parser2\Declaration.cs" />
+    <Compile Include="Parser2\DeclarationSpecifier.cs" />
+    <Compile Include="Parser2\Declarator.cs" />
+    <Compile Include="Parser2\Helper.cs" />
+    <Compile Include="Parser2\InitDeclarator.cs" />
+    <Compile Include="Parser\Declarator.cs" />
+    <Compile Include="Parser\FunctionCallConventionType.cs" />
+    <Compile Include="Parser\DereferenceExpression.cs" />
+    <Compile Include="Parser\Expression.cs" />
+    <Compile Include="Parser\FunctionApplicaionExpression.cs" />
+    <Compile Include="Parser\FunctionCallConvention.cs" />
+    <Compile Include="Parser\FunctionParameterAnnotation.cs" />
+    <Compile Include="Parser\FunctionParameterAnnotationType.cs" />
+    <Compile Include="Parser\FunctionParameterDeclarator.cs" />
+    <Compile Include="Parser\FunctionParameterList.cs" />
+    <Compile Include="Parser\Modifier.cs" />
+    <Compile Include="Parser\ModifierType.cs" />
+    <Compile Include="Parser\MultipleDeclarator.cs" />
+    <Compile Include="Parser\NonFunctionApplicationExpression.cs" />
+    <Compile Include="Parser\ParenthesisExpression.cs" />
+    <Compile Include="Parser\Helper.cs" />
     <Compile Include="Parser\Parser.cs" />
-    <Compile Include="Parser\FunctionModifier.cs" />
-    <Compile Include="Parser\FunctionType.cs" />
-    <Compile Include="Parser\PointerType.cs" />
-    <Compile Include="Parser\StructMember.cs" />
-    <Compile Include="Parser\Parameter.cs" />
-    <Compile Include="Parser\ParameterModifier.cs" />
-    <Compile Include="Parser\StructType.cs" />
-    <Compile Include="Parser\Type.cs" />
-    <Compile Include="Parser\TypeDefDeclaration.cs" />
-    <Compile Include="Parser\TypeDefType.cs" />
+    <Compile Include="Parser\Statement.cs" />
+    <Compile Include="Parser\SubscriptExpression.cs" />
+    <Compile Include="Parser\SymbolExpression.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Symbol.cs" />
-    <Compile Include="Utility.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

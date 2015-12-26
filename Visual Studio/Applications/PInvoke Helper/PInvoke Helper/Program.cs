@@ -1,15 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace PInvokeHelper
 {
     internal class Program
     {
         private static void Main(string[] args)
         {
+            const string data = @"BOOL CALLBACK EnumWindowsProc(
+  _In_ HWND   hwnd,
+  _In_ LPARAM lParam
+);";
+
+            Parser.Parser.Parse(data);
         }
     }
 }
