@@ -17,7 +17,6 @@ namespace PInvokeHelper.Ast
         public static Parser<ExtendedDeclModifierSeq> Parser
         {
             get;
-        } = from result in ExtendedDeclModifier.Parser.OptionalList(Parsers.Whitespaces)
-            select new ExtendedDeclModifierSeq(result);
+        } = ExtendedDeclModifier.Parser.OptionalList(Parsers.Whitespaces).Select(modifiers => new ExtendedDeclModifierSeq(modifiers));
     }
 }
