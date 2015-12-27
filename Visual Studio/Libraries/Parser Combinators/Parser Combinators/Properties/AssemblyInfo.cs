@@ -4,11 +4,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("PInvoke Helper")]
+[assembly: AssemblyTitle("Parser Combinators")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("PInvoke Helper")]
+[assembly: AssemblyProduct("Parser Combinators")]
 [assembly: AssemblyCopyright("Copyright ©  2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -19,7 +19,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("4a8756ce-06cd-4aaf-95f3-0880c55bb597")]
+[assembly: Guid("1efb4482-8a5d-4f27-85dd-a426be61c1f5")]
 
 // Version information for an assembly consists of the following four values:
 //

@@ -4,18 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{4A8756CE-06CD-4AAF-95F3-0880C55BB597}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{1EFB4482-8A5D-4F27-85DD-A426BE61C1F5}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>PInvokeHelper</RootNamespace>
-    <AssemblyName>PInvoke Helper</AssemblyName>
+    <RootNamespace>ParserCombinators</RootNamespace>
+    <AssemblyName>Parser Combinators</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -25,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -44,43 +40,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Ast\Attribute.cs" />
-    <Compile Include="Ast\AttributeSeq.cs" />
-    <Compile Include="Ast\Declaration.cs" />
-    <Compile Include="Ast\DeclarationSpecifier.cs" />
-    <Compile Include="Ast\DeclarationSpecifiers.cs" />
-    <Compile Include="Ast\Declarator.cs" />
-    <Compile Include="Ast\DeclSpecStorageClassSpecifier.cs" />
-    <Compile Include="Ast\DirectDeclarator.cs" />
-    <Compile Include="Ast\DllExportExtendedDeclModifier.cs" />
-    <Compile Include="Ast\DllImportExtendedDeclModifier.cs" />
-    <Compile Include="Ast\EnumSpecifier.cs" />
-    <Compile Include="Ast\ExtendedDeclModifier.cs" />
-    <Compile Include="Ast\ExtendedDeclModifierSeq.cs" />
-    <Compile Include="Ast\InitDeclarator.cs" />
-    <Compile Include="Ast\InitDeclaratorList.cs" />
-    <Compile Include="Ast\Initializer.cs" />
-    <Compile Include="Ast\NakedExtendedDeclModifier.cs" />
-    <Compile Include="Ast\Pointer.cs" />
-    <Compile Include="Ast\ScalarInitializationDeclarator.cs" />
-    <Compile Include="Ast\SpecifierQualifier.cs" />
-    <Compile Include="Ast\StorageClassSpecifier.cs" />
-    <Compile Include="Ast\StructOrUnionSpecifier.cs" />
-    <Compile Include="Ast\ThreadExtendedDeclModifier.cs" />
-    <Compile Include="Ast\TypeDefName.cs" />
-    <Compile Include="Ast\TypeQualifier.cs" />
-    <Compile Include="Ast\TypeSpecifier.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="Combinators.cs" />
+    <Compile Include="IgnoredResult.cs" />
+    <Compile Include="Parser.cs" />
+    <Compile Include="Parsers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\Libraries\Parser Combinators\Parser Combinators\Parser Combinators.csproj">
-      <Project>{1efb4482-8a5d-4f27-85dd-a426be61c1f5}</Project>
-      <Name>Parser Combinators</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
