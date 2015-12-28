@@ -44,8 +44,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Ast\ArrayDirectDeclarator.cs" />
     <Compile Include="Ast\Attribute.cs" />
     <Compile Include="Ast\AttributeSeq.cs" />
+    <Compile Include="Ast\ConstantExpression.cs" />
     <Compile Include="Ast\Declaration.cs" />
     <Compile Include="Ast\DeclarationSpecifier.cs" />
     <Compile Include="Ast\DeclarationSpecifiers.cs" />
@@ -55,9 +57,14 @@
     <Compile Include="Ast\EnumSpecifier.cs" />
     <Compile Include="Ast\ExtendedDeclModifier.cs" />
     <Compile Include="Ast\ExtendedDeclModifierSeq.cs" />
+    <Compile Include="Ast\FunctionDirectDeclarator.cs" />
+    <Compile Include="Ast\Identifier.cs" />
+    <Compile Include="Ast\IdentifierDirectDeclarator.cs" />
     <Compile Include="Ast\InitDeclarator.cs" />
     <Compile Include="Ast\InitDeclaratorList.cs" />
     <Compile Include="Ast\Initializer.cs" />
+    <Compile Include="Ast\ParameterTypeList.cs" />
+    <Compile Include="Ast\ParenthesesDirectDeclarator.cs" />
     <Compile Include="Ast\Pointer.cs" />
     <Compile Include="Ast\ScalarInitializationDeclarator.cs" />
     <Compile Include="Ast\SpecifierQualifier.cs" />
@@ -65,6 +72,7 @@
     <Compile Include="Ast\StructOrUnionSpecifier.cs" />
     <Compile Include="Ast\TypeDefName.cs" />
     <Compile Include="Ast\TypeQualifier.cs" />
+    <Compile Include="Ast\TypeQualifierList.cs" />
     <Compile Include="Ast\TypeSpecifier.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

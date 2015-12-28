@@ -7,6 +7,9 @@ namespace PInvokeHelper.Ast
         public static Parser<DirectDeclarator> Parser
         {
             get;
-        }
+        } = Combinators.Or<DirectDeclarator>(IdentifierDirectDeclarator.Parser,
+                                             ParenthesesDirectDeclarator.Parser,
+                                             ArrayDirectDeclarator.Parser,
+                                             FunctionDirectDeclarator.Parser);
     }
 }
