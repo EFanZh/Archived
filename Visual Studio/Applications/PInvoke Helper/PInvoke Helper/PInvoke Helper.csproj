@@ -54,7 +54,14 @@
     <Compile Include="Ast\Declarator.cs" />
     <Compile Include="Ast\DeclSpecStorageClassSpecifier.cs" />
     <Compile Include="Ast\DirectDeclarator.cs" />
+    <Compile Include="Ast\EnumerationConstant.cs" />
+    <Compile Include="Ast\EnumerationConstantEnumerator.cs" />
+    <Compile Include="Ast\EnumerationConstantEnumeratorWithValue.cs" />
+    <Compile Include="Ast\Enumerator.cs" />
+    <Compile Include="Ast\EnumeratorList.cs" />
     <Compile Include="Ast\EnumSpecifier.cs" />
+    <Compile Include="Ast\EnumSpecifierWithEnumeratorList.cs" />
+    <Compile Include="Ast\EnumSpecifierWithoutEnumeratorList.cs" />
     <Compile Include="Ast\ExtendedDeclModifier.cs" />
     <Compile Include="Ast\ExtendedDeclModifierSeq.cs" />
     <Compile Include="Ast\FunctionDirectDeclarator.cs" />
@@ -63,6 +70,8 @@
     <Compile Include="Ast\InitDeclarator.cs" />
     <Compile Include="Ast\InitDeclaratorList.cs" />
     <Compile Include="Ast\Initializer.cs" />
+    <Compile Include="Ast\ParameterDeclaration.cs" />
+    <Compile Include="Ast\ParameterList.cs" />
     <Compile Include="Ast\ParameterTypeList.cs" />
     <Compile Include="Ast\ParenthesesDirectDeclarator.cs" />
     <Compile Include="Ast\Pointer.cs" />
