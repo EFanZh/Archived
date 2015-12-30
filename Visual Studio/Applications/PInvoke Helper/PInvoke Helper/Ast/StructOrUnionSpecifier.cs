@@ -7,6 +7,7 @@ namespace PInvokeHelper.Ast
         public new static Parser<StructOrUnionSpecifier> Parser
         {
             get;
-        }
+        } = Combinators.Or<StructOrUnionSpecifier>(StructOrUnionSpecifierWithDeclarations.Parser,
+                                                   StructOrUnionSpecifierWithoutDeclarations.Parser);
     }
 }

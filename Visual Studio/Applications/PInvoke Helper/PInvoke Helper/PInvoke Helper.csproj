@@ -77,8 +77,16 @@
     <Compile Include="Ast\Pointer.cs" />
     <Compile Include="Ast\ScalarInitializationDeclarator.cs" />
     <Compile Include="Ast\SpecifierQualifier.cs" />
+    <Compile Include="Ast\SpecifierQualifierList.cs" />
     <Compile Include="Ast\StorageClassSpecifier.cs" />
+    <Compile Include="Ast\StructDeclaration.cs" />
+    <Compile Include="Ast\StructDeclarationList.cs" />
+    <Compile Include="Ast\StructDeclarator.cs" />
+    <Compile Include="Ast\StructDeclaratorList.cs" />
+    <Compile Include="Ast\StructOrUnion.cs" />
     <Compile Include="Ast\StructOrUnionSpecifier.cs" />
+    <Compile Include="Ast\StructOrUnionSpecifierWithDeclarations.cs" />
+    <Compile Include="Ast\StructOrUnionSpecifierWithoutDeclarations.cs" />
     <Compile Include="Ast\TypeDefName.cs" />
     <Compile Include="Ast\TypeQualifier.cs" />
     <Compile Include="Ast\TypeQualifierList.cs" />
