@@ -7,6 +7,7 @@ namespace PInvokeHelper.Ast
         public static Parser<StructDeclarator> Parser
         {
             get;
-        }
+        } = Combinators.Or<StructDeclarator>(DeclaratorStructDeclarator.Parser,
+                                             BitFieldStructDeclarator.Parser);
     }
 }

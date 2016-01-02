@@ -2,7 +2,7 @@
 
 namespace PInvokeHelper.Ast
 {
-    internal class Declarator : InitDeclarator
+    internal class Declarator
     {
         public Declarator(Pointer pointer, DirectDeclarator directDeclarator)
         {
@@ -20,7 +20,7 @@ namespace PInvokeHelper.Ast
             get;
         }
 
-        public new static Parser<Declarator> Parser
+        public static Parser<Declarator> Parser
         {
             get;
         } = from pointer in Pointer.Parser.Optional()

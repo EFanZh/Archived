@@ -7,7 +7,7 @@ namespace PInvokeHelper.Ast
         public static Parser<InitDeclarator> Parser
         {
             get;
-        } = Combinators.Or<InitDeclarator>(Declarator.Parser,
+        } = Combinators.Or<InitDeclarator>(DeclaratorInitDeclarator.Parser,
                                            ScalarInitializationDeclarator.Parser);
     }
 }

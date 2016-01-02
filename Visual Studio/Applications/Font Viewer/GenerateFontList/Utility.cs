@@ -13,31 +13,25 @@ namespace GenerateFontList
 
         private static readonly KeyValuePair<string, string>[] SampleTexts =
         {
+             new KeyValuePair<string, string>("ASCII", @"!""#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~"),
+             new KeyValuePair<string, string>("Eng", "I can eat glass and it doesn’t hurt me."),
              new KeyValuePair<string, string>("Chs", "我能吞下玻璃而不伤身体。"),
              new KeyValuePair<string, string>("Cht", "我能吞下玻璃而不傷身體。"),
-             new KeyValuePair<string, string>("Jap", "私はガラスを食べられます。それは私を傷つけません。"),
-             new KeyValuePair<string, string>("Eng", "I can eat glass and it doesn't hurt me.")
+             new KeyValuePair<string, string>("Jap", "私はガラスを食べられます。それは私を傷つけません。")
         };
 
         public static string GetPreferedString(this LocalizedStrings languageSpecificStringDictionary)
         {
             string result = null;
 
-            if (PrederedLanguages.Any(k => languageSpecificStringDictionary.TryGetValue(k, out result)))
-            {
-                return result;
-            }
-            else
-            {
-                return languageSpecificStringDictionary.Values.First();
-            }
+            return PrederedLanguages.Any(k => languageSpecificStringDictionary.TryGetValue(k, out result)) ? result : languageSpecificStringDictionary.Values.First();
         }
 
         private static string EscapseToLaTeX(this string text)
         {
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
 
-            foreach (char c in text)
+            foreach (var c in text)
             {
                 switch (c)
                 {
@@ -59,7 +53,7 @@ namespace GenerateFontList
 
                     case '[':
                     case ']':
-                        sb.Append(string.Format(@"\char""{0:X}{{}}", (int)c));
+                        sb.Append($@"\char""{(int)c:X}{{}}");
                         break;
 
                     case '$':
@@ -82,7 +76,7 @@ namespace GenerateFontList
             return sb.ToString();
         }
 
-        private static Tuple<Font, KeyValuePair<string, string>>[] GetFonts(this FontFamily fontFamily)
+        private static IEnumerable<Tuple<Font, KeyValuePair<string, string>>> GetFonts(this FontFamily fontFamily)
         {
             var fonts = fontFamily.GetMatchingFonts(FontWeight.Normal, FontStretch.Normal, FontStyle.Normal);
 
@@ -94,19 +88,12 @@ namespace GenerateFontList
 
         private static string GetDisplayString(this FontStretch fontStretch)
         {
-            return string.Format("{0} ({1})", (int)fontStretch, fontStretch);
+            return $"{(int)fontStretch} ({fontStretch})";
         }
 
         private static string GetDisplayString(this FontWeight fontWeight)
         {
-            if (((int)fontWeight) % 100 == 0)
-            {
-                return string.Format("{0} ({1})", (int)fontWeight, fontWeight);
-            }
-            else
-            {
-                return ((int)fontWeight).ToString();
-            }
+            return (int)fontWeight % 100 == 0 ? $"{(int)fontWeight} ({fontWeight})" : ((int)fontWeight).ToString();
         }
 
         private static void AppendIndent(this StringBuilder sb, int indent)

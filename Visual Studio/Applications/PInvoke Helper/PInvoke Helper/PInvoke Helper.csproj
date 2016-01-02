@@ -47,11 +47,14 @@
     <Compile Include="Ast\ArrayDirectDeclarator.cs" />
     <Compile Include="Ast\Attribute.cs" />
     <Compile Include="Ast\AttributeSeq.cs" />
+    <Compile Include="Ast\BitFieldStructDeclarator.cs" />
     <Compile Include="Ast\ConstantExpression.cs" />
     <Compile Include="Ast\Declaration.cs" />
     <Compile Include="Ast\DeclarationSpecifier.cs" />
     <Compile Include="Ast\DeclarationSpecifiers.cs" />
     <Compile Include="Ast\Declarator.cs" />
+    <Compile Include="Ast\DeclaratorInitDeclarator.cs" />
+    <Compile Include="Ast\DeclaratorStructDeclarator.cs" />
     <Compile Include="Ast\DeclSpecStorageClassSpecifier.cs" />
     <Compile Include="Ast\DirectDeclarator.cs" />
     <Compile Include="Ast\EnumerationConstant.cs" />

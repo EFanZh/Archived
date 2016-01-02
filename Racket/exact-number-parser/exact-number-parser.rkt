@@ -1,63 +1,40 @@
 #lang typed/racket
 
+(define-type Digit (U 0 1 2 3 4 5 6 7 8 9))
 (define-type DigitCharacter (U #\0 #\1 #\2 #\3 #\4 #\5 #\6 #\7 #\8 #\9))
 
-(define (char->digit [c : Char])
-  (match c
-    [#\0 0]
-    [#\1 1]
-    [#\2 2]
-    [#\3 3]
-    [#\4 4]
-    [#\5 5]
-    [#\6 6]
-    [#\7 7]
-    [#\8 8]
-    [#\9 9]))
+(define-predicate digit? Digit)
+(define-predicate char-digit? DigitCharacter)
 
-(: char-digit? (-> Char Boolean))
-(define (char-digit? [c : Char])
-   (if (memv c (list #\0 #\1 #\2 #\3 #\4 #\5 #\6 #\7 #\8 #\9))
-       #t
-       #f))
+(define (char->digit [c : DigitCharacter])
+  (assert (- (char->integer c)
+             (char->integer #\0)) digit?))
 
-(define (read-fractional-part [input : Input-Port])
-  (let loop : (U Exact-Rational #f) ([result #f]
-                                     [base 10]
-                                     [c (peek-char input)])
-    (cond [(eof-object? c) result]
-          [(char-digit? c) (loop (+ result (/ (char->digit c) base))
-                                 (* base 10)
-                                 (peek-char input))]
-          [else base])))
-
-(define (parse-nonnegative-integer [input : Input-Port])
-  (let loop : (U Exact-Nonnegative-Integer #f) ([base #f]
-                                                [c (peek-char input)])
-    (cond [(eof-object? c) base]
-          [(char-digit? c) (loop (+ (* base 10) (char->digit c))
-                                 (peek-char input))]
-          [else base])))
-
-(define (parse-nonnegative-exact-number [input : Input-Port])
-  (let ([integer-part (parse-nonnegative-integer input)])
-    (if integer-part
-        (if (eqv? (peek-char input) #\.)
-            (begin (read-char input)
-                   (let ([fractional-part (read-fractional-part input)])
-                     (if fractional-part
-                         (+ integer-part fractional-part)
-                         #f)))
-            integer-part)
+(define (read-digit [input : Input-Port])
+  (let ([char (peek-char input)])
+    (if (char-digit? char)
+        (begin (read-char input)
+               (char->digit char))
         #f)))
 
-(define (parse-exact-rational [input : Input-Port])
-  (let loop ([c (peek-char input)])
-    (cond [(eof-object? c) #f]
-          [(= c #\-) (begin (read-char input)
-                            (let ([num (parse-nonnegative-exact-number input)])
-                              (if num
-                                  (- num)
-                                  #f)))]
-          [(char-digit? c) (parse-nonnegative-exact-number input)]
-          [else #f])))
+(define (read-nonnegative-integer-part [input : Input-Port])
+  (let ([first-digit (read-digit input)])
+    (if first-digit
+        (let loop : Nonnegative-Integer ([result : Nonnegative-Integer first-digit])
+          (let ([digit (read-digit input)])
+            (if digit
+                (loop (+ (* result 10) digit))
+                result)))
+        #f)))
+
+(define (read-fractional-part [input : Input-Port])
+  (let ([first-digit (read-digit input)])
+    (if first-digit
+        (let loop : Nonnegative-Exact-Rational ([base : Positive-Integer 100]
+                                                [result : Nonnegative-Exact-Rational (/ first-digit 10)])
+          (let ([digit (read-digit input)])
+            (if digit
+                (loop (* base 10)
+                      (+ result (/ digit base)))
+                result)))
+        #f)))
