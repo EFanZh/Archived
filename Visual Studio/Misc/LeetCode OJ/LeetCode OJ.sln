@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "001. Two Sum", "001. Two Sum\001. Two Sum.vcxproj", "{219FEE9A-E0A4-4953-923B-E7F7816DCD31}"
 EndProject
@@ -495,6 +495,8 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "303. Range Sum Query - Immutable", "303. Range Sum Query - Immutable\303. Range Sum Query - Immutable.vcxproj", "{E1986B3A-0D41-4516-BA57-6579D68A6A4D}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "304. Range Sum Query 2D - Immutable", "304. Range Sum Query 2D - Immutable\304. Range Sum Query 2D - Immutable.vcxproj", "{73A7CFD2-3DC1-4D81-A24C-4C024299EBD7}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "306. Additive Number", "306. Additive Number\306. Additive Number.vcxproj", "{F1169133-794C-42E4-AC49-E36CF7EE9489}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -2088,6 +2090,14 @@ Global
 		{73A7CFD2-3DC1-4D81-A24C-4C024299EBD7}.Release|Win32.Build.0 = Release|Win32
 		{73A7CFD2-3DC1-4D81-A24C-4C024299EBD7}.Release|x64.ActiveCfg = Release|x64
 		{73A7CFD2-3DC1-4D81-A24C-4C024299EBD7}.Release|x64.Build.0 = Release|x64
+		{F1169133-794C-42E4-AC49-E36CF7EE9489}.Debug|Win32.ActiveCfg = Debug|Win32
+		{F1169133-794C-42E4-AC49-E36CF7EE9489}.Debug|Win32.Build.0 = Debug|Win32
+		{F1169133-794C-42E4-AC49-E36CF7EE9489}.Debug|x64.ActiveCfg = Debug|x64
+		{F1169133-794C-42E4-AC49-E36CF7EE9489}.Debug|x64.Build.0 = Debug|x64
+		{F1169133-794C-42E4-AC49-E36CF7EE9489}.Release|Win32.ActiveCfg = Release|Win32
+		{F1169133-794C-42E4-AC49-E36CF7EE9489}.Release|Win32.Build.0 = Release|Win32
+		{F1169133-794C-42E4-AC49-E36CF7EE9489}.Release|x64.ActiveCfg = Release|x64
+		{F1169133-794C-42E4-AC49-E36CF7EE9489}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -2335,5 +2345,6 @@ Global
 		{B5EB5B93-9520-4C3B-A0DE-D7375DA959F3} = {57387E8D-D6F8-4B26-98FA-B25DF670DEB6}
 		{E1986B3A-0D41-4516-BA57-6579D68A6A4D} = {57387E8D-D6F8-4B26-98FA-B25DF670DEB6}
 		{73A7CFD2-3DC1-4D81-A24C-4C024299EBD7} = {57387E8D-D6F8-4B26-98FA-B25DF670DEB6}
+		{F1169133-794C-42E4-AC49-E36CF7EE9489} = {57387E8D-D6F8-4B26-98FA-B25DF670DEB6}
 	EndGlobalSection
 EndGlobal
