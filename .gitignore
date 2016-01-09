@@ -1,6 +1,7 @@
 *.aps
 *.bak
 *.dll
+*.DotSettings
 *.exe
 *.lib
 *.lnk
@@ -14,6 +15,6 @@
 *.vspx
 *~
 bin/
-obj/
 Debug/
+obj/
 Release/

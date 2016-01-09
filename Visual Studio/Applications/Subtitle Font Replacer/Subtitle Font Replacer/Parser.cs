@@ -20,17 +20,17 @@ namespace SubtitleFontReplacer
 
         private static KeyValuePair<string, int> ExtractFontNameFromStyle(string line)
         {
-            Match styleFontNamePrefixMatch = StyleFontNamePrefixRegex.Match(line);
-            Match fontNameMatch = FontNameRegex.Match(line, styleFontNamePrefixMatch.Index + styleFontNamePrefixMatch.Length);
+            var styleFontNamePrefixMatch = StyleFontNamePrefixRegex.Match(line);
+            var fontNameMatch = FontNameRegex.Match(line, styleFontNamePrefixMatch.Index + styleFontNamePrefixMatch.Length);
 
             return new KeyValuePair<string, int>(fontNameMatch.Value, fontNameMatch.Index);
         }
 
         private static IEnumerable<KeyValuePair<string, int>> ExtractFontNamesFromControlCodes(string controlCodes)
         {
-            for (Match prefix = FontNameOverridePrefixRegex.Match(controlCodes); prefix.Success; prefix = prefix.NextMatch())
+            for (var prefix = FontNameOverridePrefixRegex.Match(controlCodes); prefix.Success; prefix = prefix.NextMatch())
             {
-                Match fontNameMatch = FontNameRegex.Match(controlCodes, prefix.Index + prefix.Length);
+                var fontNameMatch = FontNameRegex.Match(controlCodes, prefix.Index + prefix.Length);
 
                 if (fontNameMatch.Value.Length > 0)
                 {
@@ -41,9 +41,9 @@ namespace SubtitleFontReplacer
 
         private static IEnumerable<KeyValuePair<string, int>> ExtractFontNamesFromDialogue(string line)
         {
-            Match textPrefixMatch = DialogueTextPrefixRegex.Match(line);
+            var textPrefixMatch = DialogueTextPrefixRegex.Match(line);
 
-            for (Match controlCode = ControlCodeRegex.Match(line, textPrefixMatch.Index + textPrefixMatch.Length); controlCode.Success; controlCode = controlCode.NextMatch())
+            for (var controlCode = ControlCodeRegex.Match(line, textPrefixMatch.Index + textPrefixMatch.Length); controlCode.Success; controlCode = controlCode.NextMatch())
             {
                 foreach (var fontName in ExtractFontNamesFromControlCodes(line.Substring(controlCode.Index + 1, controlCode.Length - 2)))
                 {
@@ -55,11 +55,11 @@ namespace SubtitleFontReplacer
         public static KeyValuePair<string, int>[] Parse(string content)
         {
             var result = new List<KeyValuePair<string, int>>();
-            bool hadEventsSection = false;
+            var hadEventsSection = false;
 
-            for (Match lineMatch = LineRegex.Match(content); lineMatch.Success; lineMatch = lineMatch.NextMatch())
+            for (var lineMatch = LineRegex.Match(content); lineMatch.Success; lineMatch = lineMatch.NextMatch())
             {
-                string line = lineMatch.Value;
+                var line = lineMatch.Value;
 
                 if (SectionTitleRegex.IsMatch(line))
                 {
@@ -75,7 +75,7 @@ namespace SubtitleFontReplacer
                 }
                 else
                 {
-                    Match labelMatch = LabelRegex.Match(line);
+                    var labelMatch = LabelRegex.Match(line);
 
                     switch (labelMatch.Value.Trim().ToUpper())
                     {

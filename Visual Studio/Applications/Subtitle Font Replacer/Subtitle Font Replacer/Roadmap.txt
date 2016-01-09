@@ -1,0 +1,10 @@
+﻿Open folder dialog
+Circular detection
+Atomic overwrite configuration file
+Font existance detection
+Category source font by if they are to be replaced
+Font preview
+Use strong typed string for font name (for example, a string that doesn't allow whitespaces or null value)
+Copy and paste by lines
+Refactor model
+Allow removing multiple items at once and key board

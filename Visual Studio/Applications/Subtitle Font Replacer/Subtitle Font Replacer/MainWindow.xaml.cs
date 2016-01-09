@@ -33,11 +33,10 @@ namespace SubtitleFontReplacer
             get;
         }
 
-        public string State
+        public State State
         {
             get;
-            set;
-        }
+        } = new State("Ready.");
 
         private void MainWindow_Closing(object sender, CancelEventArgs e)
         {
@@ -46,34 +45,35 @@ namespace SubtitleFontReplacer
 
         private async void AnalyzeButton_Click(object sender, RoutedEventArgs e)
         {
-            StateTextBlock.Text = "Analyzing...";
-            ((UIElement)sender).IsEnabled = false;
-
-            string path = FolderTextBox.Text;
-
-            Model.ExistingFonts.Clear();
-
-            foreach (var file in await GetFiles(path))
+            using (State.OnState("Analyze"))
             {
-                foreach (var result in await AnalyzeFile(file))
-                {
-                    string fontName = result.Key.StartsWith("@") ? result.Key.Substring(1) : result.Key;
-                    string fontNameUpper = fontName.ToUpper();
+                ((UIElement)sender).IsEnabled = false;
 
-                    if (Model.ExistingFonts.All(f => !f.ToUpper().Equals(fontNameUpper, StringComparison.InvariantCultureIgnoreCase)))
+                var path = FolderTextBox.Text;
+
+                Model.ExistingFonts.Clear();
+
+                foreach (var file in await GetFiles(path))
+                {
+                    foreach (var result in await AnalyzeFile(file))
                     {
-                        Model.ExistingFonts.Add(fontName);
+                        var fontName = result.Key.StartsWith("@") ? result.Key.Substring(1) : result.Key;
+                        var fontNameUpper = fontName.ToUpper();
+
+                        if (Model.ExistingFonts.All(f => !f.ToUpper().Equals(fontNameUpper, StringComparison.InvariantCultureIgnoreCase)))
+                        {
+                            Model.ExistingFonts.Add(fontName);
+                        }
                     }
                 }
-            }
 
-            ((UIElement)sender).IsEnabled = true;
-            StateTextBlock.Text = "Ready.";
+                ((UIElement)sender).IsEnabled = true;
+            }
         }
 
         private void ExistingFontsListBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            string fontName = (string)ExistingFontsListBox.SelectedItem;
+            var fontName = (string)ExistingFontsListBox.SelectedItem;
 
             if (fontName != null)
             {
@@ -83,33 +83,34 @@ namespace SubtitleFontReplacer
 
         private async void ProcessButton_Click(object sender, RoutedEventArgs e)
         {
-            StateTextBlock.Text = "Processing...";
-            ((UIElement)sender).IsEnabled = false;
-
-            string path = FolderTextBox.Text;
-
-            try
+            using (State.OnState("Processing..."))
             {
-                var dict = Model.CreateReplaceDictionary();
+                ((UIElement)sender).IsEnabled = false;
 
-                if (MessageBox.Show("You sure?", "Question", MessageBoxButton.YesNo, MessageBoxImage.Question) != MessageBoxResult.Yes)
+                var path = FolderTextBox.Text;
+
+                try
                 {
-                    return;
-                }
+                    var dict = Model.CreateReplaceDictionary();
 
-                foreach (string file in await GetFiles(path))
-                {
-                    await ProcessFile(file, dict);
+                    if (MessageBox.Show("You sure?", "Question", MessageBoxButton.YesNo, MessageBoxImage.Question) != MessageBoxResult.Yes)
+                    {
+                        return;
+                    }
+
+                    foreach (var file in await GetFiles(path))
+                    {
+                        await ProcessFile(file, dict);
+                    }
                 }
-            }
-            catch (Exception exception)
-            {
-                MessageBox.Show(exception.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            finally
-            {
-                ((UIElement)sender).IsEnabled = true;
-                StateTextBlock.Text = "Analyzing...";
+                catch (Exception exception)
+                {
+                    MessageBox.Show(exception.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                finally
+                {
+                    ((UIElement)sender).IsEnabled = true;
+                }
             }
         }
 
@@ -123,7 +124,17 @@ namespace SubtitleFontReplacer
             Model.FontMappings.RemoveAt(CollectionViewSource.GetDefaultView(Model.FontMappings).CurrentPosition);
         }
 
-        private async static Task<IEnumerable<string>> GetFiles(string path)
+        private void AddVirtualFontButton_Click(object sender, RoutedEventArgs e)
+        {
+            Model.VirtualFonts.Add(new VirtualFont(string.Empty, string.Empty, string.Empty));
+        }
+
+        private void RemoveVirtualFontButton_Click(object sender, RoutedEventArgs e)
+        {
+            Model.VirtualFonts.RemoveAt(CollectionViewSource.GetDefaultView(Model.VirtualFonts).CurrentPosition);
+        }
+
+        private static async Task<IEnumerable<string>> GetFiles(string path)
         {
             return await Task.Run(() =>
             {
@@ -134,13 +145,13 @@ namespace SubtitleFontReplacer
 
                 while (s.Count > 0)
                 {
-                    string current = s.Pop();
+                    var current = s.Pop();
 
                     try
                     {
                         result.AddRange(Directory.EnumerateFiles(current).Where(Filter));
 
-                        foreach (string next in Directory.EnumerateDirectories(current).Reverse())
+                        foreach (var next in Directory.EnumerateDirectories(current).Reverse())
                         {
                             s.Push(next);
                         }
@@ -164,37 +175,39 @@ namespace SubtitleFontReplacer
 
         private async Task<KeyValuePair<string, int>[]> AnalyzeFile(string file)
         {
-            StateTextBlock.Text = file;
-
-            return await Task.Run(() =>
+            using (State.OnState(file))
             {
-                try
+                return await Task.Run(() =>
                 {
-                    return Parser.Parse(File.ReadAllText(file));
-                }
-                catch (Exception)
-                {
-                    return new KeyValuePair<string, int>[0];
-                }
-            });
+                    try
+                    {
+                        return Parser.Parse(File.ReadAllText(file));
+                    }
+                    catch (Exception)
+                    {
+                        return new KeyValuePair<string, int>[0];
+                    }
+                });
+            }
         }
 
         private async Task ProcessFile(string file, IDictionary<string, string> mapping)
         {
-            StateTextBlock.Text = file;
-
-            await Task.Run(() =>
+            using (State.OnState(file))
             {
-                try
+                await Task.Run(() =>
                 {
-                    File.WriteAllText(file, Process(File.ReadAllText(file), mapping));
-                }
-                catch (Exception ex)
-                {
-                    Debug.WriteLine(ex.Message);
-                    // Ignored.
-                }
-            });
+                    try
+                    {
+                        File.WriteAllText(file, Process(File.ReadAllText(file), mapping));
+                    }
+                    catch (Exception ex)
+                    {
+                        Debug.WriteLine(ex.Message);
+                        // Ignored.
+                    }
+                });
+            }
         }
 
         private static string Process(string content, IDictionary<string, string> mapping)
@@ -203,8 +216,8 @@ namespace SubtitleFontReplacer
 
             if (result.Length > 0)
             {
-                StringBuilder sb = new StringBuilder();
-                int prev = 0;
+                var sb = new StringBuilder();
+                var prev = 0;
 
                 foreach (var pair in result)
                 {
