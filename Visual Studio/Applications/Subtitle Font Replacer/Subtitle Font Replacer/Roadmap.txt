@@ -8,3 +8,5 @@ Use strong typed string for font name (for example, a string that doesn't allow 
 Copy and paste by lines
 Refactor model
 Allow removing multiple items at once and key board
+Allow selecting virtual fonts or system fonts
+Allow setting font encoding in font style
