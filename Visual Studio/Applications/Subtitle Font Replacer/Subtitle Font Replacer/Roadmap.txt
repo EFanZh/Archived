@@ -10,3 +10,4 @@ Refactor model
 Allow removing multiple items at once and key board
 Allow selecting virtual fonts or system fonts
 Allow setting font encoding in font style
+Set focus after adding new items

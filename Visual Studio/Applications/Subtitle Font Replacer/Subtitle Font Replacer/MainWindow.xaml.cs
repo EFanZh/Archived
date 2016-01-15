@@ -45,7 +45,7 @@ namespace SubtitleFontReplacer
 
         private async void AnalyzeButton_Click(object sender, RoutedEventArgs e)
         {
-            using (State.OnState("Analyze"))
+            using (State.OnState("Analyzing…"))
             {
                 ((UIElement)sender).IsEnabled = false;
 
@@ -83,7 +83,7 @@ namespace SubtitleFontReplacer
 
         private async void ProcessButton_Click(object sender, RoutedEventArgs e)
         {
-            using (State.OnState("Processing..."))
+            using (State.OnState("Processing…"))
             {
                 ((UIElement)sender).IsEnabled = false;
 
