@@ -59,7 +59,7 @@ namespace ParserCombinators
 
                        index = i;
 
-                       var separator = separatorParser(input, ref index, out success);
+                       var separator = separatorParser(input, ref i, out success);
 
                        while (success)
                        {
