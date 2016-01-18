@@ -75,7 +75,7 @@ namespace ParserCombinators
                            result = combineResult(result, item, separator);
 
                            index = i;
-                           separator = separatorParser(input, ref index, out success);
+                           separator = separatorParser(input, ref i, out success);
                        }
 
                        success = true;
@@ -86,7 +86,7 @@ namespace ParserCombinators
 
         public static Parser<TSource[]> List<TSource, TSeparator>(this Parser<TSource> parser, Parser<TSeparator> separatorParser)
         {
-            return from list in parser.FoldLeft(separatorParser,
+            return from list in parser.LeftFold(separatorParser,
                                                 item => new List<TSource>() { item },
                                                 (result, item, separator) =>
                                                 {
