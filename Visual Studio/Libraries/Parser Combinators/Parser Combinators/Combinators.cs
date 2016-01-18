@@ -37,7 +37,7 @@ namespace ParserCombinators
             };
         }
 
-        public static Parser<TResult> FoldLeftAny<TSource, TSeparator, TResult>(this Parser<TSource> parser,
+        public static Parser<TResult> LeftFoldAny<TSource, TSeparator, TResult>(this Parser<TSource> parser,
                                                                              Parser<TSeparator> separatorParser,
                                                                              TResult initialResult,
                                                                              Func<TResult, TSource, TResult> makeSingleResult,
@@ -69,7 +69,7 @@ namespace ParserCombinators
                            {
                                success = true;
 
-                               return initialResult;
+                               return result;
                            }
 
                            result = combineResult(result, item, separator);
