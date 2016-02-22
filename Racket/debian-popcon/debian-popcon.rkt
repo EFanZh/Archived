@@ -15,11 +15,9 @@
                     [tag-rcs "?tag(devel::rcs)"]
                     [tag-virtualization "?tag(admin::virtualization)"]
                     [section-database "?section(database)"]
+                    [section-fonts "?section(fonts)"]
                     [section-lisp "?section(lisp)"]
-                    [section-math "?section(math)"]
-                    [yaml "yaml"]
-                    [theme "theme"]
-                    [desktop "desktop"]))
+                    [section-math "?section(math)"]))
 
 (define (build-get-package-command-line [filter : String])
   (format "aptitude search -F '%p' '~a'" filter))
