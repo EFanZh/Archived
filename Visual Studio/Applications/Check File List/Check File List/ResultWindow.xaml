@@ -16,7 +16,7 @@
         <Label Grid.Row="0" Grid.Column="0" Content="Missing Files:" />
         <GridSplitter Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" HorizontalAlignment="Center" Width="5" />
         <Label Grid.Row="0" Grid.Column="2" Content="Extra Files:" />
-        <TextBox Grid.Row="1" Grid.Column="0" AcceptsReturn="True" IsReadOnly="True" IsReadOnlyCaretVisible="True" Text="{Binding MissingFiles, Mode=OneTime}" />
-        <TextBox Grid.Row="1" Grid.Column="2" AcceptsReturn="True" IsReadOnly="True" IsReadOnlyCaretVisible="True" Text="{Binding ExtraFiles, Mode=OneTime}" />
+        <TextBox Grid.Row="1" Grid.Column="0" AcceptsReturn="True" IsReadOnly="True" IsReadOnlyCaretVisible="True" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Text="{Binding MissingFiles, Mode=OneTime}" />
+        <TextBox Grid.Row="1" Grid.Column="2" AcceptsReturn="True" IsReadOnly="True" IsReadOnlyCaretVisible="True" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Text="{Binding ExtraFiles, Mode=OneTime}" />
     </Grid>
 </Window>

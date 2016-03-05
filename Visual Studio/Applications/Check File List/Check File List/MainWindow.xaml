@@ -14,7 +14,7 @@
         <Label Grid.Row="0" Content="Target Folder" />
         <TextBox Grid.Row="1" Text="{Binding TargetFolder}" />
         <Label Grid.Row="2" Content="File List:" />
-        <TextBox Grid.Row="3" AcceptsReturn="True" Text="{Binding FileList}" />
+        <TextBox Grid.Row="3" AcceptsReturn="True" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Text="{Binding FileList}" />
         <Button Grid.Row="4" Content="Check" Click="CheckButton_Click" />
     </Grid>
 </Window>

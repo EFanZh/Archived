@@ -500,6 +500,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "306. Additive Number", "306
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "307. Range Sum Query - Mutable", "307. Range Sum Query - Mutable\307. Range Sum Query - Mutable.vcxproj", "{C2845BEB-D043-46A7-8B1F-CC5EAF82DB13}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "310. Minimum Height Trees", "310. Minimum Height Trees\310. Minimum Height Trees.vcxproj", "{DEBCE496-2704-4C2D-B2DD-44FB54C7056C}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "309. Best Time to Buy and Sell Stock with Cooldown", "309. Best Time to Buy and Sell Stock with Cooldown\309. Best Time to Buy and Sell Stock with Cooldown.vcxproj", "{338C6228-3461-44E4-9F92-6EB861CB61CF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -2108,6 +2112,22 @@ Global
 		{C2845BEB-D043-46A7-8B1F-CC5EAF82DB13}.Release|Win32.Build.0 = Release|Win32
 		{C2845BEB-D043-46A7-8B1F-CC5EAF82DB13}.Release|x64.ActiveCfg = Release|x64
 		{C2845BEB-D043-46A7-8B1F-CC5EAF82DB13}.Release|x64.Build.0 = Release|x64
+		{DEBCE496-2704-4C2D-B2DD-44FB54C7056C}.Debug|Win32.ActiveCfg = Debug|Win32
+		{DEBCE496-2704-4C2D-B2DD-44FB54C7056C}.Debug|Win32.Build.0 = Debug|Win32
+		{DEBCE496-2704-4C2D-B2DD-44FB54C7056C}.Debug|x64.ActiveCfg = Debug|x64
+		{DEBCE496-2704-4C2D-B2DD-44FB54C7056C}.Debug|x64.Build.0 = Debug|x64
+		{DEBCE496-2704-4C2D-B2DD-44FB54C7056C}.Release|Win32.ActiveCfg = Release|Win32
+		{DEBCE496-2704-4C2D-B2DD-44FB54C7056C}.Release|Win32.Build.0 = Release|Win32
+		{DEBCE496-2704-4C2D-B2DD-44FB54C7056C}.Release|x64.ActiveCfg = Release|x64
+		{DEBCE496-2704-4C2D-B2DD-44FB54C7056C}.Release|x64.Build.0 = Release|x64
+		{338C6228-3461-44E4-9F92-6EB861CB61CF}.Debug|Win32.ActiveCfg = Debug|Win32
+		{338C6228-3461-44E4-9F92-6EB861CB61CF}.Debug|Win32.Build.0 = Debug|Win32
+		{338C6228-3461-44E4-9F92-6EB861CB61CF}.Debug|x64.ActiveCfg = Debug|x64
+		{338C6228-3461-44E4-9F92-6EB861CB61CF}.Debug|x64.Build.0 = Debug|x64
+		{338C6228-3461-44E4-9F92-6EB861CB61CF}.Release|Win32.ActiveCfg = Release|Win32
+		{338C6228-3461-44E4-9F92-6EB861CB61CF}.Release|Win32.Build.0 = Release|Win32
+		{338C6228-3461-44E4-9F92-6EB861CB61CF}.Release|x64.ActiveCfg = Release|x64
+		{338C6228-3461-44E4-9F92-6EB861CB61CF}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -2357,5 +2377,6 @@ Global
 		{73A7CFD2-3DC1-4D81-A24C-4C024299EBD7} = {57387E8D-D6F8-4B26-98FA-B25DF670DEB6}
 		{F1169133-794C-42E4-AC49-E36CF7EE9489} = {57387E8D-D6F8-4B26-98FA-B25DF670DEB6}
 		{C2845BEB-D043-46A7-8B1F-CC5EAF82DB13} = {57387E8D-D6F8-4B26-98FA-B25DF670DEB6}
+		{338C6228-3461-44E4-9F92-6EB861CB61CF} = {57387E8D-D6F8-4B26-98FA-B25DF670DEB6}
 	EndGlobalSection
 EndGlobal
