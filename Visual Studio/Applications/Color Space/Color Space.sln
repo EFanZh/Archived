@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Color Picker", "Color Picker\Color Picker.csproj", "{D00E126E-D606-4E0F-B35F-954D04F70566}"
 EndProject
@@ -29,11 +29,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Generate Saturation Planes"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sort Colors", "Sort Colors\Sort Colors.csproj", "{D3D28C09-F89E-4B64-9235-878E2BEE7B43}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Generate Color Gamut", "Generate Color Gamut\Generate Color Gamut.csproj", "{C762B631-7E4D-4BBB-BC7C-BCA29322642C}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		Color Space.Common\Color Space.Common.projitems*{d3d28c09-f89e-4b64-9235-878e2bee7b43}*SharedItemsImports = 4
 		Color Space.Common\Color Space.Common.projitems*{312fdbdf-5b72-4fa6-9961-df7189c85e8c}*SharedItemsImports = 4
 		Color Space.Common\Color Space.Common.projitems*{dacb9a92-6fa6-4255-acc3-5d6477aff7c3}*SharedItemsImports = 4
+		Color Space.Common\Color Space.Common.projitems*{c762b631-7e4d-4bbb-bc7c-bca29322642c}*SharedItemsImports = 4
 		Color Space.Common\Color Space.Common.projitems*{e5371e95-0927-4467-a6ed-e0c9a334e5ec}*SharedItemsImports = 13
 		Color Space.Common\Color Space.Common.projitems*{6763ddfb-586a-4bcf-93d9-54e65fd9ffc5}*SharedItemsImports = 4
 		Color Space.Common\Color Space.Common.projitems*{e8cf2595-259f-4d39-8120-b914258a84db}*SharedItemsImports = 4
@@ -192,6 +195,18 @@ Global
 		{D3D28C09-F89E-4B64-9235-878E2BEE7B43}.Release|x64.Build.0 = Release|Any CPU
 		{D3D28C09-F89E-4B64-9235-878E2BEE7B43}.Release|x86.ActiveCfg = Release|Any CPU
 		{D3D28C09-F89E-4B64-9235-878E2BEE7B43}.Release|x86.Build.0 = Release|Any CPU
+		{C762B631-7E4D-4BBB-BC7C-BCA29322642C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C762B631-7E4D-4BBB-BC7C-BCA29322642C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C762B631-7E4D-4BBB-BC7C-BCA29322642C}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{C762B631-7E4D-4BBB-BC7C-BCA29322642C}.Debug|x64.Build.0 = Debug|Any CPU
+		{C762B631-7E4D-4BBB-BC7C-BCA29322642C}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{C762B631-7E4D-4BBB-BC7C-BCA29322642C}.Debug|x86.Build.0 = Debug|Any CPU
+		{C762B631-7E4D-4BBB-BC7C-BCA29322642C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C762B631-7E4D-4BBB-BC7C-BCA29322642C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C762B631-7E4D-4BBB-BC7C-BCA29322642C}.Release|x64.ActiveCfg = Release|Any CPU
+		{C762B631-7E4D-4BBB-BC7C-BCA29322642C}.Release|x64.Build.0 = Release|Any CPU
+		{C762B631-7E4D-4BBB-BC7C-BCA29322642C}.Release|x86.ActiveCfg = Release|Any CPU
+		{C762B631-7E4D-4BBB-BC7C-BCA29322642C}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
