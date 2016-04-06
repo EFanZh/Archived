@@ -32,7 +32,7 @@ namespace RectangleResize
         {
             var from = (p0 + p1 + p2) / 3;
             var to = new Pixel(p0.C0, p1.C1, p2.C2, from.C3);
-            var p = 1.0;// / 3.0;
+            var p = 1.0;
 
             return from + (to - from) * p;
         }
@@ -46,18 +46,40 @@ namespace RectangleResize
             {
                 for (var x = 0; x < width; ++x)
                 {
-                    if (x == 0)
+                    var sum = new Pixel(0.0, 0.0, 0.0, 0.0);
+                    var weight = 0.0;
+                    var w0 = 3.0;
+                    var w1 = 2.0;
+                    var w2 = 1.0;
+
+                    if (x - 2 >= 0)
                     {
-                        blurredBuffer.SetPixel(x, y, (outputBuffer.GetPixel(x, y) + outputBuffer.GetPixel(x + 1, y)) / 2.0);
+                        sum += outputBuffer.GetPixel(x - 2, y) * w2;
+                        weight += w2;
                     }
-                    else if (x == width - 1)
+
+                    if (x - 1 >= 0)
                     {
-                        blurredBuffer.SetPixel(x, y, (outputBuffer.GetPixel(x - 1, y) + outputBuffer.GetPixel(x, y)) / 2.0);
+                        sum += outputBuffer.GetPixel(x - 1, y) * w1;
+                        weight += w1;
                     }
-                    else
+
+                    sum += outputBuffer.GetPixel(x, y) * w0;
+                    weight += w0;
+
+                    if (x + 1 < width)
                     {
-                        blurredBuffer.SetPixel(x, y, (outputBuffer.GetPixel(x - 1, y) + outputBuffer.GetPixel(x, y) + outputBuffer.GetPixel(x + 1, y)) / 3.0);
+                        sum += outputBuffer.GetPixel(x + 1, y) * w1;
+                        weight += w1;
                     }
+
+                    if (x + 2 < width)
+                    {
+                        sum += outputBuffer.GetPixel(x + 2, y) * w2;
+                        weight += w2;
+                    }
+
+                    blurredBuffer.SetPixel(x, y, sum / weight);
                 }
             }
 
