@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "001. Two Sum", "001. Two Sum\001. Two Sum.vcxproj", "{219FEE9A-E0A4-4953-923B-E7F7816DCD31}"
 EndProject
@@ -503,6 +503,8 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "310. Minimum Height Trees", "310. Minimum Height Trees\310. Minimum Height Trees.vcxproj", "{DEBCE496-2704-4C2D-B2DD-44FB54C7056C}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "309. Best Time to Buy and Sell Stock with Cooldown", "309. Best Time to Buy and Sell Stock with Cooldown\309. Best Time to Buy and Sell Stock with Cooldown.vcxproj", "{338C6228-3461-44E4-9F92-6EB861CB61CF}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "312. Burst Balloons", "312. Burst Balloons\312. Burst Balloons.vcxproj", "{94EBE92E-7DC2-4A5E-8FB9-1119D68B23BD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -2128,6 +2130,14 @@ Global
 		{338C6228-3461-44E4-9F92-6EB861CB61CF}.Release|Win32.Build.0 = Release|Win32
 		{338C6228-3461-44E4-9F92-6EB861CB61CF}.Release|x64.ActiveCfg = Release|x64
 		{338C6228-3461-44E4-9F92-6EB861CB61CF}.Release|x64.Build.0 = Release|x64
+		{94EBE92E-7DC2-4A5E-8FB9-1119D68B23BD}.Debug|Win32.ActiveCfg = Debug|Win32
+		{94EBE92E-7DC2-4A5E-8FB9-1119D68B23BD}.Debug|Win32.Build.0 = Debug|Win32
+		{94EBE92E-7DC2-4A5E-8FB9-1119D68B23BD}.Debug|x64.ActiveCfg = Debug|x64
+		{94EBE92E-7DC2-4A5E-8FB9-1119D68B23BD}.Debug|x64.Build.0 = Debug|x64
+		{94EBE92E-7DC2-4A5E-8FB9-1119D68B23BD}.Release|Win32.ActiveCfg = Release|Win32
+		{94EBE92E-7DC2-4A5E-8FB9-1119D68B23BD}.Release|Win32.Build.0 = Release|Win32
+		{94EBE92E-7DC2-4A5E-8FB9-1119D68B23BD}.Release|x64.ActiveCfg = Release|x64
+		{94EBE92E-7DC2-4A5E-8FB9-1119D68B23BD}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -2377,6 +2387,8 @@ Global
 		{73A7CFD2-3DC1-4D81-A24C-4C024299EBD7} = {57387E8D-D6F8-4B26-98FA-B25DF670DEB6}
 		{F1169133-794C-42E4-AC49-E36CF7EE9489} = {57387E8D-D6F8-4B26-98FA-B25DF670DEB6}
 		{C2845BEB-D043-46A7-8B1F-CC5EAF82DB13} = {57387E8D-D6F8-4B26-98FA-B25DF670DEB6}
+		{DEBCE496-2704-4C2D-B2DD-44FB54C7056C} = {57387E8D-D6F8-4B26-98FA-B25DF670DEB6}
 		{338C6228-3461-44E4-9F92-6EB861CB61CF} = {57387E8D-D6F8-4B26-98FA-B25DF670DEB6}
+		{94EBE92E-7DC2-4A5E-8FB9-1119D68B23BD} = {57387E8D-D6F8-4B26-98FA-B25DF670DEB6}
 	EndGlobalSection
 EndGlobal

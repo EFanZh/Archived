@@ -2,22 +2,35 @@
 
 class Solution
 {
+    static int getTreeHeight(map<pair<int, int>, int> &heights, const vector<vector<int>> &graph, const pair<int, int> &root)
+    {
+        auto it = heights.find(root);
+
+        if (it != heights.cend())
+        {
+            return it->second;
+        }
+
+        auto maxHeight = 0;
+
+        for (const auto &next : graph[root.second])
+        {
+            if (next != root.first)
+            {
+                maxHeight = max(maxHeight, getTreeHeight(heights, graph, { root.second, next }));
+            }
+        }
+
+        ++maxHeight;
+
+        heights.emplace(root, maxHeight);
+
+        return maxHeight;
+    }
+
 public:
     vector<int> findMinHeightTrees(int n, const vector<pair<int, int>> &edges)
     {
-        if (n == 0)
-        {
-            return{};
-        }
-        else if (n == 1)
-        {
-            return{ 0 };
-        }
-        else if (n == 2)
-        {
-            return{ 0, 1 };
-        }
-
         auto graph = vector<vector<int>>(n);
 
         for (const auto &edge : edges)
@@ -26,43 +39,27 @@ public:
             graph[edge.second].emplace_back(edge.first);
         }
 
-        auto current = vector<int>();
-        auto visited = vector<char>(n, false);
+        auto heights = map<pair<int, int>, int>();
 
-        for (auto i = 0; i < n; ++i)
+        for (const auto &edge : edges)
         {
-            if (graph[i].size() == 1)
+            const auto height1 = getTreeHeight(heights, graph, { edge.second, edge.first });
+            const auto height2 = getTreeHeight(heights, graph, edge);
+
+            if (height1 == height2 + 1)
             {
-                current.emplace_back(i);
-                visited[i] = true;
+                return{ edge.first };
+            }
+            else if (height1 == height2)
+            {
+                return{ edge.first, edge.second };
+            }
+            else if (height1 + 1 == height2)
+            {
+                return{ edge.second };
             }
         }
 
-        auto next = vector<int>();
-
-        for (;;)
-        {
-            for (const auto node : current)
-            {
-                for (const auto neighbor : graph[node])
-                {
-                    if (!visited[neighbor])
-                    {
-                        visited[neighbor] = true;
-                        next.emplace_back(neighbor);
-                    }
-                }
-            }
-
-            if (next.size() == 0)
-            {
-                return current;
-            }
-            else
-            {
-                current = next;
-                next.clear();
-            }
-        }
+        return{ 0 };
     }
 };
