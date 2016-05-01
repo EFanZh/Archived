@@ -1,0 +1,24 @@
+﻿<Window x:Class="BinaryFileVisualizer.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BinaryFileVisualizer"
+        mc:Ignorable="d"
+        Title="Binary File Visualizer">
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Command="Open" Header="Open" />
+        </Menu>
+        <Grid MouseWheel="View_MouseWheel">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Border Grid.Column="0" SizeChanged="View_SizeChanged">
+                <Image Source="{Binding ViewContent}" />
+            </Border>
+            <ScrollBar Grid.Column="1" Maximum="{Binding ScrollMaximum}" ViewportSize="{Binding ScrollViewportSize}" Value="{Binding ScrollPosition}" SmallChange="1" LargeChange="10" IsEnabled="True" />
+        </Grid>
+    </DockPanel>
+</Window>
