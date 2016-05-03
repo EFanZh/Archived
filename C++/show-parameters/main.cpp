@@ -2,7 +2,7 @@
 
 using namespace std;
 
-inline void PrintQuotedCharacter(char ch)
+inline void PrintEscapsedCharacter(char ch)
 {
     switch (ch)
     {
@@ -56,7 +56,7 @@ int main(int argc, char *argv[])
 
         for (auto p = argv[i]; *p != '\0'; ++p)
         {
-            PrintQuotedCharacter(*p);
+            PrintEscapsedCharacter(*p);
         }
 
         cout << '"' << '\n';
