@@ -512,6 +512,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "315. Count of Smaller Numbe
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "316. Remove Duplicate Letters", "316. Remove Duplicate Letters\316. Remove Duplicate Letters.vcxproj", "{761ED173-BA2E-4D18-A9D7-30520684545E}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "318. Maximum Product of Word Lengths", "318. Maximum Product of Word Lengths\318. Maximum Product of Word Lengths.vcxproj", "{6CF84BF3-14D9-49B6-91A2-ACC8B0C61AFC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -2168,6 +2170,14 @@ Global
 		{761ED173-BA2E-4D18-A9D7-30520684545E}.Release|Win32.Build.0 = Release|Win32
 		{761ED173-BA2E-4D18-A9D7-30520684545E}.Release|x64.ActiveCfg = Release|x64
 		{761ED173-BA2E-4D18-A9D7-30520684545E}.Release|x64.Build.0 = Release|x64
+		{6CF84BF3-14D9-49B6-91A2-ACC8B0C61AFC}.Debug|Win32.ActiveCfg = Debug|Win32
+		{6CF84BF3-14D9-49B6-91A2-ACC8B0C61AFC}.Debug|Win32.Build.0 = Debug|Win32
+		{6CF84BF3-14D9-49B6-91A2-ACC8B0C61AFC}.Debug|x64.ActiveCfg = Debug|x64
+		{6CF84BF3-14D9-49B6-91A2-ACC8B0C61AFC}.Debug|x64.Build.0 = Debug|x64
+		{6CF84BF3-14D9-49B6-91A2-ACC8B0C61AFC}.Release|Win32.ActiveCfg = Release|Win32
+		{6CF84BF3-14D9-49B6-91A2-ACC8B0C61AFC}.Release|Win32.Build.0 = Release|Win32
+		{6CF84BF3-14D9-49B6-91A2-ACC8B0C61AFC}.Release|x64.ActiveCfg = Release|x64
+		{6CF84BF3-14D9-49B6-91A2-ACC8B0C61AFC}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -2423,5 +2433,6 @@ Global
 		{155E4247-AFBF-4AA4-AB13-6B7E9635B426} = {57387E8D-D6F8-4B26-98FA-B25DF670DEB6}
 		{6336FB9D-C7C8-4A58-8799-43BCFE57C977} = {57387E8D-D6F8-4B26-98FA-B25DF670DEB6}
 		{761ED173-BA2E-4D18-A9D7-30520684545E} = {57387E8D-D6F8-4B26-98FA-B25DF670DEB6}
+		{6CF84BF3-14D9-49B6-91A2-ACC8B0C61AFC} = {57387E8D-D6F8-4B26-98FA-B25DF670DEB6}
 	EndGlobalSection
 EndGlobal
