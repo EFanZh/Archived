@@ -2,96 +2,98 @@
 
 void quote(const char *s)
 {
-  printf("    \"");
-  while (*s)
-  {
-    if (*s == '\\')
+    printf("        \"");
+
+    for (; *s != '\0'; ++s)
     {
-      printf("\\\\");
+        switch (*s)
+        {
+            case '\\':
+            case '"':
+                putchar('\\');
+                putchar(*s);
+                break;
+
+            case '\n':
+                printf("\\n\"\n        \"");
+                break;
+
+            default:
+                putchar(*s);
+                break;
+        }
     }
-    else if (*s == '"')
-    {
-      printf("\\\"");
-    }
-    else if (*s == '\n')
-    {
-      printf("\\n\"\n    \"");
-    }
-    else
-    {
-      printf("%c", *s);
-    }
-    s++;
-  }
-  putchar('"');
+
+    putchar('"');
 }
 
 int main(void)
 {
-  const char *s =
-    "#include <stdio.h>\n"
-    "\n"
-    "void quote(const char *s)\n"
-    "{\n"
-    "  printf(\"    \\\"\");\n"
-    "  while (*s)\n"
-    "  {\n"
-    "    if (*s == '\\\\')\n"
-    "    {\n"
-    "      printf(\"\\\\\\\\\");\n"
-    "    }\n"
-    "    else if (*s == '\"')\n"
-    "    {\n"
-    "      printf(\"\\\\\\\"\");\n"
-    "    }\n"
-    "    else if (*s == '\\n')\n"
-    "    {\n"
-    "      printf(\"\\\\n\\\"\\n    \\\"\");\n"
-    "    }\n"
-    "    else\n"
-    "    {\n"
-    "      printf(\"%c\", *s);\n"
-    "    }\n"
-    "    s++;\n"
-    "  }\n"
-    "  putchar('\"');\n"
-    "}\n"
-    "\n"
-    "int main(void)\n"
-    "{\n"
-    "  const char *s =\n"
-    "@@;\n"
-    "  const char *p = s;\n"
-    "\n"
-    "  while (*p)\n"
-    "  {\n"
-    "    if (*p == '@' && p[1] == '@')\n"
-    "    {\n"
-    "      quote(s);\n"
-    "      p++;\n"
-    "    }\n"
-    "    else\n"
-    "    {\n"
-    "      putchar(*p);\n"
-    "    }\n"
-    "    p++;\n"
-    "  }\n"
-    "  putchar('\\n');\n"
-    "}";
-  const char *p = s;
+    const char *s =
+        "#include <stdio.h>\n"
+        "\n"
+        "void quote(const char *s)\n"
+        "{\n"
+        "    printf(\"        \\\"\");\n"
+        "\n"
+        "    for (; *s != '\\0'; ++s)\n"
+        "    {\n"
+        "        switch (*s)\n"
+        "        {\n"
+        "            case '\\\\':\n"
+        "            case '\"':\n"
+        "                putchar('\\\\');\n"
+        "                putchar(*s);\n"
+        "                break;\n"
+        "\n"
+        "            case '\\n':\n"
+        "                printf(\"\\\\n\\\"\\n        \\\"\");\n"
+        "                break;\n"
+        "\n"
+        "            default:\n"
+        "                putchar(*s);\n"
+        "                break;\n"
+        "        }\n"
+        "    }\n"
+        "\n"
+        "    putchar('\"');\n"
+        "}\n"
+        "\n"
+        "int main(void)\n"
+        "{\n"
+        "    const char *s =\n"
+        "@@;\n"
+        "\n"
+        "    for (const char *p = s; *p != '\\0';)\n"
+        "    {\n"
+        "        if (p[0] == '@' && p[1] == '@')\n"
+        "        {\n"
+        "            quote(s);\n"
+        "            p += 2;\n"
+        "        }\n"
+        "        else\n"
+        "        {\n"
+        "            putchar(*p);\n"
+        "            ++p;\n"
+        "        }\n"
+        "    }\n"
+        "\n"
+        "    putchar('\\n');\n"
+        "}";
 
-  while (*p)
-  {
-    if (*p == '@' && p[1] == '@')
+    for (const char *p = s; *p != '\0';)
     {
-      quote(s);
-      p++;
+        if (p[0] == '@' && p[1] == '@')
+        {
+            quote(s);
+            p += 2;
+        }
+        else
+        {
+            putchar(*p);
+            ++p;
+        }
     }
-    else
-    {
-      putchar(*p);
-    }
-    p++;
-  }
-  putchar('\n');
+
+    putchar('\n');
 }
