@@ -114,8 +114,7 @@ namespace RectangleResize
                     break;
 
                 case ".JPG":
-                    encoder = new JpegBitmapEncoder();
-                    ((JpegBitmapEncoder)encoder).QualityLevel = 100;
+                    encoder = new JpegBitmapEncoder() { QualityLevel = 100 };
                     break;
 
                 case ".PNG":
@@ -123,12 +122,11 @@ namespace RectangleResize
                     break;
 
                 case ".TIF":
-                    encoder = new TiffBitmapEncoder();
-                    ((TiffBitmapEncoder)encoder).Compression = TiffCompressOption.Zip;
+                    encoder = new TiffBitmapEncoder() { Compression = TiffCompressOption.Zip };
                     break;
 
                 default:
-                    throw new NotSupportedException("Not supported output sextension.");
+                    throw new NotSupportedException("Not supported output extension.");
             }
 
             encoder.Frames.Add(BitmapFrame.Create(bitmap));
