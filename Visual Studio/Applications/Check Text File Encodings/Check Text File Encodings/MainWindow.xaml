@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CheckTextFileEncodings"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525"
+        Title="Check Text File Encodings"
         DataContext="{Binding Model, RelativeSource={RelativeSource Self}}">
     <DockPanel>
         <Grid DockPanel.Dock="Top">
@@ -24,7 +24,7 @@
             </Grid.ColumnDefinitions>
             <ListBox Grid.Column="0" ItemsSource="{Binding AvailableEncodings}" SelectedItem="{Binding CurrentEncoding}" />
             <GridSplitter Grid.Column="1" HorizontalAlignment="Center" Width="5" />
-            <TextBox Grid.Column="2" IsReadOnly="True" IsReadOnlyCaretVisible="True" Text="{Binding DecodedText}" FontFamily="Segoe UI, Microsoft YaHei, Yu Gothic" />
+            <TextBox Grid.Column="2" IsReadOnly="True" IsReadOnlyCaretVisible="True" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Text="{Binding DecodedText}" FontFamily="Consolas, Microsoft YaHei, Yu Gothic, Monospace" />
         </Grid>
     </DockPanel>
 </Window>

@@ -15,6 +15,15 @@ namespace CheckTextFileEncodings
         private string currentEncoding;
         private string decodedText;
         private readonly IDictionary<string, string> encodingToTextDictionary = new Dictionary<string, string>();
+        static Encoding[] encodings = Encoding.GetEncodings().Select(ei =>
+        {
+            var encoding = (Encoding)ei.GetEncoding().Clone();
+
+            encoding.DecoderFallback = new DecoderExceptionFallback();
+
+            return encoding;
+
+        }).ToArray();
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -35,7 +44,7 @@ namespace CheckTextFileEncodings
                 content = value;
 
                 encodingToTextDictionary.Clear();
-                foreach (var encoding in Encoding.GetEncodings().Select(ei => ei.GetEncoding()))
+                foreach (var encoding in encodings)
                 {
                     encoding.DecoderFallback = new DecoderExceptionFallback();
 
@@ -65,7 +74,10 @@ namespace CheckTextFileEncodings
             {
                 currentEncoding = value;
 
-                DecodedText = encodingToTextDictionary[currentEncoding];
+                if (currentEncoding != null)
+                {
+                    DecodedText = encodingToTextDictionary[currentEncoding];
+                }
             }
         }
 
