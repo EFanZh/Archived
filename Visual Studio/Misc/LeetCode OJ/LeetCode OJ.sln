@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "001. Two Sum", "001. Two Sum\001. Two Sum.vcxproj", "{219FEE9A-E0A4-4953-923B-E7F7816DCD31}"
 EndProject
@@ -515,6 +515,8 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "318. Maximum Product of Word Lengths", "318. Maximum Product of Word Lengths\318. Maximum Product of Word Lengths.vcxproj", "{6CF84BF3-14D9-49B6-91A2-ACC8B0C61AFC}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "321. Create Maximum Number", "321. Create Maximum Number\321. Create Maximum Number.vcxproj", "{A221C134-2295-4CD9-A49A-85D59EC07415}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "322. Coin Change", "322. Coin Change\322. Coin Change.vcxproj", "{5179CE75-2EB9-4A05-BF6B-B39C3273B651}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -2188,6 +2190,14 @@ Global
 		{A221C134-2295-4CD9-A49A-85D59EC07415}.Release|Win32.Build.0 = Release|Win32
 		{A221C134-2295-4CD9-A49A-85D59EC07415}.Release|x64.ActiveCfg = Release|x64
 		{A221C134-2295-4CD9-A49A-85D59EC07415}.Release|x64.Build.0 = Release|x64
+		{5179CE75-2EB9-4A05-BF6B-B39C3273B651}.Debug|Win32.ActiveCfg = Debug|Win32
+		{5179CE75-2EB9-4A05-BF6B-B39C3273B651}.Debug|Win32.Build.0 = Debug|Win32
+		{5179CE75-2EB9-4A05-BF6B-B39C3273B651}.Debug|x64.ActiveCfg = Debug|x64
+		{5179CE75-2EB9-4A05-BF6B-B39C3273B651}.Debug|x64.Build.0 = Debug|x64
+		{5179CE75-2EB9-4A05-BF6B-B39C3273B651}.Release|Win32.ActiveCfg = Release|Win32
+		{5179CE75-2EB9-4A05-BF6B-B39C3273B651}.Release|Win32.Build.0 = Release|Win32
+		{5179CE75-2EB9-4A05-BF6B-B39C3273B651}.Release|x64.ActiveCfg = Release|x64
+		{5179CE75-2EB9-4A05-BF6B-B39C3273B651}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -2444,5 +2454,7 @@ Global
 		{6336FB9D-C7C8-4A58-8799-43BCFE57C977} = {57387E8D-D6F8-4B26-98FA-B25DF670DEB6}
 		{761ED173-BA2E-4D18-A9D7-30520684545E} = {57387E8D-D6F8-4B26-98FA-B25DF670DEB6}
 		{6CF84BF3-14D9-49B6-91A2-ACC8B0C61AFC} = {57387E8D-D6F8-4B26-98FA-B25DF670DEB6}
+		{A221C134-2295-4CD9-A49A-85D59EC07415} = {57387E8D-D6F8-4B26-98FA-B25DF670DEB6}
+		{5179CE75-2EB9-4A05-BF6B-B39C3273B651} = {57387E8D-D6F8-4B26-98FA-B25DF670DEB6}
 	EndGlobalSection
 EndGlobal
