@@ -1,120 +1,234 @@
 #lang typed/racket
 
+(require/typed yaml
+               [read-yaml (-> Input-Port Any)])
+
 (define *clang-format-executable* "clang-format")
+
+(define *my-options* : (Listof Option)
+  '((AccessModifierOffset . -4)
+    (AlignAfterOpenBracket . Align)
+    (AlignConsecutiveAssignments . #f)
+    (AlignConsecutiveDeclarations . #f)
+    (AlignEscapedNewlinesLeft . #t)
+    (AlignOperands . #t)
+    (AlignTrailingComments . #f)
+    (AllowAllParametersOfDeclarationOnNextLine . #f) ; Later.
+    (AllowShortBlocksOnASingleLine . #f)
+    (AllowShortCaseLabelsOnASingleLine . #f)
+    (AllowShortFunctionsOnASingleLine . None)
+    (AllowShortIfStatementsOnASingleLine . #f)
+    (AllowShortLoopsOnASingleLine . #f)
+    #;(AlwaysBreakAfterDefinitionReturnType . None) ; Deprecated.
+    (AlwaysBreakAfterReturnType . None)
+    #;(AlwaysBreakBeforeMultilineStrings . #t) ; Later.
+    (AlwaysBreakTemplateDeclarations . #t)
+    (BinPackArguments . #t)
+    (BinPackParameters . #t)
+    #;(BraceWrapping . ()) ; Ignored.
+    #;(BreakAfterJavaFieldAnnotations . #t) ; Don't care.
+    (BreakBeforeBinaryOperators . None) ; Later.
+    (BreakBeforeBraces . Allman)
+    (BreakBeforeTernaryOperators . #f)
+    (BreakConstructorInitializersBeforeComma . #f)
+    (BreakStringLiterals . #t)
+    (ColumnLimit . 120)
+    #;(CommentPragmas . "") ; Later.
+    (ConstructorInitializerAllOnOneLineOrOnePerLine . #t)
+    (ConstructorInitializerIndentWidth . 4)
+    (ContinuationIndentWidth . 4)
+    (Cpp11BracedListStyle . #f)
+    (DerivePointerAlignment . #f)
+    (DisableFormat . #f)
+    (ExperimentalAutoDetectBinPacking . #f)
+    #;(ForEachMacros . "") ; Later.
+    #;(IncludeCategories . "") ; Later.
+    #;(IncludeIsMainRegex . "") ; Later.
+    (IndentCaseLabels . #t)
+    (IndentWidth . 4)
+    (IndentWrappedFunctionNames . #t)
+    #;(JavaScriptQuotes . Leave) ; Don't care.
+    (KeepEmptyLinesAtTheStartOfBlocks . #f)
+    (Language . Cpp)
+    #;(MacroBlockBegin . "") ; Later.
+    #;(MacroBlockEnd . "") ; Later.
+    (MaxEmptyLinesToKeep . 1)
+    (NamespaceIndentation . All)
+    #;(ObjCBlockIndentWidth . 4) ; Don't care.
+    #;(ObjCSpaceAfterProperty . 0) ; Don't care.
+    #;(ObjCSpaceBeforeProtocolList . 0) ; Don't care.
+    (PenaltyBreakBeforeFirstCallParameter . 800) ; Later.
+    (PenaltyBreakComment . 100) ; Later.
+    (PenaltyBreakFirstLessLess . 600) ; Later.
+    (PenaltyBreakString . 500) ; Later.
+    (PenaltyExcessCharacter . 200) ; Later.
+    (PenaltyReturnTypeOnItsOwnLine . 1000) ; Later.
+    (PointerAlignment . Right)
+    (ReflowComments . #t)
+    (SortIncludes . #t)
+    (SpaceAfterCStyleCast . #f)
+    (SpaceAfterTemplateKeyword . #t)
+    (SpaceBeforeAssignmentOperators . #t)
+    (SpaceBeforeParens . ControlStatements)
+    (SpaceInEmptyParentheses . #f)
+    (SpacesBeforeTrailingComments . 1)
+    (SpacesInAngles . #f)
+    (SpacesInCStyleCastParentheses . #f)
+    #;(SpacesInContainerLiterals . #t) ; Don't care.
+    (SpacesInParentheses . #f)
+    (SpacesInSquareBrackets . #f)
+    (Standard . Cpp11)
+    (TabWidth . 4)
+    (UseTab . Never)))
+
+(define-type BuiltInStyle (U 'LLVM 'Google 'Chromium 'Mozilla 'WebKit))
+
 (define *built-in-styles* '(LLVM Google Chromium Mozilla WebKit))
 
-(define (get-option [style : Symbol])
-  (define (parse-option-line [line : String])
-    (define r (string-split line ":"))
-    (list (string->symbol (string-trim (first r)))
-          (string-trim (second r))))
-  (define p (process (format "~a -style=~a -dump-config"
-                             *clang-format-executable*
-                             style)))
-  (define input (first p))   
-  (let loop : (HashTable Symbol Any) ([line (read-line input)])
-    (cond [(eof-object? line) (make-immutable-hash)]
-          [(regexp-match #rx"^[^#].*:.*" line) (let ([option (parse-option-line line)])
-                                                 (hash-set (loop (read-line input))
-                                                           (first option)
-                                                           (second option)))]
-          [else (loop (read-line input))])))
+(define-type Option (U (Pairof 'BasedOnStyle BuiltInStyle)
+                       (Pairof 'AccessModifierOffset Integer)
+                       (Pairof 'AlignAfterOpenBracket (U 'Align 'DontAlign 'AlwaysBreak))
+                       (Pairof 'AlignConsecutiveAssignments Boolean)
+                       (Pairof 'AlignConsecutiveDeclarations Boolean)
+                       (Pairof 'AlignEscapedNewlinesLeft Boolean)
+                       (Pairof 'AlignOperands Boolean)
+                       (Pairof 'AlignTrailingComments Boolean)
+                       (Pairof 'AllowAllParametersOfDeclarationOnNextLine Boolean)
+                       (Pairof 'AllowShortBlocksOnASingleLine Boolean)
+                       (Pairof 'AllowShortCaseLabelsOnASingleLine Boolean)
+                       (Pairof 'AllowShortFunctionsOnASingleLine (U 'None 'Empty 'Inline 'All))
+                       (Pairof 'AllowShortIfStatementsOnASingleLine Boolean)
+                       (Pairof 'AllowShortLoopsOnASingleLine Boolean)
+                       (Pairof 'AlwaysBreakAfterDefinitionReturnType (U 'None 'All 'TopLevel))
+                       (Pairof 'AlwaysBreakAfterReturnType (U 'None 'All 'TopLevel 'AllDefinitions 'TopLevelDefinitions))
+                       (Pairof 'AlwaysBreakBeforeMultilineStrings Boolean)
+                       (Pairof 'AlwaysBreakTemplateDeclarations Boolean)
+                       (Pairof 'BinPackArguments Boolean)
+                       (Pairof 'BinPackParameters Boolean)
+                       (Pairof 'BraceWrapping (Listof (U (Pairof 'AfterClass Boolean)
+                                                         (Pairof 'AfterControlStatement Boolean)
+                                                         (Pairof 'AfterEnum Boolean)
+                                                         (Pairof 'AfterFunction Boolean)
+                                                         (Pairof 'AfterNamespace Boolean)
+                                                         (Pairof 'AfterObjCDeclaration Boolean)
+                                                         (Pairof 'AfterStruct Boolean)
+                                                         (Pairof 'AfterUnion Boolean)
+                                                         (Pairof 'BeforeCatch Boolean)
+                                                         (Pairof 'BeforeElse Boolean)
+                                                         (Pairof 'IndentBraces Boolean))))
+                       (Pairof 'BreakAfterJavaFieldAnnotations Boolean)
+                       (Pairof 'BreakBeforeBinaryOperators (U 'None 'NonAssignment 'All))
+                       (Pairof 'BreakBeforeBraces (U 'Attach 'Linux 'Mozilla 'Stroustrup 'Allman 'GNU 'WebKit 'Custom))
+                       (Pairof 'BreakBeforeTernaryOperators Boolean)
+                       (Pairof 'BreakConstructorInitializersBeforeComma Boolean)
+                       (Pairof 'BreakStringLiterals Boolean)
+                       (Pairof 'ColumnLimit Nonnegative-Integer)
+                       (Pairof 'CommentPragmas String)
+                       (Pairof 'ConstructorInitializerAllOnOneLineOrOnePerLine Boolean)
+                       (Pairof 'ConstructorInitializerIndentWidth Nonnegative-Integer)
+                       (Pairof 'ContinuationIndentWidth Nonnegative-Integer)
+                       (Pairof 'Cpp11BracedListStyle Boolean)
+                       (Pairof 'DerivePointerAlignment Boolean)
+                       (Pairof 'DisableFormat Boolean)
+                       (Pairof 'ExperimentalAutoDetectBinPacking Boolean)
+                       (Pairof 'ForEachMacros (Listof String))
+                       (Pairof 'IncludeCategories (Listof (List (Pairof 'Regex String)
+                                                                (Pairof 'Priority Integer))))
+                       (Pairof 'IncludeIsMainRegex String)
+                       (Pairof 'IndentCaseLabels Boolean)
+                       (Pairof 'IndentWidth Nonnegative-Integer)
+                       (Pairof 'IndentWrappedFunctionNames Boolean)
+                       (Pairof 'JavaScriptQuotes (U 'Leave 'Single 'Double))
+                       (Pairof 'KeepEmptyLinesAtTheStartOfBlocks Boolean)
+                       (Pairof 'Language (U 'None 'Cpp 'Java 'JavaScript 'Proto 'TableGen))
+                       (Pairof 'MacroBlockBegin String)
+                       (Pairof 'MacroBlockEnd String)
+                       (Pairof 'MaxEmptyLinesToKeep Nonnegative-Integer)
+                       (Pairof 'NamespaceIndentation (U 'None 'Inner 'All))
+                       (Pairof 'ObjCBlockIndentWidth Nonnegative-Integer)
+                       (Pairof 'ObjCSpaceAfterProperty Boolean)
+                       (Pairof 'ObjCSpaceBeforeProtocolList Boolean)
+                       (Pairof 'PenaltyBreakBeforeFirstCallParameter Nonnegative-Integer)
+                       (Pairof 'PenaltyBreakComment Nonnegative-Integer)
+                       (Pairof 'PenaltyBreakFirstLessLess Nonnegative-Integer)
+                       (Pairof 'PenaltyBreakString Nonnegative-Integer)
+                       (Pairof 'PenaltyExcessCharacter Nonnegative-Integer)
+                       (Pairof 'PenaltyReturnTypeOnItsOwnLine Nonnegative-Integer)
+                       (Pairof 'PointerAlignment (U 'Left 'Right 'Middle))
+                       (Pairof 'ReflowComments Boolean)
+                       (Pairof 'SortIncludes Boolean)
+                       (Pairof 'SpaceAfterCStyleCast Boolean)
+                       (Pairof 'SpaceAfterTemplateKeyword Boolean)
+                       (Pairof 'SpaceBeforeAssignmentOperators Boolean)
+                       (Pairof 'SpaceBeforeParens (U 'Never 'ControlStatements 'Always))
+                       (Pairof 'SpaceInEmptyParentheses Boolean)
+                       (Pairof 'SpacesBeforeTrailingComments Nonnegative-Integer)
+                       (Pairof 'SpacesInAngles Boolean)
+                       (Pairof 'SpacesInCStyleCastParentheses Boolean)
+                       (Pairof 'SpacesInContainerLiterals Boolean)
+                       (Pairof 'SpacesInParentheses Boolean)
+                       (Pairof 'SpacesInSquareBrackets Boolean)
+                       (Pairof 'Standard (U 'Cpp03 'Cpp11 'Auto))
+                       (Pairof 'TabWidth Nonnegative-Integer)
+                       (Pairof 'UseTab (U 'Never 'ForIndentation 'Always))))
 
-(define *style-options* (for/hash : (HashTable Symbol (HashTable Symbol Any)) ([style *built-in-styles*])
-                                  (values style
-                                          (get-option style))))
+(define-type (Attribute V) (Pairof Symbol V))
+(define-type (Object V) (Listof (Attribute V)))
 
-(define (generate [options : (Listof (List Symbol Any))])
-  (define sorted-options ((inst sort (List Symbol Any) Symbol) options
-                                                               symbol<?
-                                                               #:key first))
-  (define (based-on [style : (HashTable Symbol Any)])
-    (filter (λ ([option : (List Symbol Any)])
-              (and (hash-has-key? style (first option))
-                   (not (equal? (hash-ref style (first option))
-                                (second option)))))
-            sorted-options))
-  ((inst sort (Listof (List Symbol Any)) Index) (map (λ ([style : Symbol])
-                                                       (cons (list 'BasedOnStyle style)
-                                                             (based-on (hash-ref *style-options* style))))
-                                                     *built-in-styles*)
-                                                <
-                                                #:key length))
+(define (get-option [style : BuiltInStyle])
+  (define (make-option [key : String] value)
+    (define (get-value [value : Any]) : Any
+      (match value
+        [(? string?) (string->symbol value)]
+        [(? list?) (for/list : (Listof Any) ([item value])
+                     (get-value item))]
+        [_ value]))
+    (let* ([symbol-key (string->symbol key)]
+           [value (match symbol-key
+                    [(or 'CommentPragmas
+                         'ForEachMacros
+                         'MacroBlockBegin
+                         'MacroBlockEnd) value]
+                    ['BraceWrapping (for/list : (Object Boolean) ([(key value) (in-hash (cast value (HashTable String Boolean)))])
+                                      (cons (string->symbol key) value))]
+                    ['IncludeCategories (for/list : (Listof (Object Any)) ([item (cast value (Listof (HashTable String Any)))])
+                                          (for/list : (Object Any) ([(key value) (in-hash item)])
+                                            (cons (string->symbol key) value)))]
+                    [_ (get-value value)])])
+      (cast (cons symbol-key value) Option)))
+  (let* ([command-line (format "~a -style=~a -dump-config" *clang-format-executable* style)]
+         [clang-format-process (process command-line)]
+         [stdout (first clang-format-process)]
+         [content (cast (read-yaml stdout) (HashTable String Any))])
+    (for/list : (Listof Option) ([(key value) (in-hash content)])
+      (make-option key value))))
 
-(define (show-result [result : (Listof (Listof (List Symbol Any)))])
-  (for ([style result])
-       (displayln "---")
-       (for ([option style])
-            (displayln (format "~a: ~a"
-                               (first option)
-                               (second option))))
-       (displayln "...")))
+(define (normalize-options [options : (Listof Option)] [base-style : BuiltInStyle])
+  (define (compare-object-value [value : (Object Any)] [base-value : (Object Any)]) : (Object Any)
+    (let loop : (Object Any) ([attributes value])
+      (if (null? attributes) null
+          (let* ([attribute (first attributes)]
+                 [attribute-name (car attribute)]
+                 [attribute-value (cdr attribute)]
+                 [base-attribute (assq attribute-name base-value)])
+            (if base-attribute
+                (let ([compare-value-result (compare-value attribute-value (cdr base-attribute))])
+                  (if (void? compare-value-result)
+                      (loop (rest attributes))
+                      (cons (cons attribute-name compare-value-result) (loop (rest attributes)))))
+                (loop (rest attributes)))))))
+  (define (compare-value [value : Any] [base-value : Any]) : Any
+    (define-predicate object? (Object Any))
+    (cond [(object? value) (let ([object-compare-result (compare-object-value value (assert base-value object?))])
+                             (unless (null? object-compare-result)
+                               object-compare-result))]
+          [(equal? value base-value) (void)]
+          [else value]))
+  (let* ([raw-result (compare-object-value options (get-option base-style))]
+         [result (cast raw-result (Listof Option))])
+    (#{sort @ Option Symbol} result symbol<? #:key car)))
 
-(show-result (generate '((AccessModifierOffset "-4")
-                         (AlignAfterOpenBracket "Align")
-                         (AlignConsecutiveAssignments "false")
-                         (AlignConsecutiveDeclarations "false")
-                         (AlignEscapedNewlinesLeft "true")
-                         (AlignOperands "false")
-                         (AlignTrailingComments "false")
-                         (AllowAllParametersOfDeclarationOnNextLine "false")
-                         (AllowShortBlocksOnASingleLine "false")
-                         (AllowShortCaseLabelsOnASingleLine "false")
-                         (AllowShortFunctionsOnASingleLine "None")
-                         (AllowShortIfStatementsOnASingleLine "false")
-                         (AllowShortLoopsOnASingleLine "false")
-                         (AlwaysBreakAfterDefinitionReturnType "None") ; Deprecated.
-                         (AlwaysBreakAfterReturnType "None")
-                         (AlwaysBreakBeforeMultilineStrings "true")
-                         (AlwaysBreakTemplateDeclarations "true")
-                         (BinPackArguments "false")
-                         (BinPackParameters "false")
-                         #;(BraceWrapping "") ; How to set this?
-                         #;(BreakAfterJavaFieldAnnotations "true") ; Don't care.
-                         (BreakBeforeBinaryOperators "None")
-                         (BreakBeforeBraces "Allman")
-                         (BreakBeforeTernaryOperators "false")
-                         (BreakConstructorInitializersBeforeComma "false")
-                         (ColumnLimit "120")
-                         #;(CommentPragmas "") ; Later.
-                         (ConstructorInitializerAllOnOneLineOrOnePerLine "true")
-                         (ConstructorInitializerIndentWidth "4")
-                         (ContinuationIndentWidth "4")
-                         (Cpp11BracedListStyle "false")
-                         (DerivePointerAlignment "false")
-                         (DisableFormat "false")
-                         (ExperimentalAutoDetectBinPacking "false")
-                         #;(ForEachMacros "")  ; Later.
-                         #;(IncludeCategories "") ; Later.
-                         (IndentCaseLabels "true")
-                         (IndentWidth "4")
-                         #;(IndentWrappedFunctionNames "") ; Later.
-                         (KeepEmptyLinesAtTheStartOfBlocks "false")
-                         #;(Language "") ; Later.
-                         #;(MacroBlockBegin "") ; Later.
-                         #;(MacroBlockEnd "") ; Later.
-                         (MaxEmptyLinesToKeep "1")
-                         (NamespaceIndentation "All")
-                         #;(ObjCBlockIndentWidth "4") ; Don't care.
-                         #;(ObjCSpaceAfterProperty "0") ; Don't care.
-                         #;(ObjCSpaceBeforeProtocolList "0") ; Don't care.
-                         (PenaltyBreakBeforeFirstCallParameter "800")
-                         (PenaltyBreakComment "100")
-                         (PenaltyBreakFirstLessLess "600")
-                         (PenaltyBreakString "500")
-                         (PenaltyExcessCharacter "200")
-                         (PenaltyReturnTypeOnItsOwnLine "1000")
-                         (PointerAlignment "Right")
-                         (SpaceAfterCStyleCast "false")
-                         (SpaceBeforeAssignmentOperators "true")
-                         (SpaceBeforeParens "ControlStatements")
-                         (SpaceInEmptyParentheses "false")
-                         (SpacesBeforeTrailingComments "1")
-                         (SpacesInAngles "false")
-                         (SpacesInContainerLiterals "true")
-                         (SpacesInCStyleCastParentheses "false")
-                         (SpacesInParentheses "false")
-                         (SpacesInSquareBrackets "false")
-                         (Standard "Cpp11")
-                         (TabWidth "4")
-                         (UseTab "Never"))))
+(let ([all-results (for/list : (Listof (Listof Option)) ([base-style : BuiltInStyle *built-in-styles*])
+                     (cons (cons 'BasedOnStyle base-style)
+                           (normalize-options *my-options* base-style)))])
+  (#{sort @ (Listof Option) Index} all-results < #:key length #:cache-keys? true))
