@@ -1,7 +1,8 @@
 #lang typed/racket
 
 (require/typed yaml
-               [read-yaml (-> Input-Port Any)])
+               [read-yaml (-> Input-Port Any)]
+               [write-yaml* (->* ((Listof Any)) (#:style (U 'block 'flow 'best)) Void)])
 
 (define *clang-format-executable* "clang-format")
 
@@ -228,7 +229,22 @@
          [result (cast raw-result (Listof Option))])
     (#{sort @ Option Symbol} result symbol<? #:key car)))
 
-(let ([all-results (for/list : (Listof (Listof Option)) ([base-style : BuiltInStyle *built-in-styles*])
-                     (cons (cons 'BasedOnStyle base-style)
-                           (normalize-options *my-options* base-style)))])
-  (#{sort @ (Listof Option) Index} all-results < #:key length #:cache-keys? true))
+(define (to-yaml [x : Any]) : Any
+  (match x
+    [(? symbol?) (symbol->string x)]
+    [(? (make-predicate (Listof (Pairof Symbol Any)))) (make-hash (for/list : (Listof (Pairof String Any)) ([item x])
+                                                                    (cons (symbol->string (car item))
+                                                                          (to-yaml (cdr item)))))]
+    [(? list?) (map to-yaml x)]
+    [_ x]))
+
+(time (let* ([all-results (for/list : (Listof (Listof Option)) ([base-style : BuiltInStyle *built-in-styles*])
+                            (cons (cons 'BasedOnStyle base-style)
+                                  (normalize-options *my-options* base-style)))]
+             [sorted-all-results (#{sort @ (Listof Option) Index} all-results < #:key length #:cache-keys? true)]
+             [sorted-all-yaml-results (cast (map to-yaml sorted-all-results) (Listof (HashTable String Any)))])
+        (for ([result sorted-all-yaml-results])
+          (display "# Total option count: ")
+          (displayln (hash-count result))
+          (write-yaml* (list result) #:style 'block)
+          (newline))))
