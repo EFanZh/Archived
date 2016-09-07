@@ -55,7 +55,7 @@ namespace InfiniteFloor
                     }
                 }
 
-                Console.WriteLine($"Iteration {i}, Remain time: {TimeSpan.FromTicks((long)(stopwatch.ElapsedTicks * ((iteration - i) / (double)i)))}");
+                Console.WriteLine($"Iteration {i} / {iteration}, Remain time: {TimeSpan.FromTicks((long)(stopwatch.ElapsedTicks * ((iteration - i) / (double)i)))}");
             }
 
             return result;
@@ -64,8 +64,8 @@ namespace InfiniteFloor
         private static WriteableBitmap ToBitmapImage(int width, int height, uint[] buffer)
         {
             var bitmap = new WriteableBitmap(width, height, 96.0, 96.0, PixelFormats.Gray32Float, null);
-            var max = buffer.Max();
-            var pixelBuffer = buffer.Select(i => (float)((double)i / (double)max)).ToArray();
+            var max = (double)buffer.Max();
+            var pixelBuffer = buffer.Select(x => (float)(x / max)).ToArray();
 
             bitmap.WritePixels(new Int32Rect(0, 0, width, height), pixelBuffer, sizeof(float) * width, 0);
 
@@ -85,7 +85,14 @@ namespace InfiniteFloor
 
         private static void Main(string[] args)
         {
-            Do(7680, 4320, 20.0, 60.0, Math.PI / 4.0, 20000, args[1]);
+            try
+            {
+                Do(7680, 4320, 20.0, 60.0, Math.PI / 4.0, uint.Parse(args[0]), args[1]);
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Parameters: iterations output");
+            }
         }
     }
 }
