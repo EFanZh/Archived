@@ -55,7 +55,7 @@ namespace InfiniteFloor
                     }
                 }
 
-                Console.WriteLine($"Iteration {i} / {iteration}, Remain time: {TimeSpan.FromTicks((long)(stopwatch.ElapsedTicks * ((iteration - i) / (double)i)))}");
+                Console.WriteLine($"Iteration {i} / {iteration}, Remain time: {TimeSpan.FromMilliseconds(stopwatch.ElapsedMilliseconds * ((iteration - i) / (double)i))}");
             }
 
             return result;
@@ -79,7 +79,6 @@ namespace InfiniteFloor
             var bitmap = ToBitmapImage(width, height, buffer);
 
             encoder.Frames.Add(BitmapFrame.Create(bitmap));
-
             encoder.Save(new FileStream(path, FileMode.Create));
         }
 
@@ -87,11 +86,19 @@ namespace InfiniteFloor
         {
             try
             {
-                Do(7680, 4320, 20.0, 60.0, Math.PI / 4.0, uint.Parse(args[0]), args[1]);
+                var width = int.Parse(args[0]);
+                var height = int.Parse(args[1]);
+                var tileSize = double.Parse(args[2]);
+                var cameraZ = double.Parse(args[3]);
+                var cameraAngleOfView = double.Parse(args[4]) * (Math.PI / 180.0);
+                var iterations = uint.Parse(args[5]);
+                var output = args[6];
+
+                Do(width, height, tileSize, cameraZ, cameraAngleOfView, iterations, output);
             }
             catch (Exception)
             {
-                Console.WriteLine("Parameters: iterations output");
+                Console.WriteLine("Parameters: width height tileSize cameraZ cameraAngleOfView iterations output");
             }
         }
     }
