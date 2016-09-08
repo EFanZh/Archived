@@ -55,7 +55,7 @@ namespace InfiniteFloor
                     }
                 }
 
-                Console.WriteLine($"Iteration {i} / {iteration}, Remain time: {TimeSpan.FromMilliseconds(stopwatch.ElapsedMilliseconds * ((iteration - i) / (double)i))}");
+                Console.WriteLine($"Iteration {i} / {iteration}, Remaining time: {TimeSpan.FromMilliseconds(stopwatch.ElapsedMilliseconds * ((iteration - i) / (double)i))}");
             }
 
             return result;
