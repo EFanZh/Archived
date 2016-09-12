@@ -2,7 +2,11 @@
 
 (require/typed yaml
                [read-yaml (-> Input-Port Any)]
-               [write-yaml* (->* ((Listof Any)) (#:style (U 'block 'flow 'best)) Void)])
+               [write-yaml* (->* ((Listof Any))
+                                 (#:style (U 'block 'flow 'best)
+                                  #:sort-mapping (U (-> Any Any Boolean) False)
+                                  #:sort-mapping-key (-> (Pairof Any Any) Any))
+                                 Void)])
 
 (define *clang-format-executable* "clang-format")
 
@@ -246,5 +250,9 @@
         (for ([result sorted-all-yaml-results])
           (display "# Total option count: ")
           (displayln (hash-count result))
-          (write-yaml* (list result) #:style 'block)
+          (write-yaml* (list result)
+                       #:style 'block
+                       #:sort-mapping (cast string<? (-> Any Any Boolean))
+                       #:sort-mapping-key (λ ([x : (Pairof Any Any)])
+                                            (car x)))
           (newline))))
