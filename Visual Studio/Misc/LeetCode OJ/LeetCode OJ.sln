@@ -534,6 +534,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "332. Reconstruct Itinerary"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "334. Increasing Triplet Subsequence", "334. Increasing Triplet Subsequence\334. Increasing Triplet Subsequence.vcxproj", "{1509D569-4782-456C-A363-7A84412BBAF5}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "335. Self Crossing", "335. Self Crossing\335. Self Crossing.vcxproj", "{841D14CE-361B-4ADC-B421-7FB0C79A3830}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -2278,6 +2280,14 @@ Global
 		{1509D569-4782-456C-A363-7A84412BBAF5}.Release|Win32.Build.0 = Release|Win32
 		{1509D569-4782-456C-A363-7A84412BBAF5}.Release|x64.ActiveCfg = Release|x64
 		{1509D569-4782-456C-A363-7A84412BBAF5}.Release|x64.Build.0 = Release|x64
+		{841D14CE-361B-4ADC-B421-7FB0C79A3830}.Debug|Win32.ActiveCfg = Debug|Win32
+		{841D14CE-361B-4ADC-B421-7FB0C79A3830}.Debug|Win32.Build.0 = Debug|Win32
+		{841D14CE-361B-4ADC-B421-7FB0C79A3830}.Debug|x64.ActiveCfg = Debug|x64
+		{841D14CE-361B-4ADC-B421-7FB0C79A3830}.Debug|x64.Build.0 = Debug|x64
+		{841D14CE-361B-4ADC-B421-7FB0C79A3830}.Release|Win32.ActiveCfg = Release|Win32
+		{841D14CE-361B-4ADC-B421-7FB0C79A3830}.Release|Win32.Build.0 = Release|Win32
+		{841D14CE-361B-4ADC-B421-7FB0C79A3830}.Release|x64.ActiveCfg = Release|x64
+		{841D14CE-361B-4ADC-B421-7FB0C79A3830}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -2544,5 +2554,6 @@ Global
 		{BDB79E6A-1D16-4A56-81E4-CA9CB30FD73B} = {57387E8D-D6F8-4B26-98FA-B25DF670DEB6}
 		{2BA4C603-1722-4314-B3ED-F7E3B56781A3} = {57387E8D-D6F8-4B26-98FA-B25DF670DEB6}
 		{1509D569-4782-456C-A363-7A84412BBAF5} = {57387E8D-D6F8-4B26-98FA-B25DF670DEB6}
+		{841D14CE-361B-4ADC-B421-7FB0C79A3830} = {57387E8D-D6F8-4B26-98FA-B25DF670DEB6}
 	EndGlobalSection
 EndGlobal
