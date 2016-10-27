@@ -1,18 +1,16 @@
 package org.efanzh.gps;
 
-import android.app.Activity;
-import android.content.Context;
-import android.location.Criteria;
-import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
-import android.os.Bundle;
-import android.widget.TextView;
+import android.app.*;
+import android.content.*;
+import android.location.*;
+import android.os.*;
+import android.widget.*;
 
-import java.util.Date;
+import java.util.*;
 
 public class MainActivity extends Activity implements LocationListener
 {
+    StringBuilder stringBuilder = new StringBuilder();
     TextView textView;
 
     @Override
@@ -21,9 +19,10 @@ public class MainActivity extends Activity implements LocationListener
         super.onCreate(savedInstanceState);
 
         textView = new TextView(this);
+
         this.setContentView(textView);
 
-        LocationManager locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+        LocationManager locationManager = (LocationManager)this.getSystemService(Context.LOCATION_SERVICE);
 
         textView.setText("Requesting location updates…");
 
@@ -44,8 +43,8 @@ public class MainActivity extends Activity implements LocationListener
     @Override
     public void onLocationChanged(Location location)
     {
-        StringBuilder stringBuilder = new StringBuilder("Longitude: ");
-
+        stringBuilder.setLength(0);
+        stringBuilder.append("Longitude: ");
         stringBuilder.append(location.getLongitude());
 
         stringBuilder.append("°\nLatitude: ");
@@ -92,18 +91,15 @@ public class MainActivity extends Activity implements LocationListener
     @Override
     public void onStatusChanged(String provider, int status, Bundle extras)
     {
-        textView.setText("Status: " + status + '.');
     }
 
     @Override
     public void onProviderEnabled(String provider)
     {
-        textView.setText("Provider " + provider + " is enabled.");
     }
 
     @Override
     public void onProviderDisabled(String provider)
     {
-        textView.setText("Provider " + provider + " is disabled.");
     }
 }
