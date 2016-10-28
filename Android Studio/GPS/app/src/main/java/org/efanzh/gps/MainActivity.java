@@ -10,8 +10,8 @@ import java.util.*;
 
 public class MainActivity extends Activity implements LocationListener
 {
-    StringBuilder stringBuilder = new StringBuilder();
     TextView textView;
+    StringBuilder stringBuilder = new StringBuilder();
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -24,15 +24,15 @@ public class MainActivity extends Activity implements LocationListener
 
         LocationManager locationManager = (LocationManager)this.getSystemService(Context.LOCATION_SERVICE);
 
-        textView.setText("Requesting location updates…");
+        Criteria criteria = new Criteria();
+
+        criteria.setAccuracy(Criteria.ACCURACY_FINE);
 
         try
         {
-            Criteria criteria = new Criteria();
-
-            criteria.setAccuracy(Criteria.ACCURACY_FINE);
-
             locationManager.requestLocationUpdates(0, 0, criteria, this, null);
+
+            textView.setText("Waiting for location updates…");
         }
         catch (SecurityException e)
         {
