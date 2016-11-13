@@ -102,6 +102,29 @@ struct UndirectedGraphNode
     }
 };
 
+class NestedInteger
+{
+    bool isIntegerValue;
+    int integer;
+    vector<NestedInteger> list;
+
+public:
+    bool isInteger() const
+    {
+        return isIntegerValue;
+    }
+
+    int getInteger() const
+    {
+        return integer;
+    }
+
+    const vector<NestedInteger> &getList() const
+    {
+        return list;
+    }
+};
+
 namespace Detail
 {
     int SkipBlank(int c, istream &input)
@@ -145,7 +168,7 @@ namespace Detail
             throw exception();
         }
 
-        return { x, c };
+        return{ x, c };
     }
 }
 
@@ -182,7 +205,6 @@ ListNode *MakeList(Pool<ListNode> &pool, initializer_list<int> input)
 
     return head;
 }
-
 
 template <class T = TreeNode>
 T *MakeTree(Pool<T> &pool, istream &input)

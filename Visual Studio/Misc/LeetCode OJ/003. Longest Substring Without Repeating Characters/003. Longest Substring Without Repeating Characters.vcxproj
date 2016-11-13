@@ -14,7 +14,6 @@
     <ProjectGuid>{190069C5-243F-463B-BF1F-97F4B73C5A76}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>_003__Longest_Substring_Without_Repeating_Characters</RootNamespace>
-    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">

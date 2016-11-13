@@ -13,7 +13,6 @@ public:
         vector<int> cache(nums.size());
         auto first = cache.begin();
         auto last = first + 1;
-        int result = 1;
 
         cache.front() = nums.front();
 
