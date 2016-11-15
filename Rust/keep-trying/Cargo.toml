@@ -1,0 +1,6 @@
+[package]
+name = "keep-trying"
+version = "0.1.0"
+authors = ["EFanZh <efanzh@gmail.com>"]
+
+[dependencies]
