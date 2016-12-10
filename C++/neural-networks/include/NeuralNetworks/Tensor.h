@@ -7,56 +7,55 @@ namespace NeuralNetworks
 {
     namespace Details
     {
-        template <class T, std::size_t... Dimensions>
+        template <class T, class Dimensions>
         struct TensorHelper
         {
-            using ElementType = T;
+            using Type = T;
+            using Size = StaticSize<>;
         };
 
-        template <class T, std::size_t FirstOrderDimensions, std::size_t... RestOrderDimensions>
-        struct TensorHelper<T, FirstOrderDimensions, RestOrderDimensions...>
+        template <class T, std::size_t FirstDimensions, std::size_t... RestDimensions>
+        struct TensorHelper<T, StaticSize<FirstDimensions, RestDimensions...>>
         {
-            using ElementType =
-                std::array<typename TensorHelper<T, RestOrderDimensions...>::ElementType, FirstOrderDimensions>;
+            using Type = std::array<typename TensorHelper<T, StaticSize<RestDimensions...>>::Type, FirstDimensions>;
+            using Size = StaticSize<FirstDimensions, RestDimensions...>;
+        };
+
+        template <class T, std::size_t N>
+        struct TensorDimensionsHelper;
+
+        template <class T, std::size_t DimensionsValue>
+        struct TensorDimensionsHelper<std::array<T, DimensionsValue>, 0>
+        {
+            static const auto dimensions = DimensionsValue;
+        };
+
+        template <class T, std::size_t DimensionsValue, std::size_t N>
+        struct TensorDimensionsHelper<std::array<T, DimensionsValue>, N>
+        {
+            static const auto dimensions = TensorDimensionsHelper<T, N - 1>::dimensions;
         };
     }
 
-    template <class T, std::size_t... Dimensions>
-    using Tensor = typename Details::TensorHelper<T, Dimensions...>::Type;
+    template <class T, class Dimensions>
+    using Tensor = typename Details::TensorHelper<T, Dimensions>::Type;
 
     template <class T>
     struct TensorTraits
     {
         using ElementType = T;
 
-        static const auto Order = 0;
-        static const auto Dimension = 0;
+        static const auto order = 0;
     };
 
-    template <class T, std::size_t DimensionsValue>
-    struct TensorTraits<std::array<T, DimensionsValue>>
+    template <class T, std::size_t Dimensions>
+    struct TensorTraits<std::array<T, Dimensions>>
     {
         using ElementType = typename TensorTraits<T>::ElementType;
 
-        static const auto Order = TensorTraits<T>::Order + 1;
-        static const auto Dimensions = DimensionsValue;
+        static const auto order = TensorTraits<T>::order + 1;
+
+        template <std::size_t N>
+        static const auto dimensions = Details::TensorDimensionsHelper<std::array<T, Dimensions>, N>::dimensions;
     };
-
-    template <class T, std::size_t N>
-    using Vector = Tensor<T, N>;
-
-    template <class T, std::size_t Rows, std::size_t Columns>
-    using Matrix = Tensor<T, Rows, Columns>;
-
-    template <class T>
-    decltype(auto) GetTensorElement(T &tensor)
-    {
-        return tensor;
-    }
-
-    template <class T, class... Indexes>
-    decltype(auto) GetTensorElement(T &tensor, std::size_t firstIndex, Indexes... restIndexes)
-    {
-        return GetTensorElement(tensor[firstIndex], restIndexes...);
-    }
 }

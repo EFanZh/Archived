@@ -1,9 +1,6 @@
 #pragma once
 
-#include "StaticSize.h"
 #include "Tensor.h"
-#include <type_traits>
-#include <tuple>
 
 namespace NeuralNetworks
 {
@@ -14,58 +11,28 @@ namespace NeuralNetworks
                                                   typename TensorTraits<Filter>::ElementType>>
     class ConvolutionalLayer
     {
-        static const auto outputWidth =
-            (MatrixTraits<Input>::Size::width - MatrixTraits<Filter>::Size::width) / Stride::width + 1;
+        // // This code makes completion and highlighting not working.
+        //
+        // template <std::size_t N>
+        // static const auto outputSize =
+        //     (TensorTraits<Input>::template dimensions<N> - TensorTraits<Filter>::template dimensions<N>) / Stride::template value<N> + 1;
 
-        static const auto outputHeight =
-            (MatrixTraits<Input>::Size::height - MatrixTraits<Filter>::Size::height) / Stride::height + 1;
+        template <std::size_t N>
+        struct OutputSizeHelper
+        {
+            static const auto value =
+                (TensorTraits<Input>::template dimensions<N> - TensorTraits<Filter>::template dimensions<N>) /
+                    Stride::template value<N> +
+                1;
+        };
 
         Filter filter;
         BiasType bias;
 
-        template <class Output, class... OutputIndexes, class... FilterIndexes>
-        auto GetValue(const Input &input, Output &output, std::tuple<OutputIndexes...> outputIndexes, FilterIndexes ...filterIndexes, )
-        {
-
-        }
-
-        template <std::size_t FirstDimensions,
-                  std::size_t... RestDimensions,
-                  class Output,
-                  class... OutputIndexes,
-                  class... FilterIndexes>
-        auto GetValue(const Input &input,
-                      Output &output,
-                      std::tuple<OutputIndexes...> outputIndexes,
-                      FilterIndexes... filterIndexes)
-        {
-        }
-
-        template <std::size_t Dimensions, class Output, class... Indexes>
-        void Convolve(const Input &input, Output &output, Indexes... indexes)
-        {
-            for (auto i = 0; i < Dimensions; ++i)
-            {
-                auto result = TensorTraits<Output>::ElementType(bias);
-
-                GetValue(input, output, std::make_tuple(indexes...), result);
-
-                GetTensorElement(output, indexes...) = result;
-            }
-        }
-
-        template <std::size_t FirstDimensions, std::size_t... RestDimensions, class Output, class... Indexes>
-        void Convolve(const Input &input, Output &output, Indexes... indexes)
-        {
-            for (auto i = std::size_t(0); i < FirstDimensions; ++i)
-            {
-                Convolve<RestDimensions...>(input, output, indexes..., i);
-            }
-        }
-
     public:
         using InputType = Input;
-        using OutputSize = StaticSize<outputWidth, outputHeight>;
+        using OutputSize =
+            StaticSize<OutputSizeHelper<0>::value, OutputSizeHelper<1>::value, OutputSizeHelper<2>::value>;
 
         ConvolutionalLayer(const Filter &filter, BiasType bias) : filter(filter), bias(bias)
         {
@@ -74,7 +41,37 @@ namespace NeuralNetworks
         template <class Output>
         void Forward(const Input &input, Output &output) const
         {
-            Convolve(input, output);
+            for (std::size_t outputRow = 0; outputRow < OutputSize::template value<0>; ++outputRow)
+            {
+                for (std::size_t outputColumn = 0; outputColumn < OutputSize::template value<1>; ++outputColumn)
+                {
+                    for (std::size_t outputChannel = 0; outputChannel < OutputSize::template value<2>; ++outputChannel)
+                    {
+                        auto value = typename TensorTraits<Output>::ElementType(bias);
+
+                        for (std::size_t filterRow = 0; filterRow < TensorTraits<Filter>::template dimensions<0>;
+                             ++filterRow)
+                        {
+                            for (std::size_t filterColumn = 0;
+                                 filterColumn < TensorTraits<Filter>::template dimensions<1>;
+                                 ++filterColumn)
+                            {
+                                for (std::size_t filterChannel = 0;
+                                     filterChannel < TensorTraits<Filter>::template dimensions<2>;
+                                     ++filterChannel)
+                                {
+                                    value += input[Stride::template value<0> * outputRow + filterRow]
+                                                  [Stride::template value<1> * outputColumn + filterColumn]
+                                                  [Stride::template value<2> * outputChannel + filterChannel] *
+                                        filter[filterRow][filterColumn][filterChannel];
+                                }
+                            }
+                        }
+
+                        output[outputRow][outputColumn][outputChannel] = value;
+                    }
+                }
+            }
         }
     };
 }
