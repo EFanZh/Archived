@@ -52,7 +52,7 @@ namespace NeuralNetworks
                     weights[i][j] -= gradient[i] * input[i] * stepSize;
                 }
 
-                bias[i] -= gradient[i] * 1 * stepSize;
+                bias[i] -= gradient[i] * stepSize;
                 outputGradient[i] = outputGradientValue;
             }
         }
