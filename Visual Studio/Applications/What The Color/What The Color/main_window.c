@@ -1,4 +1,4 @@
-#include "main_window.h"
+﻿#include "main_window.h"
 #include "context_menu.h"
 
 #define ID_TIMER 1
@@ -50,8 +50,9 @@ LRESULT CALLBACK MainWindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lPar
         HANDLE_MSG(hWnd, WM_KEYDOWN, MainWindow_OnKeyDown);
         HANDLE_MSG(hWnd, WM_COMMAND, MainWindow_OnCommand);
         HANDLE_MSG(hWnd, WM_TIMER, MainWindow_OnTimer);
-    default:
-        return DefWindowProc(hWnd, uMsg, wParam, lParam);
+
+        default:
+            return DefWindowProc(hWnd, uMsg, wParam, lParam);
     }
 }
 
@@ -155,6 +156,7 @@ void MainWindow_OnContextMenu(HWND hWnd, HWND hWndContext, UINT xPos, UINT yPos)
         xPos = point.x;
         yPos = point.y;
     }
+
     TrackPopupMenu(hmenu, 0, xPos, yPos, 0, hWnd, NULL);
 }
 
@@ -166,19 +168,20 @@ void MainWindow_OnKeyDown(HWND hWnd, UINT vk, BOOL fDown, int cRepeat, UINT flag
 
     switch (vk)
     {
-    case 0x48: // H key
-        hold = !hold;
-        if (hold)
-        {
-            KillTimer(hWnd, ID_TIMER);
-        }
-        else
-        {
-            SetTimer(hWnd, ID_TIMER, USER_TIMER_MINIMUM, NULL);
-        }
-        break;
-    default:
-        break;
+        case 'H':
+            hold = !hold;
+            if (hold)
+            {
+                KillTimer(hWnd, ID_TIMER);
+            }
+            else
+            {
+                SetTimer(hWnd, ID_TIMER, USER_TIMER_MINIMUM, NULL);
+            }
+            break;
+
+        default:
+            break;
     }
 }
 
@@ -194,29 +197,31 @@ void MainWindow_OnCommand(HWND hWnd, int id, HWND hWndCtl, UINT codeNotify)
 
     switch (id)
     {
-    case ID_COPY_HEX:
-    case ID_COPY_DEC:
-        if (id == ID_COPY_DEC)
-        {
-            StringCchPrintf(buffer, ARRAYSIZE(buffer), TEXT("%d, %d, %d"), color_r, color_g, color_b);
-        }
-        else if (id == ID_COPY_HEX)
-        {
-            StringCchPrintf(buffer, ARRAYSIZE(buffer), TEXT("#%02x%02x%02x"), color_r, color_g, color_b);
-        }
-        size = _tcslen(buffer) + 1;
-        hglobal = GlobalAlloc(GMEM_MOVEABLE, size * sizeof(TCHAR));
+        case ID_COPY_HEX:
+        case ID_COPY_DEC:
+            if (id == ID_COPY_DEC)
+            {
+                StringCchPrintf(buffer, ARRAYSIZE(buffer), TEXT("%d, %d, %d"), color_r, color_g, color_b);
+            }
+            else if (id == ID_COPY_HEX)
+            {
+                StringCchPrintf(buffer, ARRAYSIZE(buffer), TEXT("#%02x%02x%02x"), color_r, color_g, color_b);
+            }
+            size = _tcslen(buffer) + 1;
+            hglobal = GlobalAlloc(GMEM_MOVEABLE, size * sizeof(TCHAR));
 
-        target_mem = GlobalLock(hglobal);
-        memcpy(target_mem, buffer, size * sizeof(TCHAR));
-        GlobalUnlock(hglobal);
+            target_mem = GlobalLock(hglobal);
+            memcpy(target_mem, buffer, size * sizeof(TCHAR));
+            GlobalUnlock(hglobal);
 
-        OpenClipboard(hWnd);
-        SetClipboardData(CF_UNICODETEXT, hglobal);
-        CloseClipboard();
-        break;
-    default:
-        break;
+            OpenClipboard(hWnd);
+            SetClipboardData(CF_UNICODETEXT, hglobal);
+            CloseClipboard();
+
+            break;
+
+        default:
+            break;
     }
 }
 
@@ -226,13 +231,14 @@ void MainWindow_OnTimer(HWND hWnd, UINT id)
 
     switch (id)
     {
-    case ID_TIMER:
-        GetCursorPos(&point);
-        color = GetPixel(hdc_screen, point.x, point.y);
-        color_r = GetRValue(color);
-        color_g = GetGValue(color);
-        color_b = GetBValue(color);
-        InvalidateRect(hWnd, NULL, TRUE);
-        break;
+        case ID_TIMER:
+            GetCursorPos(&point);
+            color = GetPixel(hdc_screen, point.x, point.y);
+            color_r = GetRValue(color);
+            color_g = GetGValue(color);
+            color_b = GetBValue(color);
+            InvalidateRect(hWnd, NULL, TRUE);
+
+            break;
     }
 }
