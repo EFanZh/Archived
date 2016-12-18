@@ -1,0 +1,317 @@
+#include <neural_networks/convolutional_layer.h>
+#include <neural_networks/fully_connected_layer.h>
+#include <neural_networks/max_pooling_layer.h>
+#include <neural_networks/relu_layer.h>
+#include <neural_networks/local_response_normalization_layer.h>
+#include <neural_networks/test.h>
+#include <neural_networks/utilities.h>
+#include <numeric>
+#include <iostream>
+
+using namespace std;
+using namespace neural_networks;
+
+TEST(convolution_layer_forward)
+{
+    using my_layer = convolutional_layer<filter<double, 3, 3, 3>, static_size<2, 2>, 2>;
+
+    const auto layer = my_layer({ { { { { { { { { -1, 1, 0 } }, { { 0, 1, 0 } }, { { 0, 1, 1 } } } },
+                                          { { { { -1, -1, 0 } }, { { 0, 0, 0 } }, { { 0, -1, 0 } } } },
+                                          { { { { 0, 0, -1 } }, { { 0, 1, 0 } }, { { 1, -1, -1 } } } } } },
+                                      1 },
+                                    { { { { { { { 1, 1, -1 } }, { { -1, -1, 1 } }, { { 0, -1, 1 } } } },
+                                          { { { { 0, 1, 0 } }, { { -1, 0, -1 } }, { { -1, 1, 0 } } } },
+                                          { { { { -1, 0, 0 } }, { { -1, 0, 1 } }, { { -1, 0, 0 } } } } } },
+                                      0 } } });
+
+    const auto input = tensor<double, 3, 7, 7>{ { { { { { 0, 0, 0, 0, 0, 0, 0 } },
+                                                      { { 0, 0, 1, 1, 0, 2, 0 } },
+                                                      { { 0, 2, 2, 2, 2, 1, 0 } },
+                                                      { { 0, 1, 0, 0, 2, 0, 0 } },
+                                                      { { 0, 0, 1, 1, 0, 0, 0 } },
+                                                      { { 0, 1, 2, 0, 0, 2, 0 } },
+                                                      { { 0, 0, 0, 0, 0, 0, 0 } } } },
+                                                  { { { { 0, 0, 0, 0, 0, 0, 0 } },
+                                                      { { 0, 1, 0, 2, 2, 0, 0 } },
+                                                      { { 0, 0, 0, 0, 2, 0, 0 } },
+                                                      { { 0, 1, 2, 1, 2, 1, 0 } },
+                                                      { { 0, 1, 0, 0, 0, 0, 0 } },
+                                                      { { 0, 1, 2, 1, 1, 1, 0 } },
+                                                      { { 0, 0, 0, 0, 0, 0, 0 } } } },
+                                                  { { { { 0, 0, 0, 0, 0, 0, 0 } },
+                                                      { { 0, 2, 1, 2, 0, 0, 0 } },
+                                                      { { 0, 1, 0, 0, 1, 0, 0 } },
+                                                      { { 0, 0, 2, 1, 0, 1, 0 } },
+                                                      { { 0, 0, 1, 2, 2, 2, 0 } },
+                                                      { { 0, 2, 1, 0, 0, 1, 0 } },
+                                                      { { 0, 0, 0, 0, 0, 0, 0 } } } } } };
+
+    auto output = tensor<double, 2, 3, 3>();
+
+    layer.forward(input, output);
+
+    const auto expected =
+        tensor<double, 2, 3, 3>{ { { { { { 6, 7, 5 } }, { { 3, -1, -1 } }, { { 2, -1, 4 } } } },
+                                   { { { { 2, -5, -8 } }, { { 1, -4, -4 } }, { { 0, -5, -5 } } } } } };
+
+    expect(output == expected);
+}
+
+TEST(convolution_layer_backward)
+{
+    using my_layer = convolutional_layer<filter<double, 1, 2, 2>, static_size<1, 1>, 2>;
+
+    auto layer = my_layer(
+        { { { { { { { { { 1, 2 } }, { { 1, 7 } } } } } }, 2 }, { { { { { { { 1, 2 } }, { { 1, 7 } } } } } }, 3 } } });
+
+    const auto input_1 = tensor<double, 1, 3, 3>{ { { { { { 1, 2, 3 } }, { { 3, 4, 1 } }, { { 1, 1, 1 } } } } } };
+
+    const auto input_2 = tensor<double, 1, 3, 3>{ { { { { { 2, 1, 2 } }, { { 0, 3, 2 } }, { { 1, 3, 3 } } } } } };
+
+    for (auto i = 0; i < 20; ++i)
+    {
+        auto output_1 = tensor<double, 2, 2, 2>();
+        auto output_2 = tensor<double, 2, 2, 2>();
+
+        layer.forward(input_1, output_1);
+        layer.forward(input_2, output_2);
+
+        const auto error_1 = accumulate(output_1.cbegin_element(), output_1.cend_element(), 0.0) - 4;
+        const auto error_2 = accumulate(output_1.cbegin_element(), output_1.cend_element(), 0.0) - 2;
+        const auto target = (error_1 * error_1 + error_2 * error_2) * 0.5;
+
+        cout << "convolution_backward target: " << target << '\n';
+
+        const auto gradient_target_to_error_1 = error_1;
+        const auto gradient_target_to_error_2 = error_2;
+        auto gradient_target_to_output_1 = tensor<double, 2, 2, 2>();
+        auto gradient_target_to_output_2 = tensor<double, 2, 2, 2>();
+
+        fill(gradient_target_to_output_1.begin_element(),
+             gradient_target_to_output_1.end_element(),
+             gradient_target_to_error_1);
+
+        fill(gradient_target_to_output_2.begin_element(),
+             gradient_target_to_output_2.end_element(),
+             gradient_target_to_error_2);
+
+        auto gradient_target_to_input_1 = tensor<double, 1, 3, 3>();
+        auto gradient_target_to_input_2 = tensor<double, 1, 3, 3>();
+        auto gradient_layer_weight_to_target = my_layer();
+
+        layer.backward(input_1,
+                       gradient_target_to_output_1,
+                       gradient_target_to_input_1,
+                       gradient_layer_weight_to_target);
+        layer.backward(input_2,
+                       gradient_target_to_output_2,
+                       gradient_target_to_input_2,
+                       gradient_layer_weight_to_target);
+
+        layer.update_weights(gradient_layer_weight_to_target, 0.001);
+    }
+}
+
+TEST(fully_connected_layer_forward)
+{
+    using my_layer = fully_connected_layer<perceptron<double, 3>, 4>;
+
+    const auto layer = my_layer(
+        { { { { { 1, 3, 4 } }, 1 }, { { { 5, 7, 4 } }, 3 }, { { { 1, 3, 6 } }, 6 }, { { { 1, 2, 3 } }, 2 } } });
+
+    const auto input = tensor<double, 3>{ { 1, 2, 3 } };
+
+    tensor<double, 4> output;
+
+    layer.forward(input, output);
+
+    const auto expected = tensor<double, 4>{ { 20, 34, 31, 16 } };
+
+    expect(output == expected);
+}
+
+TEST(fully_connected_layer_backward)
+{
+    using my_layer = fully_connected_layer<perceptron<double, 3>, 3>;
+
+    auto layer = my_layer({ { { { { 2, 3, 4 } }, 1 }, { { 6, 7, 8 }, 2 }, { { 7, 8, 3 }, 3 } } });
+
+    const auto input = tensor<double, 3>{ { 1, 2, 3 } };
+
+    for (auto i = 0; i < 20; ++i)
+    {
+        auto output = tensor<double, 3>();
+
+        layer.forward(input, output);
+
+        const auto error = tensor<double, 3>{ { output[0] - 0, output[1] - 4, output[2] - 0 } };
+        const auto target = (error[0] * error[0] + error[1] * error[1] + error[2] * error[2]) * 0.5;
+
+        cout << "fully_connected_layer_backward target: " << target << '\n';
+
+        const auto gradient_target_to_error = error;
+        const auto gradient_target_to_output = gradient_target_to_error;
+        auto gradient_target_to_input = tensor<double, 3>();
+        auto gradient_layer_weights_to_target = my_layer();
+
+        layer.backward(input, gradient_target_to_output, gradient_target_to_input, gradient_layer_weights_to_target);
+
+        layer.update_weights(gradient_layer_weights_to_target, 0.1);
+    }
+}
+
+TEST(max_pooling_layer_forward)
+{
+    using my_layer = max_pooling_layer<static_size<3, 3>, static_size<2, 2>>;
+
+    const auto layer = my_layer();
+    const auto input = tensor<double, 1, 5, 5>{ { { { { { 2, 4, 1, 3, 5 } },
+                                                      { { 1, 0, 7, 6, 2 } },
+                                                      { { 3, 9, 0, 2, 5 } },
+                                                      { { 7, 8, 4, 0, 1 } },
+                                                      { { 9, 5, 6, 4, 2 } } } } } };
+
+    auto output = tensor<double, 1, 2, 2>();
+    auto context = my_layer::context<1, 2, 2>();
+
+    layer.forward(input, output, context);
+
+    const auto expected_output = tensor<double, 1, 2, 2>{ { { { { { 9, 7 } }, { { 9, 6 } } } } } };
+    const auto expected_context = my_layer::context<1, 2, 2>{
+        { { { { { { { { 2, 1 } }, { { 1, 2 } } } }, { { { { 2, 1 } }, { { 4, 2 } } } } } } } }
+    };
+
+    expect(output == expected_output);
+    expect(context.max_indexes == expected_context.max_indexes);
+}
+
+TEST(max_pooling_layer_backward)
+{
+    using my_layer = max_pooling_layer<static_size<3, 3>, static_size<2, 2>>;
+
+    const auto layer = my_layer();
+    const auto input = tensor<double, 1, 5, 5>{ { { { { { 2, 4, 1, 3, 5 } },
+                                                      { { 1, 0, 7, 6, 2 } },
+                                                      { { 3, 9, 0, 2, 5 } },
+                                                      { { 7, 8, 4, 0, 1 } },
+                                                      { { 9, 5, 6, 4, 2 } } } } } };
+
+    auto output = tensor<double, 1, 2, 2>();
+    auto context = my_layer::context<1, 2, 2>();
+
+    layer.forward(input, output, context);
+
+    const auto input_gradient = tensor<double, 1, 2, 2>{ { { { { { 11, 22 } }, { { 33, 44 } } } } } };
+    auto output_gradient = tensor<double, 1, 5, 5>();
+
+    layer.backward(input_gradient, context, output_gradient);
+
+    const auto expected_output_gradient = tensor<double, 1, 5, 5>{ { { { { { 0, 0, 0, 0, 0 } },
+                                                                         { { 0, 0, 22, 0, 0 } },
+                                                                         { { 0, 44, 0, 0, 0 } },
+                                                                         { { 0, 0, 0, 0, 0 } },
+                                                                         { { 0, 0, 44, 0, 0 } } } } } };
+
+    expect(output_gradient == expected_output_gradient);
+}
+
+TEST(relu_layer_forward)
+{
+    auto layer = relu_layer();
+
+    const auto input = tensor<double, 2, 3>{ { { { -2, 0, 1 } }, { 7, 2, -3 } } };
+    auto output = tensor<double, 2, 3>();
+
+    layer.forward(input, output);
+
+    const auto expected_output = tensor<double, 2, 3>{ { { { 0, 0, 1 } }, { 7, 2, 0 } } };
+
+    expect(output == expected_output);
+}
+
+TEST(relu_layer_backward)
+{
+    auto layer = relu_layer();
+
+    const auto input = tensor<double, 2, 3>{ { { { -2, 0, 1 } }, { 7, 2, -3 } } };
+    auto output = tensor<double, 2, 3>();
+
+    layer.forward(input, output);
+
+    const auto input_gradient = tensor<double, 2, 3>{ { { { 1, 2, 3 } }, { 4, 5, 6 } } };
+    auto output_gradient = tensor<double, 2, 3>();
+
+    layer.backward(input, input_gradient, output_gradient);
+
+    const auto expected_output_gradient = tensor<double, 2, 3>{ { { { 0, 2, 3 } }, { 4, 5, 0 } } };
+
+    expect(output_gradient == expected_output_gradient);
+}
+
+TEST(local_response_normalization_layer_forward)
+{
+    using my_layer = local_response_normalization_layer<
+        local_response_normalization_filter<local_response_normalization_hyper_parameters_alexnet>>;
+
+    const auto layer = my_layer();
+    const auto input = tensor<double, 10, 1, 2>{ { { { { { 1, 6 } } } },
+                                                   { { { { 2, 3 } } } },
+                                                   { { { { 4, 5 } } } },
+                                                   { { { { 3, 0 } } } },
+                                                   { { { { 7, 3 } } } },
+                                                   { { { { 2, 8 } } } },
+                                                   { { { { 6, 7 } } } },
+                                                   { { { { 2, 2 } } } },
+                                                   { { { { 4, 0 } } } },
+                                                   { { { { 7, 4 } } } } } };
+
+    auto output = tensor<double, 10, 1, 2>();
+    auto output_naive = tensor<double, 10, 1, 2>();
+    auto context = my_layer::context<double, 10, 1, 2>();
+
+    layer.forward(input, output, context);
+    layer.forward_naive(input, output_naive);
+
+    expect(output == output_naive);
+}
+
+
+TEST(local_response_normalization_layer_backward)
+{
+    using my_layer = local_response_normalization_layer<
+        local_response_normalization_filter<local_response_normalization_hyper_parameters_alexnet>>;
+
+    const auto layer = my_layer();
+    const auto input = tensor<double, 10, 1, 2>{ { { { { { 1, 6 } } } },
+                                                   { { { { 2, 3 } } } },
+                                                   { { { { 4, 5 } } } },
+                                                   { { { { 3, 0 } } } },
+                                                   { { { { 7, 3 } } } },
+                                                   { { { { 2, 8 } } } },
+                                                   { { { { 6, 7 } } } },
+                                                   { { { { 2, 2 } } } },
+                                                   { { { { 4, 0 } } } },
+                                                   { { { { 7, 4 } } } } } };
+
+    auto output = tensor<double, 10, 1, 2>();
+    auto context = my_layer::context<double, 10, 1, 2>();
+
+    layer.forward(input, output, context);
+
+    const auto input_gradient = tensor<double, 10, 1, 2>{ { { { { { 1, 1 } } } },
+                                                            { { { { 2, 6 } } } },
+                                                            { { { { 3, 4 } } } },
+                                                            { { { { 3, 2 } } } },
+                                                            { { { { 1, 5 } } } },
+                                                            { { { { 2, 2 } } } },
+                                                            { { { { 1, 4 } } } },
+                                                            { { { { 4, 4 } } } },
+                                                            { { { { 0, 1 } } } },
+                                                            { { { { 3, 7 } } } } } };
+
+    auto output_gradient = tensor<double, 10, 1, 2>();
+
+    layer.backward(input, input_gradient, context, output_gradient);
+
+    print(output_gradient);
+}
