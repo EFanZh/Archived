@@ -73,5 +73,60 @@ namespace neural_networks
                 }
             }
         }
+
+        template <class InputElementType,
+                  std::size_t InputChannels,
+                  std::size_t InputRows,
+                  std::size_t InputColumns,
+                  class InputGradientElementType,
+                  class OutputGradientElementType>
+        void backward_2(
+            const tensor<InputElementType, InputChannels, InputRows, InputColumns> &input,
+            const tensor<InputGradientElementType, InputChannels, InputRows, InputColumns> &input_gradient,
+            const context<InputGradientElementType, InputChannels, InputRows, InputColumns> &input_context,
+            tensor<OutputGradientElementType, InputChannels, InputRows, InputColumns> &output_gradient) const
+        {
+            for (std::size_t row = 0; row < InputRows; ++row)
+            {
+                for (std::size_t column = 0; column < InputColumns; ++column)
+                {
+                    FilterType().backward_2(input,
+                                            row,
+                                            column,
+                                            input_gradient,
+                                            input_context.sigmas[row][column].get_value(),
+                                            output_gradient);
+                }
+            }
+        }
+
+        template <class InputElementType,
+                  std::size_t InputChannels,
+                  std::size_t InputRows,
+                  std::size_t InputColumns,
+                  class OutputElementType,
+                  class InputGradientElementType,
+                  class OutputGradientElementType>
+        void backward_3(
+            const tensor<InputElementType, InputChannels, InputRows, InputColumns> &input,
+            const tensor<OutputElementType, InputChannels, InputRows, InputColumns> &output,
+            const tensor<InputGradientElementType, InputChannels, InputRows, InputColumns> &input_gradient,
+            const context<InputGradientElementType, InputChannels, InputRows, InputColumns> &input_context,
+            tensor<OutputGradientElementType, InputChannels, InputRows, InputColumns> &output_gradient) const
+        {
+            for (std::size_t row = 0; row < InputRows; ++row)
+            {
+                for (std::size_t column = 0; column < InputColumns; ++column)
+                {
+                    FilterType().backward_3(input,
+                                            row,
+                                            column,
+                                            output,
+                                            input_gradient,
+                                            input_context.sigmas[row][column].get_value(),
+                                            output_gradient);
+                }
+            }
+        }
     };
 }

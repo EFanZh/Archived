@@ -13,7 +13,7 @@ namespace neural_networks
         {
             for (std::size_t i = 0; i < tensor<InputElementType, InputDimensions...>::element_count; ++i)
             {
-                output.as_vector()[i] = max<InputElementType>(input.as_vector()[i], 0);
+                output.as_vector()[i] = std::max<InputElementType>(input.as_vector()[i], 0);
             }
         }
 

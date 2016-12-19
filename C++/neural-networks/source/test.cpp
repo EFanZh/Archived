@@ -134,7 +134,7 @@ TEST(fully_connected_layer_backward)
 {
     using my_layer = fully_connected_layer<perceptron<double, 3>, 3>;
 
-    auto layer = my_layer({ { { { { 2, 3, 4 } }, 1 }, { { 6, 7, 8 }, 2 }, { { 7, 8, 3 }, 3 } } });
+    auto layer = my_layer({ { { { { 2, 3, 4 } }, 1 }, { { { 6, 7, 8 } }, 2 }, { { { 7, 8, 3 } }, 3 } } });
 
     const auto input = tensor<double, 3>{ { 1, 2, 3 } };
 
@@ -178,7 +178,7 @@ TEST(max_pooling_layer_forward)
 
     const auto expected_output = tensor<double, 1, 2, 2>{ { { { { { 9, 7 } }, { { 9, 6 } } } } } };
     const auto expected_context = my_layer::context<1, 2, 2>{
-        { { { { { { { { 2, 1 } }, { { 1, 2 } } } }, { { { { 2, 1 } }, { { 4, 2 } } } } } } } }
+        { { { { { { { { { 2, 1 } } }, { { { 1, 2 } } } } }, { { { { { 2, 1 } } }, { { { 4, 2 } } } } } } } } }
     };
 
     expect(output == expected_output);
@@ -219,12 +219,12 @@ TEST(relu_layer_forward)
 {
     auto layer = relu_layer();
 
-    const auto input = tensor<double, 2, 3>{ { { { -2, 0, 1 } }, { 7, 2, -3 } } };
+    const auto input = tensor<double, 2, 3>{ { { { -2, 0, 1 } }, { { 7, 2, -3 } } } };
     auto output = tensor<double, 2, 3>();
 
     layer.forward(input, output);
 
-    const auto expected_output = tensor<double, 2, 3>{ { { { 0, 0, 1 } }, { 7, 2, 0 } } };
+    const auto expected_output = tensor<double, 2, 3>{ { { { 0, 0, 1 } }, { { 7, 2, 0 } } } };
 
     expect(output == expected_output);
 }
@@ -233,17 +233,17 @@ TEST(relu_layer_backward)
 {
     auto layer = relu_layer();
 
-    const auto input = tensor<double, 2, 3>{ { { { -2, 0, 1 } }, { 7, 2, -3 } } };
+    const auto input = tensor<double, 2, 3>{ { { { -2, 0, 1 } }, { { 7, 2, -3 } } } };
     auto output = tensor<double, 2, 3>();
 
     layer.forward(input, output);
 
-    const auto input_gradient = tensor<double, 2, 3>{ { { { 1, 2, 3 } }, { 4, 5, 6 } } };
+    const auto input_gradient = tensor<double, 2, 3>{ { { { 1, 2, 3 } }, { { 4, 5, 6 } } } };
     auto output_gradient = tensor<double, 2, 3>();
 
     layer.backward(input, input_gradient, output_gradient);
 
-    const auto expected_output_gradient = tensor<double, 2, 3>{ { { { 0, 2, 3 } }, { 4, 5, 0 } } };
+    const auto expected_output_gradient = tensor<double, 2, 3>{ { { { 0, 2, 3 } }, { { 4, 5, 0 } } } };
 
     expect(output_gradient == expected_output_gradient);
 }
@@ -274,7 +274,6 @@ TEST(local_response_normalization_layer_forward)
 
     expect(output == output_naive);
 }
-
 
 TEST(local_response_normalization_layer_backward)
 {
@@ -309,9 +308,18 @@ TEST(local_response_normalization_layer_backward)
                                                             { { { { 0, 1 } } } },
                                                             { { { { 3, 7 } } } } } };
 
-    auto output_gradient = tensor<double, 10, 1, 2>();
+    auto output_gradient_1 = tensor<double, 10, 1, 2>();
+    auto output_gradient_2 = tensor<double, 10, 1, 2>();
+    auto output_gradient_3 = tensor<double, 10, 1, 2>();
 
-    layer.backward(input, input_gradient, context, output_gradient);
+    layer.backward(input, input_gradient, context, output_gradient_1);
+    layer.backward_2(input, input_gradient, context, output_gradient_2);
+    layer.backward_3(input, output, input_gradient, context, output_gradient_3);
 
-    print(output_gradient);
+    print_line(output_gradient_1);
+    print_line(output_gradient_2);
+
+    expect(output_gradient_1 == output_gradient_2);
+
+    print_line(output_gradient_3);
 }

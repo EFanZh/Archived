@@ -4,7 +4,7 @@ cmake_minimum_required(VERSION 3.1)
 # set(CMAKE_CXX_STANDARD 17)
 # set(CMAKE_CXX_EXTENSIONS OFF)
 
-add_compile_options(-std=c++1z)
+add_compile_options(-std=c++1z -Wall -Wextra -Wpedantic -Wconversion)
 
 include_directories(include)
 

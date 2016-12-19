@@ -142,8 +142,8 @@ namespace neural_networks
             {
                 auto result = OutputGradientElementType(0);
                 const auto a_j = input[j][input_row][input_column];
-                const auto i_begin = j < n / 2 * 2 ? 0 : j - n / 2 * 2;
-                const auto i_end = min(InputChannels, j + (n / 2 * 2 + 1));
+                const auto i_begin = n / 2 < j ? j - n / 2 : 0;
+                const auto i_end = min(InputChannels, j + (n / 2 + 1));
 
                 for (size_t i = i_begin; i < i_end; ++i)
                 {
@@ -157,8 +157,8 @@ namespace neural_networks
                     }
                     else
                     {
-                        result += input_gradient[i][input_row][input_column] *
-                            (-2 * alpha * beta * a_i * a_j * pow(k + alpha * sigma, -(beta + 1)));
+                        result += input_gradient[i][input_row][input_column] * (-2 * alpha * beta * a_i * a_j) *
+                            pow(k + alpha * sigma, -(beta + 1));
                     }
                 }
 
@@ -172,12 +172,13 @@ namespace neural_networks
                   std::size_t InputColumns,
                   class InputGradientElementType,
                   class OutputGradientElementType>
-        void backward_2(const tensor<InputElementType, InputChannels, InputRows, InputColumns> &input,
-                        std::size_t input_row,
-                        std::size_t input_column,
-                        const tensor<InputGradientElementType, InputChannels, InputRows, InputColumns> &input_gradient,
-                        const std::array<OutputGradientElementType, InputChannels> &input_sigmas,
-                        tensor<OutputGradientElementType, InputChannels, InputRows, InputColumns> &output_gradient) const
+        void backward_2(
+            const tensor<InputElementType, InputChannels, InputRows, InputColumns> &input,
+            std::size_t input_row,
+            std::size_t input_column,
+            const tensor<InputGradientElementType, InputChannels, InputRows, InputColumns> &input_gradient,
+            const std::array<OutputGradientElementType, InputChannels> &input_sigmas,
+            tensor<OutputGradientElementType, InputChannels, InputRows, InputColumns> &output_gradient) const
         {
             // When i = j:
             //
@@ -195,7 +196,6 @@ namespace neural_networks
 
             for (size_t i = 0; i < InputChannels; ++i)
             {
-                auto result = OutputGradientElementType(0);
                 const auto sigma = input_sigmas[i];
                 const auto a_i = input[i][input_row][input_column];
                 const auto j_begin = n / 2 < i ? i - n / 2 : 0;
@@ -205,19 +205,56 @@ namespace neural_networks
                 {
                     if (i == j)
                     {
-                        result += input_gradient[i][input_row][input_column] *
+                        output_gradient[j][input_row][input_column] += input_gradient[i][input_row][input_column] *
                             (k + alpha * (sigma - 2 * beta * (a_i * a_i))) * pow(k + alpha * sigma, -(beta + 1));
                     }
                     else
                     {
                         const auto a_j = input[j][input_row][input_column];
 
-                        result += input_gradient[j][input_row][input_column] *
+                        output_gradient[j][input_row][input_column] += input_gradient[i][input_row][input_column] *
                             (-2 * alpha * beta * a_i * a_j * pow(k + alpha * sigma, -(beta + 1)));
                     }
                 }
+            }
+        }
 
-                output_gradient[i][input_row][input_column] += result;
+        template <class InputElementType,
+                  std::size_t InputChannels,
+                  std::size_t InputRows,
+                  std::size_t InputColumns,
+                  class OutputElementType,
+                  class InputGradientElementType,
+                  class OutputGradientElementType>
+        void backward_3(
+            const tensor<InputElementType, InputChannels, InputRows, InputColumns> &input,
+            std::size_t input_row,
+            std::size_t input_column,
+            const tensor<OutputElementType, InputChannels, InputRows, InputColumns> &output,
+            const tensor<InputGradientElementType, InputChannels, InputRows, InputColumns> &input_gradient,
+            const std::array<OutputGradientElementType, InputChannels> &input_sigmas,
+            tensor<OutputGradientElementType, InputChannels, InputRows, InputColumns> &output_gradient) const
+        {
+            // uᵢ = k + α Σ
+            //
+            // δᵢ = uᵢ⁻ᵝδᵢ - 2 α β aᵢ sum(bⱼ δⱼ / uⱼ)
+
+            for (size_t i = 0; i < InputChannels; ++i)
+            {
+                const auto u_i = k + alpha * input_sigmas[i];
+                auto sum = OutputGradientElementType(0);
+                const auto j_begin = n / 2 < i ? i - n / 2 : 0;
+                const auto j_end = std::min(InputChannels, i + (n / 2 + 1));
+
+                for (std::size_t j = j_begin; j < j_end; ++j)
+                {
+                    sum += output[input_row][input_column][j] * input_gradient[j][input_row][input_column] /
+                        (k + alpha * input_sigmas[j]);
+                }
+
+                output_gradient[i][input_row][input_column] =
+                    std::pow(u_i, -beta) * input_gradient[i][input_row][input_column] -
+                    2 * alpha * beta * input[i][input_row][input_column] * sum;
             }
         }
     };
