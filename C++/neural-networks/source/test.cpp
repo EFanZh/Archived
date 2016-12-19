@@ -251,7 +251,7 @@ TEST(relu_layer_backward)
 TEST(local_response_normalization_layer_forward)
 {
     using my_layer = local_response_normalization_layer<
-        local_response_normalization_filter<local_response_normalization_hyper_parameters_alexnet>>;
+        local_response_normalization_filter<double, local_response_normalization_hyper_parameters_alexnet>>;
 
     const auto layer = my_layer();
     const auto input = tensor<double, 10, 1, 2>{ { { { { { 1, 6 } } } },
@@ -278,7 +278,7 @@ TEST(local_response_normalization_layer_forward)
 TEST(local_response_normalization_layer_backward)
 {
     using my_layer = local_response_normalization_layer<
-        local_response_normalization_filter<local_response_normalization_hyper_parameters_alexnet>>;
+        local_response_normalization_filter<double, local_response_normalization_hyper_parameters_alexnet>>;
 
     const auto layer = my_layer();
     const auto input = tensor<double, 10, 1, 2>{ { { { { { 1, 6 } } } },
@@ -294,8 +294,10 @@ TEST(local_response_normalization_layer_backward)
 
     auto output = tensor<double, 10, 1, 2>();
     auto context = my_layer::context<double, 10, 1, 2>();
-
+    auto context_3 = my_layer::context_3<10, 1, 2>();
+    
     layer.forward(input, output, context);
+    layer.forward_3(input, output, context_3);
 
     const auto input_gradient = tensor<double, 10, 1, 2>{ { { { { { 1, 1 } } } },
                                                             { { { { 2, 6 } } } },
@@ -314,7 +316,7 @@ TEST(local_response_normalization_layer_backward)
 
     layer.backward(input, input_gradient, context, output_gradient_1);
     layer.backward_2(input, input_gradient, context, output_gradient_2);
-    layer.backward_3(input, output, input_gradient, context, output_gradient_3);
+    layer.backward_3(input, output, input_gradient, context_3, output_gradient_3);
 
     print_line(output_gradient_1);
     print_line(output_gradient_2);

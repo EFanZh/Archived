@@ -14,6 +14,12 @@ namespace neural_networks
             tensor<std::array<T, Channels>, Rows, Columns> sigmas;
         };
 
+        template <std::size_t Channels, std::size_t Rows, std::size_t Columns>
+        struct context_3
+        {
+            tensor<std::array<typename FilterType::context, Channels>, Rows, Columns> contexts;
+        };
+
         template <class InputElementType,
                   std::size_t InputChannels,
                   std::size_t InputRows,
@@ -45,6 +51,24 @@ namespace neural_networks
                 for (std::size_t column = 0; column < InputColumns; ++column)
                 {
                     FilterType().forward_naive(input, row, column, output);
+                }
+            }
+        }
+
+        template <class InputElementType,
+                  std::size_t InputChannels,
+                  std::size_t InputRows,
+                  std::size_t InputColumns,
+                  class OutputElementType>
+        void forward_3(const tensor<InputElementType, InputChannels, InputRows, InputColumns> &input,
+                       tensor<OutputElementType, InputChannels, InputRows, InputColumns> &output,
+                       context_3<InputChannels, InputRows, InputColumns> &context) const
+        {
+            for (std::size_t row = 0; row < InputRows; ++row)
+            {
+                for (std::size_t column = 0; column < InputColumns; ++column)
+                {
+                    FilterType().forward_3(input, row, column, output, context.contexts[row][column].get_value());
                 }
             }
         }
@@ -111,7 +135,7 @@ namespace neural_networks
             const tensor<InputElementType, InputChannels, InputRows, InputColumns> &input,
             const tensor<OutputElementType, InputChannels, InputRows, InputColumns> &output,
             const tensor<InputGradientElementType, InputChannels, InputRows, InputColumns> &input_gradient,
-            const context<InputGradientElementType, InputChannels, InputRows, InputColumns> &input_context,
+            const context_3<InputChannels, InputRows, InputColumns> &input_context,
             tensor<OutputGradientElementType, InputChannels, InputRows, InputColumns> &output_gradient) const
         {
             for (std::size_t row = 0; row < InputRows; ++row)
@@ -123,7 +147,7 @@ namespace neural_networks
                                             column,
                                             output,
                                             input_gradient,
-                                            input_context.sigmas[row][column].get_value(),
+                                            input_context.contexts[row][column].get_value(),
                                             output_gradient);
                 }
             }
