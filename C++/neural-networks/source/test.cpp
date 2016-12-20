@@ -392,6 +392,6 @@ TEST(dropout_layer_forward_not_training)
 
     for (size_t i = 0; i < output.get_dimensions<0>(); ++i)
     {
-        expect(output[i] = input[i] * dropout_strategy_half::effective_probability);
+        expect(output[i] == input[i] * dropout_strategy_half::effective_probability);
     }
 }

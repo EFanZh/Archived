@@ -9,14 +9,14 @@ namespace neural_networks
     class dropout_strategy_half
     {
         std::default_random_engine random_engine;
-        std::uniform_int_distribution<unsigned char> distribution{ 0, 1 };
+        std::uniform_int_distribution<unsigned short> distribution{ 0, 1 };
 
     public:
         static constexpr double effective_probability = 0.5;
 
         bool operator()()
         {
-            return distribution(random_engine);
+            return distribution(random_engine) != 0;
         }
     };
 
