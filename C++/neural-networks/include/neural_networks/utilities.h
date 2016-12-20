@@ -2,13 +2,39 @@
 
 #include <neural_networks/tensor.h>
 #include <iostream>
+#include <vector>
 
 namespace neural_networks
 {
     template <class T>
-    void print(const tensor<T> &value)
+    void print(const T &value)
     {
         std::cout << value;
+    }
+
+    template <class T>
+    void print(const tensor<T> &value)
+    {
+        std::cout << value.get_value();
+    }
+
+    template <class T, class Allocator>
+    void print(const std::vector<T, Allocator> &value)
+    {
+        std::cout << '(';
+
+        if (value.size() > 0)
+        {
+            print(value[0]);
+
+            for (std::size_t i = 1; i < value.size(); ++i)
+            {
+                std::cout << ' ';
+                print(value[i]);
+            }
+        }
+
+        std::cout << ')';
     }
 
     template <class T, std::size_t FirstDimensions, std::size_t... RestDimensions>

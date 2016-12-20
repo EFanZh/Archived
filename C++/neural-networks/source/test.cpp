@@ -2,6 +2,7 @@
 #include <neural_networks/fully_connected_layer.h>
 #include <neural_networks/max_pooling_layer.h>
 #include <neural_networks/relu_layer.h>
+#include <neural_networks/dropout_layer.h>
 #include <neural_networks/local_response_normalization_layer.h>
 #include <neural_networks/test.h>
 #include <neural_networks/utilities.h>
@@ -295,7 +296,7 @@ TEST(local_response_normalization_layer_backward)
     auto output = tensor<double, 10, 1, 2>();
     auto context = my_layer::context<double, 10, 1, 2>();
     auto context_3 = my_layer::context_3<10, 1, 2>();
-    
+
     layer.forward(input, output, context);
     layer.forward_3(input, output, context_3);
 
@@ -324,4 +325,73 @@ TEST(local_response_normalization_layer_backward)
     expect(output_gradient_1 == output_gradient_2);
 
     print_line(output_gradient_3);
+}
+
+TEST(dropout_layer_forward)
+{
+    using my_layer = dropout_layer<dropout_strategy_half>;
+
+    const auto layer = my_layer();
+    const auto input = tensor<int, 10>{ { 7, 6, 5, 4, 3, 2, 1, 9, 5, 2 } };
+    auto output = tensor<int, 10>();
+    auto effective_indexes = vector<size_t>();
+
+    layer.forward(input, output, effective_indexes);
+
+    for (size_t i = 0; i < output.get_dimensions<0>(); ++i)
+    {
+        if (output[i] == 0)
+        {
+            expect(!binary_search(effective_indexes.cbegin(), effective_indexes.cend(), i));
+        }
+        else
+        {
+            expect(binary_search(effective_indexes.cbegin(), effective_indexes.cend(), i));
+        }
+    }
+}
+
+TEST(dropout_layer_backward)
+{
+    using my_layer = dropout_layer<dropout_strategy_half>;
+
+    const auto layer = my_layer();
+    const auto input = tensor<int, 10>{ { 7, 6, 5, 4, 3, 2, 1, 9, 5, 2 } };
+    auto output = tensor<int, 10>();
+    auto effective_indexes = vector<size_t>();
+
+    layer.forward(input, output, effective_indexes);
+
+    const auto input_gradient = tensor<int, 10>{ { 2, 2, 3, 3, 4, 5, 6, 9, 7, 2 } };
+    auto output_gradient = tensor<int, 10>();
+
+    layer.backward(input_gradient, effective_indexes, output_gradient);
+
+    for (size_t i = 0; i < output_gradient.get_dimensions<0>(); ++i)
+    {
+        if (output_gradient[i] == 0)
+        {
+            expect(!binary_search(effective_indexes.cbegin(), effective_indexes.cend(), i));
+        }
+        else
+        {
+            expect(binary_search(effective_indexes.cbegin(), effective_indexes.cend(), i));
+        }
+    }
+}
+
+TEST(dropout_layer_forward_not_training)
+{
+    using my_layer = dropout_layer<dropout_strategy_half>;
+
+    const auto layer = my_layer();
+    const auto input = tensor<double, 10>{ { 7, 6, 5, 4, 3, 2, 1, 9, 5, 2 } };
+    auto output = tensor<double, 10>();
+
+    layer.forward_not_training(input, output);
+
+    for (size_t i = 0; i < output.get_dimensions<0>(); ++i)
+    {
+        expect(output[i] = input[i] * dropout_strategy_half::effective_probability);
+    }
 }

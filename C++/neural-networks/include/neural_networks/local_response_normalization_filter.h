@@ -300,7 +300,6 @@ namespace neural_networks
                 const auto context_i = input_context[i];
                 const auto a_i = input[i][input_row][input_column];
                 const auto delta_i = input_gradient[i][input_row][input_column];
-                const auto b_i = output[i][input_row][input_column];
 
                 auto sum = T(0);
                 const auto j_begin = n / 2 < i ? i - n / 2 : 0;
