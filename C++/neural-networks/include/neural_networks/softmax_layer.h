@@ -7,10 +7,11 @@ namespace neural_networks
 {
     class softmax_layer
     {
-        template<class InputElementType, std::size_t Size, class OutputType>
-        void forward(const tensor<InputElementType, Size> &input, std::size_t expected, OutputType &output) const
+    public:
+        template<class InputElementType, std::size_t InputSize, class OutputType>
+        void forward(const tensor<InputElementType, InputSize> &input, std::size_t expected, OutputType &output) const
         {
-            const auto max_input_element = std::max_element(input.cbegin(), input.cend());
+            const auto max_input_element = *std::max_element(input.cbegin(), input.cend());
             auto sum = OutputType(0);
 
             for (const auto &element : input)
@@ -19,6 +20,30 @@ namespace neural_networks
             }
 
             output = -std::log(std::exp(input[expected] - max_input_element) / sum);
+        }
+
+        template <class InputElementType, std::size_t InputSize, class OutputGradientElementType>
+        void backward(const tensor<InputElementType, InputSize> &input,
+                      std::size_t expected,
+                      tensor<OutputGradientElementType, InputSize> &output_gradient) const
+        {
+            
+            const auto max_input_element = *std::max_element(input.cbegin(), input.cend());
+            auto normalized = tensor<OutputGradientElementType, InputSize>();
+            auto sum = OutputGradientElementType(0);
+
+            for (std::size_t i = 0; i < input.get_dimensions<0>(); ++i)
+            {
+                normalized[i] = std::exp(input[i] - max_input_element);
+                sum += normalized[i];
+            }
+            
+            for (std::size_t i = 0; i < input.get_dimensions<0>(); ++i)
+            {
+                output_gradient[i] = normalized[i] / sum;
+            }
+
+            output_gradient[expected] -= 1;
         }
     };
 }

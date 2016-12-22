@@ -3,6 +3,7 @@
 #include <neural_networks/max_pooling_layer.h>
 #include <neural_networks/relu_layer.h>
 #include <neural_networks/dropout_layer.h>
+#include <neural_networks/softmax_layer.h>
 #include <neural_networks/local_response_normalization_layer.h>
 #include <neural_networks/test.h>
 #include <neural_networks/utilities.h>
@@ -394,4 +395,32 @@ TEST(dropout_layer_forward_not_training)
     {
         expect(output[i] == input[i] * dropout_strategy_half::effective_probability);
     }
+}
+
+TEST(softmax_layer_forward)
+{
+    using my_layer = softmax_layer;
+
+    const auto layer = my_layer();
+    const auto input = tensor<double, 5>{ { 1, 4, 8, 7, 2 } };
+    const auto expected = size_t(2);
+    auto output = double(0);
+
+    layer.forward(input, expected, output);
+
+    print_line(output);
+}
+
+TEST(softmax_layer_backward)
+{
+    using my_layer = softmax_layer;
+
+    const auto layer = my_layer();
+    const auto input = tensor<double, 5>{ { 1, 4, 8, 7, 2 } };
+    const auto expected = size_t(2);
+    auto output_gradient = tensor<double, 5>();
+
+    layer.backward(input, expected, output_gradient);
+
+    print_line(output_gradient);
 }

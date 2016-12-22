@@ -128,6 +128,11 @@ namespace neural_networks
             return std::begin(__values);
         }
 
+        const_iterator begin() const
+        {
+            return std::cbegin(__values);
+        }
+
         const_iterator cbegin() const
         {
             return std::cbegin(__values);
@@ -136,6 +141,11 @@ namespace neural_networks
         iterator end()
         {
             return std::end(__values);
+        }
+
+        const_iterator end() const
+        {
+            return std::cend(__values);
         }
 
         const_iterator cend() const
