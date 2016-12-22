@@ -144,6 +144,7 @@
                        (Pairof 'IndentWidth Nonnegative-Integer)
                        (Pairof 'IndentWrappedFunctionNames Boolean)
                        (Pairof 'JavaScriptQuotes (U 'Leave 'Single 'Double))
+                       (Pairof 'JavaScriptWrapImports Boolean) ; Not documented.
                        (Pairof 'KeepEmptyLinesAtTheStartOfBlocks Boolean)
                        (Pairof 'Language (U 'None 'Cpp 'Java 'JavaScript 'Proto 'TableGen))
                        (Pairof 'MacroBlockBegin String)
@@ -192,6 +193,7 @@
            [value (match symbol-key
                     [(or 'CommentPragmas
                          'ForEachMacros
+                         'IncludeIsMainRegex
                          'MacroBlockBegin
                          'MacroBlockEnd) value]
                     ['BraceWrapping (for/list : (Object Boolean) ([(key value) (in-hash (cast value (HashTable String Boolean)))])
