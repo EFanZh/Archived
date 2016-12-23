@@ -6,7 +6,9 @@
 #include <neural_networks/softmax_layer.h>
 #include <neural_networks/local_response_normalization_layer.h>
 #include <neural_networks/test.h>
+#include <neural_networks/zero_padding_layer.h>
 #include <neural_networks/utilities.h>
+#include <neural_networks/zero_padding_layer.h>
 #include <numeric>
 #include <iostream>
 
@@ -423,4 +425,28 @@ TEST(softmax_layer_backward)
     layer.backward(input, expected, output_gradient);
 
     print_line(output_gradient);
+}
+
+TEST(zero_padding_layer_forward)
+{
+    using my_layer = zero_padding_layer<1, 2, 3, 4>;
+
+    const auto layer = my_layer();
+    const auto input =
+        tensor<double, 2, 2, 2>{ { { { { { 1, 2 } }, { { 3, 4 } } } }, { { { { 5, 6 } }, { { 7, 8 } } } } } };
+
+    auto output = tensor<double, 2, 8, 6>();
+
+    layer.forward(input, output);
+}
+
+TEST(zero_padding_layer_backward)
+{
+    using my_layer = zero_padding_layer<1, 2, 3, 4>;
+
+    const auto layer = my_layer();
+    const auto input_gradient = tensor<double, 2, 8, 6>();
+    auto output_gradient = tensor<double, 2, 2, 2>();
+
+    layer.backward(input_gradient, output_gradient);
 }
