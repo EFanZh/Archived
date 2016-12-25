@@ -20,49 +20,54 @@ namespace neural_networks
         }
     };
 
-    template <class Strategy>
+    template <class T, std::size_t Dimensions, class Strategy>
     class dropout_layer
     {
         mutable Strategy strategy;
 
     public:
+        using input_type = tensor<T, Dimensions>;
+        using output_type = tensor<T, Dimensions>;
+
+        // Effective indexes.
+        using context_type = std::vector<std::size_t>;
+
         dropout_layer() = default;
 
         dropout_layer(const Strategy &strategy) : strategy(strategy)
         {
         }
 
-        template <class T, std::size_t Dimensions>
-        void forward(const tensor<T, Dimensions> &input,
-                     tensor<T, Dimensions> &output,
-                     std::vector<std::size_t> &effective_indexes) const
+        void forward(const input_type &input,
+                     output_type &output,
+                     std::vector<std::size_t> &context) const
         {
             for (std::size_t i = 0; i < Dimensions; ++i)
             {
                 if (strategy())
                 {
                     output[i] = input[i];
-                    effective_indexes.emplace_back(i);
+                    context.emplace_back(i);
                 }
             }
         }
 
         // TODO: Implement super efficient bagging.
-        template <class T, std::size_t Dimensions>
-        void forward_not_training(const tensor<T, Dimensions> &input, tensor<T, Dimensions> &output) const
+        void forward_not_training(const input_type &input, output_type &output) const
         {
             for (std::size_t i = 0; i < Dimensions; ++i)
             {
-                output[i] = input[i] * Strategy::effective_probability;
+                output[i] = input[i] * T(Strategy::effective_probability);
             }
         }
 
-        template <class T, std::size_t Dimensions>
-        void backward(const tensor<T, Dimensions> &input_gradient,
-                      const std::vector<std::size_t> &input_dropout_indexes,
-                      tensor<T, Dimensions> &output_gradient) const
+        void backward(const input_type &,
+                      const output_type &,
+                      const output_type &input_gradient,
+                      input_type &output_gradient,
+                      const context_type &context) const
         {
-            for (auto i : input_dropout_indexes)
+            for (auto i : context)
             {
                 output_gradient[i] = input_gradient[i];
             }

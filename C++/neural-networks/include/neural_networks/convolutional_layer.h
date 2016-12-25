@@ -4,37 +4,42 @@
 
 namespace neural_networks
 {
-    template <class Filter, class Stride, std::size_t OutputChannels>
+    template <class T, class InputSize, class Filter, class Stride, std::size_t OutputChannels>
     class convolutional_layer;
 
-    template <class FilterElementType,
-              std::size_t FilterChannels,
+    template <class T,
+              std::size_t InputChannels,
+              std::size_t InputRows,
+              std::size_t InputColumns,
               std::size_t FilterRows,
               std::size_t FilterColumns,
               std::size_t StrideRows,
               std::size_t StrideColumns,
               std::size_t OutputChannels>
-    class convolutional_layer<filter<FilterElementType, FilterChannels, FilterRows, FilterColumns>,
+    class convolutional_layer<T,
+                              static_size<InputChannels, InputRows, InputColumns>,
+                              filter<T, InputChannels, FilterRows, FilterColumns>,
                               static_size<StrideRows, StrideColumns>,
                               OutputChannels>
     {
-        using filter_type = filter<FilterElementType, FilterChannels, FilterRows, FilterColumns>;
+        using filter_type = filter<T, InputChannels, FilterRows, FilterColumns>;
 
         std::array<filter_type, OutputChannels> filters;
 
     public:
+        using input_type = tensor<T, InputChannels, InputRows, InputColumns>;
+        using output_type = tensor<T,
+                                   OutputChannels,
+                                   (InputRows - FilterRows) / StrideRows + 1,
+                                   (InputColumns - FilterColumns) / StrideColumns + 1>;
+
         convolutional_layer() = default;
 
         convolutional_layer(const std::array<filter_type, OutputChannels> &filters) : filters(filters)
         {
         }
 
-        template <class InputElementType, std::size_t InputRows, std::size_t InputColumns, class OutputElementType>
-        void forward(const tensor<InputElementType, FilterChannels, InputRows, InputColumns> &input,
-                     tensor<OutputElementType,
-                            OutputChannels,
-                            (InputRows - FilterRows) / StrideRows + 1,
-                            (InputColumns - FilterColumns) / StrideColumns + 1> &output) const
+        void forward(const input_type &input, output_type &output) const
         {
             const auto output_rows = (InputRows - FilterRows) / StrideRows + 1;
             const auto output_columns = (InputColumns - FilterColumns) / StrideColumns + 1;
@@ -54,19 +59,16 @@ namespace neural_networks
             }
         }
 
-        template <class InputElementType, std::size_t InputRows, std::size_t InputColumns, class OutputElementType>
-        void backward(const tensor<InputElementType, FilterChannels, InputRows, InputColumns> &input,
-                      tensor<OutputElementType,
-                             OutputChannels,
-                             (InputRows - FilterRows) / StrideRows + 1,
-                             (InputColumns - FilterColumns) / StrideColumns + 1> &input_gradient,
-                      tensor<InputElementType, FilterChannels, InputRows, InputColumns> &output_gradient,
+        void backward(const input_type &input,
+                      const output_type &,
+                      const output_type &input_gradient,
+                      input_type &output_gradient,
                       convolutional_layer &output_weight_gradient) const
         {
             const auto output_rows = (InputRows - FilterRows) / StrideRows + 1;
             const auto output_columns = (InputColumns - FilterColumns) / StrideColumns + 1;
 
-            for (size_t output_channel = 0; output_channel < FilterChannels; ++output_channel)
+            for (size_t output_channel = 0; output_channel < OutputChannels; ++output_channel)
             {
                 for (size_t output_row = 0; output_row < output_rows; ++output_row)
                 {
@@ -83,8 +85,7 @@ namespace neural_networks
             }
         }
 
-        template <class StepSizeType>
-        void update_weights(const convolutional_layer &gradient, const StepSizeType &step_size)
+        void update_weights(const convolutional_layer &gradient, const T &step_size)
         {
             for (std::size_t i = 0; i < OutputChannels; ++i)
             {

@@ -4,28 +4,27 @@
 
 namespace neural_networks
 {
+    template <class T, std::size_t... Dimensions>
     class relu_layer
     {
     public:
-        template <class InputElementType, std::size_t... InputDimensions, class OutputElementType>
-        void forward(const tensor<InputElementType, InputDimensions...> &input,
-                     tensor<OutputElementType, InputDimensions...> &output) const
+        using input_type = tensor<T, Dimensions...>;
+        using output_type = tensor<T, Dimensions...>;
+
+        void forward(const input_type &input, output_type &output) const
         {
-            for (std::size_t i = 0; i < tensor<InputElementType, InputDimensions...>::element_count; ++i)
+            for (std::size_t i = 0; i < input_type::element_count; ++i)
             {
-                output.as_vector()[i] = std::max<InputElementType>(input.as_vector()[i], 0);
+                output.as_vector()[i] = std::max<T>(input.as_vector()[i], 0);
             }
         }
 
-        template <class InputElementType,
-                  std::size_t... InputDimensions,
-                  class InputGradientElementType,
-                  class OutputGradientElementType>
-        void backward(const tensor<InputElementType, InputDimensions...> &input,
-                      const tensor<InputGradientElementType, InputDimensions...> &input_gradient,
-                      tensor<OutputGradientElementType, InputDimensions...> &output_gradient) const
+        void backward(const input_type &input,
+                      const output_type &,
+                      const output_type &input_gradient,
+                      input_type &output_gradient) const
         {
-            for (std::size_t i = 0; i < tensor<InputElementType, InputDimensions...>::element_count; ++i)
+            for (std::size_t i = 0; i < input_type::element_count; ++i)
             {
                 if (input.as_vector()[i] >= 0)
                 {

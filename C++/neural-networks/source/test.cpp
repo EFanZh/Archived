@@ -17,7 +17,7 @@ using namespace neural_networks;
 
 TEST(convolution_layer_forward)
 {
-    using my_layer = convolutional_layer<filter<double, 3, 3, 3>, static_size<2, 2>, 2>;
+    using my_layer = convolutional_layer<double, static_size<3, 7, 7>, filter<double, 3, 3, 3>, static_size<2, 2>, 2>;
 
     const auto layer = my_layer({ { { { { { { { { -1, 1, 0 } }, { { 0, 1, 0 } }, { { 0, 1, 1 } } } },
                                           { { { { -1, -1, 0 } }, { { 0, 0, 0 } }, { { 0, -1, 0 } } } },
@@ -63,7 +63,7 @@ TEST(convolution_layer_forward)
 
 TEST(convolution_layer_backward)
 {
-    using my_layer = convolutional_layer<filter<double, 1, 2, 2>, static_size<1, 1>, 2>;
+    using my_layer = convolutional_layer<double, static_size<1, 3, 3>, filter<double, 1, 2, 2>, static_size<1, 1>, 2>;
 
     auto layer = my_layer(
         { { { { { { { { { 1, 2 } }, { { 1, 7 } } } } } }, 2 }, { { { { { { { 1, 2 } }, { { 1, 7 } } } } } }, 3 } } });
@@ -104,10 +104,12 @@ TEST(convolution_layer_backward)
         auto gradient_layer_weight_to_target = my_layer();
 
         layer.backward(input_1,
+                       output_1,
                        gradient_target_to_output_1,
                        gradient_target_to_input_1,
                        gradient_layer_weight_to_target);
         layer.backward(input_2,
+                       output_2,
                        gradient_target_to_output_2,
                        gradient_target_to_input_2,
                        gradient_layer_weight_to_target);
@@ -158,7 +160,7 @@ TEST(fully_connected_layer_backward)
         auto gradient_target_to_input = tensor<double, 3>();
         auto gradient_layer_weights_to_target = my_layer();
 
-        layer.backward(input, gradient_target_to_output, gradient_target_to_input, gradient_layer_weights_to_target);
+        layer.backward(input, output, gradient_target_to_output, gradient_target_to_input, gradient_layer_weights_to_target);
 
         layer.update_weights(gradient_layer_weights_to_target, 0.1);
     }
@@ -166,7 +168,7 @@ TEST(fully_connected_layer_backward)
 
 TEST(max_pooling_layer_forward)
 {
-    using my_layer = max_pooling_layer<static_size<3, 3>, static_size<2, 2>>;
+    using my_layer = max_pooling_layer<double, static_size<1, 5, 5>, static_size<3, 3>, static_size<2, 2>>;
 
     const auto layer = my_layer();
     const auto input = tensor<double, 1, 5, 5>{ { { { { { 2, 4, 1, 3, 5 } },
@@ -176,22 +178,22 @@ TEST(max_pooling_layer_forward)
                                                       { { 9, 5, 6, 4, 2 } } } } } };
 
     auto output = tensor<double, 1, 2, 2>();
-    auto context = my_layer::context<1, 2, 2>();
+    auto context = my_layer::context_type();
 
     layer.forward(input, output, context);
 
     const auto expected_output = tensor<double, 1, 2, 2>{ { { { { { 9, 7 } }, { { 9, 6 } } } } } };
-    const auto expected_context = my_layer::context<1, 2, 2>{
+    const auto expected_context = my_layer::context_type
         { { { { { { { { { 2, 1 } } }, { { { 1, 2 } } } } }, { { { { { 2, 1 } } }, { { { 4, 2 } } } } } } } } }
-    };
+    ;
 
     expect(output == expected_output);
-    expect(context.max_indexes == expected_context.max_indexes);
+    expect(context == expected_context);
 }
 
 TEST(max_pooling_layer_backward)
 {
-    using my_layer = max_pooling_layer<static_size<3, 3>, static_size<2, 2>>;
+    using my_layer = max_pooling_layer<double, static_size<1, 5, 5>, static_size<3, 3>, static_size<2, 2>>;
 
     const auto layer = my_layer();
     const auto input = tensor<double, 1, 5, 5>{ { { { { { 2, 4, 1, 3, 5 } },
@@ -201,14 +203,14 @@ TEST(max_pooling_layer_backward)
                                                       { { 9, 5, 6, 4, 2 } } } } } };
 
     auto output = tensor<double, 1, 2, 2>();
-    auto context = my_layer::context<1, 2, 2>();
+    auto context = my_layer::context_type();
 
     layer.forward(input, output, context);
 
     const auto input_gradient = tensor<double, 1, 2, 2>{ { { { { { 11, 22 } }, { { 33, 44 } } } } } };
     auto output_gradient = tensor<double, 1, 5, 5>();
 
-    layer.backward(input_gradient, context, output_gradient);
+    layer.backward(input, output, input_gradient, output_gradient, context);
 
     const auto expected_output_gradient = tensor<double, 1, 5, 5>{ { { { { { 0, 0, 0, 0, 0 } },
                                                                          { { 0, 0, 22, 0, 0 } },
@@ -221,7 +223,7 @@ TEST(max_pooling_layer_backward)
 
 TEST(relu_layer_forward)
 {
-    auto layer = relu_layer();
+    auto layer = relu_layer<double, 2, 3>();
 
     const auto input = tensor<double, 2, 3>{ { { { -2, 0, 1 } }, { { 7, 2, -3 } } } };
     auto output = tensor<double, 2, 3>();
@@ -235,7 +237,7 @@ TEST(relu_layer_forward)
 
 TEST(relu_layer_backward)
 {
-    auto layer = relu_layer();
+    auto layer = relu_layer<double, 2, 3>();
 
     const auto input = tensor<double, 2, 3>{ { { { -2, 0, 1 } }, { { 7, 2, -3 } } } };
     auto output = tensor<double, 2, 3>();
@@ -245,7 +247,7 @@ TEST(relu_layer_backward)
     const auto input_gradient = tensor<double, 2, 3>{ { { { 1, 2, 3 } }, { { 4, 5, 6 } } } };
     auto output_gradient = tensor<double, 2, 3>();
 
-    layer.backward(input, input_gradient, output_gradient);
+    layer.backward(input, output, input_gradient, output_gradient);
 
     const auto expected_output_gradient = tensor<double, 2, 3>{ { { { 0, 2, 3 } }, { { 4, 5, 0 } } } };
 
@@ -254,7 +256,7 @@ TEST(relu_layer_backward)
 
 TEST(local_response_normalization_layer_forward)
 {
-    using my_layer = local_response_normalization_layer<
+    using my_layer = local_response_normalization_layer<double, static_size<10,1,2>,
         local_response_normalization_filter<double, local_response_normalization_hyper_parameters_alexnet>>;
 
     const auto layer = my_layer();
@@ -270,18 +272,16 @@ TEST(local_response_normalization_layer_forward)
                                                    { { { { 7, 4 } } } } } };
 
     auto output = tensor<double, 10, 1, 2>();
-    auto output_naive = tensor<double, 10, 1, 2>();
-    auto context = my_layer::context<double, 10, 1, 2>();
+    auto context = my_layer::context_type();
 
     layer.forward(input, output, context);
-    layer.forward_naive(input, output_naive);
-
-    expect(output == output_naive);
 }
 
 TEST(local_response_normalization_layer_backward)
 {
     using my_layer = local_response_normalization_layer<
+        double,
+        static_size<10, 1, 2>,
         local_response_normalization_filter<double, local_response_normalization_hyper_parameters_alexnet>>;
 
     const auto layer = my_layer();
@@ -297,11 +297,9 @@ TEST(local_response_normalization_layer_backward)
                                                    { { { { 7, 4 } } } } } };
 
     auto output = tensor<double, 10, 1, 2>();
-    auto context = my_layer::context<double, 10, 1, 2>();
-    auto context_3 = my_layer::context_3<10, 1, 2>();
+    auto context = my_layer::context_type();
 
     layer.forward(input, output, context);
-    layer.forward_3(input, output, context_3);
 
     const auto input_gradient = tensor<double, 10, 1, 2>{ { { { { { 1, 1 } } } },
                                                             { { { { 2, 6 } } } },
@@ -314,25 +312,16 @@ TEST(local_response_normalization_layer_backward)
                                                             { { { { 0, 1 } } } },
                                                             { { { { 3, 7 } } } } } };
 
-    auto output_gradient_1 = tensor<double, 10, 1, 2>();
-    auto output_gradient_2 = tensor<double, 10, 1, 2>();
-    auto output_gradient_3 = tensor<double, 10, 1, 2>();
+    auto output_gradient = tensor<double, 10, 1, 2>();
 
-    layer.backward(input, input_gradient, context, output_gradient_1);
-    layer.backward_2(input, input_gradient, context, output_gradient_2);
-    layer.backward_3(input, output, input_gradient, context_3, output_gradient_3);
+    layer.backward(input, output, input_gradient, output_gradient, context);
 
-    print_line(output_gradient_1);
-    print_line(output_gradient_2);
-
-    expect(output_gradient_1 == output_gradient_2);
-
-    print_line(output_gradient_3);
+    print_line(output_gradient);
 }
 
 TEST(dropout_layer_forward)
 {
-    using my_layer = dropout_layer<dropout_strategy_half>;
+    using my_layer = dropout_layer<int, 10, dropout_strategy_half>;
 
     const auto layer = my_layer();
     const auto input = tensor<int, 10>{ { 7, 6, 5, 4, 3, 2, 1, 9, 5, 2 } };
@@ -356,7 +345,7 @@ TEST(dropout_layer_forward)
 
 TEST(dropout_layer_backward)
 {
-    using my_layer = dropout_layer<dropout_strategy_half>;
+    using my_layer = dropout_layer<int, 10, dropout_strategy_half>;
 
     const auto layer = my_layer();
     const auto input = tensor<int, 10>{ { 7, 6, 5, 4, 3, 2, 1, 9, 5, 2 } };
@@ -368,7 +357,7 @@ TEST(dropout_layer_backward)
     const auto input_gradient = tensor<int, 10>{ { 2, 2, 3, 3, 4, 5, 6, 9, 7, 2 } };
     auto output_gradient = tensor<int, 10>();
 
-    layer.backward(input_gradient, effective_indexes, output_gradient);
+    layer.backward(input, output, input_gradient, output_gradient, effective_indexes);
 
     for (size_t i = 0; i < output_gradient.get_dimensions<0>(); ++i)
     {
@@ -385,7 +374,7 @@ TEST(dropout_layer_backward)
 
 TEST(dropout_layer_forward_not_training)
 {
-    using my_layer = dropout_layer<dropout_strategy_half>;
+    using my_layer = dropout_layer<double, 10, dropout_strategy_half>;
 
     const auto layer = my_layer();
     const auto input = tensor<double, 10>{ { 7, 6, 5, 4, 3, 2, 1, 9, 5, 2 } };
@@ -429,7 +418,7 @@ TEST(softmax_layer_backward)
 
 TEST(zero_padding_layer_forward)
 {
-    using my_layer = zero_padding_layer<1, 2, 3, 4>;
+    using my_layer = zero_padding_layer<double, static_size<2, 2, 2>, static_padding<1, 2, 3, 4>>;
 
     const auto layer = my_layer();
     const auto input =
@@ -442,11 +431,11 @@ TEST(zero_padding_layer_forward)
 
 TEST(zero_padding_layer_backward)
 {
-    using my_layer = zero_padding_layer<1, 2, 3, 4>;
+    using my_layer = zero_padding_layer<double, static_size<2, 2, 2>, static_padding<1, 2, 3, 4>>;
 
     const auto layer = my_layer();
     const auto input_gradient = tensor<double, 2, 8, 6>();
     auto output_gradient = tensor<double, 2, 2, 2>();
 
-    layer.backward(input_gradient, output_gradient);
+    layer.backward(tensor<double, 2, 2, 2>(), tensor<double, 2, 8, 6>(), input_gradient, output_gradient);
 }
