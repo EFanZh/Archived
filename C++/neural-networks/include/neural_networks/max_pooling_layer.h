@@ -53,6 +53,27 @@ namespace neural_networks
             }
         }
 
+        void predict(const input_type &input, output_type &output) const
+        {
+            const auto output_rows = (InputRows - FilterRows) / StrideRows + 1;
+            const auto output_columns = (InputColumns - FilterColumns) / StrideColumns + 1;
+
+            for (std::size_t output_channel = 0; output_channel < InputChannels; ++output_channel)
+            {
+                for (std::size_t output_row = 0; output_row < output_rows; ++output_row)
+                {
+                    for (std::size_t output_column = 0; output_column < output_columns; ++output_column)
+                    {
+                        max_pooling_filter<T, FilterRows, FilterColumns>()
+                            .predict(input[output_channel],
+                                     StrideRows * output_row,
+                                     StrideColumns * output_column,
+                                     output[output_channel][output_row][output_column]);
+                    }
+                }
+            }
+        }
+
         void backward(const input_type &,
                       const output_type &,
                       const output_type &input_gradient,

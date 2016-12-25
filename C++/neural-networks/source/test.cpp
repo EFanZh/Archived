@@ -372,7 +372,7 @@ TEST(dropout_layer_backward)
     }
 }
 
-TEST(dropout_layer_forward_not_training)
+TEST(dropout_layer_predict)
 {
     using my_layer = dropout_layer<double, 10, dropout_strategy_half>;
 
@@ -380,7 +380,7 @@ TEST(dropout_layer_forward_not_training)
     const auto input = tensor<double, 10>{ { 7, 6, 5, 4, 3, 2, 1, 9, 5, 2 } };
     auto output = tensor<double, 10>();
 
-    layer.forward_not_training(input, output);
+    layer.predict(input, output);
 
     for (size_t i = 0; i < output.get_dimensions<0>(); ++i)
     {

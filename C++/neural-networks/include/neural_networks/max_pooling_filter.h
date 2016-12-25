@@ -37,6 +37,28 @@ namespace neural_networks
             output_max_indexes = max_indexes_result;
         }
 
+        template <class InputElementType, std::size_t InputRows, std::size_t InputColumns, class OutputType>
+        void predict(const tensor<InputElementType, InputRows, InputColumns> &input,
+                     std::size_t input_row_start,
+                     std::size_t input_column_start,
+                     OutputType &output) const
+        {
+            auto result = std::numeric_limits<OutputType>::min();
+
+            for (std::size_t row = input_row_start; row < input_row_start + Rows; ++row)
+            {
+                for (std::size_t column = input_column_start; column < input_column_start + Columns; ++column)
+                {
+                    if (input[row][column] > result)
+                    {
+                        result = input[row][column];
+                    }
+                }
+            }
+
+            output = result;
+        }
+
         template <std::size_t InputRows,
                   std::size_t InputColumns,
                   class OutputGradientElementType,

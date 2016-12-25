@@ -33,6 +33,11 @@ namespace neural_networks
             sequential_network &weight_gradient;
         };
 
+    public:
+        using input_type = typename layer_type<0>::input_type;
+        using output_type = typename layer_type<layer_count - 1>::output_type;
+
+    private:
         template <std::size_t Index, class = layer_type<Index>>
         struct layer_helper
         {
@@ -84,7 +89,7 @@ namespace neural_networks
                                                              layer_traits<layer_type<Index + 1>>::has_weights);
 
                 layer.backward(input,
-                               *output, 
+                               *output,
                                *output_gradient_next,
                                output_gradient,
                                std::get<Index>(context.weight_gradient.layers));
@@ -134,7 +139,7 @@ namespace neural_networks
                                                              layer_traits<layer_type<Index + 1>>::has_weights);
 
                 layer.backward(input,
-                               *output, 
+                               *output,
                                *output_gradient_next,
                                output_gradient,
                                std::get<Index>(context.weight_gradient.layers),
@@ -165,6 +170,17 @@ namespace neural_networks
                                                         gradient,
                                                         step_size,
                                                         layer_traits<layer_type<Index + 1>>::has_weights);
+            }
+
+            static void predict(const layers_tuple_type &layers,
+                                const typename layer_type<Index>::input_type &input,
+                                output_type &output)
+            {
+                auto layer_output = std::make_unique<typename layer_type<Index>::output_type>();
+
+                std::get<Index>(layers).predict(input, *layer_output);
+
+                layer_helper<Index + 1>::predict(layers, *layer_output, output);
             }
         };
 
@@ -204,7 +220,7 @@ namespace neural_networks
                 auto output_gradient_next = std::make_unique<current_layer_type::output_type>();
 
                 layer.backward(input,
-                               *output, 
+                               *output,
                                *output_gradient_next,
                                output_gradient,
                                std::get<last_layer>(context.weight_gradient.layers));
@@ -226,11 +242,7 @@ namespace neural_networks
 
                 context.network.loss_function.get_gradient(*output, context.sample_result, *output_gradient_next);
 
-                layer.backward(input,
-                               *output, 
-                               *output_gradient_next,
-                               output_gradient,
-                               *layer_context);
+                layer.backward(input, *output, *output_gradient_next, output_gradient, *layer_context);
             }
 
             static void get_weight_gradient(layer_helper_context &context,
@@ -250,7 +262,7 @@ namespace neural_networks
                 context.network.loss_function.get_gradient(*output, context.sample_result, *output_gradient_next);
 
                 layer.backward(input,
-                               *output, 
+                               *output,
                                *output_gradient_next,
                                context.weight_gradient,
                                std::get<last_layer>(context.weight_gradient.layers),
@@ -269,6 +281,13 @@ namespace neural_networks
                                        std::true_type)
             {
                 std::get<last_layer>(network.layers).update_weights(std::get<last_layer>(gradient.layers), step_size);
+            }
+
+            static void predict(const layers_tuple_type &layers,
+                                const typename layer_type<last_layer>::input_type &input,
+                                output_type &output)
+            {
+                std::get<last_layer>(layers).predict(input, output);
             }
         };
 
@@ -317,6 +336,11 @@ namespace neural_networks
                                                 step_size,
                                                 layer_traits<layer_type<0>>::has_weights);
             }
+        }
+
+        void predict(const input_type &input, output_type &output) const
+        {
+            layer_helper<0>::predict(layers, input, output);
         }
     };
 }

@@ -53,7 +53,7 @@ namespace neural_networks
         }
 
         // TODO: Implement super efficient bagging.
-        void forward_not_training(const input_type &input, output_type &output) const
+        void predict(const input_type &input, output_type &output) const
         {
             for (std::size_t i = 0; i < Dimensions; ++i)
             {

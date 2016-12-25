@@ -32,6 +32,11 @@ namespace neural_networks
             }
         }
 
+        void predict(const input_type &input, output_type &output) const
+        {
+            forward(input, output);
+        }
+
         void backward(const input_type &input,
                       const output_type &,
                       const output_type &input_gradient,

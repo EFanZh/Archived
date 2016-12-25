@@ -26,6 +26,17 @@ namespace neural_networks
             }
         }
 
+        void predict(const input_type &input, output_type &output) const
+        {
+            for (std::size_t row = 0; row < Rows; ++row)
+            {
+                for (std::size_t column = 0; column < Columns; ++column)
+                {
+                    FilterType().predict(input, row, column, output);
+                }
+            }
+        }
+
         void backward(const input_type &input,
                       const output_type &output,
                       const output_type &input_gradient,

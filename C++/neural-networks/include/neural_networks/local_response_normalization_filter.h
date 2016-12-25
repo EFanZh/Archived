@@ -108,6 +108,68 @@ namespace neural_networks
         }
 
         template <std::size_t InputChannels, std::size_t InputRows, std::size_t InputColumns>
+        void predict(const tensor<T, InputChannels, InputRows, InputColumns> &input,
+                     std::size_t input_row,
+                     std::size_t input_column,
+                     tensor<T, InputChannels, InputRows, InputColumns> &output) const
+        {
+            static_assert(n <= InputChannels, "Not ready to handle if n is greater than InputChannels.");
+
+            // Σᵢ = aᵢ² + aⱼ² + …
+            //
+            // uᵢ = k + α Σᵢ
+            //
+            // vᵢ = uᵢ⁻ᵝ
+            //
+            //        aᵢ
+            // bᵢ =  ───── = aᵢ vᵢ
+            //        uᵢᵝ
+
+            using namespace std;
+
+            // Calculate squared input.
+
+            array<T, InputChannels> squared_input;
+
+            for (size_t i = 0; i < InputChannels; ++i)
+            {
+                squared_input[i] = input[i][input_row][input_column] * input[i][input_row][input_column];
+            }
+
+            // Calcualte initial sigma value.
+
+            auto sigma = T(0);
+
+            for (size_t i = 0; i < n / 2; ++i)
+            {
+                sigma += squared_input[i];
+            }
+
+            // Calculate output values.
+
+            for (size_t i = 0; i < n / 2 + 1; ++i)
+            {
+                sigma += squared_input[i + n / 2];
+
+                output[i][input_row][input_column] = input[i][input_row][input_column] * context(k + alpha * sigma).v;
+            }
+
+            for (size_t i = n / 2 + 1; i < InputChannels - n / 2; ++i)
+            {
+                sigma += squared_input[i + n / 2] - squared_input[i - (n / 2 + 1)];
+
+                output[i][input_row][input_column] = input[i][input_row][input_column] * context(k + alpha * sigma).v;
+            }
+
+            for (size_t i = InputChannels - n / 2; i < InputChannels; ++i)
+            {
+                sigma -= squared_input[i - (n / 2 + 1)];
+
+                output[i][input_row][input_column] = input[i][input_row][input_column] * context(k + alpha * sigma).v;
+            }
+        }
+
+        template <std::size_t InputChannels, std::size_t InputRows, std::size_t InputColumns>
         void backward(const tensor<T, InputChannels, InputRows, InputColumns> &input,
                         std::size_t input_row,
                         std::size_t input_column,
