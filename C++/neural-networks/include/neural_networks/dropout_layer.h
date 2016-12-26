@@ -38,9 +38,7 @@ namespace neural_networks
         {
         }
 
-        void forward(const input_type &input,
-                     output_type &output,
-                     std::vector<std::size_t> &context) const
+        void forward(const input_type &input, output_type &output, context_type &context) const
         {
             for (std::size_t i = 0; i < Dimensions; ++i)
             {

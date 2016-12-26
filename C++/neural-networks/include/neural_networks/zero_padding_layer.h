@@ -5,9 +5,8 @@
 
 namespace neural_networks
 {
-    
     template <class T, class InputSize, class Padding>
-        class zero_padding_layer;
+    class zero_padding_layer;
 
     template <class T,
               std::size_t Channels,

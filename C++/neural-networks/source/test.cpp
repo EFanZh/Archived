@@ -160,7 +160,11 @@ TEST(fully_connected_layer_backward)
         auto gradient_target_to_input = tensor<double, 3>();
         auto gradient_layer_weights_to_target = my_layer();
 
-        layer.backward(input, output, gradient_target_to_output, gradient_target_to_input, gradient_layer_weights_to_target);
+        layer.backward(input,
+                       output,
+                       gradient_target_to_output,
+                       gradient_target_to_input,
+                       gradient_layer_weights_to_target);
 
         layer.update_weights(gradient_layer_weights_to_target, 0.1);
     }
@@ -183,9 +187,9 @@ TEST(max_pooling_layer_forward)
     layer.forward(input, output, context);
 
     const auto expected_output = tensor<double, 1, 2, 2>{ { { { { { 9, 7 } }, { { 9, 6 } } } } } };
-    const auto expected_context = my_layer::context_type
-        { { { { { { { { { 2, 1 } } }, { { { 1, 2 } } } } }, { { { { { 2, 1 } } }, { { { 4, 2 } } } } } } } } }
-    ;
+    const auto expected_context = my_layer::context_type{
+        { { { { { { { { 2, 1 } } }, { { { 1, 2 } } } } }, { { { { { 2, 1 } } }, { { { 4, 2 } } } } } } } }
+    };
 
     expect(output == expected_output);
     expect(context == expected_context);
@@ -256,7 +260,9 @@ TEST(relu_layer_backward)
 
 TEST(local_response_normalization_layer_forward)
 {
-    using my_layer = local_response_normalization_layer<double, static_size<10,1,2>,
+    using my_layer = local_response_normalization_layer<
+        double,
+        static_size<10, 1, 2>,
         local_response_normalization_filter<double, local_response_normalization_hyper_parameters_alexnet>>;
 
     const auto layer = my_layer();

@@ -37,10 +37,10 @@ namespace neural_networks
 
         template <std::size_t InputChannels, std::size_t InputRows, std::size_t InputColumns>
         void forward(const tensor<T, InputChannels, InputRows, InputColumns> &input,
-                       std::size_t input_row,
-                       std::size_t input_column,
-                       tensor<T, InputChannels, InputRows, InputColumns> &output,
-                       std::array<context, InputChannels> &output_context) const
+                     std::size_t input_row,
+                     std::size_t input_column,
+                     tensor<T, InputChannels, InputRows, InputColumns> &output,
+                     std::array<context, InputChannels> &output_context) const
         {
             static_assert(n <= InputChannels, "Not ready to handle if n is greater than InputChannels.");
 
@@ -171,12 +171,12 @@ namespace neural_networks
 
         template <std::size_t InputChannels, std::size_t InputRows, std::size_t InputColumns>
         void backward(const tensor<T, InputChannels, InputRows, InputColumns> &input,
-                        std::size_t input_row,
-                        std::size_t input_column,
-                        const tensor<T, InputChannels, InputRows, InputColumns> &output,
-                        const tensor<T, InputChannels, InputRows, InputColumns> &input_gradient,
-                        const std::array<context, InputChannels> &input_context,
-                        tensor<T, InputChannels, InputRows, InputColumns> &output_gradient) const
+                      std::size_t input_row,
+                      std::size_t input_column,
+                      const tensor<T, InputChannels, InputRows, InputColumns> &output,
+                      const tensor<T, InputChannels, InputRows, InputColumns> &input_gradient,
+                      const std::array<context, InputChannels> &input_context,
+                      tensor<T, InputChannels, InputRows, InputColumns> &output_gradient) const
         {
             // δᵇᵢ = δᵃᵢ vᵢ - 2 α β aᵢ sum(bⱼ δᵃⱼ / uⱼ)
 
