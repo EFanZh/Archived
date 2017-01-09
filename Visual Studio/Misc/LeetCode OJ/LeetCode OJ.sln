@@ -566,6 +566,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "355. Design Twitter", "355.
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "357. Count Numbers with Unique Digits", "357. Count Numbers with Unique Digits\357. Count Numbers with Unique Digits.vcxproj", "{DB0DDC35-683F-4ABC-AF01-E6BB5632B916}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "363. Max Sum of Rectangle No Larger Than K", "363. Max Sum of Rectangle No Larger Than K\363. Max Sum of Rectangle No Larger Than K.vcxproj", "{6D6B0F34-5565-495E-B147-D25912976615}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -2438,6 +2440,14 @@ Global
 		{DB0DDC35-683F-4ABC-AF01-E6BB5632B916}.Release|Win32.Build.0 = Release|Win32
 		{DB0DDC35-683F-4ABC-AF01-E6BB5632B916}.Release|x64.ActiveCfg = Release|x64
 		{DB0DDC35-683F-4ABC-AF01-E6BB5632B916}.Release|x64.Build.0 = Release|x64
+		{6D6B0F34-5565-495E-B147-D25912976615}.Debug|Win32.ActiveCfg = Debug|Win32
+		{6D6B0F34-5565-495E-B147-D25912976615}.Debug|Win32.Build.0 = Debug|Win32
+		{6D6B0F34-5565-495E-B147-D25912976615}.Debug|x64.ActiveCfg = Debug|x64
+		{6D6B0F34-5565-495E-B147-D25912976615}.Debug|x64.Build.0 = Debug|x64
+		{6D6B0F34-5565-495E-B147-D25912976615}.Release|Win32.ActiveCfg = Release|Win32
+		{6D6B0F34-5565-495E-B147-D25912976615}.Release|Win32.Build.0 = Release|Win32
+		{6D6B0F34-5565-495E-B147-D25912976615}.Release|x64.ActiveCfg = Release|x64
+		{6D6B0F34-5565-495E-B147-D25912976615}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -2720,5 +2730,6 @@ Global
 		{981EA79C-E770-4D72-A0E7-AC28F4027423} = {57387E8D-D6F8-4B26-98FA-B25DF670DEB6}
 		{699E7697-89A8-4E3A-9D0A-6CB370E262DE} = {57387E8D-D6F8-4B26-98FA-B25DF670DEB6}
 		{DB0DDC35-683F-4ABC-AF01-E6BB5632B916} = {57387E8D-D6F8-4B26-98FA-B25DF670DEB6}
+		{6D6B0F34-5565-495E-B147-D25912976615} = {57387E8D-D6F8-4B26-98FA-B25DF670DEB6}
 	EndGlobalSection
 EndGlobal
