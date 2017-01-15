@@ -578,6 +578,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "371. Sum of Two Integers", 
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "372. Super Pow", "372. Super Pow\372. Super Pow.vcxproj", "{7CE53C62-3E18-4043-AAFD-365693E7219A}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "373. Find K Pairs with Smallest Sums", "373. Find K Pairs with Smallest Sums\373. Find K Pairs with Smallest Sums.vcxproj", "{2CF63267-5B6A-4792-80A9-B9E70D718B81}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -2498,6 +2500,14 @@ Global
 		{7CE53C62-3E18-4043-AAFD-365693E7219A}.Release|Win32.Build.0 = Release|Win32
 		{7CE53C62-3E18-4043-AAFD-365693E7219A}.Release|x64.ActiveCfg = Release|x64
 		{7CE53C62-3E18-4043-AAFD-365693E7219A}.Release|x64.Build.0 = Release|x64
+		{2CF63267-5B6A-4792-80A9-B9E70D718B81}.Debug|Win32.ActiveCfg = Debug|Win32
+		{2CF63267-5B6A-4792-80A9-B9E70D718B81}.Debug|Win32.Build.0 = Debug|Win32
+		{2CF63267-5B6A-4792-80A9-B9E70D718B81}.Debug|x64.ActiveCfg = Debug|x64
+		{2CF63267-5B6A-4792-80A9-B9E70D718B81}.Debug|x64.Build.0 = Debug|x64
+		{2CF63267-5B6A-4792-80A9-B9E70D718B81}.Release|Win32.ActiveCfg = Release|Win32
+		{2CF63267-5B6A-4792-80A9-B9E70D718B81}.Release|Win32.Build.0 = Release|Win32
+		{2CF63267-5B6A-4792-80A9-B9E70D718B81}.Release|x64.ActiveCfg = Release|x64
+		{2CF63267-5B6A-4792-80A9-B9E70D718B81}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -2786,5 +2796,6 @@ Global
 		{3FE43218-66A1-47A4-BBB5-5B6DF6C327DA} = {57387E8D-D6F8-4B26-98FA-B25DF670DEB6}
 		{E9D4B93C-7623-42DD-8197-BFE955E48CCE} = {57387E8D-D6F8-4B26-98FA-B25DF670DEB6}
 		{7CE53C62-3E18-4043-AAFD-365693E7219A} = {57387E8D-D6F8-4B26-98FA-B25DF670DEB6}
+		{2CF63267-5B6A-4792-80A9-B9E70D718B81} = {57387E8D-D6F8-4B26-98FA-B25DF670DEB6}
 	EndGlobalSection
 EndGlobal
