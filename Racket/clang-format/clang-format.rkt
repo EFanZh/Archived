@@ -28,8 +28,8 @@
     (AlwaysBreakAfterReturnType . None)
     #;(AlwaysBreakBeforeMultilineStrings . #t) ; Later.
     (AlwaysBreakTemplateDeclarations . #t)
-    (BinPackArguments . #t)
-    (BinPackParameters . #t)
+    (BinPackArguments . #f)
+    (BinPackParameters . #f)
     #;(BraceWrapping . ()) ; Ignored.
     #;(BreakAfterJavaFieldAnnotations . #t) ; Don't care.
     (BreakBeforeBinaryOperators . None) ; Later.
