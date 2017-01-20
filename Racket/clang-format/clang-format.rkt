@@ -203,8 +203,9 @@
                                             (cons (string->symbol key) value)))]
                     [_ (get-value value)])])
       (cast (cons symbol-key value) Option)))
-  (let* ([command-line (format "~a -style=~a -dump-config" *clang-format-executable* style)]
-         [clang-format-process (process command-line)]
+  (let* ([clang-format-process (process* *clang-format-executable*
+                                         (format "-style=~a" style)
+                                         "-dump-config")]
          [stdout (first clang-format-process)]
          [content (cast (read-yaml stdout) (HashTable String Any))])
     (for/list : (Listof Option) ([(key value) (in-hash content)])
