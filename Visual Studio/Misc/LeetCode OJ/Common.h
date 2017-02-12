@@ -7,9 +7,10 @@
 #include <memory>
 #include <numeric>
 #include <queue>
+#include <random>
 #include <set>
-#include <stack>
 #include <sstream>
+#include <stack>
 #include <unordered_map>
 #include <unordered_set>
 
@@ -109,6 +110,14 @@ class NestedInteger
     vector<NestedInteger> list;
 
 public:
+    NestedInteger() : isIntegerValue(false)
+    {
+    }
+
+    NestedInteger(int value) : isIntegerValue(true), integer(value)
+    {
+    }
+
     bool isInteger() const
     {
         return isIntegerValue;
@@ -117,6 +126,11 @@ public:
     int getInteger() const
     {
         return integer;
+    }
+
+    void add(const NestedInteger &ni)
+    {
+        list.emplace_back(ni);
     }
 
     const vector<NestedInteger> &getList() const
@@ -168,7 +182,7 @@ namespace Detail
             throw exception();
         }
 
-        return{ x, c };
+        return { x, c };
     }
 }
 
