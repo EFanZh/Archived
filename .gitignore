@@ -15,6 +15,7 @@
 *.vspx
 *~
 .idea/
+.vs/
 bin/
 Debug/
 obj/
