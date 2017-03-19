@@ -15,7 +15,7 @@ class Solution
     {
         if (root == nullptr)
         {
-            return{ 0, 0 };
+            return { 0, 0 };
         }
         else
         {
@@ -23,7 +23,7 @@ class Solution
             const auto right = robHelper(root->right);
             const auto value = left.first + right.first;
 
-            return{ max(root->val + left.second + right.second, value), value };
+            return { max(root->val + left.second + right.second, value), value };
         }
     }
 

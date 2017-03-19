@@ -16,7 +16,8 @@ public:
         unsigned int positiveDivisor = abs(divisor);
         int positiveResult = 0;
 
-        for (uintmax_t currentDivisor = positiveDivisor; positiveDividend >= positiveDivisor; currentDivisor = positiveDivisor)
+        for (uintmax_t currentDivisor = positiveDivisor; positiveDividend >= positiveDivisor;
+             currentDivisor = positiveDivisor)
         {
             uintmax_t currentResult = 1;
 

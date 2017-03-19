@@ -33,8 +33,10 @@ public:
 
         if ((m + n) % 2 == 0)
         {
-            int a = max(left == 0 ? numeric_limits<int>::min() : A[left - 1], t - left < 0 ? numeric_limits<int>::min() : B[t - left]);
-            int b = min(left == m ? numeric_limits<int>::max() : A[left], t - left + 1 == n ? numeric_limits<int>::max() : B[t - left + 1]);
+            int a = max(left == 0 ? numeric_limits<int>::min() : A[left - 1],
+                        t - left < 0 ? numeric_limits<int>::min() : B[t - left]);
+            int b = min(left == m ? numeric_limits<int>::max() : A[left],
+                        t - left + 1 == n ? numeric_limits<int>::max() : B[t - left + 1]);
 
             return (a + b) / 2.0;
         }

@@ -11,8 +11,7 @@ class Solution
         {
             unsigned int bit = 1u << i;
 
-            if ((m & bit) &&
-                (offset < bit - (m & (bit - 1))))
+            if ((m & bit) && (offset < bit - (m & (bit - 1))))
             {
                 result |= bit;
             }

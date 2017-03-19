@@ -37,8 +37,7 @@ public:
 
         auto result = combinationSum2Helper(num, num.size(), target);
 
-        sort(result.begin(), result.end(), [](const vector<int> &lhs, const vector<int> &rhs)
-        {
+        sort(result.begin(), result.end(), [](const vector<int> &lhs, const vector<int> &rhs) {
             for (size_t i = 0; i < lhs.size() && i < rhs.size(); ++i)
             {
                 if (lhs[i] < rhs[i])

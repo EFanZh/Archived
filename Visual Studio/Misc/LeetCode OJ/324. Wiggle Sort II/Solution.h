@@ -23,8 +23,7 @@ public:
         auto i = vector<int>::size_type(0);
         auto k = vector<int>::size_type(nums.size());
 
-        const auto getNum = [&](vector<int>::size_type i) -> int &
-        {
+        const auto getNum = [&](vector<int>::size_type i) -> int & {
             const auto half = (nums.size() + 1) / 2;
 
             return nums[i < half ? 2 * (half - 1 - i) : 2 * (nums.size() - 1 - i) + 1];

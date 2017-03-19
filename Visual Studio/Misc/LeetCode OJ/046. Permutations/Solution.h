@@ -19,7 +19,7 @@ public:
     {
         if (nums.empty())
         {
-            return{ {} };
+            return { {} };
         }
 
         vector<vector<int>> result;

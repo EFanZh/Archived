@@ -4,8 +4,7 @@
 
 int main()
 {
-    pair<const char *, const char *> testCases[] = { { "aaa", "aa aa aa aa" },
-    { "abba", "dog cat cat dog" } };
+    pair<const char *, const char *> testCases[] = { { "aaa", "aa aa aa aa" }, { "abba", "dog cat cat dog" } };
     Solution s;
 
     for (const auto &testCase : testCases)

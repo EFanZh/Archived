@@ -40,8 +40,7 @@ class Solution
 
         for (size_t i = floorToOdd; i <= floorToOdd; i -= 2)
         {
-            if (get<0>(count[i]) == get<0>(count.front()) &&
-                get<1>(count[i]) >= get<1>(count.front()) &&
+            if (get<0>(count[i]) == get<0>(count.front()) && get<1>(count[i]) >= get<1>(count.front()) &&
                 isPalindrome(count.cbegin() + 1, count.cbegin() + (i - 1)))
             {
                 return get<2>(count[i]) - (get<1>(count[i]) - get<1>(count.front()));

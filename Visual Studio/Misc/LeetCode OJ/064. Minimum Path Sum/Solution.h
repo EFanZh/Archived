@@ -73,11 +73,11 @@ public:
 
         if (rows < columns)
         {
-            return minPathSumHelper(rows, columns, [&](size_t row, size_t column){ return grid[row][column]; });
+            return minPathSumHelper(rows, columns, [&](size_t row, size_t column) { return grid[row][column]; });
         }
         else
         {
-            return minPathSumHelper(columns, rows, [&](size_t row, size_t column){ return grid[column][row]; });
+            return minPathSumHelper(columns, rows, [&](size_t row, size_t column) { return grid[column][row]; });
         }
     }
 };

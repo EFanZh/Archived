@@ -94,7 +94,8 @@ class NumArray
             }
             else
             {
-                return sumRangeHelper({ node.from, root }, i, root) + sumRangeHelper({ root + 1, node.to }, root + 1, j);
+                return sumRangeHelper({ node.from, root }, i, root) +
+                       sumRangeHelper({ root + 1, node.to }, root + 1, j);
             }
         }
     }

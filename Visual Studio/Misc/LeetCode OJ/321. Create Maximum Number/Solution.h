@@ -178,7 +178,7 @@ public:
     {
         if (k == 0)
         {
-            return{};
+            return {};
         }
         else if (nums1.size() <= nums2.size())
         {

@@ -4,7 +4,8 @@ class Solution
 public:
     void gameOfLife(vector<vector<int>> &board)
     {
-        static const pair<int8_t, int8_t> offsets[] = { { -1, -1 }, { -1, 0 }, { -1, 1 }, { 0, -1 }, { 0, 1 }, { 1, -1 }, { 1, 0 }, { 1, 1 } };
+        static const pair<int8_t, int8_t> offsets[] = { { -1, -1 }, { -1, 0 }, { -1, 1 }, { 0, -1 },
+                                                        { 0, 1 },   { 1, -1 }, { 1, 0 },  { 1, 1 } };
 
         if (board.empty() || board.front().empty())
         {

@@ -25,8 +25,7 @@ class Solution
             }
             else
             {
-                return tree1->val == tree2->val &&
-                       isSymmetric(tree1->left, tree2->right) &&
+                return tree1->val == tree2->val && isSymmetric(tree1->left, tree2->right) &&
                        isSymmetric(tree1->right, tree2->left);
             }
         }

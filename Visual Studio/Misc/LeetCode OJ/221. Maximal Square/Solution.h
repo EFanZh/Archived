@@ -15,8 +15,7 @@ public:
         vector<int> squareSizes(columns);
         int result = 0;
 
-        transform(matrix.front().cbegin(), matrix.front().cend(), squareSizes.begin(), [&](char c)
-        {
+        transform(matrix.front().cbegin(), matrix.front().cend(), squareSizes.begin(), [&](char c) {
             if (c == '1')
             {
                 result = 1;

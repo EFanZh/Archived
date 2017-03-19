@@ -53,11 +53,11 @@ public:
         {
             if (any_of(words.cbegin(), words.cend(), [](const string &s) { return s.empty(); }))
             {
-                return{ "" };
+                return { "" };
             }
             else
             {
-                return{};
+                return {};
             }
         }
 
@@ -75,8 +75,7 @@ public:
             }
         }
 
-        function<void(size_t, size_t, Node &)> dfs = [&](size_t i, size_t j, Node &node)
-        {
+        function<void(size_t, size_t, Node &)> dfs = [&](size_t i, size_t j, Node &node) {
             if (node.value != nullptr)
             {
                 result.emplace_back(*node.value);
@@ -85,17 +84,12 @@ public:
 
             visited[columns * i + j] = 'G';
 
-            for (const auto &offset : { make_pair(-1, 0),
-                make_pair(0, -1),
-                make_pair(1, 0),
-                make_pair(0, 1) })
+            for (const auto &offset : { make_pair(-1, 0), make_pair(0, -1), make_pair(1, 0), make_pair(0, 1) })
             {
                 size_t nextRow = i + offset.first;
                 size_t nextColumn = j + offset.second;
 
-                if (nextRow < rows &&
-                    nextColumn < columns &&
-                    visited[columns * nextRow + nextColumn] == '\0')
+                if (nextRow < rows && nextColumn < columns && visited[columns * nextRow + nextColumn] == '\0')
                 {
                     auto it = node.children.find(board[nextRow][nextColumn]);
 

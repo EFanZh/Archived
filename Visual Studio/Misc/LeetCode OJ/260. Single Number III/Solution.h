@@ -22,6 +22,6 @@ public:
             }
         }
 
-        return{ theOneWithLastOneBit, theOneWithoutLastOneBit };
+        return { theOneWithLastOneBit, theOneWithoutLastOneBit };
     }
 };

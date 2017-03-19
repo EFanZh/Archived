@@ -15,13 +15,9 @@ public:
         vector<char> visited(columns * rows);
         int result = 0;
 
-        auto refVisited = [&](size_t row, size_t column) -> char &
-        {
-            return visited[columns * row + column];
-        };
+        auto refVisited = [&](size_t row, size_t column) -> char & { return visited[columns * row + column]; };
 
-        auto bfs = [&](size_t row, size_t column)
-        {
+        auto bfs = [&](size_t row, size_t column) {
             queue<pair<size_t, size_t>> q;
 
             refVisited(row, column) = true;
@@ -36,9 +32,7 @@ public:
                 {
                     pair<size_t, size_t> next(current.first + offset.first, current.second + offset.second);
 
-                    if (next.first < rows &&
-                        next.second < columns &&
-                        !refVisited(next.first, next.second) &&
+                    if (next.first < rows && next.second < columns && !refVisited(next.first, next.second) &&
                         grid[next.first][next.second] == '1')
                     {
                         refVisited(next.first, next.second) = true;

@@ -24,8 +24,7 @@ public:
 
         cache.back() = true;
 
-        auto updateCache = [&](size_t first, size_t last, size_t k)
-        {
+        auto updateCache = [&](size_t first, size_t last, size_t k) {
             for (size_t i = first; i <= last; ++i)
             {
                 bool iOK = s1[i] == s3[k] && i < s1.length() && cache[i + 1];

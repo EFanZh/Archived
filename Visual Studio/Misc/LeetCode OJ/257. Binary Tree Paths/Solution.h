@@ -42,7 +42,7 @@ public:
     {
         if (root == nullptr)
         {
-            return{};
+            return {};
         }
 
         vector<string> result;

@@ -4,8 +4,7 @@
 
 int main()
 {
-    pair<initializer_list<int>, int> testCases[] = { { { 1, 2, 3 }, 3 },
-                                                     { { 1, 2, 3, 4 }, 2 } };
+    pair<initializer_list<int>, int> testCases[] = { { { 1, 2, 3 }, 3 }, { { 1, 2, 3, 4 }, 2 } };
     Solution s;
 
     for (auto &testCase : testCases)

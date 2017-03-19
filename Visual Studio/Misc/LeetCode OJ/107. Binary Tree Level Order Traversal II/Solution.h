@@ -49,4 +49,3 @@ public:
         return result;
     }
 };
-

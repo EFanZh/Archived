@@ -62,8 +62,7 @@ class Solution
 
         if (count == 1)
         {
-            return{ { (*first)[0], (*first)[2] },
-            { (*first)[1], 0 } };
+            return { { (*first)[0], (*first)[2] }, { (*first)[1], 0 } };
         }
 
         T middle = first + count / 2;
@@ -78,7 +77,7 @@ public:
     {
         if (buildings.empty())
         {
-            return{};
+            return {};
         }
 
         return getSkylineHelper(buildings.cbegin(), buildings.cend());

@@ -20,9 +20,7 @@ class Solution
 
         result.emplace_back(root);
 
-        if (root == node ||
-            getPath(root->left, node, result) ||
-            getPath(root->right, node, result))
+        if (root == node || getPath(root->left, node, result) || getPath(root->right, node, result))
         {
             return true;
         }

@@ -29,7 +29,9 @@ public:
             {
                 for (size_t column = 0; column < selected_paths[row].size(); ++column)
                 {
-                    selected_paths[row][column] = min(selected_paths[row + 1][column], selected_paths[row + 1][column + 1]) + triangle[row][column];
+                    selected_paths[row][column] =
+                        min(selected_paths[row + 1][column], selected_paths[row + 1][column + 1]) +
+                        triangle[row][column];
                 }
             }
 

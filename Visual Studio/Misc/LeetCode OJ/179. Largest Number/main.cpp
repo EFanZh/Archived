@@ -7,7 +7,7 @@ int main()
     vector<int> testCases[] = { { 1 } };
     Solution s;
 
-    for (auto &testCases:testCases)
+    for (auto &testCases : testCases)
     {
         s.largestNumber(testCases);
     }

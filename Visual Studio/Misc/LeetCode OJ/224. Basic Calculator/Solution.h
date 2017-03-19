@@ -46,17 +46,17 @@ public:
                 {
                     switch (operators.top())
                     {
-                    case '(':
-                        results.emplace(k);
-                        break;
+                        case '(':
+                            results.emplace(k);
+                            break;
 
-                    case '+':
-                        results.top() += k;
-                        break;
+                        case '+':
+                            results.top() += k;
+                            break;
 
-                    case '-':
-                        results.top() -= k;
-                        break;
+                        case '-':
+                            results.top() -= k;
+                            break;
                     }
 
                     operators.pop();
@@ -70,17 +70,17 @@ public:
 
                     switch (operators.top())
                     {
-                    case '+':
-                        results.pop();
-                        operators.pop();
-                        results.top() += k;
-                        break;
+                        case '+':
+                            results.pop();
+                            operators.pop();
+                            results.top() += k;
+                            break;
 
-                    case '-':
-                        results.pop();
-                        operators.pop();
-                        results.top() -= k;
-                        break;
+                        case '-':
+                            results.pop();
+                            operators.pop();
+                            results.top() -= k;
+                            break;
                     }
                 }
 

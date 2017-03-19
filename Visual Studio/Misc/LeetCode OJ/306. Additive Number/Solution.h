@@ -45,7 +45,8 @@ class Solution
         return i == cLength || carry == rc[i] - '0';
     }
 
-    static bool isAdditiveNumberHelper(const string &num, string::size_type start, string::size_type length1, string::size_type length2)
+    static bool isAdditiveNumberHelper(const string &num, string::size_type start, string::size_type length1,
+                                       string::size_type length2)
     {
         while (start + length1 + length2 < num.length())
         {
@@ -124,11 +125,9 @@ public:
                         const auto b = a + i;
                         const auto c = b + j;
 
-                        if ((isAddEquals(b, j, a, i, c, j) &&
-                            isAdditiveNumberHelper(num, i, j, j)) ||
-                            (i + j + j < num.length() &&
-                                isAddEquals(b, j, a, i, c, j + 1) &&
-                                isAdditiveNumberHelper(num, i, j, j + 1)))
+                        if ((isAddEquals(b, j, a, i, c, j) && isAdditiveNumberHelper(num, i, j, j)) ||
+                            (i + j + j < num.length() && isAddEquals(b, j, a, i, c, j + 1) &&
+                             isAdditiveNumberHelper(num, i, j, j + 1)))
                         {
                             return true;
                         }

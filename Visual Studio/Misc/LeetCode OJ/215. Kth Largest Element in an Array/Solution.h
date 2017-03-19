@@ -6,7 +6,8 @@ class Solution
     static int findKthLargestHelper(T first, T last, size_t k)
     {
         int p = *first;
-        auto it = stable_partition(first, last, [=](int x) { return x > p; }); // Wrong answer if std::partition is used.
+        auto it =
+            stable_partition(first, last, [=](int x) { return x > p; }); // Wrong answer if std::partition is used.
         size_t leftSize = it - first;
 
         if (leftSize < k)

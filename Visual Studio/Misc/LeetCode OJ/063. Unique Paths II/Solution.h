@@ -2,7 +2,7 @@
 
 class Solution
 {
-    template<class T>
+    template <class T>
     static int uniquePathsWithObstaclesHelper(size_t width, size_t height, T isObstacle)
     {
         if (isObstacle(0, 0) || isObstacle(width - 1, height - 1))
@@ -104,14 +104,12 @@ public:
     {
         if (obstacleGrid.front().size() < obstacleGrid.size())
         {
-            return uniquePathsWithObstaclesHelper(obstacleGrid.front().size(),
-                                                  obstacleGrid.size(),
+            return uniquePathsWithObstaclesHelper(obstacleGrid.front().size(), obstacleGrid.size(),
                                                   [&](size_t x, size_t y) { return obstacleGrid[y][x] != 0; });
         }
         else
         {
-            return uniquePathsWithObstaclesHelper(obstacleGrid.size(),
-                                                  obstacleGrid.front().size(),
+            return uniquePathsWithObstaclesHelper(obstacleGrid.size(), obstacleGrid.front().size(),
                                                   [&](size_t x, size_t y) { return obstacleGrid[x][y] != 0; });
         }
     }

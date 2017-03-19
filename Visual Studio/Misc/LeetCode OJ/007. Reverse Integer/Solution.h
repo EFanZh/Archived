@@ -13,6 +13,7 @@ public:
             x /= 10;
         }
 
-        return numeric_limits<int>::min() <= result && result <= numeric_limits<int>::max() ? static_cast<int>(result) : 0;
+        return numeric_limits<int>::min() <= result && result <= numeric_limits<int>::max() ? static_cast<int>(result) :
+                                                                                              0;
     }
 };

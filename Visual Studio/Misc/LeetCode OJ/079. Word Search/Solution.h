@@ -37,8 +37,7 @@ public:
                                            make_pair(item.first.first, item.first.second - 1),
                                            make_pair(item.first.first, item.first.second + 1) })
                         {
-                            if (next.first < rows &&
-                                next.second < columns &&
+                            if (next.first < rows && next.second < columns &&
                                 board[next.first][next.second] == word[item.second] &&
                                 find(path.cbegin(), path.cbegin() + item.second, next) == path.cbegin() + item.second)
                             {

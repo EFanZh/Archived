@@ -27,8 +27,7 @@ public:
             }
         }
 
-        function<bool(size_t)> tryFill = [&](size_t i)
-        {
+        function<bool(size_t)> tryFill = [&](size_t i) {
             if (i == blanks.size())
             {
                 return true;

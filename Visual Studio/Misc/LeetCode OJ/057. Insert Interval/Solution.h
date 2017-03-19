@@ -14,10 +14,8 @@ class Solution
 public:
     vector<Interval> insert(vector<Interval> &intervals, Interval newInterval)
     {
-        auto it1 = lower_bound(intervals.begin(), intervals.end(), newInterval.start, [](const Interval &lhs, int rhs)
-                                                                                      {
-                                                                                          return lhs.end < rhs;
-                                                                                      });
+        auto it1 = lower_bound(intervals.begin(), intervals.end(), newInterval.start,
+                               [](const Interval &lhs, int rhs) { return lhs.end < rhs; });
 
         if (it1 == intervals.cend())
         {
@@ -25,10 +23,8 @@ public:
         }
         else
         {
-            auto it2 = upper_bound(it1, intervals.end(), newInterval.end, [](int lhs, const Interval &rhs)
-                                                                          {
-                                                                              return lhs < rhs.start;
-                                                                          });
+            auto it2 = upper_bound(it1, intervals.end(), newInterval.end,
+                                   [](int lhs, const Interval &rhs) { return lhs < rhs.start; });
 
             if (it2 == it1 && newInterval.end < it2->start)
             {

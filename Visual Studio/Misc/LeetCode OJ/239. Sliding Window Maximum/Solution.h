@@ -7,7 +7,7 @@ public:
     {
         if (k == 0)
         {
-            return{};
+            return {};
         }
 
         deque<size_t> window;

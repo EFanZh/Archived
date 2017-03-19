@@ -3,7 +3,8 @@
 class Solution
 {
     template <class T>
-    static void removeInvalidParenthesesHelper(size_t s, size_t removed, string &current, size_t &minRemoved, T first, T last, unordered_set<string> &result)
+    static void removeInvalidParenthesesHelper(size_t s, size_t removed, string &current, size_t &minRemoved, T first,
+                                               T last, unordered_set<string> &result)
     {
         if (first == last)
         {
@@ -26,36 +27,36 @@ class Solution
         {
             switch (*first)
             {
-            case '(':
-                current += '(';
-                removeInvalidParenthesesHelper(s + 1, removed, current, minRemoved, first + 1, last, result);
-                current.pop_back();
-
-                if (removed < minRemoved)
-                {
-                    removeInvalidParenthesesHelper(s, removed + 1, current, minRemoved, first + 1, last, result);
-                }
-                break;
-
-            case ')':
-                if (s > 0)
-                {
-                    current += ')';
-                    removeInvalidParenthesesHelper(s - 1, removed, current, minRemoved, first + 1, last, result);
+                case '(':
+                    current += '(';
+                    removeInvalidParenthesesHelper(s + 1, removed, current, minRemoved, first + 1, last, result);
                     current.pop_back();
-                }
 
-                if (removed < minRemoved)
-                {
-                    removeInvalidParenthesesHelper(s, removed + 1, current, minRemoved, first + 1, last, result);
-                }
-                break;
+                    if (removed < minRemoved)
+                    {
+                        removeInvalidParenthesesHelper(s, removed + 1, current, minRemoved, first + 1, last, result);
+                    }
+                    break;
 
-            default:
-                current += *first;
-                removeInvalidParenthesesHelper(s, removed, current, minRemoved, first + 1, last, result);
-                current.pop_back();
-                break;
+                case ')':
+                    if (s > 0)
+                    {
+                        current += ')';
+                        removeInvalidParenthesesHelper(s - 1, removed, current, minRemoved, first + 1, last, result);
+                        current.pop_back();
+                    }
+
+                    if (removed < minRemoved)
+                    {
+                        removeInvalidParenthesesHelper(s, removed + 1, current, minRemoved, first + 1, last, result);
+                    }
+                    break;
+
+                default:
+                    current += *first;
+                    removeInvalidParenthesesHelper(s, removed, current, minRemoved, first + 1, last, result);
+                    current.pop_back();
+                    break;
             }
         }
     }
@@ -70,6 +71,6 @@ public:
 
         removeInvalidParenthesesHelper(stack, 0, current, minRemoved, s.cbegin(), s.cend(), result);
 
-        return{ result.cbegin(), result.cend() };
+        return { result.cbegin(), result.cend() };
     }
 };

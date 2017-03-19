@@ -25,7 +25,8 @@ class Solution
             int minValue = histogram[s.top()];
 
             s.pop();
-            currentMaxArea = max(currentMaxArea, minValue * (s.empty() ? histogram.size() : histogram.size() - 1 - s.top()));
+            currentMaxArea =
+                max(currentMaxArea, minValue * (s.empty() ? histogram.size() : histogram.size() - 1 - s.top()));
         }
 
         return currentMaxArea;

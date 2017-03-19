@@ -28,14 +28,8 @@ class Solution
             ++k;
         }
 
-        root->left = buildTreeHelper(preorderFirst + (inorderLast - k),
-                                     preorderLast,
-                                     inorderFirst,
-                                     k);
-        root->right = buildTreeHelper(preorderFirst + 1,
-                                      preorderFirst + (inorderLast - k),
-                                      k + 1,
-                                      inorderLast);
+        root->left = buildTreeHelper(preorderFirst + (inorderLast - k), preorderLast, inorderFirst, k);
+        root->right = buildTreeHelper(preorderFirst + 1, preorderFirst + (inorderLast - k), k + 1, inorderLast);
 
         return root;
     }

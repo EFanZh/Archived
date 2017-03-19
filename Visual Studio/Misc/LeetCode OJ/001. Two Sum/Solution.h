@@ -17,10 +17,10 @@ public:
             }
             else
             {
-                return{ static_cast<int>(it->second + 1), static_cast<int>(i + 1) };
+                return { static_cast<int>(it->second + 1), static_cast<int>(i + 1) };
             }
         }
 
-        return{};
+        return {};
     }
 };

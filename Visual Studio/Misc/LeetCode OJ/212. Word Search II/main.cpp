@@ -4,11 +4,8 @@
 
 int main()
 {
-    pair<vector<vector<char>>, vector<string>> testCases[] =
-    {
-        { { { 'a' } }, { "a" } },
-        { { { 'a', 'a' } }, { "a" } }
-    };
+    pair<vector<vector<char>>, vector<string>> testCases[] = { { { { 'a' } }, { "a" } },
+                                                               { { { 'a', 'a' } }, { "a" } } };
     Solution s;
 
     for (auto &testCase : testCases)

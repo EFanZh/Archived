@@ -35,21 +35,13 @@ public:
             cache[i] = i - word1.length();
         }
 
-        auto getIndex = [&](int i, int j)
-        {
-            return i - j + word2.length();
-        };
+        auto getIndex = [&](int i, int j) { return i - j + word2.length(); };
 
-        auto solve = [&](int i, int j)
-        {
+        auto solve = [&](int i, int j) {
             if (word1[i] != word2[j])
             {
-                cache[getIndex(i, j)] = min(
-                {
-                    cache[getIndex(i, j + 1)],
-                    cache[getIndex(i + 1, j + 1)],
-                    cache[getIndex(i + 1, j)]
-                }) + 1;
+                cache[getIndex(i, j)] =
+                    min({ cache[getIndex(i, j + 1)], cache[getIndex(i + 1, j + 1)], cache[getIndex(i + 1, j)] }) + 1;
             }
         };
 

@@ -46,13 +46,11 @@ public:
 
                 q.pop();
 
-                for (auto p : { make_pair(current.first - 1, current.second),
-                                make_pair(current.first, current.second - 1),
-                                make_pair(current.first, current.second + 1),
-                                make_pair(current.first + 1, current.second) })
+                for (auto p :
+                     { make_pair(current.first - 1, current.second), make_pair(current.first, current.second - 1),
+                       make_pair(current.first, current.second + 1), make_pair(current.first + 1, current.second) })
                 {
-                    if (p.first >= 0 && p.first < row_count &&
-                        p.second >= 0 && p.second < column_count &&
+                    if (p.first >= 0 && p.first < row_count && p.second >= 0 && p.second < column_count &&
                         board[p.first][p.second] == 'O')
                     {
                         board[p.first][p.second] = 'B';

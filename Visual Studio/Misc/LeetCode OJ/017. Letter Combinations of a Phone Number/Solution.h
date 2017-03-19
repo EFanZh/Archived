@@ -1,18 +1,6 @@
 #pragma once
 
-static const string digitToChars[] =
-{
-    "",
-    "",
-    "abc",
-    "def",
-    "ghi",
-    "jkl",
-    "mno",
-    "pqrs",
-    "tuv",
-    "wxyz"
-};
+static const string digitToChars[] = { "", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz" };
 
 class Solution
 {

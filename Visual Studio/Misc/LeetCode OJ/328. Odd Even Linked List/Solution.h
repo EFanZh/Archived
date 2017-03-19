@@ -14,7 +14,7 @@ public:
             ListNode **oddTail = &head->next->next;
             ListNode **evenTail = &even->next;
 
-            for (auto node = *oddTail; ; node = *oddTail)
+            for (auto node = *oddTail;; node = *oddTail)
             {
                 if (node == nullptr)
                 {

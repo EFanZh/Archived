@@ -54,7 +54,7 @@ public:
             {
                 if (!dfs(g, visited, i, result))
                 {
-                    return{};
+                    return {};
                 }
             }
         }

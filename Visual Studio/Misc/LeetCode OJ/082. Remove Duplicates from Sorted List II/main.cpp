@@ -2,8 +2,7 @@
 
 int main()
 {
-    initializer_list<int> testCases[] = { { 1 },
-                                          { 1, 1 } };
+    initializer_list<int> testCases[] = { { 1 }, { 1, 1 } };
     Solution s;
 
     for (auto testCase : testCases)

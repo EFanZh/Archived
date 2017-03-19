@@ -7,42 +7,39 @@ public:
     {
         vector<string> strs;
 
-        transform(num.cbegin(), num.cend(), back_inserter(strs), static_cast<string(&)(int)>(to_string));
-        sort(strs.begin(),
-             strs.end(),
-             [](const string &lhs, const string &rhs)
-             {
-                 size_t i = 0, j = 0;
+        transform(num.cbegin(), num.cend(), back_inserter(strs), static_cast<string (&)(int)>(to_string));
+        sort(strs.begin(), strs.end(), [](const string &lhs, const string &rhs) {
+            size_t i = 0, j = 0;
 
-                 auto left = lhs.cbegin();
-                 auto right = rhs.cbegin();
+            auto left = lhs.cbegin();
+            auto right = rhs.cbegin();
 
-                 while (left != rhs.cend())
-                 {
-                     if (*left < *right)
-                     {
-                         return false;
-                     }
-                     else if (*right < *left)
-                     {
-                         return true;
-                     }
+            while (left != rhs.cend())
+            {
+                if (*left < *right)
+                {
+                    return false;
+                }
+                else if (*right < *left)
+                {
+                    return true;
+                }
 
-                     ++left;
-                     ++right;
+                ++left;
+                ++right;
 
-                     if (left == lhs.cend())
-                     {
-                         left = rhs.cbegin();
-                     }
-                     if (right == rhs.cend())
-                     {
-                         right = lhs.cbegin();
-                     }
-                 }
+                if (left == lhs.cend())
+                {
+                    left = rhs.cbegin();
+                }
+                if (right == rhs.cend())
+                {
+                    right = lhs.cbegin();
+                }
+            }
 
-                 return false;
-             });
+            return false;
+        });
 
         if (strs.front().front() == '0')
         {

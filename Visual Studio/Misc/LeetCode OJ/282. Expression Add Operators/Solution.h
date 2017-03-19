@@ -3,7 +3,8 @@
 class Solution
 {
     template <class T>
-    static void addOperatorsHelper(string &base, intmax_t value, intmax_t lastTerm, T first, T last, int target, vector<string> &result)
+    static void addOperatorsHelper(string &base, intmax_t value, intmax_t lastTerm, T first, T last, int target,
+                                   vector<string> &result)
     {
         if (first == last)
         {
@@ -48,7 +49,8 @@ class Solution
                 addOperatorsHelper(base, value - termValue, -termValue, it + 1, last, target, result);
 
                 base[operatorIndex] = '*';
-                addOperatorsHelper(base, value + lastTerm * (termValue - 1), lastTerm * termValue, it + 1, last, target, result);
+                addOperatorsHelper(base, value + lastTerm * (termValue - 1), lastTerm * termValue, it + 1, last, target,
+                                   result);
             }
 
             base.erase(base.begin() + operatorIndex, base.end());

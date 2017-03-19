@@ -19,10 +19,8 @@ public:
             return intervals;
         }
 
-        sort(intervals.begin(), intervals.end(), [](const Interval &lhs, const Interval &rhs)
-                                                 {
-                                                     return lhs.start < rhs.start;
-                                                 });
+        sort(intervals.begin(), intervals.end(),
+             [](const Interval &lhs, const Interval &rhs) { return lhs.start < rhs.start; });
 
         vector<Interval> result = { intervals.front() };
 

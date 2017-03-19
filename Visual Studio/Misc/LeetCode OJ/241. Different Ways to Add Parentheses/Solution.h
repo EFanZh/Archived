@@ -15,22 +15,24 @@ class Solution
         return result;
     }
 
-    template<class T1, class T2>
+    template <class T1, class T2>
     static vector<int> diffWaysToComputeHelper(T1 numbersBegin, T1 numbersEnd, T2 operatorsBegin, T2 operatorsEnd)
     {
         size_t operatorsCount = operatorsEnd - operatorsBegin;
 
         if (operatorsCount == 0)
         {
-            return{ *numbersBegin };
+            return { *numbersBegin };
         }
 
         vector<int> result;
 
         for (size_t i = 0; i < operatorsCount; ++i)
         {
-            auto leftResults = diffWaysToComputeHelper(numbersBegin, numbersBegin + (i + 1), operatorsBegin, operatorsBegin + i);
-            auto rightResults = diffWaysToComputeHelper(numbersBegin + (i + 1), numbersEnd, operatorsBegin + (i + 1), operatorsEnd);
+            auto leftResults =
+                diffWaysToComputeHelper(numbersBegin, numbersBegin + (i + 1), operatorsBegin, operatorsBegin + i);
+            auto rightResults =
+                diffWaysToComputeHelper(numbersBegin + (i + 1), numbersEnd, operatorsBegin + (i + 1), operatorsEnd);
 
             for (int lhs : leftResults)
             {
@@ -38,17 +40,17 @@ class Solution
                 {
                     switch (operatorsBegin[i])
                     {
-                    case '+':
-                        result.emplace_back(lhs + rhs);
-                        break;
+                        case '+':
+                            result.emplace_back(lhs + rhs);
+                            break;
 
-                    case '-':
-                        result.emplace_back(lhs - rhs);
-                        break;
+                        case '-':
+                            result.emplace_back(lhs - rhs);
+                            break;
 
-                    case '*':
-                        result.emplace_back(lhs * rhs);
-                        break;
+                        case '*':
+                            result.emplace_back(lhs * rhs);
+                            break;
                     }
                 }
             }

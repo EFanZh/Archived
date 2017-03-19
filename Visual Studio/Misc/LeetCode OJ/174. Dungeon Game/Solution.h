@@ -9,10 +9,7 @@ public:
         size_t columns = dungeon.front().size();
         vector<int> cache(columns * rows, numeric_limits<int>::max());
         queue<pair<size_t, size_t>> q;
-        auto getCache = [&](size_t row, size_t column) -> int &
-        {
-            return cache[columns * row + column];
-        };
+        auto getCache = [&](size_t row, size_t column) -> int & { return cache[columns * row + column]; };
 
         cache.back() = 1;
         q.emplace(rows - 1, columns - 1);
@@ -32,7 +29,8 @@ public:
 
                 auto &next = getCache(current.first - 1, current.second);
 
-                next = min(next, max(1, getCache(current.first, current.second) - dungeon[current.first][current.second]));
+                next =
+                    min(next, max(1, getCache(current.first, current.second) - dungeon[current.first][current.second]));
             }
 
             if (current.second > 0)
@@ -44,7 +42,8 @@ public:
 
                 auto &next = getCache(current.first, current.second - 1);
 
-                next = min(next, max(1, getCache(current.first, current.second) - dungeon[current.first][current.second]));
+                next =
+                    min(next, max(1, getCache(current.first, current.second) - dungeon[current.first][current.second]));
             }
         }
 

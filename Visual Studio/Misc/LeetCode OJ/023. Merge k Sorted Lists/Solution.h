@@ -13,12 +13,11 @@ class Solution
 public:
     ListNode *mergeKLists(vector<ListNode *> &lists)
     {
-        auto comparer = [](const ListNode *lhs, const ListNode *rhs)
-        {
+        auto comparer = [](const ListNode *lhs, const ListNode *rhs) {
             return rhs != nullptr && (lhs == nullptr || lhs->val > rhs->val);
         };
 
-        priority_queue<ListNode, vector<ListNode *>, decltype(comparer)> q(comparer);
+        priority_queue<ListNode *, vector<ListNode *>, decltype(comparer)> q(comparer);
 
         for (auto *node : lists)
         {

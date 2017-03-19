@@ -52,11 +52,8 @@ public:
             }
         }
 
-        return max_element(cache.cbegin(),
-                           cache.cend(),
-                           [](const pair<int, int> &lhs, const pair<int, int> &rhs)
-                           {
-                               return lhs.second < rhs.second;
-                           })->second;
+        return max_element(cache.cbegin(), cache.cend(),
+                           [](const pair<int, int> &lhs, const pair<int, int> &rhs) { return lhs.second < rhs.second; })
+            ->second;
     }
 };

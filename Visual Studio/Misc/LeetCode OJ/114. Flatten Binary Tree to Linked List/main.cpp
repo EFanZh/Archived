@@ -11,7 +11,7 @@ int main()
     {
         stringstream input(testCase);
         vector<unique_ptr<TreeNode>> pool;
-        
+
         s.flatten(MakeTree(pool, input));
     }
 }

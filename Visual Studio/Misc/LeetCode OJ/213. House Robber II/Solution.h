@@ -27,6 +27,7 @@ class Solution
 
         return prev1;
     }
+
 public:
     int rob(const vector<int> &nums)
     {

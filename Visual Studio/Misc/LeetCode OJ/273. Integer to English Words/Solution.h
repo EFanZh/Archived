@@ -69,7 +69,10 @@ struct SolutionHelper<1>
 {
     static void convert(int num, string &result)
     {
-        static const char *numbers[] = { "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen" };
+        static const char *numbers[] = { "One",     "Two",       "Three",    "Four",     "Five",
+                                         "Six",     "Seven",     "Eight",    "Nine",     "Ten",
+                                         "Eleven",  "Twelve",    "Thirteen", "Fourteen", "Fifteen",
+                                         "Sixteen", "Seventeen", "Eighteen", "Nineteen" };
         static const char *tens[] = { "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety" };
 
         int k = num / 10;

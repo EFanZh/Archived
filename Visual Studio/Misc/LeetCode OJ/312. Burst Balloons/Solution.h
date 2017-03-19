@@ -2,7 +2,8 @@
 
 class Solution
 {
-    static int maxCoinsHelper(const vector<int> &nums, vector<int>::size_type from, vector<int>::size_type to, vector<int> &cache)
+    static int maxCoinsHelper(const vector<int> &nums, vector<int>::size_type from, vector<int>::size_type to,
+                              vector<int> &cache)
     {
         if (from == to)
         {

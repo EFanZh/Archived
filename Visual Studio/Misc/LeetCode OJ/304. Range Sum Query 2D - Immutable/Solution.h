@@ -11,8 +11,8 @@ class NumMatrix
     }
 
 public:
-    NumMatrix(const vector<vector<int>> &matrix) : cacheColumns(matrix.empty() ? 1 : matrix.front().size() + 1),
-        cache((matrix.size() + 1) * cacheColumns)
+    NumMatrix(const vector<vector<int>> &matrix)
+        : cacheColumns(matrix.empty() ? 1 : matrix.front().size() + 1), cache((matrix.size() + 1) * cacheColumns)
     {
         vector<int> rowCache(cacheColumns);
 
@@ -31,7 +31,8 @@ public:
 
     int sumRegion(int row1, int col1, int row2, int col2)
     {
-        return getCache(row2 + 1, col2 + 1) - getCache(row2 + 1, col1) - getCache(row1, col2 + 1) + getCache(row1, col1);
+        return getCache(row2 + 1, col2 + 1) - getCache(row2 + 1, col1) - getCache(row1, col2 + 1) +
+               getCache(row1, col1);
     }
 };
 

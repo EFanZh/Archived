@@ -2,7 +2,8 @@
 
 class Solution
 {
-    static int getTreeHeight(map<pair<int, int>, int> &heights, const vector<vector<int>> &graph, const pair<int, int> &root)
+    static int getTreeHeight(map<pair<int, int>, int> &heights, const vector<vector<int>> &graph,
+                             const pair<int, int> &root)
     {
         auto it = heights.find(root);
 
@@ -48,18 +49,18 @@ public:
 
             if (height1 == height2 + 1)
             {
-                return{ edge.first };
+                return { edge.first };
             }
             else if (height1 == height2)
             {
-                return{ edge.first, edge.second };
+                return { edge.first, edge.second };
             }
             else if (height1 + 1 == height2)
             {
-                return{ edge.second };
+                return { edge.second };
             }
         }
 
-        return{ 0 };
+        return { 0 };
     }
 };
