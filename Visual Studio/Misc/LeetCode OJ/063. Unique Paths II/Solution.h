@@ -104,12 +104,14 @@ public:
     {
         if (obstacleGrid.front().size() < obstacleGrid.size())
         {
-            return uniquePathsWithObstaclesHelper(obstacleGrid.front().size(), obstacleGrid.size(),
+            return uniquePathsWithObstaclesHelper(obstacleGrid.front().size(),
+                                                  obstacleGrid.size(),
                                                   [&](size_t x, size_t y) { return obstacleGrid[y][x] != 0; });
         }
         else
         {
-            return uniquePathsWithObstaclesHelper(obstacleGrid.size(), obstacleGrid.front().size(),
+            return uniquePathsWithObstaclesHelper(obstacleGrid.size(),
+                                                  obstacleGrid.front().size(),
                                                   [&](size_t x, size_t y) { return obstacleGrid[x][y] != 0; });
         }
     }

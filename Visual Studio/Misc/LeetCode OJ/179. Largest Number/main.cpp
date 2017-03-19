@@ -5,10 +5,10 @@
 int main()
 {
     vector<int> testCases[] = { { 1 } };
-    Solution s;
+    auto s = Solution();
 
-    for (auto &testCases : testCases)
+    for (auto &testCase : testCases)
     {
-        s.largestNumber(testCases);
+        s.largestNumber(testCase);
     }
 }

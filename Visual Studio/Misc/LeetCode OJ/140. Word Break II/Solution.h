@@ -16,8 +16,9 @@ public:
         else
         {
             const auto &wordLengths =
-                minmax_element(dict.cbegin(), dict.cend(),
-                               [](const string &lhs, const string &rhs) { return lhs.size() < rhs.size(); });
+                minmax_element(dict.cbegin(), dict.cend(), [](const string &lhs, const string &rhs) {
+                    return lhs.size() < rhs.size();
+                });
 
             size_t minWordLength = wordLengths.first->length();
             size_t maxWordLength = wordLengths.second->length();

@@ -12,7 +12,10 @@ class Solution
         return (19 - count) * count / 2;
     }
 
-    static void combinationSum3Helper(int first, size_t count, int target, vector<int> &base,
+    static void combinationSum3Helper(int first,
+                                      size_t count,
+                                      int target,
+                                      vector<int> &base,
                                       vector<vector<int>> &result)
     {
         if (count == 1)

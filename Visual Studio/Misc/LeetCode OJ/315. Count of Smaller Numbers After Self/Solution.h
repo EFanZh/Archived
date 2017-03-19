@@ -11,7 +11,9 @@ public:
         for (auto i = nums.size() - 1; i < nums.size(); --i)
         {
             auto it =
-                lower_bound(sequences.begin(), sequences.end(), nums[i],
+                lower_bound(sequences.begin(),
+                            sequences.end(),
+                            nums[i],
                             [&](const vector<vector<int>::size_type> &lhs, int rhs) { return nums[lhs.back()] > rhs; });
 
             if (it == sequences.end())

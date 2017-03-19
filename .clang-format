@@ -3,7 +3,7 @@ BasedOnStyle: Chromium
 AccessModifierOffset: -4
 AlignTrailingComments: false
 AllowShortFunctionsOnASingleLine: None
-BinPackParameters: true
+BinPackArguments: false
 BreakBeforeBraces: Allman
 BreakBeforeTernaryOperators: false
 ColumnLimit: 120

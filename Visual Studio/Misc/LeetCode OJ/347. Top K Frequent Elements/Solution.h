@@ -19,15 +19,18 @@ public:
             v.emplace_back(&p);
         }
 
-        partial_sort(v.begin(), v.begin() + k, v.end(),
+        partial_sort(v.begin(),
+                     v.begin() + k,
+                     v.end(),
                      [](const pair<const int, int> *lhs, const pair<const int, int> *rhs) {
                          return rhs->second < lhs->second;
                      });
 
         auto result = vector<int>();
 
-        transform(v.begin(), v.begin() + k, back_inserter(result),
-                  [](const pair<const int, int> *x) { return x->first; });
+        transform(v.begin(), v.begin() + k, back_inserter(result), [](const pair<const int, int> *x) {
+            return x->first;
+        });
 
         return result;
     }

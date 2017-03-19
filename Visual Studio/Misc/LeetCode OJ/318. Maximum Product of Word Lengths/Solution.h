@@ -28,8 +28,10 @@ public:
         {
             const auto number = toNumber(word);
 
-            const auto it = lower_bound(numbers.begin(), numbers.end(), number,
-                                        [](const pair<uint32_t, int> &lhs, uint32_t rhs) { return lhs.first < rhs; });
+            const auto it =
+                lower_bound(numbers.begin(), numbers.end(), number, [](const pair<uint32_t, int> &lhs, uint32_t rhs) {
+                    return lhs.first < rhs;
+                });
 
             if (it == numbers.end())
             {

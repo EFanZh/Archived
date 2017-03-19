@@ -13,19 +13,19 @@ class Solution
 public:
     ListNode *reverseBetween(ListNode *head, int m, int n)
     {
-        ListNode **insertPoint = &head;
-        size_t i = 1;
+        auto insertPoint = &head;
+        auto i = size_t(1);
 
-        for (; i < m; ++i)
+        for (; i < static_cast<size_t>(m); ++i)
         {
             insertPoint = &(*insertPoint)->next;
         }
 
-        ListNode **tail = &(*insertPoint)->next;
+        auto tail = &(*insertPoint)->next;
 
-        for (; i < n; ++i)
+        for (; i < static_cast<size_t>(n); ++i)
         {
-            ListNode *temp = *tail;
+            auto temp = *tail;
 
             *tail = (*tail)->next;
             temp->next = *insertPoint;

@@ -2,14 +2,14 @@
 
 class Solution
 {
-    static vector<int> pascalTriangleRow(int count)
+    static vector<int> pascalTriangleRow(size_t count)
     {
-        vector<int> result(count);
-        size_t middle = (count + 1) / 2;
+        auto result = vector<int>(count);
+        auto middle = (count + 1) / 2;
 
         result.front() = 1;
 
-        for (size_t i = 1; i < middle; ++i)
+        for (auto i = size_t(1); i < middle; ++i)
         {
             result[i] = result[i - 1] * (count - i) / i;
         }
@@ -33,19 +33,19 @@ public:
             return 1;
         }
 
-        vector<int> cache = pascalTriangleRow(m);
+        auto cache = pascalTriangleRow(m);
 
-        for (size_t i = 0; i < n - m; ++i)
+        for (auto i = size_t(0); i < static_cast<size_t>(n - m); ++i)
         {
-            for (size_t j = 0; j < m - 1; ++j)
+            for (auto j = size_t(0); j < static_cast<size_t>(m - 1); ++j)
             {
                 cache[j] += cache[j + 1];
             }
         }
 
-        for (size_t i = 0; i < m - 1; i++)
+        for (auto i = size_t(0); i < static_cast<size_t>(m - 1); i++)
         {
-            for (size_t j = 0; j < m - 1 - i; j++)
+            for (auto j = size_t(0); j < static_cast<size_t>(m - 1 - i); j++)
             {
                 cache[j] += cache[j + 1];
             }

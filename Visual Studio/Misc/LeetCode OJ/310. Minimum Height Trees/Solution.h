@@ -2,7 +2,8 @@
 
 class Solution
 {
-    static int getTreeHeight(map<pair<int, int>, int> &heights, const vector<vector<int>> &graph,
+    static int getTreeHeight(map<pair<int, int>, int> &heights,
+                             const vector<vector<int>> &graph,
                              const pair<int, int> &root)
     {
         auto it = heights.find(root);

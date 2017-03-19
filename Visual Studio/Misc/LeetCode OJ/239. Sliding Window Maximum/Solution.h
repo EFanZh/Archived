@@ -10,13 +10,13 @@ public:
             return {};
         }
 
-        deque<size_t> window;
-        size_t last = nums.size() - k;
-        vector<int> result(nums.size() - k + 1);
+        auto window = deque<size_t>();
+        auto last = nums.size() - k;
+        auto result = vector<int>(nums.size() - k + 1);
 
         window.emplace_back(k - 1);
 
-        for (size_t i = k - 2; i < k; --i)
+        for (auto i = static_cast<size_t>(k - 2); i < static_cast<size_t>(k); --i)
         {
             if (nums[i] > nums[window.front()])
             {
@@ -26,7 +26,7 @@ public:
 
         result.front() = nums[window.front()];
 
-        for (size_t i = 0; i < last; ++i)
+        for (auto i = size_t(0); i < last; ++i)
         {
             if (window.front() <= i)
             {

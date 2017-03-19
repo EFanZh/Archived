@@ -64,7 +64,9 @@ public:
             return 0;
         }
 
-        Environment environment = { matrix, matrix.size(), matrix.front().size(),
+        Environment environment = { matrix,
+                                    matrix.size(),
+                                    matrix.front().size(),
                                     vector<int>(matrix.size() * matrix.front().size()) };
         auto result = 0;
 

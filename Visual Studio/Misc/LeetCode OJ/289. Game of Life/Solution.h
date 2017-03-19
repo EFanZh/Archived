@@ -4,7 +4,7 @@ class Solution
 public:
     void gameOfLife(vector<vector<int>> &board)
     {
-        static const pair<int8_t, int8_t> offsets[] = { { -1, -1 }, { -1, 0 }, { -1, 1 }, { 0, -1 },
+        static const pair<size_t, size_t> offsets[] = { { -1, -1 }, { -1, 0 }, { -1, 1 }, { 0, -1 },
                                                         { 0, 1 },   { 1, -1 }, { 1, 0 },  { 1, 1 } };
 
         if (board.empty() || board.front().empty())
@@ -12,22 +12,22 @@ public:
             return;
         }
 
-        size_t rows = board.size();
-        size_t columns = board.front().size();
+        const auto rows = board.size();
+        const auto columns = board.front().size();
 
-        for (size_t row = 0; row < rows; ++row)
+        for (auto row = size_t(0); row < rows; ++row)
         {
-            for (size_t column = 0; column < columns; ++column)
+            for (auto column = size_t(0); column < columns; ++column)
             {
-                uint8_t neighbors = 0;
+                auto neighbors = uint8_t(0);
 
                 for (const auto &offset : offsets)
                 {
-                    size_t neighborRow = row + offset.first;
+                    const auto neighborRow = row + offset.first;
 
                     if (neighborRow < rows)
                     {
-                        size_t neighborColumn = column + offset.second;
+                        const auto neighborColumn = column + offset.second;
 
                         if (neighborColumn < columns && (board[neighborRow][neighborColumn] & 1))
                         {

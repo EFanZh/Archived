@@ -45,7 +45,9 @@ class Solution
         return i == cLength || carry == rc[i] - '0';
     }
 
-    static bool isAdditiveNumberHelper(const string &num, string::size_type start, string::size_type length1,
+    static bool isAdditiveNumberHelper(const string &num,
+                                       string::size_type start,
+                                       string::size_type length1,
                                        string::size_type length2)
     {
         while (start + length1 + length2 < num.length())

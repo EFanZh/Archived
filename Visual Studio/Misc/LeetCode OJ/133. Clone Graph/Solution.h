@@ -18,8 +18,9 @@ public:
             return nullptr;
         }
 
-        unordered_map<const UndirectedGraphNode *, UndirectedGraphNode *> oldToNew = { { node, new UndirectedGraphNode(
-                                                                                                   node->label) } };
+        unordered_map<const UndirectedGraphNode *, UndirectedGraphNode *> oldToNew = {
+            { node, new UndirectedGraphNode(node->label) }
+        };
         queue<const UndirectedGraphNode *> q;
 
         q.emplace(node);

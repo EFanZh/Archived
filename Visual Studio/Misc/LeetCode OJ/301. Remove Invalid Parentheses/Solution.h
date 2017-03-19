@@ -3,8 +3,13 @@
 class Solution
 {
     template <class T>
-    static void removeInvalidParenthesesHelper(size_t s, size_t removed, string &current, size_t &minRemoved, T first,
-                                               T last, unordered_set<string> &result)
+    static void removeInvalidParenthesesHelper(size_t s,
+                                               size_t removed,
+                                               string &current,
+                                               size_t &minRemoved,
+                                               T first,
+                                               T last,
+                                               unordered_set<string> &result)
     {
         if (first == last)
         {

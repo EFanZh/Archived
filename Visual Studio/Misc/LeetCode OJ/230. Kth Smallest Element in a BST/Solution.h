@@ -14,8 +14,8 @@ class Solution
 public:
     int kthSmallest(const TreeNode *root, int k)
     {
-        stack<const TreeNode *> s;
-        size_t i = 1;
+        auto s = stack<const TreeNode *>();
+        auto i = size_t(1);
 
         for (auto node = root; node != nullptr; node = node->left)
         {
@@ -24,7 +24,7 @@ public:
 
         while (!s.empty())
         {
-            if (i == k)
+            if (i == static_cast<size_t>(k))
             {
                 return s.top()->val;
             }

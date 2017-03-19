@@ -5,11 +5,11 @@ class Solution
 public:
     bool containsNearbyDuplicate(const vector<int> &nums, int k)
     {
-        unordered_map<int, size_t> indices;
+        auto indices = unordered_map<int, size_t>();
 
-        for (size_t i = 0; i < nums.size(); ++i)
+        for (auto i = size_t(0); i < nums.size(); ++i)
         {
-            auto it = indices.find(nums[i]);
+            const auto it = indices.find(nums[i]);
 
             if (it == indices.cend())
             {
@@ -17,7 +17,7 @@ public:
             }
             else
             {
-                if (i - it->second <= k)
+                if (i - it->second <= static_cast<size_t>(k))
                 {
                     return true;
                 }

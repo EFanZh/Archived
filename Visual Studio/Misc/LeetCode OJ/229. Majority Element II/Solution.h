@@ -5,9 +5,9 @@ class Solution
 public:
     vector<int> majorityElement(const vector<int> &nums)
     {
-        map<int, pair<size_t, size_t>> counts;
+        auto counts = map<int, pair<size_t, size_t>>();
 
-        for (size_t i = 0; i < nums.size(); ++i)
+        for (auto i = size_t(0); i < nums.size(); ++i)
         {
             auto &count = counts[nums[i]];
 
@@ -15,6 +15,7 @@ public:
             {
                 count.first = i;
             }
+
             count.second += 2;
 
             for (auto it = counts.begin(); it != counts.end();)
@@ -35,14 +36,15 @@ public:
             }
         }
 
-        vector<int> result;
+        auto result = vector<int>();
 
         for (const auto &p : counts)
         {
             if (p.second.second + (nums.size() - p.second.first) > nums.size() ||
-                count(nums.cbegin(), nums.cbegin() + p.second.first, p.first) > (p.second.first - p.second.second) / 3)
+                static_cast<size_t>(count(nums.cbegin(), nums.cbegin() + p.second.first, p.first)) >
+                    (p.second.first - p.second.second) / 3)
             {
-                result.emplace_back(p.first);
+                result.emplace_back(static_cast<int>(p.first));
             }
         }
 

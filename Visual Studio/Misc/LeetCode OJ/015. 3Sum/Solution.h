@@ -37,7 +37,9 @@ public:
                         if (result.empty() || num[i] != result.back()[0] || result.back()[1] != num[j])
                         {
                             auto it_value_to_ids =
-                                lower_bound(value_to_indexes.begin(), value_to_indexes.end(), -num[i] - num[j],
+                                lower_bound(value_to_indexes.begin(),
+                                            value_to_indexes.end(),
+                                            -num[i] - num[j],
                                             [](const pair<int, vector<int>> &p, int n) { return p.first < n; });
                             if (it_value_to_ids != value_to_indexes.cend() &&
                                 it_value_to_ids->first == -num[i] - num[j])

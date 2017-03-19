@@ -12,11 +12,11 @@ class Solution
 {
     static ListNode *reverse(ListNode *head, ListNode *tail)
     {
-        ListNode *reversed = tail;
+        auto reversed = tail;
 
         while (head != tail)
         {
-            ListNode *temp = head->next;
+            const auto temp = head->next;
 
             head->next = reversed;
             reversed = head;
@@ -26,7 +26,7 @@ class Solution
         return reversed;
     }
 
-    static bool isPalindromeHelper(const ListNode *head1, const ListNode *tail1, const ListNode *head2)
+    static bool isPalindromeHelper(const ListNode *head1, const ListNode *head2)
     {
         for (; head2 != nullptr; head2 = head2->next)
         {
@@ -44,16 +44,13 @@ class Solution
 public:
     bool isPalindrome(ListNode *head)
     {
-        ListNode *slow = head;
-        ListNode *fast = head;
-        ListNode *head2;
+        auto slow = head;
+        auto fast = head;
 
         for (;;)
         {
             if (fast == nullptr)
             {
-                head2 = slow;
-
                 break;
             }
 
@@ -61,8 +58,6 @@ public:
 
             if (fast == nullptr)
             {
-                head2 = slow->next;
-
                 break;
             }
 
@@ -70,8 +65,8 @@ public:
             fast = fast->next;
         }
 
-        ListNode *reversed = reverse(head, slow);
-        bool result = isPalindromeHelper(reversed, slow, head2);
+        const auto reversed = reverse(head, slow);
+        const auto result = isPalindromeHelper(reversed, slow);
 
         // reverse(reversed, slow);
 

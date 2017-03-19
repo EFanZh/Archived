@@ -63,8 +63,9 @@ public:
             else
             {
                 result.emplace_back();
-                transform(newNodes.cbegin(), newNodes.cend(), back_inserter(result.back()),
-                          [](const TreeNode *node) { return node->val; });
+                transform(newNodes.cbegin(), newNodes.cend(), back_inserter(result.back()), [](const TreeNode *node) {
+                    return node->val;
+                });
                 current = move(newNodes);
 
                 ltr = !ltr;

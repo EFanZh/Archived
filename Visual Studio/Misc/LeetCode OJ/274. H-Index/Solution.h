@@ -5,22 +5,22 @@ class Solution
 public:
     int hIndex(const vector<int> &citations)
     {
-        int result = 0;
-        priority_queue<int, vector<int>, greater<int>> tops;
+        auto result = 0;
+        auto tops = priority_queue<int, vector<int>, greater<int>>();
 
-        for (size_t i = 0; i < citations.size(); ++i)
+        for (auto i = size_t(0); i < citations.size(); ++i)
         {
             while (!tops.empty() && tops.top() < static_cast<int>(tops.size()) + 1)
             {
                 tops.pop();
             }
 
-            if (citations[i] > tops.size())
+            if (static_cast<size_t>(citations[i]) > tops.size())
             {
                 tops.push(citations[i]);
             }
 
-            result = max<int>(result, static_cast<int>(tops.size()));
+            result = max(result, static_cast<int>(tops.size()));
         }
 
         return result;
