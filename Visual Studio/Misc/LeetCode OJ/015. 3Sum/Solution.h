@@ -26,12 +26,13 @@ public:
                 }
             }
 
-            int i_max = upper_bound(num.cbegin(), num.cend(), 0) - num.cbegin();
-            for (int i = 0; i != i_max; ++i)
+            const auto i_max = upper_bound(num.cbegin(), num.cend(), 0) - num.cbegin();
+
+            for (auto i = 0; i != i_max; ++i)
             {
                 if (result.empty() || num[i] != result.back()[0])
                 {
-                    int j_max = upper_bound(num.cbegin() + i + 1, num.cend(), -num[i] / 2) - num.cbegin();
+                    const auto j_max = upper_bound(num.cbegin() + i + 1, num.cend(), -num[i] / 2) - num.cbegin();
                     for (int j = i + 1; j != j_max; ++j)
                     {
                         if (result.empty() || num[i] != result.back()[0] || result.back()[1] != num[j])

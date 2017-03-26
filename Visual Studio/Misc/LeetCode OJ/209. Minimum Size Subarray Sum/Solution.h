@@ -33,6 +33,6 @@ public:
             }
         }
 
-        return minLength;
+        return static_cast<int>(minLength);
     }
 };

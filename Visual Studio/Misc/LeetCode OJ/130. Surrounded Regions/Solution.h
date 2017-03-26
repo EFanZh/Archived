@@ -7,8 +7,8 @@ public:
     {
         if (board.size() >= 3 && board.front().size() >= 3)
         {
-            int row_count = board.size();
-            int column_count = board.front().size();
+            const auto row_count = board.size();
+            const auto column_count = board.front().size();
 
             queue<pair<int, int>> q;
 
@@ -47,9 +47,9 @@ public:
                 q.pop();
 
                 for (auto p : { make_pair(current.first - 1, current.second),
-                                make_pair(current.first, current.second - 1),
-                                make_pair(current.first, current.second + 1),
-                                make_pair(current.first + 1, current.second) })
+                     make_pair(current.first, current.second - 1),
+                     make_pair(current.first, current.second + 1),
+                     make_pair(current.first + 1, current.second) })
                 {
                     if (p.first >= 0 && p.first < row_count && p.second >= 0 && p.second < column_count &&
                         board[p.first][p.second] == 'O')

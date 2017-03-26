@@ -9,7 +9,7 @@ public:
 
         sort(S.begin(), S.end());
 
-        result.reserve(1 << S.size());
+        result.reserve(size_t(1) << S.size());
 
         for (int current : S)
         {

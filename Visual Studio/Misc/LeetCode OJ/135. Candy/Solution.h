@@ -46,6 +46,6 @@ public:
             }
         }
 
-        return result;
+        return static_cast<int>(result);
     }
 };

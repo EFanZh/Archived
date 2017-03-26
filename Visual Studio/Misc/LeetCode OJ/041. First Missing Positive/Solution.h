@@ -21,6 +21,6 @@ public:
             }
         }
 
-        return find(A, A + n, -1) - A + 1;
+        return static_cast<int>(find(A, A + n, -1) - A + 1);
     }
 };

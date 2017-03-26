@@ -2,12 +2,12 @@
 
 class Solution
 {
-    static int getMinSum(size_t first, size_t count)
+    static size_t getMinSum(size_t first, size_t count)
     {
         return (first * 2 + count - 1) * count / 2;
     }
 
-    static int getMaxSum(size_t count)
+    static size_t getMaxSum(size_t count)
     {
         return (19 - count) * count / 2;
     }
@@ -29,11 +29,11 @@ class Solution
             return;
         }
 
-        for (size_t i = first; i < 10; ++i)
+        for (auto i = first; i < 10; ++i)
         {
-            int newFirst = i + 1;
-            size_t newCount = count - 1;
-            int newTarget = target - i;
+            const auto newFirst = i + 1;
+            const auto newCount = count - 1;
+            const auto newTarget = target - i;
 
             if (getMinSum(i, count - 1) <= newTarget)
             {

@@ -5,6 +5,6 @@ class Solution
 public:
     int removeDuplicates(int A[], int n)
     {
-        return unique(A, A + n) - A;
+        return static_cast<int>(unique(A, A + n) - A);
     }
 };

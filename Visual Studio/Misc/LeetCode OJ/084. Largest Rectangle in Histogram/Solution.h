@@ -34,6 +34,6 @@ public:
             currentMaxArea = max(currentMaxArea, minValue * (s.empty() ? height.size() : height.size() - 1 - s.top()));
         }
 
-        return currentMaxArea;
+        return static_cast<int>(currentMaxArea);
     }
 };

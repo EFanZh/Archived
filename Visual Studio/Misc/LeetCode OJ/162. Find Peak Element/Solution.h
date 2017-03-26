@@ -17,7 +17,7 @@ public:
 
         if (nums[nums.size() - 1] > nums[nums.size() - 2])
         {
-            return nums.size() - 1;
+            return static_cast<int>(nums.size() - 1);
         }
 
         size_t left = 1;

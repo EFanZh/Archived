@@ -5,13 +5,13 @@ class Solution
 public:
     vector<int> twoSum(const vector<int> &nums, int target)
     {
-        unordered_map<int, size_t> numberToIndex;
+        auto numberToIndex = unordered_map<int, size_t>();
 
-        for (size_t i = 0; i < nums.size(); ++i)
+        for (auto i = decltype(nums.size())(0); i < nums.size(); ++i)
         {
             auto it = numberToIndex.find(target - nums[i]);
 
-            if (it == numberToIndex.cend())
+            if (it == numberToIndex.end())
             {
                 numberToIndex.emplace(nums[i], i);
             }

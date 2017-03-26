@@ -47,7 +47,7 @@ class Solution
         {
             if (leftDepth == rightDepth)
             {
-                result += (1u << leftDepth) - 1;
+                result += (size_t(1) << leftDepth) - 1;
 
                 break;
             }
@@ -55,7 +55,7 @@ class Solution
             {
                 size_t leftRightDepth = getRightDepth(root->left);
 
-                result += 1u << leftRightDepth;
+                result += size_t(1) << leftRightDepth;
 
                 if (leftRightDepth == leftDepth - 1)
                 {

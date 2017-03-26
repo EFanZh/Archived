@@ -5,6 +5,6 @@ class Solution
 public:
     int removeElement(int A[], int n, int elem)
     {
-        return remove(A, A + n, elem) - A;
+        return static_cast<int>(remove(A, A + n, elem) - A);
     }
 };

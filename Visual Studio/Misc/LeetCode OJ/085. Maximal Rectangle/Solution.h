@@ -29,7 +29,7 @@ class Solution
                 max(currentMaxArea, minValue * (s.empty() ? histogram.size() : histogram.size() - 1 - s.top()));
         }
 
-        return currentMaxArea;
+        return static_cast<int>(currentMaxArea);
     }
 
 public:

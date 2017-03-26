@@ -25,11 +25,11 @@ public:
             return -1;
         }
 
-        auto it = lower_bound(nums.cbegin(), nums.cend(), nums.back(), greater<int>());
+        const auto it = lower_bound(nums.cbegin(), nums.cend(), nums.back(), greater<int>());
 
         if (target < nums.back())
         {
-            int result = searchHelper(it, nums.cend() - 1, target);
+            const auto result = searchHelper(it, nums.cend() - 1, target);
 
             if (result == -1)
             {
@@ -46,7 +46,7 @@ public:
         }
         else
         {
-            return nums.size() - 1;
+            return static_cast<int>(nums.size() - 1);
         }
     }
 };

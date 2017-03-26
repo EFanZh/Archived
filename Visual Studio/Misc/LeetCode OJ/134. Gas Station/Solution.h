@@ -20,6 +20,6 @@ public:
             }
         }
 
-        return currentGas < 0 ? -1 : minIndex % gas.size();
+        return currentGas < 0 ? -1 : static_cast<int>(minIndex % gas.size());
     }
 };

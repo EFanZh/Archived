@@ -12,10 +12,10 @@ public:
             return false;
         }
 
-        for (int n = upper_bound(begin(tenPows), end(tenPows), x) - begin(tenPows) - 1; n > 0; n -= 2)
+        for (auto n = upper_bound(begin(tenPows), end(tenPows), x) - begin(tenPows) - 1; n > 0; n -= 2)
         {
-            int high = x / tenPows[n];
-            int low = x % 10;
+            const auto high = x / tenPows[n];
+            const auto low = x % 10;
 
             if (high != low)
             {

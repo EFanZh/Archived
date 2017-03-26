@@ -3,11 +3,11 @@
 class Solution
 {
 public:
-    int maxArea(vector<int> &height)
+    int maxArea(const vector<int> &height)
     {
-        size_t left = 0;
-        size_t right = height.size() - 1;
-        size_t result = min(height[left], height[right]) * (right - left);
+        auto left = size_t(0);
+        auto right = height.size() - 1;
+        auto result = min(height[left], height[right]) * (right - left);
 
         while (left < right)
         {
@@ -23,6 +23,6 @@ public:
             result = max(result, min(height[left], height[right]) * (right - left));
         }
 
-        return result;
+        return static_cast<int>(result);
     }
 };
