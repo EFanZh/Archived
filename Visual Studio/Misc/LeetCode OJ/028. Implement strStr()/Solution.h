@@ -62,7 +62,7 @@ public:
                 ++p;
                 if (*p == '\0')
                 {
-                    return (s - haystack) - (p - needle) + 1;
+                    return static_cast<int>((s - haystack) - (p - needle) + 1);
                 }
                 ++s;
             }

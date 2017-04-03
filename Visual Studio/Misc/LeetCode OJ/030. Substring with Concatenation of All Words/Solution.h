@@ -29,7 +29,7 @@ public:
 
                 if (currentDict == dict)
                 {
-                    result.emplace_back(i);
+                    result.emplace_back(static_cast<int>(i));
                 }
 
                 for (size_t j = i + wordLength; j <= S.length() - totalWordLength; j += wordLength)
@@ -45,7 +45,7 @@ public:
 
                     if (currentDict == dict)
                     {
-                        result.emplace_back(j);
+                        result.emplace_back(static_cast<int>(j));
                     }
                 }
             }

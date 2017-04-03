@@ -14,7 +14,7 @@ public:
 
         for (size_t i = 1; i < middle; ++i)
         {
-            result[i] = result[i - 1] * (rowIndex - i) / i;
+            result[i] = static_cast<int>(result[i - 1] * (rowIndex - i) / i);
         }
 
         copy(result.cbegin(), result.cbegin() + rowIndex / 2, result.rbegin());

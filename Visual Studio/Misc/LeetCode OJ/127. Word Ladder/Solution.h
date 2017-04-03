@@ -85,7 +85,7 @@ public:
                 {
                     if (word == &end)
                     {
-                        return item.second + 1;
+                        return static_cast<int>(item.second + 1);
                     }
                     else
                     {

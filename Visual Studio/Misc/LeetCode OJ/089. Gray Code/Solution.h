@@ -7,7 +7,7 @@ public:
     {
         vector<int> result;
 
-        result.reserve(1 << n);
+        result.reserve(size_t(1) << n);
         result.emplace_back(0);
 
         for (int i = 0; i < n; ++i)

@@ -16,8 +16,9 @@ public:
         }
 
         auto k = minmax_element(num.cbegin(), num.cend());
-        auto bucketSize = CeilDivide(*k.second - *k.first, num.size() - 1);
-        vector<pair<int, int>> buckets(CeilDivide(*k.second - *k.first + 1, bucketSize), make_pair(-1, -1));
+        auto bucketSize = CeilDivide(static_cast<int>(*k.second - *k.first), static_cast<int>(num.size() - 1));
+        vector<pair<int, int>> buckets(CeilDivide(static_cast<int>(*k.second - *k.first + 1), bucketSize),
+                                       make_pair(-1, -1));
 
         for (auto i : num)
         {

@@ -16,7 +16,7 @@ public:
 
         for (size_t i = 0; i < colors.size(); ++i)
         {
-            fill(A + k, A + k + colors[i], i);
+            fill(A + k, A + k + colors[i], static_cast<int>(i));
             k += colors[i];
         }
     }

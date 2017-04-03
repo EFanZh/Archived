@@ -21,7 +21,7 @@ public:
                 ++i;
                 while (i < num.size() && num[i] == value)
                 {
-                    v.emplace_back(i);
+                    v.emplace_back(static_cast<int>(i));
                     ++i;
                 }
             }

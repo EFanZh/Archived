@@ -11,7 +11,7 @@ class Solution
 
         for (auto i = size_t(1); i < middle; ++i)
         {
-            result[i] = result[i - 1] * (count - i) / i;
+            result[i] = static_cast<int>(result[i - 1] * (count - i) / i);
         }
 
         copy(result.cbegin(), result.cbegin() + count / 2, result.rbegin());

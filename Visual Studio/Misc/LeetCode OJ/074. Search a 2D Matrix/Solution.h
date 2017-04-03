@@ -11,14 +11,15 @@ public:
         }
         else
         {
-            int row_count = matrix.size();
-            int column_count = matrix.front().size();
-            int left = 0, right = column_count * row_count;
+            const auto row_count = matrix.size();
+            const auto column_count = matrix.front().size();
+            auto left = size_t(0);
+            auto right = column_count * row_count;
 
             while (left < right)
             {
-                int mid = (left + right) / 2;
-                int v = matrix[mid / column_count][mid % column_count];
+                const auto mid = (left + right) / 2;
+                const auto v = matrix[mid / column_count][mid % column_count];
 
                 if (target < v)
                 {

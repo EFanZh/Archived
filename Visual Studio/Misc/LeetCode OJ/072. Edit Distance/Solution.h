@@ -23,7 +23,7 @@ public:
         //                 +---+
         //   5   6   7   8 | 9 |
         //                 +---+
-        vector<int> cache;
+        vector<size_t> cache;
 
         cache.resize(word1.length() + word2.length() + 1);
         for (size_t i = 0; i <= word1.length(); ++i)
@@ -35,9 +35,9 @@ public:
             cache[i] = i - word1.length();
         }
 
-        auto getIndex = [&](int i, int j) { return i - j + word2.length(); };
+        auto getIndex = [&](size_t i, size_t j) { return i - j + word2.length(); };
 
-        auto solve = [&](int i, int j) {
+        auto solve = [&](size_t i, size_t j) {
             if (word1[i] != word2[j])
             {
                 cache[getIndex(i, j)] =
@@ -60,6 +60,6 @@ public:
             }
         }
 
-        return cache[getIndex(0, 0)];
+        return static_cast<int>(cache[getIndex(0, 0)]);
     }
 };

@@ -22,7 +22,7 @@ public:
                 if (board[i][column_count - 1] == 'O')
                 {
                     board[i][column_count - 1] = 'B';
-                    q.emplace(i, column_count - 1);
+                    q.emplace(static_cast<int>(i), static_cast<int>(column_count - 1));
                 }
             }
 
@@ -36,7 +36,7 @@ public:
                 if (board[row_count - 1][i] == 'O')
                 {
                     board[row_count - 1][i] = 'B';
-                    q.emplace(row_count - 1, i);
+                    q.emplace(static_cast<int>(row_count - 1), i);
                 }
             }
 
@@ -47,9 +47,9 @@ public:
                 q.pop();
 
                 for (auto p : { make_pair(current.first - 1, current.second),
-                     make_pair(current.first, current.second - 1),
-                     make_pair(current.first, current.second + 1),
-                     make_pair(current.first + 1, current.second) })
+                                make_pair(current.first, current.second - 1),
+                                make_pair(current.first, current.second + 1),
+                                make_pair(current.first + 1, current.second) })
                 {
                     if (p.first >= 0 && p.first < row_count && p.second >= 0 && p.second < column_count &&
                         board[p.first][p.second] == 'O')

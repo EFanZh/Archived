@@ -13,9 +13,9 @@ class Solution
 public:
     ListNode *addTwoNumbers(ListNode *l1, ListNode *l2)
     {
-        ListNode *head;
-        ListNode **current = &head;
-        ListNode *rest;
+        auto head = static_cast<ListNode *>(nullptr);
+        auto current = &head;
+        auto rest = static_cast<ListNode *>(nullptr);
 
         int carry = 0;
 
@@ -24,15 +24,17 @@ public:
             if (l1 == nullptr)
             {
                 rest = l2;
+
                 break;
             }
-            else if (l2 == nullptr) // This "else" improves speed in OJ.
+            else if (l2 == nullptr) // This "else if" improves speed in OJ.
             {
                 rest = l1;
+
                 break;
             }
 
-            int result = carry + l1->val + l2->val;
+            const auto result = carry + l1->val + l2->val;
 
             *current = new ListNode(result % 10);
             current = &(*current)->next;
@@ -43,7 +45,7 @@ public:
 
         for (; rest != nullptr; rest = rest->next)
         {
-            int result = carry + rest->val;
+            const auto result = carry + rest->val;
 
             *current = new ListNode(result % 10);
             current = &(*current)->next;

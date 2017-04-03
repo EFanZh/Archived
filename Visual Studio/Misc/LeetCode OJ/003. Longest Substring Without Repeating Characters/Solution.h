@@ -5,19 +5,21 @@ class Solution
 public:
     int lengthOfLongestSubstring(const string &s)
     {
+        using SizeType = decltype(s.length());
+
         if (s.length() <= 1)
         {
             return static_cast<int>(s.length());
         }
 
-        const int length = static_cast<int>(s.length());
-        array<int, 256> window;
-        int windowBegin = 0;
-        int result = 0;
+        const auto length = s.length();
+        auto window = array<SizeType, 256>();
+        auto windowBegin = SizeType(0);
+        auto result = SizeType(0);
 
         fill(window.begin(), window.end(), -1);
 
-        for (int i = 0; i < length; ++i)
+        for (auto i = SizeType(0); i < length; ++i)
         {
             auto &current = window[s[i]];
 
@@ -33,6 +35,6 @@ public:
             current = i;
         }
 
-        return result;
+        return static_cast<int>(result);
     }
 };

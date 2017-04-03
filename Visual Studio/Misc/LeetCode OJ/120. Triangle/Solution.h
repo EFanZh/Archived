@@ -25,7 +25,7 @@ public:
 
             selected_paths.emplace_back(triangle.back());
 
-            for (int row = selected_paths.size() - 2; row >= 0; --row)
+            for (auto row = selected_paths.size() - 2; row < selected_paths.size(); --row)
             {
                 for (size_t column = 0; column < selected_paths[row].size(); ++column)
                 {

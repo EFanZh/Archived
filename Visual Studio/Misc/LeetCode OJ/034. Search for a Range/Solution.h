@@ -13,7 +13,7 @@ public:
         }
         else
         {
-            return { it1 - A, upper_bound(it1 + 1, A + n, target) - A - 1 };
+            return { static_cast<int>(it1 - A), static_cast<int>(upper_bound(it1 + 1, A + n, target) - A - 1) };
         }
     }
 };

@@ -3,7 +3,7 @@
 class Solution
 {
 public:
-    int findPeakElement(vector<int> &nums)
+    int findPeakElement(const vector<int> &nums)
     {
         if (nums.size() == 1)
         {
@@ -31,7 +31,7 @@ public:
             {
                 if (nums[middle] > nums[middle + 1])
                 {
-                    return middle;
+                    return static_cast<int>(middle);
                 }
                 else
                 {

@@ -49,7 +49,7 @@ public:
 
         return trapHelper(height.cbegin(), height.cbegin() + firstMax) +
                trapHelper(height.crbegin(), height.crbegin() + (height.size() - 1 - lastMax)) +
-               (height[firstMax] * (lastMax - firstMax) -
+               (height[firstMax] * static_cast<int>(lastMax - firstMax) -
                 accumulate(height.cbegin() + firstMax, height.cbegin() + lastMax, 0));
     }
 };

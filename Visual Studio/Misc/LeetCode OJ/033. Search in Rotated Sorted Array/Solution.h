@@ -13,7 +13,7 @@ class Solution
         }
         else
         {
-            return it - first;
+            return static_cast<int>(it - first);
         }
     }
 
@@ -37,7 +37,7 @@ public:
             }
             else
             {
-                return (it - nums.cbegin()) + result;
+                return static_cast<int>((it - nums.cbegin()) + result);
             }
         }
         else if (nums.back() < target)

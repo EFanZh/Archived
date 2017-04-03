@@ -3,7 +3,7 @@
 class Solution
 {
 public:
-    bool isPalindrome(string s)
+    bool isPalindrome(const string &s)
     {
         if (s.length() <= 1)
         {
@@ -11,7 +11,7 @@ public:
         }
 
         int i = 0;
-        int j = s.length() - 1;
+        int j = static_cast<int>(s.length() - 1);
 
         while (i < j)
         {
