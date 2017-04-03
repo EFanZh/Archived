@@ -1,9 +1,9 @@
 #lang racket
 
-;; Mostly copied from https://github.com/yinwang0/lightsabers/blob/master/cps.ss.
-
 (require racket/generator)
 (require rackunit)
+
+;; Original version: https://github.com/yinwang0/lightsabers/blob/master/cps.ss.
 
 (define (cps expression)
   (define (tail-context x)
