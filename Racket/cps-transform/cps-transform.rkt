@@ -68,11 +68,12 @@
                          (k a)
                          (k b))))))
 
-(check-cps '(λ (x) (if (if x
-                           (f a)
-                           b)
-                       c
-                       d))
+(check-cps '(λ (x)
+              (if (if x
+                      (f a)
+                      b)
+                  c
+                  d))
            '(λ (x k)
               (if x
                   (f a (λ (v0)
