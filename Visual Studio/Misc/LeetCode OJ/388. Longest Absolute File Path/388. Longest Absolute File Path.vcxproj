@@ -23,7 +23,7 @@
     <ProjectGuid>{6bcd6314-22c5-471f-9670-51f91d555ebc}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>_388__Longest_Absolute_File_Path</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration">

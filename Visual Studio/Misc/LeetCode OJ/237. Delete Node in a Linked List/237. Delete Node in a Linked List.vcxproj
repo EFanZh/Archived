@@ -23,7 +23,7 @@
     <ProjectGuid>{2EB077C4-B9AA-4673-B2F2-6FF2310B250F}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>_237__Delete_Node_in_a_Linked_List</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration">

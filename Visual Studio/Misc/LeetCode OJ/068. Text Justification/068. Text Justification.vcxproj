@@ -23,7 +23,7 @@
     <ProjectGuid>{96983964-5CFA-4A7E-A964-65CA929D9C34}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>_068__Text_Justification</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration">

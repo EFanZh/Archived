@@ -23,7 +23,7 @@
     <ProjectGuid>{2cf63267-5b6a-4792-80a9-b9e70d718b81}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>_373__Find_K_Pairs_with_Smallest_Sums</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration">

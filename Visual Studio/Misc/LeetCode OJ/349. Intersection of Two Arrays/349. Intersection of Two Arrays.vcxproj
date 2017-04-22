@@ -23,7 +23,7 @@
     <ProjectGuid>{54839CE5-4FCD-43CE-9680-4AB784EF35D5}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>_349__Intersection_of_Two_Arrays</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration">

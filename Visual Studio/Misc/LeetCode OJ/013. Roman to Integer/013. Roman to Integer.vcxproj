@@ -23,7 +23,7 @@
     <ProjectGuid>{BE5C31BA-6248-4171-B907-C499B6FB3330}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>_013__Roman_to_Integer</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration">

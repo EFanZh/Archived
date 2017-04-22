@@ -23,7 +23,7 @@
     <ProjectGuid>{db0ddc35-683f-4abc-af01-e6bb5632b916}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>_357__Count_Numbers_with_Unique_Digits</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration">

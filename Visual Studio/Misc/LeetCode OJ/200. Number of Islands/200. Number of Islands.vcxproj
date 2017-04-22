@@ -23,7 +23,7 @@
     <ProjectGuid>{82522406-4C5D-4255-91E6-9F92DA9CA5D5}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>_200__Number_of_Islands</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration">

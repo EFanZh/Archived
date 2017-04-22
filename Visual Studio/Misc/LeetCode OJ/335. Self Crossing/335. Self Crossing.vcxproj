@@ -23,7 +23,7 @@
     <ProjectGuid>{841D14CE-361B-4ADC-B421-7FB0C79A3830}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>_335__Self_Crossing</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration">

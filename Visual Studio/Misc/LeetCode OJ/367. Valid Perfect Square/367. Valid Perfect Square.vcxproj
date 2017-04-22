@@ -23,7 +23,7 @@
     <ProjectGuid>{5b49de63-6587-4c93-b60c-077d0393f792}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>_367__Valid_Perfect_Square</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration">

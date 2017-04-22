@@ -23,7 +23,7 @@
     <ProjectGuid>{4C9F4A0D-29FD-4F9D-874F-E62152F17669}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>_143__Reorder_List</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration">

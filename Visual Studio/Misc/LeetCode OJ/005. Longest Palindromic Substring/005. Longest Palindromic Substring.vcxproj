@@ -23,7 +23,7 @@
     <ProjectGuid>{EED5AB85-3C05-4A42-B4B4-8E0D523339D6}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>_005__Longest_Palindromic_Substring</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration">

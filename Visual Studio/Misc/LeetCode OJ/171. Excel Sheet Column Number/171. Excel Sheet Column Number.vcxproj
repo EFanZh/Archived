@@ -23,7 +23,7 @@
     <ProjectGuid>{81F817E1-1288-4697-A1EA-0F562603C0EF}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>_171__Excel_Sheet_Column_Number</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration">

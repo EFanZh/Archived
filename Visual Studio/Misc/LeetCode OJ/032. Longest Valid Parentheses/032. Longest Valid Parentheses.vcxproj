@@ -23,7 +23,7 @@
     <ProjectGuid>{7A5F00E1-FFF0-4FBA-90B7-056B3AEACCF8}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>_032__Longest_Valid_Parentheses</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration">

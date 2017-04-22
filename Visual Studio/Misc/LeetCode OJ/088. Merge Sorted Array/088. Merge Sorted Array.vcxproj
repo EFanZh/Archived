@@ -23,7 +23,7 @@
     <ProjectGuid>{310E3F86-D9D6-4D9D-AA4F-158FBC97D06C}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>_088__Merge_Sorted_Array</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration">

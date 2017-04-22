@@ -23,7 +23,7 @@
     <ProjectGuid>{B189B478-A839-4D1B-8C95-D03524DAE8D6}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>_263__Ugly_Number</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration">

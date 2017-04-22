@@ -23,7 +23,7 @@
     <ProjectGuid>{F033EEF0-74A1-4051-A8AB-1A362E82EBE8}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>_024__Swap_Nodes_in_Pairs</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration">

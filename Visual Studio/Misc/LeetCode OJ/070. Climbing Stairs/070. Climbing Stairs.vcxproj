@@ -23,7 +23,7 @@
     <ProjectGuid>{69B30EB8-4C6A-4F18-B480-68E5FCF6981F}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>_070__Climbing_Stairs</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration">

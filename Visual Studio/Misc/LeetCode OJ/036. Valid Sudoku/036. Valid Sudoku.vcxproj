@@ -23,7 +23,7 @@
     <ProjectGuid>{D433DC71-8AF2-47C6-BCF9-8559F58B7831}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>_036__Valid_Sudoku</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration">

@@ -23,7 +23,7 @@
     <ProjectGuid>{6B3A83EE-A0C7-4B41-90A1-2C711559B0C1}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>_150__Evaluate_Reverse_Polish_Notation</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration">

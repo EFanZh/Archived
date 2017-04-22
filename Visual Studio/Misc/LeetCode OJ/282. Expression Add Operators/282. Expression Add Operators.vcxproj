@@ -23,7 +23,7 @@
     <ProjectGuid>{C87B00E2-8FA5-414B-9C94-A32398C02259}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>_282__Expression_Add_Operators</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration">

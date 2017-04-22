@@ -23,7 +23,7 @@
     <ProjectGuid>{69632C2B-4918-43DB-BB53-D4A93DBA8FBC}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>_028__Implement_strStr__</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration">

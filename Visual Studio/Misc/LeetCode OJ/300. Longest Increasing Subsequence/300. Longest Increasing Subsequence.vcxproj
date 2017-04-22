@@ -23,7 +23,7 @@
     <ProjectGuid>{9D1BBD46-4E9C-4EBE-B838-CED2B4856497}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>_300__Longest_Increasing_Subsequence</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration">

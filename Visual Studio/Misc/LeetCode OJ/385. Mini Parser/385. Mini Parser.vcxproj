@@ -23,7 +23,7 @@
     <ProjectGuid>{ab38708f-896a-4064-aa3c-2bc97feda364}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>_385__Mini_Parser</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration">

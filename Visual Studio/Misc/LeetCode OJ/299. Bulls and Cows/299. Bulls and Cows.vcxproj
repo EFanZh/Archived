@@ -23,7 +23,7 @@
     <ProjectGuid>{FBE78C8A-CDF7-409E-81B3-06A96574E134}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>_299__Bulls_and_Cows</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration">

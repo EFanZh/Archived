@@ -23,7 +23,7 @@
     <ProjectGuid>{E349E0AC-7AC0-4BB0-B688-EEF5BAC4E2F9}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>_134__Gas_Station</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration">

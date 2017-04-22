@@ -23,7 +23,7 @@
     <ProjectGuid>{4ad2e2c1-070c-4c87-b2d2-b963461cbfbf}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>_384__Shuffle_an_Array</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration">

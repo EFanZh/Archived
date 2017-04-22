@@ -23,7 +23,7 @@
     <ProjectGuid>{46EF4FAB-1666-4423-97A7-459928E3912B}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>_108__Convert_Sorted_Array_to_Binary_Search_Tree</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration">

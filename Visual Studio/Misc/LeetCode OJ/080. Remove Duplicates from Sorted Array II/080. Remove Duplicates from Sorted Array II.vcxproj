@@ -23,7 +23,7 @@
     <ProjectGuid>{50D06772-EBE3-4572-AF40-BEB8C185A85D}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>_080__Remove_Duplicates_from_Sorted_Array_II</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration">

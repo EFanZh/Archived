@@ -23,7 +23,7 @@
     <ProjectGuid>{2BFF3B09-C2EF-490C-8803-C9959C2876C7}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>_341__Flatten_Nested_List_Iterator</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration">

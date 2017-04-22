@@ -23,7 +23,7 @@
     <ProjectGuid>{AF6A4FE9-14CC-4A9D-A4C3-301721232814}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>_218__The_Skyline_Problem</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration">

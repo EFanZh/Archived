@@ -23,7 +23,7 @@
     <ProjectGuid>{309E024C-F699-4D05-B7E7-31FA0BA077D7}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>_132__Palindrome_Partitioning_II</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration">

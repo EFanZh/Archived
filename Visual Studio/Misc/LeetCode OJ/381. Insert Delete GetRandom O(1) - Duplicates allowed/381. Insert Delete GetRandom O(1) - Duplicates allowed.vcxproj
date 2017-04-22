@@ -23,7 +23,7 @@
     <ProjectGuid>{948acf20-f247-42ce-a37d-be5eae8ca157}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>_381__Insert_Delete_GetRandom_O_1____Duplicates_allowed</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration">

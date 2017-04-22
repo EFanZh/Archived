@@ -23,7 +23,7 @@
     <ProjectGuid>{C87F443E-1133-41C2-85FF-A2475E2CC9C0}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>_297__Serialize_and_Deserialize_Binary_Tree</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration">

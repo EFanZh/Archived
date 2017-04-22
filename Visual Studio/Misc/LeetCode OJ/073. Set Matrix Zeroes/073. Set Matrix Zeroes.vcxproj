@@ -23,7 +23,7 @@
     <ProjectGuid>{B6CA8B40-E954-4D57-A45C-60FB7410CAC6}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>_073__Set_Matrix_Zeroes</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration">

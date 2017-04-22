@@ -23,7 +23,7 @@
     <ProjectGuid>{6d6b0f34-5565-495e-b147-d25912976615}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>_363__Max_Sum_of_Rectangle_No_Larger_Than_K</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration">

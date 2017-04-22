@@ -23,7 +23,7 @@
     <ProjectGuid>{D2FC4051-1EAA-4BB1-A6B9-E28F2B318507}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>_232__Implement_Queue_using_Stacks</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration">

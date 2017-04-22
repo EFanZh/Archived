@@ -23,7 +23,7 @@
     <ProjectGuid>{A256C3FA-8884-41FA-AD00-A6BDC757BD38}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>_215__Kth_Largest_Element_in_an_Array</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration">

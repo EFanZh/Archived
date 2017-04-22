@@ -23,7 +23,7 @@
     <ProjectGuid>{A662FDCD-2D96-4E6C-B230-438E22AE4177}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>_115__Distinct_Subsequences</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration">

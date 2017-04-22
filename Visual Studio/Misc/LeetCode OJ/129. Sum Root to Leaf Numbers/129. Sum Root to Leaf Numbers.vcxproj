@@ -23,7 +23,7 @@
     <ProjectGuid>{B7A64822-CE37-4C18-9812-5E134D4B295F}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>_129__Sum_Root_to_Leaf_Numbers</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration">

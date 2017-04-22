@@ -23,7 +23,7 @@
     <ProjectGuid>{97D5AE71-2FF4-4370-81E2-B06884C2FE9B}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>_327__Count_of_Range_Sum</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration">

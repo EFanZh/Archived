@@ -23,7 +23,7 @@
     <ProjectGuid>{BF34C83C-B3B7-4C31-B537-A237E413C197}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>_328__Odd_Even_Linked_List</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration">

@@ -23,7 +23,7 @@
     <ProjectGuid>{F2C5D0C2-94D6-477F-86D8-E6DB05B91813}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>_124__Binary_Tree_Maximum_Path_Sum</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration">

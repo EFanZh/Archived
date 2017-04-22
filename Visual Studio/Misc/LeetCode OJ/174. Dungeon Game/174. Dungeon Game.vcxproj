@@ -23,7 +23,7 @@
     <ProjectGuid>{E7FBCC25-59E9-476B-B887-324944FCA073}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>_174__Dungeon_Game</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration">

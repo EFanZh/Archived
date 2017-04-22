@@ -23,7 +23,7 @@
     <ProjectGuid>{27cf2121-e46c-4161-982e-bce02f252ba1}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>_365__Water_and_Jug_Problem</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration">

@@ -23,7 +23,7 @@
     <ProjectGuid>{e9d4b93c-7623-42dd-8197-bfe955e48cce}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>_371__Sum_of_Two_Integers</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration">

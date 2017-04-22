@@ -23,7 +23,7 @@
     <ProjectGuid>{34B561A0-4DA2-4E5E-9171-E118A9516C60}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>_268__Missing_Number</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration">

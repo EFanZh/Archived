@@ -23,7 +23,7 @@
     <ProjectGuid>{8C10DABC-008C-45D2-9650-8D3BDFE5EADA}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>_038__Count_and_Say</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration">

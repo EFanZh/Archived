@@ -23,7 +23,7 @@
     <ProjectGuid>{3fe43218-66a1-47a4-bbb5-5b6df6c327da}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>_368__Largest_Divisible_Subset</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration">

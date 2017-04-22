@@ -23,7 +23,7 @@
     <ProjectGuid>{C01CAF60-5008-4053-8B44-D08A48C9A64E}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>_087__Scramble_String</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration">

@@ -23,7 +23,7 @@
     <ProjectGuid>{65342F66-C48C-402A-B64B-E2767A0EB03E}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>_004__Median_of_Two_Sorted_Arrays</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration">

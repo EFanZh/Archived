@@ -23,7 +23,7 @@
     <ProjectGuid>{E24C221A-2EA4-4AB5-A8CA-353EC2E4F7E4}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>_046__Permutations</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration">

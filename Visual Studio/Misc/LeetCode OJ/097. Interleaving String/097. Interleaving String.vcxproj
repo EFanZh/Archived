@@ -23,7 +23,7 @@
     <ProjectGuid>{F2BF499E-37C4-45B8-B0A1-C3EA7047C52E}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>_097__Interleaving_String</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration">

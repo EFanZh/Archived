@@ -23,7 +23,7 @@
     <ProjectGuid>{dd699f54-efc4-49a9-8f0f-3e17ba26cc54}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>_378__Kth_Smallest_Element_in_a_Sorted_Matrix</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration">

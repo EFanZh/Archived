@@ -23,7 +23,7 @@
     <ProjectGuid>{130043D4-2851-4C69-8A0F-A798494B2FA5}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>_021__Merge_Two_Sorted_Lists</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration">

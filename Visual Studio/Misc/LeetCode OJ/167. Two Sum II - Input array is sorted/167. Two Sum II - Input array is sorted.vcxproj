@@ -23,7 +23,7 @@
     <ProjectGuid>{b08a327e-2c4d-4441-b751-1b0ee98bb60c}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>_167__Two_Sum_II___Input_array_is_sorted</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration">

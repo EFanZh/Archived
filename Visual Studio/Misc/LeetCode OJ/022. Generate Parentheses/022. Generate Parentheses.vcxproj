@@ -23,7 +23,7 @@
     <ProjectGuid>{D61DA6CE-EAEA-4702-871F-461AC17CBE45}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>_022__Generate_Parentheses</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration">

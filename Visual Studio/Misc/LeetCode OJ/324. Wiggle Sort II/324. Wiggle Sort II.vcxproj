@@ -23,7 +23,7 @@
     <ProjectGuid>{C3050B72-21E6-4933-80B1-9812836996CC}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>_324__Wiggle_Sort_II</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration">

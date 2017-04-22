@@ -23,7 +23,7 @@
     <ProjectGuid>{BA10606A-D5F2-43E2-B684-FCB131EEC4D5}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>_206__Reverse_Linked_List</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration">

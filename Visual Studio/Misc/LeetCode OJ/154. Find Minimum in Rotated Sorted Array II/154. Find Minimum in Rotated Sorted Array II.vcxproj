@@ -23,7 +23,7 @@
     <ProjectGuid>{23886A3C-4990-4DEA-9D9F-488145F8BB09}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>_154__Find_Minimum_in_Rotated_Sorted_Array_II</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration">

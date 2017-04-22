@@ -23,7 +23,7 @@
     <ProjectGuid>{28A0D532-0713-4368-BF9D-2C8C4C4BFC3D}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>_019__Remove_Nth_Node_From_End_of_List</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration">

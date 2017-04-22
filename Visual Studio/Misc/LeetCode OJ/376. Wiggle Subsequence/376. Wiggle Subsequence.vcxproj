@@ -23,7 +23,7 @@
     <ProjectGuid>{fc7884f3-5fb2-41f3-91a3-cb2f59e13556}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>_376__Wiggle_Subsequence</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration">

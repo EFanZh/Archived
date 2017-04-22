@@ -23,7 +23,7 @@
     <ProjectGuid>{92EDD1C2-1B27-4E82-B4F8-FCC03B9D0F2A}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>_126__Word_Ladder_II</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration">

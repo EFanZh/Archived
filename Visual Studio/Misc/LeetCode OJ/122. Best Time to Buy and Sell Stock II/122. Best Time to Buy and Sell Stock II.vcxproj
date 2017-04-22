@@ -23,7 +23,7 @@
     <ProjectGuid>{E957A5DB-29E7-4602-A2E5-AE127A09C6D3}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>_122__Best_Time_to_Buy_and_Sell_Stock_II</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration">

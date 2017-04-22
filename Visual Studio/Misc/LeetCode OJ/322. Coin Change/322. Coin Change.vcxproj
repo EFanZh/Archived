@@ -23,7 +23,7 @@
     <ProjectGuid>{5179CE75-2EB9-4A05-BF6B-B39C3273B651}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>_322__Coin_Change</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration">

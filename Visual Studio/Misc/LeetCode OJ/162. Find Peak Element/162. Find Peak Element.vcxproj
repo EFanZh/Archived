@@ -23,7 +23,7 @@
     <ProjectGuid>{02138817-2785-4F12-AC4D-0225D3F9EE9E}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>_162__Find_Peak_Element</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration">

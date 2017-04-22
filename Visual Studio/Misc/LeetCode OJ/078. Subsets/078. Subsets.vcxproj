@@ -23,7 +23,7 @@
     <ProjectGuid>{5CF823FE-8412-4367-80F1-171082D1B703}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>_078__Subsets</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration">

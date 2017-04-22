@@ -23,7 +23,7 @@
     <ProjectGuid>{BA8CDD31-5649-4365-BD33-7251BA1B53E4}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>_219__Contains_Duplicate_II</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration">

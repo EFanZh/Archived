@@ -23,7 +23,7 @@
     <ProjectGuid>{F041B913-E83F-4E4F-B5EC-E43DD0FFF7AB}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>_166__Fraction_to_Recurring_Decimal</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration">

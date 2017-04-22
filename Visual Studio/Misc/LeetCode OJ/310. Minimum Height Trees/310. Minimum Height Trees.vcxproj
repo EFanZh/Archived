@@ -23,7 +23,7 @@
     <ProjectGuid>{DEBCE496-2704-4C2D-B2DD-44FB54C7056C}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>_310__Minimum_Height_Trees</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration">

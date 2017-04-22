@@ -23,7 +23,7 @@
     <ProjectGuid>{3B56B7F7-132C-4856-912A-1E4522A99551}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>_224__Basic_Calculator</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration">

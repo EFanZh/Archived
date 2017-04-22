@@ -23,7 +23,7 @@
     <ProjectGuid>{FE18BD3F-64AB-4BD7-9F1E-C9347365D511}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>_084__Largest_Rectangle_in_Histogram</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration">

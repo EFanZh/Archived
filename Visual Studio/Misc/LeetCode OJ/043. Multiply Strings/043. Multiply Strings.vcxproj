@@ -23,7 +23,7 @@
     <ProjectGuid>{00195302-76A9-4926-9DD0-9D4FDB850F09}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>_043__Multiply_Strings</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration">

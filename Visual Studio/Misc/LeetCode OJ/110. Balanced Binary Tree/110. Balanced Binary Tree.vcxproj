@@ -23,7 +23,7 @@
     <ProjectGuid>{9E1B46D4-FAE0-4BEE-8E08-BFFDF785EAC6}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>_110__Balanced_Binary_Tree</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration">

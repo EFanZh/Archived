@@ -23,7 +23,7 @@
     <ProjectGuid>{E63D2C8B-4F72-40F1-9606-450CFB59CDF9}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>_207__Course_Schedule</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration">

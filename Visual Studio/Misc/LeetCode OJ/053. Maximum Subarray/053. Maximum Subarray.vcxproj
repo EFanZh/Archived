@@ -23,7 +23,7 @@
     <ProjectGuid>{008171F8-E204-49AC-B701-ACCD017065A6}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>_053__Maximum_Subarray</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration">

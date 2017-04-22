@@ -23,7 +23,7 @@
     <ProjectGuid>{B03C7B95-FFB0-4594-9362-E5CC6FB5BF75}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>_173__Binary_Search_Tree_Iterator</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration">

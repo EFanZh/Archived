@@ -23,7 +23,7 @@
     <ProjectGuid>{81CB8E23-2247-41C3-81E0-95E4F331EE51}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>_061__Rotate_List</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration">

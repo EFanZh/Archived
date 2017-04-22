@@ -23,7 +23,7 @@
     <ProjectGuid>{EDD825A8-E1F0-44B1-9FF4-D0B7C26824DB}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>_330__Patching_Array</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration">

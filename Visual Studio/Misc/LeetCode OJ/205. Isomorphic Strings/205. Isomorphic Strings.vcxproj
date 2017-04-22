@@ -23,7 +23,7 @@
     <ProjectGuid>{C11A11B1-98D2-43D2-97B3-2CBC96987A41}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>_205__Isomorphic_Strings</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration">

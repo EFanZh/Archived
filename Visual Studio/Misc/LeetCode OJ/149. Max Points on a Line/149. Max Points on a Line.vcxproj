@@ -23,7 +23,7 @@
     <ProjectGuid>{A373B455-29DD-466E-A23D-C4F49BC7BF5B}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>_149__Max_Points_on_a_Line</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration">

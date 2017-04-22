@@ -23,7 +23,7 @@
     <ProjectGuid>{79795B2A-960D-4126-AADF-4F5CD504E23F}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>_010__Regular_Expression_Matching</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration">

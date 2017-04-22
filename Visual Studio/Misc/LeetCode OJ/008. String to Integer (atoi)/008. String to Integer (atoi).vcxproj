@@ -23,7 +23,7 @@
     <ProjectGuid>{D80B9C82-203F-47EE-B629-F1E59B91362A}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>_008__String_to_Integer__atoi_</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration">

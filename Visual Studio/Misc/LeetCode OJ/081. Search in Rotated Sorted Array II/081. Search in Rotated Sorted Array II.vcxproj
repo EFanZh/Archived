@@ -23,7 +23,7 @@
     <ProjectGuid>{8F280275-53D1-4D07-A695-546238BF8C21}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>_081__Search_in_Rotated_Sorted_Array_II</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration">

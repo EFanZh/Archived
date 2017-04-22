@@ -23,7 +23,7 @@
     <ProjectGuid>{6BDF0990-D29E-417E-99F7-9EF515F2AFAF}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>_071__Simplify_Path</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration">

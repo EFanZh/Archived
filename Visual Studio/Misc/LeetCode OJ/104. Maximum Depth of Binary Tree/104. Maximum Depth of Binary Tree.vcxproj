@@ -23,7 +23,7 @@
     <ProjectGuid>{0BADCAB6-A276-4BFE-9051-F3A19956090F}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>_104__Maximum_Depth_of_Binary_Tree</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration">

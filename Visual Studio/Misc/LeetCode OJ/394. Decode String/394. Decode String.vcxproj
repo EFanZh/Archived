@@ -23,7 +23,7 @@
     <ProjectGuid>{a5451f8e-5a9a-42e6-a69d-38af2a3cd308}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>_394__Decode_String</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration">

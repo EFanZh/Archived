@@ -23,7 +23,7 @@
     <ProjectGuid>{B3B77F7B-5833-41B7-946E-4395F99DEC28}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>_035__Search_Insert_Position</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration">

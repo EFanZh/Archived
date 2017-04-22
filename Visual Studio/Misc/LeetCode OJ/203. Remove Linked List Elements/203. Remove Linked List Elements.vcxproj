@@ -23,7 +23,7 @@
     <ProjectGuid>{789A9424-4CAA-4D34-9BEA-FEB82FB8B9E1}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>_203__Remove_Linked_List_Elements</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration">

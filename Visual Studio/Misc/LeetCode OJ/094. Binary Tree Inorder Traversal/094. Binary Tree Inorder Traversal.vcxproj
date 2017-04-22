@@ -23,7 +23,7 @@
     <ProjectGuid>{20F62DC1-3813-478C-973C-CFE2964DCF4F}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>_094__Binary_Tree_Inorder_Traversal</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration">

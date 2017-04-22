@@ -23,7 +23,7 @@
     <ProjectGuid>{E1986B3A-0D41-4516-BA57-6579D68A6A4D}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>_303__Range_Sum_Query___Immutable</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration">

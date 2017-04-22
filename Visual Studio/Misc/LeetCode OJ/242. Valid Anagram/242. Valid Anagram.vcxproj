@@ -23,7 +23,7 @@
     <ProjectGuid>{A259DEF6-5CB9-4EBE-AC81-EDA425F4D800}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>_242__Valid_Anagram</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration">

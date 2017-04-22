@@ -23,7 +23,7 @@
     <ProjectGuid>{d26ffbbb-de8e-4ccc-a2a7-cfdd796fb6be}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>_390__Elimination_Game</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration">

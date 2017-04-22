@@ -23,7 +23,7 @@
     <ProjectGuid>{540C276F-195A-47A1-9C15-3757BF649599}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>_187__Repeated_DNA_Sequences</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration">

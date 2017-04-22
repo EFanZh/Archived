@@ -23,7 +23,7 @@
     <ProjectGuid>{5D95A66D-2F34-44CB-A8F5-4AFC349D2C02}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>_239__Sliding_Window_Maximum</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration">

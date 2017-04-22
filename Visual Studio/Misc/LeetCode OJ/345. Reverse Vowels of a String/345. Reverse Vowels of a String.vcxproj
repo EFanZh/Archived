@@ -23,7 +23,7 @@
     <ProjectGuid>{BC6549F2-A428-44E5-8125-ADA625454F6A}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>_345__Reverse_Vowels_of_a_String</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration">

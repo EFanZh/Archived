@@ -23,7 +23,7 @@
     <ProjectGuid>{76CB0F81-010C-4A45-9775-AFC9EF3D9EC9}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>_116__Populating_Next_Right_Pointers_in_Each_Node</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration">

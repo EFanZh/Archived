@@ -23,7 +23,7 @@
     <ProjectGuid>{f45a28fa-ca81-4f3b-a12a-1148a22ddba2}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>_391__Perfect_Rectangle</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration">

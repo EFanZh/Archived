@@ -23,7 +23,7 @@
     <ProjectGuid>{CE7FB7E8-0191-4E42-B930-EABAECCF77D7}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>_257__Binary_Tree_Paths</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration">
