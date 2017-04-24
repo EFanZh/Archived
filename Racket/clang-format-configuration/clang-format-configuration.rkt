@@ -1,14 +1,16 @@
 #lang typed/racket
 
 (require/typed yaml
-               [read-yaml (-> Input-Port Any)]
+               [read-yaml (->* (Input-Port)
+                               (#:allow-undefined? Boolean)
+                               Any)]
                [write-yaml* (->* ((Listof Any))
                                  (#:style (U 'block 'flow 'best)
                                   #:sort-mapping (U (-> Any Any Boolean) False)
                                   #:sort-mapping-key (-> (Pairof Any Any) Any))
                                  Void)])
 
-(define *clang-format-executable* "clang-format")
+(define *clang-format-executable* (cast (find-executable-path "clang-format") Path))
 
 (define *my-options* : (Listof Option)
   '((AccessModifierOffset . -4)
@@ -204,8 +206,8 @@
                     [_ (get-value value)])])
       (cast (cons symbol-key value) Option)))
   (let* ([clang-format-process (process* *clang-format-executable*
-                                         (format "-style=~a" style)
-                                         "-dump-config")]
+                                         "-dump-config"
+                                         (format "-style=~a" style))]
          [stdout (first clang-format-process)]
          [content (cast (read-yaml stdout) (HashTable String Any))])
     (for/list : (Listof Option) ([(key value) (in-hash content)])
