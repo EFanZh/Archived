@@ -3,9 +3,9 @@ using System.Linq;
 
 namespace Core
 {
-    internal class TheMatrixRainDrop
+    internal class TheMatrixRaindrop
     {
-        public TheMatrixRainDrop(double position, double speed, IEnumerable<char> characters)
+        public TheMatrixRaindrop(double position, double speed, IEnumerable<char> characters)
         {
             Position = position;
             Speed = speed;
@@ -21,6 +21,7 @@ namespace Core
         public double Speed
         {
             get;
+            private set;
         }
 
         public char[] Characters
@@ -29,5 +30,21 @@ namespace Core
         }
 
         public int Size => Characters.Length;
+
+        public void Reset(double position, double speed, IEnumerable<char> characters)
+        {
+            Position = position;
+            Speed = speed;
+
+            using (var enumerator = characters.GetEnumerator())
+            {
+                for (var i = 0; i < Size; i++)
+                {
+                    enumerator.MoveNext();
+
+                    Characters[i] = enumerator.Current;
+                }
+            }
+        }
     }
 }

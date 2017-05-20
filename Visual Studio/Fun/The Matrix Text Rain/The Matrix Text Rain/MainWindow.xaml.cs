@@ -71,14 +71,14 @@ namespace TheMatrixTextRain
             };
         }
 
-        private void DrawRainDrop(DrawingContext drawingContext, int column, TheMatrixRainDrop rainDrop)
+        private void DrawRaindrop(DrawingContext drawingContext, int column, TheMatrixRaindrop raindrop)
         {
-            for (var row = 0; row < rainDrop.Size; row++)
+            for (var row = 0; row < raindrop.Size; row++)
             {
-                var text = rainDrop.Characters[row].ToString();
+                var text = raindrop.Characters[row].ToString();
                 var x = cellWidth / 2.0f + cellWidth * column;
-                var y = cellHeight * ((int)rainDrop.Position - row);
-                var position = (row + rainDrop.Position % 1.0) / rainDrop.Size;
+                var y = cellHeight * ((int)raindrop.Position - row);
+                var position = (row + raindrop.Position % 1.0) / raindrop.Size;
                 var brush = new SolidColorBrush(GenerateColor(tailColor1, tailColor2,
                                                               1.0 - Math.Pow(1.0 - position, 1.6)));
 
@@ -93,10 +93,7 @@ namespace TheMatrixTextRain
             var currentTime = (DateTime.Now - startTime).TotalSeconds;
             var columns = (int)(view.ActualWidth / cellWidth);
             var rows = (int)(view.ActualHeight / cellHeight);
-
-            backend.SetSize(columns, rows);
-
-            var logicalView = backend.GetView(currentTime);
+            var logicalView = backend.GetView(columns, rows, currentTime);
 
             using (var drawingContext = canvas.RenderOpen())
             {
@@ -107,9 +104,9 @@ namespace TheMatrixTextRain
 
                 for (var column = 0; column < columns; column++)
                 {
-                    foreach (var rainDrop in logicalView[column])
+                    foreach (var raindrop in logicalView[column])
                     {
-                        DrawRainDrop(drawingContext, column, rainDrop);
+                        DrawRaindrop(drawingContext, column, raindrop);
                     }
                 }
             }

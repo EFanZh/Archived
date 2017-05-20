@@ -56,14 +56,14 @@ namespace TheOldMatrixTextRain
                                   GenerateColorComponent(from.B, to.B, position));
         }
 
-        private void DrawRainDrop(Graphics graphics, int column, TheMatrixRainDrop rainDrop)
+        private void DrawRaindrop(Graphics graphics, int column, TheMatrixRaindrop raindrop)
         {
-            for (var row = 0; row < rainDrop.Size; row++)
+            for (var row = 0; row < raindrop.Size; row++)
             {
-                var text = rainDrop.Characters[row].ToString();
+                var text = raindrop.Characters[row].ToString();
                 var x = cellWidth / 2.0f + cellWidth * column;
-                var y = cellHeight * ((int)rainDrop.Position - row);
-                var position = (row + rainDrop.Position % 1.0) / rainDrop.Size;
+                var y = cellHeight * ((int)raindrop.Position - row);
+                var position = (row + raindrop.Position % 1.0) / raindrop.Size;
                 var brush = new SolidBrush(GenerateColor(tailColor1, tailColor2, 1.0 - Math.Pow(1.0 - position, 1.6)));
 
                 if (row == 0)
@@ -82,10 +82,7 @@ namespace TheOldMatrixTextRain
             var currentTime = (DateTime.Now - startTime).TotalSeconds;
             var columns = (int)(this.ClientSize.Width / cellWidth);
             var rows = (int)(this.ClientSize.Height / cellHeight);
-
-            backend.SetSize(columns, rows);
-
-            var view = backend.GetView(currentTime);
+            var view = backend.GetView(columns, rows, currentTime);
 
             e.Graphics.CompositingQuality = CompositingQuality.HighQuality;
             e.Graphics.PixelOffsetMode = PixelOffsetMode.HighQuality;
@@ -94,9 +91,9 @@ namespace TheOldMatrixTextRain
 
             for (var column = 0; column < columns; column++)
             {
-                foreach (var rainDrop in view[column])
+                foreach (var raindrop in view[column])
                 {
-                    DrawRainDrop(e.Graphics, column, rainDrop);
+                    DrawRaindrop(e.Graphics, column, raindrop);
                 }
             }
 
@@ -105,8 +102,6 @@ namespace TheOldMatrixTextRain
             lastTime = currentTime;
 
             this.Invalidate();
-
-            GC.Collect();
         }
 
         private static string GenerateUnicodeRange(params ValueTuple<int, int>[] ranges)
