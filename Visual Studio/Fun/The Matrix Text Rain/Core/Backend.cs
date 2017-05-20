@@ -147,24 +147,15 @@ namespace Core
                 RecycleRaindrop(sharedRemoveList.Pop());
             }
 
-            while (true)
+            for (var raindropBirthTime = lastViewTime + GetTimeToBirth(); raindropBirthTime <= currentTime; raindropBirthTime += GetTimeToBirth())
             {
-                var raindropBirthTime = lastViewTime + GetTimeToBirth();
+                var speed = GenerateSpeedValue();
+                var position = speed * (currentTime - raindropBirthTime);
+                var size = random.Next(minimalRaindropSize, maximalRaindropSize);
 
-                if (raindropBirthTime <= currentTime)
+                if (position - size < rows)
                 {
-                    var speed = GenerateSpeedValue();
-                    var position = speed * (currentTime - raindropBirthTime);
-                    var size = random.Next(minimalRaindropSize, maximalRaindropSize);
-
-                    if (position - size < rows)
-                    {
-                        column.Add(CreateRaindrop(position, speed, size));
-                    }
-                }
-                else
-                {
-                    break;
+                    column.Add(CreateRaindrop(position, speed, size));
                 }
             }
         }

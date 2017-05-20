@@ -61,13 +61,12 @@ namespace TheMatrixTextRain
                                    GenerateColorComponent(from.ScB, to.ScB, position));
         }
 
-        private FormattedText CreateCharacter(string text, Typeface typeface, Brush brush)
+        private static FormattedText CreateCharacter(string text, Typeface typeface, Brush brush)
         {
-            return new FormattedText(text, CultureInfo.InvariantCulture, FlowDirection.LeftToRight, typeface, 18.0,
+            return new FormattedText(text, CultureInfo.InvariantCulture, FlowDirection.LeftToRight, typeface, 24.0,
                                      brush, 96.0)
             {
-                TextAlignment =
-                           TextAlignment.Center
+                TextAlignment = TextAlignment.Center
             };
         }
 
