@@ -24,7 +24,7 @@ namespace TheOldMatrixTextRain
         private const float cellHeight = 24.0f;
         private readonly Font headFont = new Font("Courier New", 18.0f, FontStyle.Bold);
         private readonly Font tailFont = new Font("Courier New", 18.0f, FontStyle.Bold);
-        private double lastTime = 0.0;
+        private double lastFrameTime = 0.0;
         private readonly StringFormat stringFormat = new StringFormat() { Alignment = StringAlignment.Center };
         private readonly Brush headBrush = new SolidBrush(Color.FromArgb(255, 80, 255, 80));
         private readonly Color tailColor1 = Color.FromArgb(255, 0, 200, 0);
@@ -82,7 +82,7 @@ namespace TheOldMatrixTextRain
             var currentTime = (DateTime.Now - startTime).TotalSeconds;
             var columns = (int)(this.ClientSize.Width / cellWidth);
             var rows = (int)(this.ClientSize.Height / cellHeight);
-            var view = backend.GetView(columns, rows, currentTime);
+            var view = backend.GetView(columns, rows, currentTime - lastFrameTime);
 
             e.Graphics.CompositingQuality = CompositingQuality.HighQuality;
             e.Graphics.PixelOffsetMode = PixelOffsetMode.HighQuality;
@@ -97,9 +97,9 @@ namespace TheOldMatrixTextRain
                 }
             }
 
-            this.Text = $@"{Application.ProductName} - Frame Rate: {1.0 / (currentTime - lastTime)}";
+            this.Text = $@"{Application.ProductName} - Frame Rate: {1.0 / (currentTime - lastFrameTime)}";
 
-            lastTime = currentTime;
+            lastFrameTime = currentTime;
 
             this.Invalidate();
         }

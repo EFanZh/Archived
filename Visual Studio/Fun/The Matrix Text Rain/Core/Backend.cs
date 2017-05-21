@@ -15,7 +15,6 @@ namespace Core
         private readonly int maximalRaindropSize;
         private readonly string characterCandidates;
         private int rows = -1;
-        private double lastViewTime;
         private readonly IDictionary<int, Stack<TheMatrixRaindrop>> raindropRecycleBin = new Dictionary<int, Stack<TheMatrixRaindrop>>();
         private readonly Stack<TheMatrixRaindrop> sharedRemoveList = new Stack<TheMatrixRaindrop>();
 
@@ -130,7 +129,7 @@ namespace Core
             }
         }
 
-        private void UpdateColumn(List<TheMatrixRaindrop> column, double currentTime, double timeElapsed, double mutationProbability)
+        private void UpdateColumn(List<TheMatrixRaindrop> column, double timeElapsed, double mutationProbability)
         {
             foreach (var raindrop in column)
             {
@@ -147,10 +146,10 @@ namespace Core
                 RecycleRaindrop(sharedRemoveList.Pop());
             }
 
-            for (var raindropBirthTime = lastViewTime + GetTimeToBirth(); raindropBirthTime <= currentTime; raindropBirthTime += GetTimeToBirth())
+            for (var raindropBirthTime = GetTimeToBirth(); raindropBirthTime <= timeElapsed; raindropBirthTime += GetTimeToBirth())
             {
                 var speed = GenerateSpeedValue();
-                var position = speed * (currentTime - raindropBirthTime);
+                var position = speed * (timeElapsed - raindropBirthTime);
                 var size = random.Next(minimalRaindropSize, maximalRaindropSize);
 
                 if (position - size < rows)
@@ -160,7 +159,7 @@ namespace Core
             }
         }
 
-        public IReadOnlyList<IReadOnlyList<TheMatrixRaindrop>> GetView(int columns, int rows, double time)
+        public IReadOnlyList<IReadOnlyList<TheMatrixRaindrop>> GetView(int columns, int rows, double timeEllapsed)
         {
             while (rainColumns.Count < columns)
             {
@@ -175,15 +174,12 @@ namespace Core
 
             this.rows = rows;
 
-            var timeEllapsed = time - lastViewTime;
             var mutationProbability = 1.0 - Math.Pow(2.0, -timeEllapsed / λMutation);
 
             foreach (var rainColumn in rainColumns)
             {
-                UpdateColumn(rainColumn, time, timeEllapsed, mutationProbability);
+                UpdateColumn(rainColumn, timeEllapsed, mutationProbability);
             }
-
-            lastViewTime = time;
 
             return rainColumns;
         }

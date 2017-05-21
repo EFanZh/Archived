@@ -27,7 +27,7 @@ namespace TheMatrixTextRain
         private const float cellHeight = 24.0f;
         private readonly Typeface headTypeface = new Typeface("Courier New Bold");
         private readonly Typeface tailTypeface = new Typeface("Courier New Bold");
-        private double lastTime = 0.0;
+        private double lastFrameTime = 0.0;
         private readonly Brush headBrush = new SolidColorBrush(Color.FromScRgb(1.0f, 0.3f, 1.0f, 0.3f));
         private readonly Color tailColor1 = Color.FromScRgb(1.0f, 0.0f, 0.8f, 0.0f);
         private readonly Color tailColor2 = Color.FromScRgb(0.0f, 0.0f, 0.8f, 0.0f);
@@ -92,7 +92,7 @@ namespace TheMatrixTextRain
             var currentTime = (DateTime.Now - startTime).TotalSeconds;
             var columns = (int)(view.ActualWidth / cellWidth);
             var rows = (int)(view.ActualHeight / cellHeight);
-            var logicalView = backend.GetView(columns, rows, currentTime);
+            var logicalView = backend.GetView(columns, rows, currentTime - lastFrameTime);
 
             using (var drawingContext = canvas.RenderOpen())
             {
@@ -111,9 +111,9 @@ namespace TheMatrixTextRain
             }
 
             this.Title = $"Whatever - Size: {view.ActualWidth} × {view.ActualHeight}, " +
-                         $"Frame Rate: {1.0 / (currentTime - lastTime)}";
+                         $"Frame Rate: {1.0 / (currentTime - lastFrameTime)}";
 
-            lastTime = currentTime;
+            lastFrameTime = currentTime;
         }
 
         private static string GenerateUnicodeRange(params ValueTuple<int, int>[] ranges)
