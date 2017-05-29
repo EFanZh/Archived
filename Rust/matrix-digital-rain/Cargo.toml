@@ -1,0 +1,8 @@
+[package]
+name = "matrix-digital-rain"
+version = "0.1.0"
+authors = ["EFanZh <efanzh@gmail.com>"]
+
+[dependencies]
+user32-sys = "*"
+winapi = "*"
