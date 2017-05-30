@@ -22,8 +22,8 @@ extern "system" fn initial_window_proc(h_wnd: HWND,
 
             window.set_handle(h_wnd);
 
-            SetWindowLongPtrW(h_wnd, GWLP_USERDATA, window_pointer as LONG_PTR);
-            SetWindowLongPtrW(h_wnd, GWLP_WNDPROC, window_proc as LONG_PTR);
+            SetWindowLongPtrW(h_wnd, GWLP_USERDATA, window_pointer as _);
+            SetWindowLongPtrW(h_wnd, GWLP_WNDPROC, window_proc as _);
 
             return window.window_proc(u_msg, w_param, l_param);
 
@@ -54,7 +54,7 @@ impl WindowClass {
         let class_name = to_utf_16("Main Window");
 
         let parameters = WNDCLASSEXW {
-            cbSize: size_of::<WNDCLASSEXW>() as UINT,
+            cbSize: size_of::<WNDCLASSEXW>() as _,
             style: 0,
             lpfnWndProc: Some(initial_window_proc),
             cbClsExtra: 0,
@@ -83,7 +83,7 @@ impl WindowClass {
 
         unsafe {
             let handle = CreateWindowExW(0,
-                                         self.handle as LPCWSTR,
+                                         self.handle as _,
                                          window_title.as_ptr(),
                                          WS_OVERLAPPEDWINDOW | WS_VISIBLE,
                                          CW_USEDEFAULT,
@@ -93,7 +93,7 @@ impl WindowClass {
                                          null_mut(),
                                          null_mut(),
                                          null_mut(),
-                                         result.as_mut() as *mut Window as LPVOID);
+                                         result.as_mut() as *mut Window as _);
 
             debug_assert!(handle != null_mut());
         }

@@ -88,7 +88,7 @@ impl Window {
 
             debug_assert!(result != 0);
 
-            return ((rect.right - rect.left) as u32, (rect.bottom - rect.top) as u32);
+            return ((rect.right - rect.left) as _, (rect.bottom - rect.top) as _);
         }
     }
 }

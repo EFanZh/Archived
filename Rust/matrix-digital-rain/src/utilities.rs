@@ -12,7 +12,7 @@ pub fn message_loop() -> i32 {
             debug_assert!(result != -1);
 
             if result == 0 {
-                return msg.wParam as i32;
+                return msg.wParam as _;
             }
 
             TranslateMessage(&mut msg);
