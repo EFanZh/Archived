@@ -92,7 +92,7 @@ impl Window {
             self.render_target.BeginDraw();
         }
 
-        Window::draw_scene(&mut *self.render_target, &self.configuration);
+        Window::draw_scene(&mut self.render_target, &self.configuration);
 
         unsafe {
             let mut _tag_1 = uninitialized();
