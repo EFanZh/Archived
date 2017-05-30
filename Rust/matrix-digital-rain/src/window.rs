@@ -2,23 +2,43 @@ use std::mem::*;
 use std::ptr::*;
 use direct2d::*;
 use direct2d::comptr::*;
-use direct2d::math::*;
 use direct2d::render_target::*;
 use user32::*;
 use winapi::*;
 
+struct Configuration {
+    background_color: D2D1_COLOR_F,
+}
+
+impl Configuration {
+    pub fn new() -> Configuration {
+        return Configuration {
+            background_color: D2D1_COLOR_F {
+                r: 0.0,
+                g: 0.0,
+                b: 0.0,
+                a: 0.0,
+            },
+        };
+    }
+}
+
 pub struct Window {
     handle: HWND,
     d2d_factory: Factory,
-    d2d_render_target: Option<RenderTarget>,
+    render_target: ComPtr<ID2D1HwndRenderTarget>,
+    configuration: Configuration,
 }
 
 impl Window {
     pub fn new() -> Window {
+        let factory = Factory::new().unwrap();
+
         return Window {
             handle: null_mut(),
-            d2d_factory: Factory::new().unwrap(),
-            d2d_render_target: None,
+            d2d_factory: factory,
+            render_target: ComPtr::new(),
+            configuration: Configuration::new(),
         };
     }
 
@@ -39,10 +59,13 @@ impl Window {
     }
 
     fn on_create(&mut self) -> LRESULT {
-        self.d2d_render_target =
-            Some(self.d2d_factory
-                     .create_render_target(WindowRenderTargetBacking::new(self))
-                     .unwrap());
+        let render_target = self.d2d_factory
+            .create_render_target(WindowRenderTargetBacking::new(self))
+            .unwrap();
+
+        unsafe {
+            self.render_target = render_target.hwnd_rt().unwrap();
+        }
 
         return 0;
     }
@@ -56,27 +79,28 @@ impl Window {
     }
 
     fn on_paint(&mut self) -> LRESULT {
-        debug_assert!(self.d2d_render_target.is_some());
+        debug_assert!(!self.render_target.is_null());
 
         let (width, height) = self.get_client_size();
-        let render_target = self.d2d_render_target.as_mut().unwrap();
 
         unsafe {
-            let mut hwnd_render_target = render_target.hwnd_rt().unwrap();
-
-            hwnd_render_target.Resize(&D2D1_SIZE_U {
+            self.render_target.Resize(&D2D1_SIZE_U {
                                           width: width,
                                           height: height,
                                       });
+
+            self.render_target.BeginDraw();
         }
 
-        render_target.begin_draw();
+        Window::draw_scene(&mut *self.render_target, &self.configuration);
 
-        render_target.clear(&ColorF::uint_rgb(0x00000000, 1.0f32));
+        unsafe {
+            let mut _tag_1 = uninitialized();
+            let mut _tag_2 = uninitialized();
+            let result = self.render_target.EndDraw(&mut _tag_1, &mut _tag_2);
 
-        let result = render_target.end_draw();
-
-        debug_assert!(result.is_ok());
+            debug_assert!(SUCCEEDED(result));
+        }
 
         return 0;
     }
@@ -89,6 +113,12 @@ impl Window {
             debug_assert!(result != 0);
 
             return ((rect.right - rect.left) as _, (rect.bottom - rect.top) as _);
+        }
+    }
+
+    fn draw_scene(render_target: &mut ID2D1HwndRenderTarget, configuration: &Configuration) {
+        unsafe {
+            render_target.Clear(&configuration.background_color);
         }
     }
 }

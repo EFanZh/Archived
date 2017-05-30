@@ -2,6 +2,7 @@ extern crate direct2d;
 extern crate user32;
 extern crate winapi;
 
+mod backend;
 mod utilities;
 mod window;
 mod window_class;
