@@ -4,6 +4,8 @@ extern crate user32;
 extern crate winapi;
 
 mod backend;
+mod configuration;
+mod resource;
 mod utilities;
 mod window;
 mod window_class;
