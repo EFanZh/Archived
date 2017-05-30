@@ -1,3 +1,4 @@
+extern crate direct2d;
 extern crate user32;
 extern crate winapi;
 
@@ -6,15 +7,16 @@ mod window;
 mod window_class;
 
 use std::process::*;
-use user32::*;
-use winapi::*;
-use window_class::*;
 use utilities::*;
+use window_class::*;
 
-fn main() {
+fn real_main() -> i32 {
     let main_window_class = WindowClass::new();
-    let _ = main_window_class.create_window();
+    let _main_window = main_window_class.create_window();
 
-    exit(message_loop());
+    return message_loop();
 }
 
+fn main() {
+    exit(real_main());
+}
