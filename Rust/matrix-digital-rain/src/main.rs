@@ -1,4 +1,5 @@
 extern crate direct2d;
+extern crate directwrite;
 extern crate user32;
 extern crate winapi;
 
