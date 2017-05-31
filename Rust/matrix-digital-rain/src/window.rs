@@ -2,19 +2,19 @@ use std::mem::*;
 use std::ptr::*;
 use direct2d::*;
 use direct2d::comptr::*;
+use direct2d::math::*;
 use direct2d::render_target::*;
 use directwrite;
 use user32::*;
 use winapi::*;
 use configuration::*;
 use resource::*;
-use utilities::*;
 
 pub struct Window {
     handle: HWND,
     configuration: Configuration,
     d2d_factory: Factory,
-    render_target: ComPtr<ID2D1HwndRenderTarget>,
+    render_target: Option<RenderTarget>,
     resource: Option<Resource>,
 }
 
@@ -26,8 +26,8 @@ impl Window {
         return Window {
             handle: null_mut(),
             d2d_factory: Factory::new().unwrap(),
-            render_target: ComPtr::new(),
             configuration: configuration,
+            render_target: None,
             resource: None,
         };
     }
@@ -50,13 +50,13 @@ impl Window {
 
     fn on_create(&mut self) -> LRESULT {
         let render_target = self.d2d_factory
-            .create_render_target(WindowRenderTargetBacking::new(self))
+            .create_render_target(WindowRenderTargetBacking::new(self.handle,
+                                                                 self.get_client_size()))
             .unwrap();
 
-        unsafe {
-            self.render_target = render_target.hwnd_rt().unwrap();
-            self.resource = Some(Resource::new(&mut self.render_target, &self.configuration));
-        }
+        self.render_target = Some(render_target);
+        self.resource = Some(Resource::new(self.render_target.as_mut().unwrap(),
+                                           &self.configuration));
 
         return 0;
     }
@@ -70,30 +70,28 @@ impl Window {
     }
 
     fn on_paint(&mut self) -> LRESULT {
-        debug_assert!(!self.render_target.is_null());
+        debug_assert!(self.resource.is_some());
 
         let (width, height) = self.get_client_size();
+        let render_target = self.render_target.as_mut().unwrap();
 
         unsafe {
-            self.render_target.Resize(&D2D1_SIZE_U {
-                                          width: width,
-                                          height: height,
-                                      });
+            render_target.hwnd_rt().unwrap().Resize(&D2D1_SIZE_U {
+                                                        width: width,
+                                                        height: height,
+                                                    });
 
-            self.render_target.BeginDraw();
         }
 
-        Window::draw_scene(&mut self.render_target,
+        render_target.begin_draw();
+
+        Window::draw_scene(render_target,
                            &self.configuration,
-                           self.resource.as_ref().unwrap());
+                           &self.resource.as_ref().unwrap());
 
-        unsafe {
-            let mut _tag_1 = uninitialized();
-            let mut _tag_2 = uninitialized();
-            let result = self.render_target.EndDraw(&mut _tag_1, &mut _tag_2);
+        let result = render_target.end_draw();
 
-            debug_assert!(SUCCEEDED(result));
-        }
+        debug_assert!(result.is_ok());
 
         return 0;
     }
@@ -109,42 +107,31 @@ impl Window {
         }
     }
 
-    fn draw_scene(render_target: &mut ID2D1HwndRenderTarget,
+    fn draw_scene(render_target: &mut RenderTarget,
                   configuration: &Configuration,
                   resource: &Resource) {
-        unsafe {
-            render_target.Clear(&configuration.background_color);
+        render_target.clear(&configuration.background_color);
 
-            let text = to_utf_16("Test");
+        let text = "Test";
 
-            render_target.DrawText(text.as_ptr(),
-                                   (text.len() - 1) as _,
-                                   configuration.head_font.get_raw(),
-                                   &D2D1_RECT_F {
-                                       left: 10.0,
-                                       top: 10.0,
-                                       right: 30.0,
-                                       bottom: 40.0,
-                                   },
-                                   resource.head_brush.raw_value() as _,
-                                   D2D1_DRAW_TEXT_OPTIONS_NONE,
-                                   DWRITE_MEASURING_MODE_NATURAL);
-        }
+        render_target.draw_text(text,
+                                &configuration.head_font,
+                                &RectF::new(10.0, 10.0, 30.0, 40.0),
+                                &resource.head_brush,
+                                &[]);
     }
 }
 
 struct WindowRenderTargetBacking {
-    handle: HWND,
+    window_handle: HWND,
     width: u32,
     height: u32,
 }
 
 impl WindowRenderTargetBacking {
-    fn new(window: &Window) -> WindowRenderTargetBacking {
-        let (width, height) = window.get_client_size();
-
+    fn new(handle: HWND, (width, height): (u32, u32)) -> WindowRenderTargetBacking {
         return WindowRenderTargetBacking {
-            handle: window.handle,
+            window_handle: handle,
             width: width,
             height: height,
         };
@@ -153,7 +140,7 @@ impl WindowRenderTargetBacking {
 
 unsafe impl RenderTargetBacking for WindowRenderTargetBacking {
     fn create_target(self, factory: &mut ID2D1Factory) -> Result<*mut ID2D1RenderTarget, HRESULT> {
-        debug_assert!(self.handle != null_mut());
+        debug_assert!(self.window_handle != null_mut());
 
         let properties = D2D1_RENDER_TARGET_PROPERTIES {
             _type: D2D1_RENDER_TARGET_TYPE_DEFAULT,
@@ -168,7 +155,7 @@ unsafe impl RenderTargetBacking for WindowRenderTargetBacking {
         };
 
         let hwnd_properties = D2D1_HWND_RENDER_TARGET_PROPERTIES {
-            hwnd: self.handle,
+            hwnd: self.window_handle,
             pixelSize: D2D1_SIZE_U {
                 width: self.width,
                 height: self.height,
