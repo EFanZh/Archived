@@ -70,28 +70,32 @@ impl Window {
     }
 
     fn on_paint(&mut self) -> LRESULT {
-        debug_assert!(self.resource.is_some());
+        {
+            debug_assert!(self.resource.is_some());
 
-        let (width, height) = self.get_client_size();
-        let render_target = self.render_target.as_mut().unwrap();
+            let (width, height) = self.get_client_size();
+            let render_target = self.render_target.as_mut().unwrap();
 
-        unsafe {
-            render_target.hwnd_rt().unwrap().Resize(&D2D1_SIZE_U {
-                                                        width: width,
-                                                        height: height,
-                                                    });
+            unsafe {
+                render_target.hwnd_rt().unwrap().Resize(&D2D1_SIZE_U {
+                                                            width: width,
+                                                            height: height,
+                                                        });
 
+            }
+
+            render_target.begin_draw();
+
+            Window::draw_scene(render_target,
+                               &self.configuration,
+                               &self.resource.as_ref().unwrap());
+
+            let result = render_target.end_draw();
+
+            debug_assert!(result.is_ok());
         }
 
-        render_target.begin_draw();
-
-        Window::draw_scene(render_target,
-                           &self.configuration,
-                           &self.resource.as_ref().unwrap());
-
-        let result = render_target.end_draw();
-
-        debug_assert!(result.is_ok());
+        self.invalidate();
 
         return 0;
     }
@@ -101,9 +105,17 @@ impl Window {
             let mut rect = uninitialized();
             let result = GetClientRect(self.handle, &mut rect);
 
-            debug_assert!(result != 0);
+            debug_assert!(result != FALSE);
 
             return ((rect.right - rect.left) as _, (rect.bottom - rect.top) as _);
+        }
+    }
+
+    fn invalidate(&self) {
+        unsafe {
+            let result = InvalidateRect(self.handle, null(), FALSE);
+
+            debug_assert!(result != FALSE);
         }
     }
 
