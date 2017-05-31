@@ -5,6 +5,26 @@ use winapi::*;
 use utilities::*;
 use window::*;
 
+#[cfg(target_arch = "x86_64")]
+unsafe fn get_window_long_ptr(h_wnd: HWND, index: c_int) -> LONG_PTR {
+    return GetWindowLongPtrW(h_wnd, index);
+}
+
+#[cfg(target_arch = "x86")]
+unsafe fn get_window_long_ptr(h_wnd: HWND, index: c_int) -> LONG_PTR {
+    return GetWindowLongW(h_wnd, index);
+}
+
+#[cfg(target_arch = "x86_64")]
+unsafe fn set_window_long_ptr(h_wnd: HWND, index: c_int, value: LONG_PTR) -> LONG_PTR {
+    return SetWindowLongPtrW(h_wnd, index, value);
+}
+
+#[cfg(target_arch = "x86")]
+unsafe fn set_window_long_ptr(h_wnd: HWND, index: c_int, value: LONG_PTR) -> LONG_PTR {
+    return SetWindowLongW(h_wnd, index, value);
+}
+
 pub struct WindowClass {
     handle: ATOM,
 }
@@ -22,8 +42,8 @@ extern "system" fn initial_window_proc(h_wnd: HWND,
 
             window.set_handle(h_wnd);
 
-            SetWindowLongPtrW(h_wnd, GWLP_USERDATA, window_pointer as _);
-            SetWindowLongPtrW(h_wnd, GWLP_WNDPROC, window_proc as _);
+            set_window_long_ptr(h_wnd, GWLP_USERDATA, window_pointer as _);
+            set_window_long_ptr(h_wnd, GWLP_WNDPROC, window_proc as _);
 
             return window.window_proc(u_msg, w_param, l_param);
 
@@ -39,7 +59,7 @@ extern "system" fn window_proc(h_wnd: HWND,
                                l_param: LPARAM)
                                -> LRESULT {
     unsafe {
-        let window_struct = GetWindowLongPtrW(h_wnd, GWLP_USERDATA) as *mut Window;
+        let window_struct = get_window_long_ptr(h_wnd, GWLP_USERDATA) as *mut Window;
 
         debug_assert!(window_struct != null_mut());
 
