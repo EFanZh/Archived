@@ -5,6 +5,7 @@ extern crate user32;
 extern crate winapi;
 
 mod backend;
+mod com_pointer;
 mod configuration;
 mod painter;
 mod raindrop;

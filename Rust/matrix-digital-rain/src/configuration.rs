@@ -2,6 +2,8 @@ use direct2d::math::*;
 use directwrite::*;
 use directwrite::text_format::*;
 use winapi::*;
+use com_pointer::*;
+use utilities::*;
 
 fn create_head_font(dwrite_factory: &Factory) -> TextFormat {
     const FONT_SIZE: FLOAT = 24.0;
@@ -29,6 +31,31 @@ fn create_head_font(dwrite_factory: &Factory) -> TextFormat {
             debug_assert!(SUCCEEDED(result));
         }
     }
+
+    return result;
+}
+
+fn create_head_font_face(dwrite_factory: &Factory) -> ComPointer<IDWriteFontFace> {
+    const FONT_FAMILY: &'static str = "Courier New";
+    const FONT_SIZE: FLOAT = 24.0;
+
+    let text_format: TextFormat = dwrite_factory
+        .create(ParamBuilder::new()
+                    .family(FONT_FAMILY)
+                    .size(FONT_SIZE)
+                    .build()
+                    .unwrap())
+        .unwrap();
+
+    let mut font_collection = ComPointer::<IDWriteFontCollection>::new();
+
+    unsafe {
+        (*text_format.get_raw()).GetFontCollection(font_collection.get_address());
+    }
+
+    let font_family_utf_16 = to_utf_16(FONT_FAMILY);
+
+    let mut result = ComPointer::new();
 
     return result;
 }

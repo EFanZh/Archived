@@ -1,5 +1,7 @@
 use std::cmp::*;
+use std::mem::*;
 use direct2d::*;
+use direct2d::brush::*;
 use direct2d::math::*;
 use direct2d::render_target::*;
 use winapi::*;
@@ -7,6 +9,52 @@ use backend::*;
 use configuration::*;
 use raindrop::*;
 use resource::*;
+
+fn draw_character(render_target: &mut RenderTarget,
+                  font_face: *mut IDWriteFontFace,
+                  font_size: f64,
+                  character: char,
+                  x: f64,
+                  y: f64,
+                  brush: &SolidColor) {
+    unsafe {
+        let raw_render_target = &mut *render_target.hwnd_rt().unwrap().raw_value();
+
+        let baseline_origin = D2D1_POINT_2F {
+            x: x as _,
+            y: y as _,
+        };
+
+        let mut glyph_indices = uninitialized::<[UINT16; 1]>();
+
+        (*font_face).GetGlyphIndices(&(character as _), 1, glyph_indices.as_mut_ptr());
+
+        let glyph_advances = [0f32];
+        let glyph_offsets = [DWRITE_GLYPH_OFFSET {
+                                 advanceOffset: 0.0,
+                                 ascenderOffset: 0.0,
+                             }];
+
+        let glyph_run = DWRITE_GLYPH_RUN {
+            fontFace: font_face,
+            fontEmSize: font_size as _,
+            glyphCount: 1,
+            glyphIndices: glyph_indices.as_ptr(),
+            glyphAdvances: glyph_advances.as_ptr(),
+            glyphOffsets: glyph_offsets.as_ptr(),
+            isSideways: FALSE,
+            bidiLevel: 0,
+        };
+
+        let foreground_brush = brush.get_ptr();
+        let measuring_mode = DWRITE_MEASURING_MODE_NATURAL;
+
+        raw_render_target.DrawGlyphRun(baseline_origin,
+                                       &glyph_run,
+                                       foreground_brush,
+                                       measuring_mode);
+    }
+}
 
 fn draw_raindrop(raindrop: &Raindrop,
                  column: usize,
