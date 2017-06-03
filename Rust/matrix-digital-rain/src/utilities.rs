@@ -25,3 +25,27 @@ pub fn to_utf_16<T: ?Sized + AsRef<str>>(s: &T) -> Vec<u16> {
     return s.as_ref().encode_utf16().chain(Some(0)).collect();
 }
 
+pub fn remove_by_indexes<T>(container: &mut Vec<T>, indexes: &[usize]) {
+    if indexes.len() > 0 {
+        let mut slot = indexes[0];
+
+        for i in 0..indexes.len() - 1 {
+            for j in (indexes[i] + 1)..indexes[i + 1] {
+                container.swap(slot, j);
+
+                slot += 1;
+            }
+        }
+
+        for i in (indexes[indexes.len() - 1] + 1)..container.len() {
+            container.swap(slot, i);
+
+            slot += 1;
+        }
+
+        for _ in 0..indexes.len() {
+            container.pop();
+        }
+    }
+}
+

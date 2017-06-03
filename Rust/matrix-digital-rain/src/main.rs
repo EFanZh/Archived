@@ -1,3 +1,4 @@
+extern crate rand;
 extern crate direct2d;
 extern crate directwrite;
 extern crate user32;
@@ -5,6 +6,7 @@ extern crate winapi;
 
 mod backend;
 mod configuration;
+mod raindrop;
 mod resource;
 mod utilities;
 mod window;

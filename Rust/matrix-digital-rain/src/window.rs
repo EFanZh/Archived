@@ -7,6 +7,7 @@ use direct2d::render_target::*;
 use directwrite;
 use user32::*;
 use winapi::*;
+use backend::*;
 use configuration::*;
 use resource::*;
 
@@ -16,6 +17,7 @@ pub struct Window {
     d2d_factory: Factory,
     render_target: Option<RenderTarget>,
     resource: Option<Resource>,
+    backend: Backend,
 }
 
 impl Window {
@@ -29,6 +31,7 @@ impl Window {
             configuration: configuration,
             render_target: None,
             resource: None,
+            backend: Backend::new(),
         };
     }
 
@@ -81,7 +84,6 @@ impl Window {
                                                             width: width,
                                                             height: height,
                                                         });
-
             }
 
             render_target.begin_draw();
@@ -129,7 +131,7 @@ impl Window {
         render_target.draw_text(text,
                                 &configuration.head_font,
                                 &RectF::new(10.0, 10.0, 30.0, 40.0),
-                                &resource.head_brush,
+                                resource.get_head_brush(),
                                 &[]);
     }
 }

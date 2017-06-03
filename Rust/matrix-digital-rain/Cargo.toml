@@ -4,6 +4,7 @@ version = "0.1.0"
 authors = ["EFanZh <efanzh@gmail.com>"]
 
 [dependencies]
+rand = "*"
 direct2d = "*"
 directwrite = "*"
 user32-sys = "*"
