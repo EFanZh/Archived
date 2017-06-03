@@ -69,6 +69,17 @@ extern "system" fn window_proc(h_wnd: HWND,
     }
 }
 
+fn get_cursor() -> HCURSOR {
+    unsafe {
+        return LoadImageW(null_mut(),
+                          IDC_ARROW,
+                          IMAGE_CURSOR,
+                          0,
+                          0,
+                          LR_DEFAULTSIZE | LR_SHARED) as _;
+    }
+}
+
 impl WindowClass {
     pub fn new() -> WindowClass {
         let class_name = to_utf_16("Main Window");
@@ -81,7 +92,7 @@ impl WindowClass {
             cbWndExtra: 0,
             hInstance: null_mut(),
             hIcon: null_mut(),
-            hCursor: null_mut(),
+            hCursor: get_cursor(),
             hbrBackground: null_mut(),
             lpszMenuName: null(),
             lpszClassName: class_name.as_ptr(),

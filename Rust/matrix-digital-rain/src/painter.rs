@@ -1,6 +1,7 @@
 use std::cmp::*;
 use direct2d::*;
 use direct2d::math::*;
+use direct2d::render_target::*;
 use winapi::*;
 use backend::*;
 use configuration::*;
@@ -37,7 +38,7 @@ fn draw_raindrop(raindrop: &Raindrop,
                                                 (x + configuration.cell_width) as FLOAT,
                                                 (y + configuration.cell_height) as FLOAT),
                                     resource.get_head_brush(),
-                                    &[]);
+                                    &[DrawTextOption::NoSnap]);
         } else {
             render_target.draw_text(text.as_str(),
                                     &configuration.tail_font,
@@ -46,7 +47,7 @@ fn draw_raindrop(raindrop: &Raindrop,
                                                 (x + configuration.cell_width) as FLOAT,
                                                 (y + configuration.cell_height) as FLOAT),
                                     brush,
-                                    &[]);
+                                    &[DrawTextOption::NoSnap]);
         }
     }
 }

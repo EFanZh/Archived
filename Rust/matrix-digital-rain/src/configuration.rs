@@ -3,6 +3,40 @@ use directwrite::*;
 use directwrite::text_format::*;
 use winapi::*;
 
+fn create_head_font(dwrite_factory: &Factory) -> TextFormat {
+    const FONT_SIZE: FLOAT = 24.0;
+
+    let result: TextFormat = dwrite_factory
+        .create(ParamBuilder::new()
+                    .family("Courier New")
+                    .size(FONT_SIZE)
+                    .build()
+                    .unwrap())
+        .unwrap();
+
+    unsafe {
+        let raw_text_format = &mut *result.get_raw();
+
+        {
+            let result = raw_text_format.SetTextAlignment(DWRITE_TEXT_ALIGNMENT_CENTER);
+
+            debug_assert!(SUCCEEDED(result));
+        }
+
+        {
+            let result = raw_text_format.SetWordWrapping(DWRITE_WORD_WRAPPING_NO_WRAP);
+
+            debug_assert!(SUCCEEDED(result));
+        }
+    }
+
+    return result;
+}
+
+fn create_tail_font(dwrite_factory: &Factory) -> TextFormat {
+    return create_head_font(dwrite_factory);
+}
+
 pub struct Configuration {
     pub cell_width: f64,
     pub cell_height: f64,
@@ -16,8 +50,6 @@ pub struct Configuration {
 
 impl Configuration {
     pub fn new(dwrite_factory: &Factory) -> Configuration {
-        let font_size = 18.0;
-
         return Configuration {
             cell_width: 24.0,
             cell_height: 24.0,
@@ -45,20 +77,8 @@ impl Configuration {
                                      b: 0.0,
                                      a: 0.0,
                                  }),
-            head_font: dwrite_factory
-                .create(ParamBuilder::new()
-                            .family("Courier New")
-                            .size(font_size)
-                            .build()
-                            .unwrap())
-                .unwrap(),
-            tail_font: dwrite_factory
-                .create(ParamBuilder::new()
-                            .family("Courier New")
-                            .size(font_size)
-                            .build()
-                            .unwrap())
-                .unwrap(),
+            head_font: create_head_font(dwrite_factory),
+            tail_font: create_tail_font(dwrite_factory),
         };
     }
 }
