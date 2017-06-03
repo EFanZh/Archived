@@ -6,6 +6,7 @@ extern crate winapi;
 
 mod backend;
 mod configuration;
+mod painter;
 mod raindrop;
 mod resource;
 mod utilities;

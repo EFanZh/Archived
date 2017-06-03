@@ -1,15 +1,17 @@
 use std::mem::*;
 use std::ptr::*;
+use std::time::*;
 use direct2d::*;
 use direct2d::comptr::*;
-use direct2d::math::*;
 use direct2d::render_target::*;
 use directwrite;
 use user32::*;
 use winapi::*;
 use backend::*;
 use configuration::*;
+use painter::*;
 use resource::*;
+use utilities::*;
 
 pub struct Window {
     handle: HWND,
@@ -18,6 +20,8 @@ pub struct Window {
     render_target: Option<RenderTarget>,
     resource: Option<Resource>,
     backend: Backend,
+    start_time: SystemTime,
+    last_frame_time: f64,
 }
 
 impl Window {
@@ -32,6 +36,8 @@ impl Window {
             render_target: None,
             resource: None,
             backend: Backend::new(),
+            start_time: SystemTime::now(),
+            last_frame_time: 0.0,
         };
     }
 
@@ -74,6 +80,8 @@ impl Window {
 
     fn on_paint(&mut self) -> LRESULT {
         {
+            let current_time = get_total_seconds(self.start_time.elapsed().as_ref().unwrap());
+
             debug_assert!(self.resource.is_some());
 
             let (width, height) = self.get_client_size();
@@ -88,13 +96,17 @@ impl Window {
 
             render_target.begin_draw();
 
-            Window::draw_scene(render_target,
-                               &self.configuration,
-                               &self.resource.as_ref().unwrap());
+            draw_scene(&mut self.backend,
+                       current_time - self.last_frame_time,
+                       render_target,
+                       &self.configuration,
+                       &self.resource.as_ref().unwrap());
 
             let result = render_target.end_draw();
 
             debug_assert!(result.is_ok());
+
+            self.last_frame_time = current_time;
         }
 
         self.invalidate();
@@ -119,20 +131,6 @@ impl Window {
 
             debug_assert!(result != FALSE);
         }
-    }
-
-    fn draw_scene(render_target: &mut RenderTarget,
-                  configuration: &Configuration,
-                  resource: &Resource) {
-        render_target.clear(&configuration.background_color);
-
-        let text = "Test";
-
-        render_target.draw_text(text,
-                                &configuration.head_font,
-                                &RectF::new(10.0, 10.0, 30.0, 40.0),
-                                resource.get_head_brush(),
-                                &[]);
     }
 }
 

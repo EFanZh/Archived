@@ -1,5 +1,6 @@
 use std::mem::*;
 use std::ptr::*;
+use std::time::*;
 use user32::*;
 
 pub fn message_loop() -> i32 {
@@ -47,5 +48,9 @@ pub fn remove_by_indexes<T>(container: &mut Vec<T>, indexes: &[usize]) {
             container.pop();
         }
     }
+}
+
+pub fn get_total_seconds(duration: &Duration) -> f64 {
+    return (duration.as_secs() as f64) + (duration.subsec_nanos() as f64) / 1_000_000_000.0;
 }
 

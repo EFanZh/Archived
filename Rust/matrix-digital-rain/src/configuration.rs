@@ -4,6 +4,8 @@ use directwrite::text_format::*;
 use winapi::*;
 
 pub struct Configuration {
+    pub cell_width: f64,
+    pub cell_height: f64,
     pub background_color: ColorF,
     pub head_color: ColorF,
     pub tail_color_1: ColorF,
@@ -17,6 +19,8 @@ impl Configuration {
         let font_size = 18.0;
 
         return Configuration {
+            cell_width: 24.0,
+            cell_height: 24.0,
             background_color: ColorF(D2D1_COLOR_F {
                                          r: 0.0,
                                          g: 0.0,
