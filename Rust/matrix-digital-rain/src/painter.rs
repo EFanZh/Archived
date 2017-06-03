@@ -1,3 +1,4 @@
+use std::cmp::*;
 use direct2d::*;
 use direct2d::math::*;
 use winapi::*;
@@ -8,13 +9,23 @@ use resource::*;
 
 fn draw_raindrop(raindrop: &Raindrop,
                  column: usize,
+                 rows: usize,
                  configuration: &Configuration,
                  resource: &Resource,
                  render_target: &mut RenderTarget) {
-    for row in 0..raindrop.get_size() {
+
+    let integer_position = raindrop.position as usize;
+
+    let row_start = if integer_position < rows {
+        0
+    } else {
+        integer_position - rows
+    };
+
+    for row in row_start..min(integer_position + 1, raindrop.get_size()) {
         let text = raindrop.characters[row].to_string();
         let x = configuration.cell_width * (column as f64);
-        let y = configuration.cell_height * (((raindrop.position as usize) - row) as f64);
+        let y = configuration.cell_height * ((integer_position - row) as f64);
         let position = ((row as f64) + raindrop.position % 1.0) / (raindrop.get_size() as f64);
         let brush = resource.get_tail_brush(1.0 - (1.0 - position).powf(1.6));
 
@@ -54,7 +65,12 @@ pub fn draw_scene(backend: &mut Backend,
 
     for column in 0..columns {
         for raindrop in &view[column] {
-            draw_raindrop(raindrop, column, configuration, resource, render_target);
+            draw_raindrop(raindrop,
+                          column,
+                          rows,
+                          configuration,
+                          resource,
+                          render_target);
         }
     }
 }
