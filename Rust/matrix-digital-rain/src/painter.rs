@@ -1,7 +1,5 @@
 use std::cmp::*;
 use std::mem::*;
-use direct2d::*;
-use direct2d::brush::*;
 use winapi::*;
 use backend::*;
 use configuration::*;
@@ -14,7 +12,7 @@ fn draw_character(render_target: &mut ID2D1HwndRenderTarget,
                   character: char,
                   x: f64,
                   y: f64,
-                  brush: &SolidColor) {
+                  brush: &mut ID2D1SolidColorBrush) {
     unsafe {
         let baseline_origin = D2D1_POINT_2F {
             x: x as _,
@@ -42,12 +40,12 @@ fn draw_character(render_target: &mut ID2D1HwndRenderTarget,
             bidiLevel: 0,
         };
 
-        let foreground_brush = brush.get_ptr();
+        let foreground_brush = brush;
         let measuring_mode = DWRITE_MEASURING_MODE_NATURAL;
 
         render_target.DrawGlyphRun(baseline_origin,
                                    &glyph_run,
-                                   foreground_brush,
+                                   foreground_brush as *mut _ as _,
                                    measuring_mode);
     }
 }
@@ -56,9 +54,8 @@ fn draw_raindrop(raindrop: &Raindrop,
                  column: usize,
                  rows: usize,
                  configuration: &mut Configuration,
-                 resource: &Resource,
+                 resource: &mut Resource,
                  render_target: &mut ID2D1HwndRenderTarget) {
-
     let integer_position = raindrop.position as usize;
 
     let row_start = if integer_position < rows {
@@ -72,7 +69,6 @@ fn draw_raindrop(raindrop: &Raindrop,
         let x = configuration.cell_width * (column as f64);
         let y = configuration.cell_height * ((integer_position - row) as f64);
         let position = ((row as f64) + raindrop.position % 1.0) / (raindrop.get_size() as f64);
-        let tail_brush = resource.get_tail_brush(1.0 - (1.0 - position).powf(1.6));
 
         if row == 0 {
             draw_character(render_target,
@@ -89,25 +85,27 @@ fn draw_raindrop(raindrop: &Raindrop,
                            text,
                            x,
                            y,
-                           tail_brush);
+                           resource.get_tail_brush(1.0 - (1.0 - position).powf(1.6)));
         }
     }
 }
 
 pub fn draw_scene(backend: &mut Backend,
                   time_ellapsed: f64,
-                  render_target: &mut RenderTarget,
+                  render_target: &mut ID2D1HwndRenderTarget,
                   configuration: &mut Configuration,
-                  resource: &Resource) {
-    let size = render_target.get_size();
-    let columns = ((size.width as f64) / configuration.cell_width).ceil() as usize;
-    let rows = ((size.width as f64) / configuration.cell_width).ceil() as usize;
-    let view = backend.get_view(columns, rows, time_ellapsed);
+                  resource: &mut Resource) {
 
     unsafe {
-        let mut raw_render_target = render_target.hwnd_rt().unwrap();
+        let mut size = uninitialized();
 
-        render_target.clear(&configuration.background_color);
+        render_target.GetSize(&mut size);
+
+        let columns = ((size.width as f64) / configuration.cell_width).ceil() as usize;
+        let rows = ((size.width as f64) / configuration.cell_width).ceil() as usize;
+        let view = backend.get_view(columns, rows, time_ellapsed);
+
+        render_target.Clear(&configuration.background_color.0);
 
         for column in 0..columns {
             for raindrop in &view[column] {
@@ -116,7 +114,7 @@ pub fn draw_scene(backend: &mut Backend,
                               rows,
                               configuration,
                               resource,
-                              &mut raw_render_target);
+                              render_target);
             }
         }
     }

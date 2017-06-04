@@ -1,6 +1,6 @@
 extern crate rand;
 extern crate direct2d;
-extern crate directwrite;
+extern crate dwrite;
 extern crate user32;
 extern crate winapi;
 

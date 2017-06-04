@@ -58,6 +58,7 @@ macro_rules! implement_com_interface {
     )
 }
 
+implement_com_interface!{IDWriteFactory}
 implement_com_interface!{IDWriteFont}
 implement_com_interface!{IDWriteFontCollection}
 implement_com_interface!{IDWriteFontFace}

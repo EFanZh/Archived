@@ -4,7 +4,6 @@ use std::time::*;
 use direct2d::*;
 use direct2d::comptr::*;
 use direct2d::render_target::*;
-use directwrite;
 use user32::*;
 use winapi::*;
 use backend::*;
@@ -17,7 +16,7 @@ pub struct Window {
     handle: HWND,
     configuration: Configuration,
     d2d_factory: Factory,
-    render_target: Option<RenderTarget>,
+    render_target: ComPtr<ID2D1HwndRenderTarget>,
     resource: Option<Resource>,
     backend: Backend,
     start_time: SystemTime,
@@ -26,14 +25,13 @@ pub struct Window {
 
 impl Window {
     pub fn new() -> Window {
-        let dwrite_factory = directwrite::Factory::new().unwrap();
-        let configuration = Configuration::new(&dwrite_factory);
+        let configuration = Configuration::new();
 
         return Window {
             handle: null_mut(),
             d2d_factory: Factory::new().unwrap(),
             configuration: configuration,
-            render_target: None,
+            render_target: ComPtr::new(),
             resource: None,
             backend: Backend::new(),
             start_time: SystemTime::now(),
@@ -63,9 +61,11 @@ impl Window {
                                                                  self.get_client_size()))
             .unwrap();
 
-        self.render_target = Some(render_target);
-        self.resource = Some(Resource::new(self.render_target.as_mut().unwrap(),
-                                           &self.configuration));
+        unsafe {
+            self.render_target = render_target.hwnd_rt().unwrap();
+        }
+
+        self.resource = Some(Resource::new(&mut self.render_target, &self.configuration));
 
         return 0;
     }
@@ -85,26 +85,29 @@ impl Window {
             debug_assert!(self.resource.is_some());
 
             let (width, height) = self.get_client_size();
-            let render_target = self.render_target.as_mut().unwrap();
 
             unsafe {
-                render_target.hwnd_rt().unwrap().Resize(&D2D1_SIZE_U {
-                                                            width: width,
-                                                            height: height,
-                                                        });
-            }
+                self.render_target.Resize(&D2D1_SIZE_U {
+                                              width: width,
+                                              height: height,
+                                          });
 
-            render_target.begin_draw();
+                self.render_target.BeginDraw();
+            }
 
             draw_scene(&mut self.backend,
                        current_time - self.last_frame_time,
-                       render_target,
+                       &mut self.render_target,
                        &mut self.configuration,
-                       &self.resource.as_ref().unwrap());
+                       self.resource.as_mut().unwrap());
 
-            let result = render_target.end_draw();
+            unsafe {
+                let mut tag_1 = uninitialized();
+                let mut tag_2 = uninitialized();
+                let end_draw_result = self.render_target.EndDraw(&mut tag_1, &mut tag_2);
 
-            debug_assert!(result.is_ok());
+                debug_assert!(SUCCEEDED(end_draw_result));
+            }
 
             self.last_frame_time = current_time;
         }

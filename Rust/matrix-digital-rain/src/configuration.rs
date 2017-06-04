@@ -1,30 +1,13 @@
 use std::mem::*;
 use direct2d::math::*;
-use directwrite::*;
-use directwrite::text_format::*;
+use dwrite::*;
 use winapi::*;
 use com_pointer::*;
 use utilities::*;
 
-fn create_head_font_face(dwrite_factory: &Factory) -> ComPointer<IDWriteFontFace> {
-    const FONT_FAMILY: &'static str = "Courier New";
-    const FONT_SIZE: FLOAT = 24.0;
-
-    let text_format: TextFormat = dwrite_factory
-        .create(ParamBuilder::new()
-                    .family(FONT_FAMILY)
-                    .size(FONT_SIZE)
-                    .build()
-                    .unwrap())
-        .unwrap();
-
-    let mut font_collection = ComPointer::<IDWriteFontCollection>::new();
-
-    unsafe {
-        (*text_format.get_raw()).GetFontCollection(font_collection.get_address());
-    }
-
-    let font_family_utf_16 = to_utf_16(FONT_FAMILY);
+fn create_head_font_face(font_collection: &mut IDWriteFontCollection)
+                         -> ComPointer<IDWriteFontFace> {
+    let font_family_utf_16 = to_utf_16("Courier New");
     let mut font_family = ComPointer::<IDWriteFontFamily>::new();
     let mut matching_font = ComPointer::<IDWriteFont>::new();
     let mut font_face = ComPointer::<IDWriteFontFace>::new();
@@ -47,8 +30,9 @@ fn create_head_font_face(dwrite_factory: &Factory) -> ComPointer<IDWriteFontFace
     return font_face;
 }
 
-fn create_tail_font_face(dwrite_factory: &Factory) -> ComPointer<IDWriteFontFace> {
-    return create_head_font_face(dwrite_factory);
+fn create_tail_font_face(font_collection: &mut IDWriteFontCollection)
+                         -> ComPointer<IDWriteFontFace> {
+    return create_head_font_face(font_collection);
 }
 
 pub struct Configuration {
@@ -64,7 +48,30 @@ pub struct Configuration {
 }
 
 impl Configuration {
-    pub fn new(dwrite_factory: &Factory) -> Configuration {
+    pub fn new() -> Configuration {
+        let mut dwrite_factory = ComPointer::<IDWriteFactory>::new();
+        let mut font_collection = ComPointer::<IDWriteFontCollection>::new();
+
+        let dwrite_factory_iid = IID {
+            Data1: 0xb859ee5a,
+            Data2: 0xd838,
+            Data3: 0x4b5b,
+            Data4: [0xa2, 0xe8, 0x1a, 0xdc, 0x7d, 0x93, 0xdb, 0x48],
+        };
+
+        unsafe {
+            let dwrite_factory_result = DWriteCreateFactory(DWRITE_FACTORY_TYPE_SHARED,
+                                                            &dwrite_factory_iid,
+                                                            dwrite_factory.get_address() as _);
+
+            debug_assert!(SUCCEEDED(dwrite_factory_result));
+
+            let font_collection_result =
+                dwrite_factory.GetSystemFontCollection(font_collection.get_address(), TRUE);
+
+            debug_assert!(SUCCEEDED(font_collection_result));
+        }
+
         return Configuration {
             cell_width: 24.0,
             cell_height: 24.0,
@@ -92,8 +99,8 @@ impl Configuration {
                                      b: 0.0,
                                      a: 0.0,
                                  }),
-            head_font_face: create_head_font_face(dwrite_factory),
-            tail_font_face: create_tail_font_face(dwrite_factory),
+            head_font_face: create_head_font_face(&mut font_collection),
+            tail_font_face: create_tail_font_face(&mut font_collection),
             font_size: 24.0,
         };
     }

@@ -6,6 +6,6 @@ authors = ["EFanZh <efanzh@gmail.com>"]
 [dependencies]
 rand = "*"
 direct2d = "*"
-directwrite = "*"
+dwrite-sys = "*"
 user32-sys = "*"
 winapi = "*"

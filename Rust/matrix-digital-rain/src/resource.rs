@@ -1,5 +1,4 @@
-use direct2d::*;
-use direct2d::brush::*;
+use direct2d::comptr::*;
 use direct2d::math::*;
 use winapi::*;
 use configuration::*;
@@ -19,41 +18,51 @@ fn generate_color_gradient(from: ColorF, to: ColorF, position: f64) -> ColorF {
                   });
 }
 
+fn create_brush(render_target: &mut ID2D1HwndRenderTarget,
+                color: &ColorF)
+                -> ComPtr<ID2D1SolidColorBrush> {
+    let mut result = ComPtr::<ID2D1SolidColorBrush>::new();
+
+    unsafe {
+        let brush_result =
+            render_target
+                .CreateSolidColorBrush(&color.0, &BrushProperties::default().0, result.raw_addr());
+
+        debug_assert!(SUCCEEDED(brush_result));
+    }
+
+    return result;
+}
+
 pub struct Resource {
-    head_brush: SolidColor,
-    tail_brushes: Vec<SolidColor>,
+    head_brush: ComPtr<ID2D1SolidColorBrush>,
+    tail_brushes: Vec<ComPtr<ID2D1SolidColorBrush>>,
 }
 
 impl Resource {
-    pub fn new(render_target: &RenderTarget, configuration: &Configuration) -> Resource {
+    pub fn new(render_target: &mut ID2D1HwndRenderTarget,
+               configuration: &Configuration)
+               -> Resource {
         let get_tail_brush_color = |i| {
             generate_color_gradient(configuration.tail_color_1,
                                     configuration.tail_color_2,
                                     (i as f64) / (TAIL_SHADES as f64))
         };
 
-
         return Resource {
-            head_brush: render_target
-                .create_solid_color_brush(configuration.head_color, &BrushProperties::default())
-                .unwrap(),
+            head_brush: create_brush(render_target, &configuration.head_color),
             tail_brushes: (0..TAIL_SHADES)
-                .map(|i| {
-                         render_target
-                             .create_solid_color_brush(get_tail_brush_color(i),
-                                                       &BrushProperties::default())
-                             .unwrap()
-                     })
+                .map(|i| create_brush(render_target, &get_tail_brush_color(i)))
                 .collect(),
         };
     }
 
-    pub fn get_head_brush(&self) -> &SolidColor {
-        return &self.head_brush;
+    pub fn get_head_brush(&mut self) -> &mut ID2D1SolidColorBrush {
+        return &mut self.head_brush;
     }
 
-    pub fn get_tail_brush(&self, position: f64) -> &SolidColor {
-        return &self.tail_brushes[(position * (TAIL_SHADES as f64)) as usize];
+    pub fn get_tail_brush(&mut self, position: f64) -> &mut ID2D1SolidColorBrush {
+        return &mut self.tail_brushes[(position * (TAIL_SHADES as f64)) as usize];
     }
 }
 
