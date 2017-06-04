@@ -99,7 +99,7 @@ impl Window {
             draw_scene(&mut self.backend,
                        current_time - self.last_frame_time,
                        render_target,
-                       &self.configuration,
+                       &mut self.configuration,
                        &self.resource.as_ref().unwrap());
 
             let result = render_target.end_draw();

@@ -40,6 +40,14 @@ impl<T: ComInterface> Deref for ComPointer<T> {
     }
 }
 
+impl<T: ComInterface> DerefMut for ComPointer<T> {
+    fn deref_mut(&mut self) -> &mut T {
+        unsafe {
+            return &mut *self.pointer;
+        }
+    }
+}
+
 macro_rules! implement_com_interface {
     ($x:ident) => (
         impl ComInterface for $x {
@@ -50,5 +58,7 @@ macro_rules! implement_com_interface {
     )
 }
 
+implement_com_interface!{IDWriteFont}
 implement_com_interface!{IDWriteFontCollection}
 implement_com_interface!{IDWriteFontFace}
+implement_com_interface!{IDWriteFontFamily}

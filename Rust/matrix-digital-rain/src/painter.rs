@@ -2,8 +2,6 @@ use std::cmp::*;
 use std::mem::*;
 use direct2d::*;
 use direct2d::brush::*;
-use direct2d::math::*;
-use direct2d::render_target::*;
 use winapi::*;
 use backend::*;
 use configuration::*;
@@ -11,7 +9,7 @@ use raindrop::*;
 use resource::*;
 
 fn draw_character(render_target: &mut RenderTarget,
-                  font_face: *mut IDWriteFontFace,
+                  font_face: &mut IDWriteFontFace,
                   font_size: f64,
                   character: char,
                   x: f64,
@@ -59,7 +57,7 @@ fn draw_character(render_target: &mut RenderTarget,
 fn draw_raindrop(raindrop: &Raindrop,
                  column: usize,
                  rows: usize,
-                 configuration: &Configuration,
+                 configuration: &mut Configuration,
                  resource: &Resource,
                  render_target: &mut RenderTarget) {
 
@@ -72,30 +70,28 @@ fn draw_raindrop(raindrop: &Raindrop,
     };
 
     for row in row_start..min(integer_position + 1, raindrop.get_size()) {
-        let text = raindrop.characters[row].to_string();
+        let text = raindrop.characters[row];
         let x = configuration.cell_width * (column as f64);
         let y = configuration.cell_height * ((integer_position - row) as f64);
         let position = ((row as f64) + raindrop.position % 1.0) / (raindrop.get_size() as f64);
-        let brush = resource.get_tail_brush(1.0 - (1.0 - position).powf(1.6));
+        let tail_brush = resource.get_tail_brush(1.0 - (1.0 - position).powf(1.6));
 
         if row == 0 {
-            render_target.draw_text(text.as_str(),
-                                    &configuration.head_font,
-                                    &RectF::new(x as FLOAT,
-                                                y as FLOAT,
-                                                (x + configuration.cell_width) as FLOAT,
-                                                (y + configuration.cell_height) as FLOAT),
-                                    resource.get_head_brush(),
-                                    &[DrawTextOption::NoSnap]);
+            draw_character(render_target,
+                           &mut configuration.head_font_face,
+                           24.0,
+                           text,
+                           x,
+                           y,
+                           resource.get_head_brush());
         } else {
-            render_target.draw_text(text.as_str(),
-                                    &configuration.tail_font,
-                                    &RectF::new(x as FLOAT,
-                                                y as FLOAT,
-                                                (x + configuration.cell_width) as FLOAT,
-                                                (y + configuration.cell_height) as FLOAT),
-                                    brush,
-                                    &[DrawTextOption::NoSnap]);
+            draw_character(render_target,
+                           &mut configuration.tail_font_face,
+                           24.0,
+                           text,
+                           x,
+                           y,
+                           tail_brush);
         }
     }
 }
@@ -103,7 +99,7 @@ fn draw_raindrop(raindrop: &Raindrop,
 pub fn draw_scene(backend: &mut Backend,
                   time_ellapsed: f64,
                   render_target: &mut RenderTarget,
-                  configuration: &Configuration,
+                  configuration: &mut Configuration,
                   resource: &Resource) {
     let size = render_target.get_size();
     let columns = ((size.width as f64) / configuration.cell_width).ceil() as usize;
