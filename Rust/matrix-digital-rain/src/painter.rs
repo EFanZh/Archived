@@ -95,7 +95,6 @@ pub fn draw_scene(backend: &mut Backend,
                   render_target: &mut ID2D1HwndRenderTarget,
                   configuration: &mut Configuration,
                   resource: &mut Resource) {
-
     unsafe {
         let mut size = uninitialized();
 
