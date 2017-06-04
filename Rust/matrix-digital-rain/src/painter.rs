@@ -101,7 +101,7 @@ pub fn draw_scene(backend: &mut Backend,
         render_target.GetSize(&mut size);
 
         let columns = ((size.width as f64) / configuration.cell_width).ceil() as usize;
-        let rows = ((size.width as f64) / configuration.cell_width).ceil() as usize;
+        let rows = ((size.height as f64) / configuration.cell_height).ceil() as usize;
         let view = backend.get_view(columns, rows, time_ellapsed);
 
         render_target.Clear(&configuration.background_color.0);
