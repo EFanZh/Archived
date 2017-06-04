@@ -1,3 +1,5 @@
+#![windows_subsystem = "windows"]
+
 extern crate rand;
 extern crate direct2d;
 extern crate dwrite;
