@@ -8,7 +8,7 @@ use configuration::*;
 use raindrop::*;
 use resource::*;
 
-fn draw_character(render_target: &mut RenderTarget,
+fn draw_character(render_target: &mut ID2D1HwndRenderTarget,
                   font_face: &mut IDWriteFontFace,
                   font_size: f64,
                   character: char,
@@ -16,8 +16,6 @@ fn draw_character(render_target: &mut RenderTarget,
                   y: f64,
                   brush: &SolidColor) {
     unsafe {
-        let raw_render_target = &mut *render_target.hwnd_rt().unwrap().raw_value();
-
         let baseline_origin = D2D1_POINT_2F {
             x: x as _,
             y: y as _,
@@ -47,10 +45,10 @@ fn draw_character(render_target: &mut RenderTarget,
         let foreground_brush = brush.get_ptr();
         let measuring_mode = DWRITE_MEASURING_MODE_NATURAL;
 
-        raw_render_target.DrawGlyphRun(baseline_origin,
-                                       &glyph_run,
-                                       foreground_brush,
-                                       measuring_mode);
+        render_target.DrawGlyphRun(baseline_origin,
+                                   &glyph_run,
+                                   foreground_brush,
+                                   measuring_mode);
     }
 }
 
@@ -59,7 +57,7 @@ fn draw_raindrop(raindrop: &Raindrop,
                  rows: usize,
                  configuration: &mut Configuration,
                  resource: &Resource,
-                 render_target: &mut RenderTarget) {
+                 render_target: &mut ID2D1HwndRenderTarget) {
 
     let integer_position = raindrop.position as usize;
 
@@ -106,16 +104,20 @@ pub fn draw_scene(backend: &mut Backend,
     let rows = ((size.width as f64) / configuration.cell_width).ceil() as usize;
     let view = backend.get_view(columns, rows, time_ellapsed);
 
-    render_target.clear(&configuration.background_color);
+    unsafe {
+        let mut raw_render_target = render_target.hwnd_rt().unwrap();
 
-    for column in 0..columns {
-        for raindrop in &view[column] {
-            draw_raindrop(raindrop,
-                          column,
-                          rows,
-                          configuration,
-                          resource,
-                          render_target);
+        render_target.clear(&configuration.background_color);
+
+        for column in 0..columns {
+            for raindrop in &view[column] {
+                draw_raindrop(raindrop,
+                              column,
+                              rows,
+                              configuration,
+                              resource,
+                              &mut raw_render_target);
+            }
         }
     }
 }
