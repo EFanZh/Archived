@@ -1,10 +1,10 @@
-use std::cmp::*;
-use std::mem::*;
-use winapi::*;
 use backend::*;
 use configuration::*;
 use raindrop::*;
 use resource::*;
+use std::cmp::*;
+use std::mem::*;
+use winapi::*;
 
 fn draw_character(render_target: &mut ID2D1HwndRenderTarget,
                   font_face: &mut IDWriteFontFace,
@@ -12,11 +12,12 @@ fn draw_character(render_target: &mut ID2D1HwndRenderTarget,
                   character: char,
                   x: f64,
                   y: f64,
-                  brush: &mut ID2D1SolidColorBrush) {
+                  brush: &mut ID2D1SolidColorBrush)
+{
     unsafe {
         let baseline_origin = D2D1_POINT_2F {
             x: x as _,
-            y: y as _,
+            y: y as _
         };
 
         let mut glyph_indices = uninitialized::<[UINT16; 1]>();
@@ -26,7 +27,7 @@ fn draw_character(render_target: &mut ID2D1HwndRenderTarget,
         let glyph_advances = [0f32];
         let glyph_offsets = [DWRITE_GLYPH_OFFSET {
                                  advanceOffset: 0.0,
-                                 ascenderOffset: 0.0,
+                                 ascenderOffset: 0.0
                              }];
 
         let glyph_run = DWRITE_GLYPH_RUN {
@@ -37,16 +38,13 @@ fn draw_character(render_target: &mut ID2D1HwndRenderTarget,
             glyphAdvances: glyph_advances.as_ptr(),
             glyphOffsets: glyph_offsets.as_ptr(),
             isSideways: FALSE,
-            bidiLevel: 0,
+            bidiLevel: 0
         };
 
         let foreground_brush = brush;
         let measuring_mode = DWRITE_MEASURING_MODE_NATURAL;
 
-        render_target.DrawGlyphRun(baseline_origin,
-                                   &glyph_run,
-                                   foreground_brush as *mut _ as _,
-                                   measuring_mode);
+        render_target.DrawGlyphRun(baseline_origin, &glyph_run, foreground_brush as *mut _ as _, measuring_mode);
     }
 }
 
@@ -55,22 +53,28 @@ fn draw_raindrop(raindrop: &Raindrop,
                  rows: usize,
                  configuration: &mut Configuration,
                  resource: &mut Resource,
-                 render_target: &mut ID2D1HwndRenderTarget) {
+                 render_target: &mut ID2D1HwndRenderTarget)
+{
     let integer_position = raindrop.position as usize;
 
-    let row_start = if integer_position < rows {
+    let row_start = if integer_position < rows
+    {
         0
-    } else {
+    }
+    else
+    {
         integer_position - rows
     };
 
-    for row in row_start..min(integer_position + 1, raindrop.get_size()) {
+    for row in row_start..min(integer_position + 1, raindrop.get_size())
+    {
         let text = raindrop.characters[row];
         let x = configuration.cell_width * (column as f64);
         let y = configuration.cell_height * ((integer_position - row) as f64);
         let position = ((row as f64) + raindrop.position % 1.0) / (raindrop.get_size() as f64);
 
-        if row == 0 {
+        if row == 0
+        {
             draw_character(render_target,
                            &mut configuration.head_font_face,
                            24.0,
@@ -78,7 +82,9 @@ fn draw_raindrop(raindrop: &Raindrop,
                            x,
                            y,
                            resource.get_head_brush());
-        } else {
+        }
+        else
+        {
             draw_character(render_target,
                            &mut configuration.tail_font_face,
                            24.0,
@@ -94,7 +100,8 @@ pub fn draw_scene(backend: &mut Backend,
                   time_ellapsed: f64,
                   render_target: &mut ID2D1HwndRenderTarget,
                   configuration: &mut Configuration,
-                  resource: &mut Resource) {
+                  resource: &mut Resource)
+{
     unsafe {
         let mut size = uninitialized();
 
@@ -106,14 +113,11 @@ pub fn draw_scene(backend: &mut Backend,
 
         render_target.Clear(&configuration.background_color.0);
 
-        for column in 0..columns {
-            for raindrop in &view[column] {
-                draw_raindrop(raindrop,
-                              column,
-                              rows,
-                              configuration,
-                              resource,
-                              render_target);
+        for column in 0..columns
+        {
+            for raindrop in &view[column]
+            {
+                draw_raindrop(raindrop, column, rows, configuration, resource, render_target);
             }
         }
     }

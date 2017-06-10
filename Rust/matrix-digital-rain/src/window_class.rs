@@ -1,41 +1,44 @@
 use std::mem::*;
 use std::ptr::*;
 use user32::*;
-use winapi::*;
 use utilities::*;
+use winapi::*;
 use window::*;
 
 #[cfg(target_arch = "x86_64")]
-unsafe fn get_window_long_ptr(h_wnd: HWND, index: c_int) -> LONG_PTR {
+unsafe fn get_window_long_ptr(h_wnd: HWND, index: c_int) -> LONG_PTR
+{
     return GetWindowLongPtrW(h_wnd, index);
 }
 
 #[cfg(target_arch = "x86")]
-unsafe fn get_window_long_ptr(h_wnd: HWND, index: c_int) -> LONG_PTR {
+unsafe fn get_window_long_ptr(h_wnd: HWND, index: c_int) -> LONG_PTR
+{
     return GetWindowLongW(h_wnd, index);
 }
 
 #[cfg(target_arch = "x86_64")]
-unsafe fn set_window_long_ptr(h_wnd: HWND, index: c_int, value: LONG_PTR) -> LONG_PTR {
+unsafe fn set_window_long_ptr(h_wnd: HWND, index: c_int, value: LONG_PTR) -> LONG_PTR
+{
     return SetWindowLongPtrW(h_wnd, index, value);
 }
 
 #[cfg(target_arch = "x86")]
-unsafe fn set_window_long_ptr(h_wnd: HWND, index: c_int, value: LONG_PTR) -> LONG_PTR {
+unsafe fn set_window_long_ptr(h_wnd: HWND, index: c_int, value: LONG_PTR) -> LONG_PTR
+{
     return SetWindowLongW(h_wnd, index, value);
 }
 
-pub struct WindowClass {
-    handle: ATOM,
+pub struct WindowClass
+{
+    handle: ATOM
 }
 
-extern "system" fn initial_window_proc(h_wnd: HWND,
-                                       u_msg: UINT,
-                                       w_param: WPARAM,
-                                       l_param: LPARAM)
-                                       -> LRESULT {
+extern "system" fn initial_window_proc(h_wnd: HWND, u_msg: UINT, w_param: WPARAM, l_param: LPARAM) -> LRESULT
+{
     unsafe {
-        if u_msg == WM_CREATE {
+        if u_msg == WM_CREATE
+        {
             let create_struct = l_param as *const CREATESTRUCTW;
             let window_pointer = (*create_struct).lpCreateParams as *mut Window;
             let window = &mut *window_pointer;
@@ -47,17 +50,16 @@ extern "system" fn initial_window_proc(h_wnd: HWND,
 
             return window.window_proc(u_msg, w_param, l_param);
 
-        } else {
+        }
+        else
+        {
             return DefWindowProcW(h_wnd, u_msg, w_param, l_param);
         }
     }
 }
 
-extern "system" fn window_proc(h_wnd: HWND,
-                               u_msg: UINT,
-                               w_param: WPARAM,
-                               l_param: LPARAM)
-                               -> LRESULT {
+extern "system" fn window_proc(h_wnd: HWND, u_msg: UINT, w_param: WPARAM, l_param: LPARAM) -> LRESULT
+{
     unsafe {
         let window_struct = get_window_long_ptr(h_wnd, GWLP_USERDATA) as *mut Window;
 
@@ -69,19 +71,17 @@ extern "system" fn window_proc(h_wnd: HWND,
     }
 }
 
-fn get_cursor() -> HCURSOR {
+fn get_cursor() -> HCURSOR
+{
     unsafe {
-        return LoadImageW(null_mut(),
-                          IDC_ARROW,
-                          IMAGE_CURSOR,
-                          0,
-                          0,
-                          LR_DEFAULTSIZE | LR_SHARED) as _;
+        return LoadImageW(null_mut(), IDC_ARROW, IMAGE_CURSOR, 0, 0, LR_DEFAULTSIZE | LR_SHARED) as _;
     }
 }
 
-impl WindowClass {
-    pub fn new() -> WindowClass {
+impl WindowClass
+{
+    pub fn new() -> WindowClass
+    {
         let class_name = to_utf_16("Main Window");
 
         let parameters = WNDCLASSEXW {
@@ -96,7 +96,7 @@ impl WindowClass {
             hbrBackground: null_mut(),
             lpszMenuName: null(),
             lpszClassName: class_name.as_ptr(),
-            hIconSm: null_mut(),
+            hIconSm: null_mut()
         };
 
         unsafe {
@@ -104,11 +104,14 @@ impl WindowClass {
 
             debug_assert!(handle != 0);
 
-            return WindowClass { handle };
+            return WindowClass {
+                handle
+            };
         }
     }
 
-    pub fn create_window(&self) -> Box<Window> {
+    pub fn create_window(&self) -> Box<Window>
+    {
         let mut result = Box::new(Window::new());
         let window_title = to_utf_16("Matrix Digital Rain");
 
