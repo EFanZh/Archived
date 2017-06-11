@@ -1,3 +1,4 @@
+use configuration::*;
 use mio::*;
 use mio::net::*;
 use proxy_handler::*;
@@ -20,27 +21,28 @@ impl Proxy
     pub fn handle_proxy(&mut self,
                         poll: &Poll,
                         token_pool: &mut TokenPool,
-                        (stream, socket_address): (TcpStream, SocketAddr))
+                        (stream, socket_address): (TcpStream, SocketAddr),
+                        configuration: &Configuration)
     {
         let token = token_pool.get_client_token();
 
         assert!(poll.register(&stream, token, Ready::readable() | Ready::writable(), PollOpt::edge()).is_ok());
 
-        self.proxy_handlers.insert(token, ProxyHandler::new(stream, socket_address));
+        self.proxy_handlers.insert(token, ProxyHandler::new(stream, socket_address, configuration));
     }
 
-    pub fn handle_event(&mut self, poll: &Poll, event: Event)
+    pub fn handle_event(&mut self, poll: &Poll, event: Event, configuration: &Configuration)
     {
         {
             let handler = self.proxy_handlers.get_mut(&event.token()).unwrap();
 
-            match handler.handle_event(poll, event)
+            match handler.handle_event(poll, event, configuration)
             {
+                State::Working => return,
                 State::Done =>
                 {
                     assert!(poll.deregister(handler.get_stream()).is_ok());
                 },
-                _ => return,
             }
         }
 

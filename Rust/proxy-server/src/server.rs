@@ -36,7 +36,7 @@ impl Server
     pub fn run(&mut self)
     {
         let server_token = self.token_pool.get_server_token();
-        let mut events = Events::with_capacity(1024);
+        let mut events = Events::with_capacity(EVENT_QUEUE_SIZE);
 
         loop
         {
@@ -46,11 +46,14 @@ impl Server
             {
                 if event.token() == server_token
                 {
-                    self.proxy.handle_proxy(&self.poll, &mut self.token_pool, self.tcp_listener.accept().unwrap());
+                    self.proxy.handle_proxy(&self.poll,
+                                            &mut self.token_pool,
+                                            self.tcp_listener.accept().unwrap(),
+                                            &self.configuration);
                 }
                 else
                 {
-                    self.proxy.handle_event(&self.poll, event);
+                    self.proxy.handle_event(&self.poll, event, &self.configuration);
                 }
             }
         }
