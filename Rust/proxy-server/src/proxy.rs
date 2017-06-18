@@ -1,52 +1,87 @@
 use configuration::*;
-use mio::*;
-use mio::net::*;
-use proxy_handler::*;
-use std::collections::*;
+use futures::future::{Future, FutureResult, IntoFuture, Loop, err, lazy, loop_fn};
+use futures::stream::repeat;
+use httparse::{EMPTY_HEADER, Header, Status, parse_headers};
+use std::io::{Error, ErrorKind, Read};
+use std::mem::forget;
+use std::rc::Rc;
 use std::net::SocketAddr;
-use token_pool::*;
+use std::result::Result;
+use tokio_core::net::TcpStream;
+use tokio_core::reactor::Handle;
 
-pub struct Proxy
-{
-    proxy_handlers: HashMap<Token, ProxyHandler>
+enum ProxyError {
+    OtherError,
 }
 
-impl Proxy
-{
-    pub fn new() -> Proxy
-    {
-        return Proxy { proxy_handlers: HashMap::new() };
-    }
+struct Environment<'a, 'b> {
+    configuration: &'a Configuration,
+    core_handle: &'b Handle,
+    client_stream: TcpStream,
+    client_socket_address: SocketAddr,
+}
 
-    pub fn handle_proxy(&mut self,
-                        poll: &Poll,
-                        token_pool: &mut TokenPool,
-                        (stream, socket_address): (TcpStream, SocketAddr),
-                        configuration: &Configuration)
-    {
-        let token = token_pool.get_client_token();
+struct ReadClientHeaderState {
+    client_header_buffer: Box<[u8; HEADER_BUFFER_SIZE]>,
+    read_offset: usize,
+}
 
-        assert!(poll.register(&stream, token, Ready::readable() | Ready::writable(), PollOpt::edge()).is_ok());
+struct WriteClientHeaderState {
+    client_header_buffer: Box<[u8; HEADER_BUFFER_SIZE]>,
+    used_buffer_size: usize,
+    header_size: usize,
+    write_offset: usize,
+}
 
-        self.proxy_handlers.insert(token, ProxyHandler::new(stream, socket_address, configuration));
-    }
+pub struct Proxy;
 
-    pub fn handle_event(&mut self, poll: &Poll, event: Event, configuration: &Configuration)
-    {
-        {
-            let handler = self.proxy_handlers.get_mut(&event.token()).unwrap();
-
-            match handler.handle_event(poll, event, configuration)
-            {
-                State::Working => return,
-                State::Done =>
-                {
-                    assert!(poll.deregister(handler.get_stream()).is_ok());
+impl Proxy {
+    pub fn handle_proxy(
+        configuration: &Configuration,
+        core_handle: &Handle,
+        mut client_stream: TcpStream,
+        client_socket_address: SocketAddr,
+    ) {
+        core_handle.spawn(
+            loop_fn(
+                ReadClientHeaderState {
+                    client_header_buffer: Box::new([0; HEADER_BUFFER_SIZE]),
+                    read_offset: 0,
                 },
-            }
-        }
+                move |mut state| {
+                    client_stream.read(&mut state.client_header_buffer[state.read_offset..]).into_future().then(
+                        |client_read_result| match client_read_result {
+                            Ok(0) => {
+                                if state.read_offset == state.client_header_buffer.len() {
+                                    Err(ProxyError::OtherError)
+                                } else {
+                                    Err(ProxyError::OtherError)
+                                }
+                            }
+                            Ok(read_size) => {
+                                state.read_offset += read_size;
 
-        self.proxy_handlers.remove(&event.token());
+                                match parse_headers(
+                                    &state.client_header_buffer[..state.read_offset],
+                                    &mut [EMPTY_HEADER; HEADER_COUNT],
+                                ) {
+                                    Ok(Status::Complete((position, _))) => {
+                                        Ok(Loop::Break(WriteClientHeaderState {
+                                            client_header_buffer: state.client_header_buffer,
+                                            used_buffer_size: state.read_offset,
+                                            write_offset: 0,
+                                            header_size: position,
+                                        }))
+                                    }
+                                    Ok(Status::Partial) => Ok(Loop::Continue(state)),
+                                    Err(error) => Err(ProxyError::OtherError),
+                                }
+                            }
+                            Err(error) => Err(ProxyError::OtherError),
+                        },
+                    )
+                },
+            ).then(|_| Ok(())),
+        );
     }
 }
-

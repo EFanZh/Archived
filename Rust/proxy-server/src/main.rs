@@ -1,17 +1,16 @@
+extern crate futures;
 extern crate httparse;
-extern crate mio;
+extern crate tokio_core;
 
 mod configuration;
 mod proxy;
-mod proxy_handler;
 mod server;
-mod token_pool;
 
 use configuration::*;
 use server::*;
 
 fn main()
 {
-    Server::new(Configuration::new()).run();
+    Server::new(Configuration::load()).run();
 }
 

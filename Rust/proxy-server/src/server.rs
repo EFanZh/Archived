@@ -1,62 +1,38 @@
 use configuration::*;
-use mio::*;
-use mio::net::*;
+use futures::stream::*;
 use proxy::*;
-use token_pool::*;
+use tokio_core::net::*;
+use tokio_core::reactor::*;
 
 pub struct Server
 {
     configuration: Configuration,
-    tcp_listener: TcpListener,
-    poll: Poll,
-    token_pool: TokenPool,
-    proxy: Proxy
+    core: Core
 }
 
 impl Server
 {
     pub fn new(configuration: Configuration) -> Server
     {
-        let result = Server { tcp_listener: TcpListener::bind(&configuration.bind_address).unwrap(),
-                 poll: Poll::new().unwrap(),
-                 token_pool: TokenPool::new(),
-                 proxy: Proxy::new(),
-                 configuration };
+        let core = Core::new().unwrap();
 
-        assert!(result.poll
-                      .register(&result.tcp_listener,
-                                result.token_pool.get_server_token(),
-                                Ready::readable(),
-                                PollOpt::edge())
-                      .is_ok());
-
-        return result;
+        return Server { configuration,
+                 core: core };
     }
 
     pub fn run(&mut self)
     {
-        let server_token = self.token_pool.get_server_token();
-        let mut events = Events::with_capacity(EVENT_QUEUE_SIZE);
+        let configuration = &self.configuration;
+        let core_handle = &self.core.handle();
+        let tcp_listener = TcpListener::bind(&self.configuration.bind_address, core_handle).unwrap();
 
-        loop
-        {
-            self.poll.poll(&mut events, None).unwrap();
+        let server_future = tcp_listener.incoming().for_each(|(client_stream, client_socket_address)| {
+            Proxy::handle_proxy(configuration, core_handle, client_stream, client_socket_address);
 
-            for event in events.iter()
-            {
-                if event.token() == server_token
-                {
-                    self.proxy.handle_proxy(&self.poll,
-                                            &mut self.token_pool,
-                                            self.tcp_listener.accept().unwrap(),
-                                            &self.configuration);
-                }
-                else
-                {
-                    self.proxy.handle_event(&self.poll, event, &self.configuration);
-                }
-            }
-        }
+            return Ok(());
+        });
+
+        self.core.run(server_future).unwrap();
     }
 }
 
