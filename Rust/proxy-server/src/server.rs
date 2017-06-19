@@ -17,7 +17,7 @@ impl Server
         let core = Core::new().unwrap();
 
         return Server { configuration,
-                 core: core };
+                        core: core };
     }
 
     pub fn run(&mut self)
@@ -35,4 +35,3 @@ impl Server
         self.core.run(server_future).unwrap();
     }
 }
-

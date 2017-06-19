@@ -13,4 +13,3 @@ fn main()
 {
     Server::new(Configuration::load()).run();
 }
-
