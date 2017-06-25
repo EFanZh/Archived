@@ -7,3 +7,4 @@ authors = ["EFanZh <efanzh@gmail.com>"]
 futures = "*"
 httparse = "*"
 tokio-core = "*"
+tokio-io = "*"

@@ -1,4 +1,5 @@
 use configuration::*;
+use futures::{Async, Poll};
 use futures::future::{Future, FutureResult, IntoFuture, Loop, err, lazy, loop_fn};
 use futures::stream::repeat;
 use httparse::{EMPTY_HEADER, Header, Request, Status, parse_headers};
@@ -9,6 +10,7 @@ use std::rc::Rc;
 use std::result::Result;
 use tokio_core::net::TcpStream;
 use tokio_core::reactor::Handle;
+use tokio_io::AsyncRead;
 
 enum ProxyError
 {
@@ -49,66 +51,67 @@ impl Proxy
     )
     {
         core_handle.spawn(
-            loop_fn(
-                ReadClientHeaderState { client_header_buffer: Box::new([0; HEADER_BUFFER_SIZE]),
-                                        read_offset: 0 },
-                move |mut state| {
-                    client_stream.read(&mut state.client_header_buffer[state.read_offset..]).into_future().then(
-                        |client_read_result| match client_read_result
-                        {
-                            Ok(0) =>
-                            {
-                                if state.read_offset == state.client_header_buffer.len()
-                                {
-                                    Err(ProxyError::OtherError)
-                                }
-                                else
-                                {
-                                    Err(ProxyError::OtherError)
-                                }
-                            },
-                            Ok(read_size) =>
-                            {
-                                state.read_offset += read_size;
-
-                                match parse_headers(
-                                    &state.client_header_buffer[..state.read_offset],
-                                    &mut [EMPTY_HEADER; HEADER_COUNT]
-                                )
-                                {
-                                    Ok(Status::Complete((position, _))) =>
-                                    {
-                                        Ok(Loop::Break(
-                                            WriteClientHeaderState { client_header_buffer: state.client_header_buffer,
-                                                                     used_buffer_size: state.read_offset,
-                                                                     write_offset: 0,
-                                                                     header_size: position }
-                                        ))
-                                    },
-                                    Ok(Status::Partial) => Ok(Loop::Continue(state)),
-                                    Err(error) => Err(ProxyError::OtherError),
-                                }
-                            },
-                            Err(ref error) if error.kind() == ErrorKind::WouldBlock => Ok(Loop::Continue(state)),
-                            Err(error) => Err(ProxyError::OtherError),
-                        }
-                    )
-                }
-            )
-            .and_then(|state| {
-                let mut header_storage = [EMPTY_HEADER; HEADER_COUNT];
-                let mut request = Request::new(&mut header_storage);
-
-                request.parse(&state.client_header_buffer[..]);
-
-                for header in request.headers
-                {
-                    println!("{:?}", header);
-                }
-
-                Ok(0)
-            })
+            ProxyFuture { client_stream,
+                          client_socket_address,
+                          client_header_buffer: [0; HEADER_BUFFER_SIZE],
+                          read_offset: 0 }
             .then(|_| Ok(()))
         );
+    }
+}
+
+struct ProxyFuture
+{
+    client_stream: TcpStream,
+    client_socket_address: SocketAddr,
+    client_header_buffer: [u8; HEADER_BUFFER_SIZE],
+    read_offset: usize
+}
+
+impl Future for ProxyFuture
+{
+    type Item = ();
+    type Error = ProxyError;
+
+    fn poll(&mut self) -> Poll<Self::Item, Self::Error>
+    {
+        loop
+        {
+            match self.client_stream.read(&mut self.client_header_buffer[self.read_offset..])
+            {
+                Ok(0) => return Ok(Async::Ready(())),
+                Ok(size) =>
+                {
+                    self.read_offset += size;
+
+                    let mut client_header_placeholders = [EMPTY_HEADER; HEADER_COUNT];
+                    let mut client_request = Request::new(&mut client_header_placeholders);
+
+                    match client_request.parse(&mut self.client_header_buffer[..self.read_offset])
+                    {
+                        Ok(Status::Complete(position)) =>
+                        {
+                            println!("Header size: {}", position);
+
+                            return Ok(Async::Ready(()));
+                        },
+                        Ok(Status::Partial) =>
+                        {
+                            if self.read_offset == HEADER_BUFFER_SIZE
+                            {
+                                return Err(ProxyError::OtherError);
+                            }
+                            else
+                            {
+                                continue;
+                            }
+                        },
+                        Err(error) => return Err(ProxyError::OtherError),
+                    };
+                },
+                Err(ref e) if e.kind() == ErrorKind::WouldBlock => return Ok(Async::NotReady),
+                Err(e) => return Err(ProxyError::OtherError),
+            }
+        }
     }
 }
