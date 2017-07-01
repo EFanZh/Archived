@@ -29,6 +29,7 @@ enum State
 {
     ReadClientRequest,
     Connect,
+    ReplyConnectSuccess,
     Unimplemented
 }
 
@@ -47,6 +48,7 @@ impl Proxy
                                         client_header_buffer: [0; HEADER_BUFFER_SIZE],
                                         read_offset: 0,
                                         server_stream_future: None,
+                                        server_stream: None,
                                         state: State::ReadClientRequest }
                           .then(|_| Ok(())));
     }
@@ -60,6 +62,7 @@ struct ProxyFuture
     client_header_buffer: [u8; HEADER_BUFFER_SIZE],
     read_offset: usize,
     server_stream_future: Option<TcpStreamNew>,
+    server_stream: Option<TcpStream>,
     state: State
 }
 
@@ -107,7 +110,7 @@ impl Future for ProxyFuture
                                             State::Connect
                                         },
                                         _ => State::Unimplemented,
-                                    };
+                                    }
                                 },
                                 Ok(Status::Partial) =>
                                 {
@@ -126,7 +129,13 @@ impl Future for ProxyFuture
                     }
                 }
             },
-            State::Connect => return Err(ProxyError::OtherError),
+            State::Connect =>
+            {
+                self.server_stream = Some(try_ready!(self.server_stream_future.as_mut().unwrap().poll()));
+
+                State::ReplyConnectSuccess
+            },
+            State::ReplyConnectSuccess => return Err(ProxyError::OtherError),
             State::Unimplemented => return Err(ProxyError::OtherError),
         };
 
