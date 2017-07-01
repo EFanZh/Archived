@@ -33,21 +33,17 @@ pub struct Proxy;
 
 impl Proxy
 {
-    pub fn handle_proxy(
-        configuration: &Configuration,
-        core_handle: &Handle,
-        mut client_stream: TcpStream,
-        client_socket_address: SocketAddr,
-    )
+    pub fn handle_proxy(configuration: &Configuration,
+                        core_handle: &Handle,
+                        mut client_stream: TcpStream,
+                        client_socket_address: SocketAddr)
     {
-        core_handle.spawn(
-            ProxyFuture { client_stream,
-                          client_socket_address,
-                          client_header_buffer: [0; HEADER_BUFFER_SIZE],
-                          read_offset: 0,
-                          state: State::ReadClientRequest }
-            .then(|_| Ok(()))
-        );
+        core_handle.spawn(ProxyFuture { client_stream,
+                                        client_socket_address,
+                                        client_header_buffer: [0; HEADER_BUFFER_SIZE],
+                                        read_offset: 0,
+                                        state: State::ReadClientRequest }
+                          .then(|_| Ok(())));
     }
 }
 
