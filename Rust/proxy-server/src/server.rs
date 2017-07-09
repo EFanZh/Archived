@@ -22,15 +22,11 @@ impl Server
 
     pub fn run(&mut self)
     {
-        let configuration = &self.configuration;
         let core_handle = &self.core.handle();
         let tcp_listener = TcpListener::bind(&self.configuration.bind_address, core_handle).unwrap();
 
-        let server_future = tcp_listener.incoming().for_each(|(client_stream, client_socket_address)| {
-            Proxy::handle_proxy(configuration, core_handle, client_stream, client_socket_address);
-
-            return Ok(());
-        });
+        let server_future =
+            tcp_listener.incoming().for_each(|(client_stream, _)| Ok(Proxy::handle_proxy(core_handle, client_stream)));
 
         self.core.run(server_future).unwrap();
     }
