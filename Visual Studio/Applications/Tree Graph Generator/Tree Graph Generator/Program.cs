@@ -39,42 +39,37 @@ namespace TreeGraphGenerator
 
         private static void Main()
         {
-            TreeNode root = new TreeNode("供热站虚拟仿真系统")
+            TreeNode root = new TreeNode("root")
             {
                 Children =
                 {
-                    new TreeNode("框架模块")
+                    new TreeNode("a")
                     {
                         Children =
                         {
-                            new TreeNode("应用程序类"),
-                            new TreeNode("主窗口")
+                            new TreeNode("b"),
+                            new TreeNode("c"),
+                            new TreeNode("c"),
+                            new TreeNode("c"),
+                            new TreeNode("c"),
+                            new TreeNode("c"),
+                            new TreeNode("c")
                         }
                     },
-                    new TreeNode("组件管理模块")
+                    new TreeNode("b"),
+                    new TreeNode("a")
                     {
                         Children =
                         {
-                            new TreeNode("组件数据结构"),
-                            new TreeNode("用户交互模块")
+                            new TreeNode("b"),
+                            new TreeNode("c"),
+                            new TreeNode("c"),
+                            new TreeNode("c"),
+                            new TreeNode("c"),
+                            new TreeNode("c"),
+                            new TreeNode("c")
                         }
                     },
-                    new TreeNode("装配流程管理模块")
-                    {
-                        Children =
-                        {
-                            new TreeNode("装配流程定义"),
-                            new TreeNode("装配流程的加载")
-                        }
-                    },
-                    new TreeNode("装配控制模块")
-                    {
-                        Children =
-                        {
-                            new TreeNode("自动装配控制"),
-                            new TreeNode("手动装配控制"),
-                        }
-                    }
                 }
             };
 
