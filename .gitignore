@@ -24,3 +24,4 @@ Debug/
 obj/
 Release/
 target/
+**/Properties/launchSettings.json
