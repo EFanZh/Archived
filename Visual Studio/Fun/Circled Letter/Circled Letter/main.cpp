@@ -286,6 +286,7 @@ CommandList DrawImage(dwrite::Factory &dWriteFactory,
         return result;
     }
 }
+
 wic::Stream OpenFileForWrite(ImagingFactory &imagingFactory, const WCHAR *outputFile)
 {
     auto stream = imagingFactory.CreateStream();
