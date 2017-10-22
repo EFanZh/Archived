@@ -3,8 +3,10 @@
 *.dll
 *.DotSettings
 *.exe
+*.ibc
 *.lib
 *.lnk
+*.lock
 *.min.css
 *.min.js
 *.obj
@@ -16,6 +18,7 @@
 *~
 .idea/
 .vs/
+.vscode/
 bin/
 Debug/
 obj/

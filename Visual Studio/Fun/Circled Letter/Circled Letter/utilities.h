@@ -17,7 +17,7 @@ namespace details
         {
         }
 
-        ScopeGuard(const ScopeGuard &&other)
+        ScopeGuard(ScopeGuard &&other)
         {
             function.swap(other.function);
         }

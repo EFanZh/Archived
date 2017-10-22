@@ -354,7 +354,7 @@ wstring GetColorProfileFile()
 
     if (GetColorDirectory(nullptr, result.data(), &size))
     {
-        return wstring{ result.data() } +fileName;
+        return wstring(result.data()) + fileName;
     }
     else
     {
