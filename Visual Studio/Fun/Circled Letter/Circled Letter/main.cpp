@@ -550,7 +550,7 @@ int wmain(int argc, wchar_t *argv[])
         configuration.haloRadius = 0.5 * scale;
         configuration.text = L"E";
         configuration.outputFile = argv[1];
-        configuration.drawDebugInfo = true;
+        configuration.drawDebugInfo = false;
 
         DoTheJob(configuration);
 
