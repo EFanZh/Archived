@@ -1,6 +1,6 @@
  #lang typed/racket/base
 
-(define-type Identifier (Refine [id : Symbol] (! id 'λ)))
+(define-type Identifier Symbol)
 (define-type RawVar Identifier)
 (define-type RawFun (List 'λ (Listof Identifier) RawExp))
 (define-type RawApp (Pairof RawExp (Listof RawExp)))
@@ -9,5 +9,6 @@
 (define-predicate raw-var? RawVar)
 (define-predicate raw-fun? RawFun)
 (define-predicate raw-app? RawApp)
+(define-predicate raw-exp? RawExp)
 
 (provide RawExp raw-var? raw-fun? raw-app?)

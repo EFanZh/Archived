@@ -20,10 +20,9 @@
 ;; Parsers.
 
 (define (parse [exp : RawExp]) : Exp
-  (match exp
-    [(? raw-var? x) (Var x)]
-    [(? raw-fun? x) (Fun (second x) (parse (third x)))]
-    [(? raw-app? x) (App (parse (first x)) (map parse (rest x)))]))
+  (cond [(raw-var? exp) (Var exp)]
+        [(raw-fun? exp) (Fun (second exp) (parse (third exp)))]
+        [(raw-app? exp) (App (parse (first exp)) (map parse (rest exp)))]))
 
 (define (unparse [exp : Exp]) : RawExp
   (match exp
